@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ФД — поиск и обсуждение</title>
+<style>
+  :root{
+    --bg:#0d0e12;
+    --card:#161922;
+    --card-2:#1c2029;
+    --border:#262b38;
+    --text:#e9ebf1;
+    --muted:#8b93a7;
+    --accent:#7c5cff;
+    --accent-2:#5b8cff;
+    --danger:#ff5c6c;
+    --ok:#33d6a6;
+    --gold:#ffc65c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
+    background:radial-gradient(1100px 650px at 50% -15%, #1c1f2e 0%, var(--bg) 62%);
+    color:var(--text);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .screen{display:none;min-height:100vh}
+  .screen.active{display:flex}
+  .hidden{display:none !important}
+
+  /* ---------- Кнопки / инпуты ---------- */
+  .btn{
+    font:inherit;font-weight:600;font-size:15px;
+    border:none;border-radius:12px;padding:13px 22px;
+    cursor:pointer;transition:.18s;white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#fff;
+    box-shadow:0 8px 22px -8px rgba(124,92,255,.8);
+  }
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 26px -8px rgba(124,92,255,.95)}
+  .btn-primary:active{transform:translateY(0)}
+  .btn-ghost{
+    background:transparent;color:var(--muted);
+    border:1px solid var(--border);
+  }
+  .btn-ghost:hover{color:var(--text);border-color:#3a4152}
+  .btn-danger{
+    background:rgba(255,92,108,.12);color:var(--danger);
+    border:1px solid rgba(255,92,108,.35);
+    width:100%;font-size:14px;padding:11px;
+  }
+  .btn-danger:hover{background:rgba(255,92,108,.2)}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none !important}
+
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
+  .field label{font-size:13px;color:var(--muted);font-weight:500}
+  .field input{
+    font:inherit;font-size:15px;color:var(--text);
+    background:var(--card-2);border:1px solid var(--border);
+    border-radius:11px;padding:12px 14px;outline:none;transition:.15s;
+    width:100%;
+  }
+  .field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
+  .field input::placeholder{color:#5a6178}
+  .prefix-wrap{
+    display:flex;align-items:center;
+    background:var(--card-2);border:1px solid var(--border);
+    border-radius:11px;padding-left:14px;transition:.15s;
+  }
+  .prefix-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
+  .prefix-wrap span{color:var(--muted);font-size:15px;font-weight:600}
+  .prefix-wrap input{border:none !important;background:transparent !important;box-shadow:none !important;padding-left:4px}
+
+  .error{
+    color:var(--danger);font-size:13.5px;line-height:1.45;
+    min-height:0;margin-bottom:12px;
+  }
+  .error:not(:empty){
+    background:rgba(255,92,108,.08);
+    border:1px solid rgba(255,92,108,.25);
+    border-radius:10px;padding:10px 13px;
+  }
+
+  /* ---------- Экран 1: Правила ---------- */
+  #screen-rules{align-items:center;justify-content:center;padding:40px 20px}
+  .rules-card{
+    width:100%;max-width:780px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:22px;padding:40px 42px;
+    box-shadow:0 30px 70px -30px rgba(0,0,0,.85);
+  }
+  .brand{
+    font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:22px;
+  }
+  .brand span{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .rules-card h1{font-size:23px;font-weight:700;margin-bottom:6px;letter-spacing:-.3px}
+  .rules-sub{color:var(--muted);font-size:13.5px;margin-bottom:24px}
+  .rules-text{
+    max-height:46vh;overflow-y:auto;padding-right:14px;
+    font-size:14px;line-height:1.72;color:#c3c9d8;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding-top:20px;padding-bottom:20px;margin-bottom:26px;
+  }
+  .rules-text h2{
+    font-size:14.5px;font-weight:700;color:var(--text);
+    margin:18px 0 8px;letter-spacing:.2px;
+  }
+  .rules-text h2:first-child{margin-top:0}
+  .rules-text p{margin-bottom:9px}
+  .rules-text ul{margin:6px 0 10px 20px}
+  .rules-text li{margin-bottom:6px}
+  .rules-text::-webkit-scrollbar{width:6px}
+  .rules-text::-webkit-scrollbar-track{background:transparent}
+  .rules-text::-webkit-scrollbar-thumb{background:#2e3446;border-radius:3px}
+  .rules-actions{display:flex;flex-direction:column;gap:11px}
+  .rules-actions .btn{width:100%;text-align:center}
+
+  /* ---------- Экран 2: Авторизация ---------- */
+  #screen-auth{align-items:center;justify-content:center;padding:40px 20px}
+  .auth-card{
+    width:100%;max-width:430px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:22px;padding:32px 32px 34px;
+    box-shadow:0 30px 70px -30px rgba(0,0,0,.85);
+  }
+  .tabs{
+    display:flex;gap:6px;background:var(--card-2);
+    border:1px solid var(--border);border-radius:13px;
+    padding:5px;margin-bottom:26px;
+  }
+  .tab{
+    flex:1;font:inherit;font-size:14px;font-weight:600;
+    background:transparent;border:none;color:var(--muted);
+    padding:10px;border-radius:9px;cursor:pointer;transition:.16s;
+  }
+  .tab.active{background:var(--accent);color:#fff;box-shadow:0 6px 16px -8px rgba(124,92,255,.9)}
+
+  .avatar-picker{display:flex;flex-direction:column;align-items:center;gap:11px;margin-bottom:22px}
+  .avatar-preview{
+    width:92px;height:92px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--border);background:var(--card-2);
+    transition:.18s;
+  }
+  .avatar-preview:hover{border-color:var(--accent)}
+  .avatar-hint{font-size:12.5px;color:var(--muted)}
+
+  /* ---------- Экран 3: Главная ---------- */
+  #screen-main{flex-direction:column}
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 26px;border-bottom:1px solid var(--border);
+    background:rgba(13,14,18,.72);backdrop-filter:blur(14px);
+    position:sticky;top:0;z-index:50;
+  }
+  .topbar .brand{margin-bottom:0;font-size:18px}
+  .user-area{position:relative}
+  .avatar-btn{
+    background:none;border:none;padding:0;cursor:pointer;
+    border-radius:50%;line-height:0;transition:.16s;
+  }
+  .avatar-btn:hover{transform:scale(1.06)}
+  .avatar-btn img{
+    width:42px;height:42px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--border);
+  }
+
+  .popup{
+    position:absolute;top:56px;right:0;width:270px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:18px;padding:22px 20px 18px;
+    box-shadow:0 26px 60px -22px rgba(0,0,0,.9);
+    animation:pop .16s ease-out;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:none}}
+  .popup img.pop-avatar{
+    width:70px;height:70px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--border);display:block;margin:0 auto 14px;
+  }
+  .pop-name{
+    text-align:center;font-size:17px;font-weight:700;
+    margin-bottom:3px;word-break:break-word;
+  }
+  .pop-username{
+    text-align:center;font-size:13.5px;color:var(--muted);
+    margin-bottom:12px;word-break:break-all;
+  }
+  .pop-badge{
+    display:block;text-align:center;width:fit-content;margin:0 auto 16px;
+    font-size:12px;font-weight:700;letter-spacing:.4px;
+    padding:5px 13px;border-radius:20px;text-transform:uppercase;
+  }
+  .badge-admin{
+    color:var(--gold);background:rgba(255,198,92,.12);
+    border:1px solid rgba(255,198,92,.35);
+  }
+  .badge-user{
+    color:var(--muted);background:rgba(139,147,167,.1);
+    border:1px solid rgba(139,147,167,.25);
+  }
+  .pop-divider{height:1px;background:var(--border);margin:0 0 14px}
+
+  .content{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    padding:60px 24px;text-align:center;
+  }
+  .placeholder{max-width:520px}
+  .placeholder h2{font-size:22px;font-weight:700;margin-bottom:10px}
+  .placeholder p{color:var(--muted);font-size:15px;line-height:1.6}
+  .soon{
+    display:inline-block;margin-top:20px;font-size:12.5px;font-weight:600;
+    color:var(--accent);background:rgba(124,92,255,.1);
+    border:1px solid rgba(124,92,255,.3);
+    padding:7px 14px;border-radius:20px;letter-spacing:.3px;
+  }
+
+  @media(max-width:600px){
+    .rules-card{padding:28px 22px}
+    .auth-card{padding:26px 22px}
+    .rules-text{max-height:52vh}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= ЭКРАН 1: ПРАВИЛА ================= -->
+<section id="screen-rules" class="screen active">
+  <div class="rules-card">
+    <div class="brand">ФД<span>Поиск</span></div>
+    <h1>Правила использования Сервиса</h1>
+    <p class="rules-sub">Редакция от 01.01.2026. Пожалуйста, ознакомьтесь перед началом использования.</p>
+
+    <div class="rules-text">
+      <h2>1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
+      <p>1.1. Настоящие Правила использования Сервиса (далее — «Правила») регулируют отношения между Администрацией Сервиса (далее — «Администрация») и любым лицом, осуществляющим доступ к Сервису (далее — «Пользователь»).</p>
+      <p>1.2. Начало использования Сервиса, в том числе прохождение процедуры регистрации, означает полное и безоговорочное принятие Пользователем настоящих Правил в порядке, предусмотренном ст. 438 Гражданского кодекса Российской Федерации (акцепт оферты).</p>
+      <p>1.3. В случае несогласия с любым из положений настоящих Правил Пользователь обязан незамедлительно прекратить использование Сервиса.</p>
+
+      <h2>2. НАЗНАЧЕНИЕ СЕРВИСА</h2>
+      <p>2.1. Сервис предназначен исключительно для поиска, систематизации и публичного обсуждения информации об ФД (далее — «Материалы»).</p>
+      <p>2.2. Сервис является информационным посредником и не является средством для организации травли, преследования, унижения чести и достоинства, а равно для совершения иных противоправных действий.</p>
+
+      <h2>3. НЕДОПУСТИМЫЕ ДЕЙСТВИЯ</h2>
+      <p>3.1. При использовании Сервиса Пользователю запрещается:</p>
+      <ul>
+        <li>размещать материалы, направленные на разжигание ненависти либо вражды, а равно на унижение достоинства человека или группы лиц по признакам пола, расы, национальности, языка, происхождения, отношения к религии (ст. 282 УК РФ, ст. 20.3 КоАП РФ);</li>
+        <li>совершать действия, содержащие признаки клеветы (ст. 128.1 УК РФ), оскорбления (ст. 5.61 КоАП РФ), угрозы убийством или причинением вреда здоровью (ст. 119 УК РФ);</li>
+        <li>распространять персональные данные третьих лиц без их согласия, в том числе в форме «доксирования», — в нарушение Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных»;</li>
+        <li>организовывать, подстрекать к участию или иным образом содействовать травле (буллингу) иных лиц;</li>
+        <li>размещать материалы, нарушающие авторские и смежные права третьих лиц.</li>
+      </ul>
+
+      <h2>4. ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ</h2>
+      <p>4.1. Сервис функционирует по принципу «как есть» (as is). Администрация не гарантирует бесперебойную, безошибочную и безопасную работу Сервиса.</p>
+      <p>4.2. Администрация не осуществляет предварительную модерацию Материалов и не несёт ответственности за содержание Материалов, размещённых Пользователями. Все Материалы являются личным мнением разместившего их лица.</p>
+      <p>4.3. Администрация не несёт ответственности за любые прямые или косвенные убытки, включая упущенную выгоду, моральный вред и вред деловой репутации, возникшие в результате использования либо невозможности использования Сервиса.</p>
+      <p>4.4. Ответственность за содержание размещаемых Материалов и за соблюдение требований действующего законодательства Российской Федерации в полном объёме возлагается на Пользователя, разместившего соответствующие Материалы.</p>
+      <p>4.5. Администрация вправе в любой момент без предварительного уведомления удалить любые Материалы, а также ограничить или прекратить доступ Пользователя к Сервису при нарушении настоящих Правил.</p>
+
+      <h2>5. ПЕРСОНАЛЬНЫЕ ДАННЫЕ И УЧЁТНАЯ ЗАПИСЬ</h2>
+      <p>5.1. При регистрации Пользователь предоставляет имя, имя пользователя (username), изображение профиля и пароль.</p>
+      <p>5.2. Данные учётной записи сохраняются в локальном хранилище устройства Пользователя и не передаются третьим лицам.</p>
+      <p>5.3. Пользователь самостоятельно обеспечивает конфиденциальность своего пароля и несёт ответственность за все действия, совершённые с использованием его учётной записи.</p>
+
+      <h2>6. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</h2>
+      <p>6.1. Администрация вправе в одностороннем порядке изменять настоящие Правила. Изменения вступают в силу с момента их опубликования на данной странице.</p>
+      <p>6.2. Продолжение использования Сервиса после внесения изменений означает согласие Пользователя с новой редакцией Правил.</p>
+    </div>
+
+    <div class="rules-actions">
+      <button id="btnAccept" class="btn btn-primary">Принять условия</button>
+      <button id="btnCreateAccount" class="btn btn-primary hidden">Создать аккаунт</button>
+      <button id="btnGoLogin" class="btn btn-ghost hidden">У меня уже есть аккаунт</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЭКРАН 2: АВТОРИЗАЦИЯ ================= -->
+<section id="screen-auth" class="screen">
+  <div class="auth-card">
+    <div class="tabs">
+      <button class="tab active" data-tab="register">Регистрация</button>
+      <button class="tab" data-tab="login">Вход</button>
+    </div>
+
+    <!-- Регистрация -->
+    <form id="form-register" class="form" autocomplete="off">
+      <div class="avatar-picker">
+        <img id="regAvatarPreview" class="avatar-preview" alt="Аватар" />
+        <input type="file" id="regAvatarInput" accept="image/*" hidden />
+        <button type="button" id="regAvatarBtn" class="btn btn-ghost" style="font-size:13.5px;padding:9px 16px">Добавить фото</button>
+        <div class="avatar-hint">Необязательно — можно оставить стандартный</div>
+      </div>
+
+      <div class="field">
+        <label for="regName">Имя</label>
+        <input id="regName" type="text" placeholder="Как вас зовут" maxlength="40" />
+      </div>
+
+      <div class="field">
+        <label for="regUsername">Имя пользователя</label>
+        <div class="prefix-wrap">
+          <span>@</span>
+          <input id="regUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="regPass">Пароль</label>
+        <input id="regPass" type="password" placeholder="Минимум 6 символов" />
+      </div>
+
+      <div class="field">
+        <label for="regPass2">Повторите пароль</label>
+        <input id="regPass2" type="password" placeholder="Ещё раз" />
+      </div>
+
+      <div class="error" id="regError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Создать аккаунт</button>
+    </form>
+
+    <!-- Вход -->
+    <form id="form-login" class="form hidden" autocomplete="off">
+      <div class="field">
+        <label for="logUsername">Имя пользователя</label>
+        <div class="prefix-wrap">
+          <span>@</span>
+          <input id="logUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="logPass">Пароль</label>
+        <input id="logPass" type="password" placeholder="Ваш пароль" />
+      </div>
+
+      <div class="error" id="logError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Войти</button>
+      <button type="button" id="btnBackToRules" class="btn btn-ghost" style="width:100%;margin-top:10px">Назад к правилам</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= ЭКРАН 3: ГЛАВНАЯ ================= -->
+<section id="screen-main" class="screen">
+  <header class="topbar">
+    <div class="brand">ФД<span>Поиск</span></div>
+    <div class="user-area">
+      <button class="avatar-btn" id="avatarBtn" aria-label="Профиль">
+        <img id="topAvatar" alt="Аватар" />
+      </button>
+
+      <div class="popup hidden" id="profilePopup">
+        <img id="popAvatar" class="pop-avatar" alt="Аватар" />
+        <div class="pop-name" id="popName"></div>
+        <div class="pop-username" id="popUsername"></div>
+        <div class="pop-badge" id="popBadge"></div>
+        <div class="pop-divider"></div>
+        <button class="btn btn-danger" id="btnLogout">Выйти из аккаунта</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="placeholder">
+      <h2>Здесь будет поиск ФД</h2>
+      <p>Лента, поиск и обсуждения появятся на следующем этапе разработки.</p>
+      <div class="soon">Следующий этап →</div>
+    </div>
+  </main>
+</section>
+
+<script>
+/* =========================================================
+   КОНФИГ
+   ========================================================= */
+const ADMIN_USERNAMES = ['ozisoofilion'];   // кому выдаётся префикс «Администрация»
+const LS_USERS   = 'fd_users';              // хранилище аккаунтов
+const LS_SESSION = 'fd_session';            // id текущей сессии
+
+/* =========================================================
+   ХЕШИРОВАНИЕ ПАРОЛЯ (SHA-256)
+   ВАЖНО: это демо на localStorage. В реальном проекте
+   пароль должен проверяться на сервере (bcrypt / argon2).
+   ========================================================= */
+function sha256(str){
+  const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+  0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+  0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+  0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+  0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+  0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+  0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+  0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+
+  const bytes = new TextEncoder().encode(str);
+  const l = bytes.length;
+  const total = Math.ceil((l + 9) / 64) * 64;
+  const msg = new Uint8Array(total);
+  msg.set(bytes);
+  msg[l] = 0x80;
+  const dv = new DataView(msg.buffer);
+  const bitLen = l * 8;
+  dv.setUint32(total - 8, Math.floor(bitLen / 4294967296));
+  dv.setUint32(total - 4, bitLen >>> 0);
+
+  const w = new Uint32Array(64);
+  const rotr = (x,n) => (x >>> n) | (x << (32 - n));
+
+  for (let i = 0; i < total; i += 64){
+    for (let j = 0; j < 16; j++) w[j] = dv.getUint32(i + j * 4);
+    for (let j = 16; j < 64; j++){
+      const s0 = rotr(w[j-15],7) ^ rotr(w[j-15],18) ^ (w[j-15] >>> 3);
+      const s1 = rotr(w[j-2],17) ^ rotr(w[j-2],19) ^ (w[j-2] >>> 10);
+      w[j] = (w[j-16] + s0 + w[j-7] + s1) >>> 0;
+    }
+    let [a,b,c,d,e,f,g,h] = H;
+    for (let j = 0; j < 64; j++){
+      const S1 = rotr(e,6) ^ rotr(e,11) ^ rotr(e,25);
+      const ch = (e & f) ^ (~e & g);
+      const t1 = (h + S1 + ch + K[j] + w[j]) >>> 0;
+      const S0 = rotr(a,2) ^ rotr(a,13) ^ rotr(a,22);
+      const maj = (a & b) ^ (a & c) ^ (b & c);
+      const t2 = (S0 + maj) >>> 0;
+      h=g; g=f; f=e; e=(d+t1)>>>0; d=c; c=b; b=a; a=(t1+t2)>>>0;
+    }
+    H[0]=(H[0]+a)>>>0; H[1]=(H[1]+b)>>>0; H[2]=(H[2]+c)>>>0; H[3]=(H[3]+d)>>>0;
+    H[4]=(H[4]+e)>>>0; H[5]=(H[5]+f)>>>0; H[6]=(H[6]+g)>>>0; H[7]=(H[7]+h)>>>0;
+  }
+  return H.map(x => x.toString(16).padStart(8,'0')).join('');
+}
+function hashPassword(pass){
+  return sha256('fd_salt_v1::' + pass);
+}
+
+/* =========================================================
+   ХРАНИЛИЩЕ
+   ========================================================= */
+const getUsers   = () => { try { return JSON.parse(localStorage.getItem(LS_USERS) || '[]'); } catch { return []; } };
+const saveUsers  = u  => localStorage.setItem(LS_USERS, JSON.stringify(u));
+const getSession = () => localStorage.getItem(LS_SESSION);
+const setSession = id => localStorage.setItem(LS_SESSION, id);
+const clearSession = () => localStorage.removeItem(LS_SESSION);
+
+/* =========================================================
+   УТИЛИТЫ
+   ========================================================= */
+const $ = id => document.getElementById(id);
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function normalizeUsername(v){
+  return String(v || '')
+    .replace(/^@+/, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9_]/g, '')
+    .slice(0, 32);
+}
+
+function defaultAvatar(name){
+  const letter = ((name || '?').trim()[0] || '?').toUpperCase();
+  const palette = ['#7c5cff','#5b8cff','#ff5c8a','#ffb03b','#33d6a6','#ff7a45'];
+  const color = palette[letter.charCodeAt(0) % palette.length];
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">` +
+    `<rect width="200" height="200" fill="${color}"/>` +
+    `<text x="100" y="104" font-size="96" font-family="Arial,Helvetica,sans-serif" ` +
+    `fill="#ffffff" text-anchor="middle" dominant-baseline="middle">${letter}</text></svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+function roleOf(username){
+  return ADMIN_USERNAMES.includes(username) ? 'admin' : 'user';
+}
+function roleLabel(role){
+  return role === 'admin' ? 'Администрация' : 'Пользователь';
+}
+function roleClass(role){
+  return role === 'admin' ? 'badge-admin' : 'badge-user';
+}
+
+/* =========================================================
+   ЭКРАН 1 — ПРАВИЛА
+   ========================================================= */
+$('btnAccept').addEventListener('click', () => {
+  $('btnAccept').classList.add('hidden');
+  $('btnCreateAccount').classList.remove('hidden');
+  $('btnGoLogin').classList.remove('hidden');
+});
+
+$('btnCreateAccount').addEventListener('click', () => {
+  switchTab('register');
+  showScreen('screen-auth');
+});
+
+$('btnGoLogin').addEventListener('click', () => {
+  switchTab('login');
+  showScreen('screen-auth');
+});
+
+$('btnBackToRules').addEventListener('click', () => showScreen('screen-rules'));
+
+/* =========================================================
+   ЭКРАН 2 — АВТОРИЗАЦИЯ
+   ========================================================= */
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.tab === tab));
+  $('form-register').classList.toggle('hidden', tab !== 'register');
+  $('form-login').classList.toggle('hidden', tab !== 'login');
+  $('regError').textContent = '';
+  $('logError').textContent = '';
+}
+document.querySelectorAll('.tab').forEach(t =>
+  t.addEventListener('click', () => switchTab(t.dataset.tab)));
+
+/* --- выбор аватара --- */
+let regAvatarData = null;
+
+$('regAvatarBtn').addEventListener('click', () => $('regAvatarInput').click());
+$('regAvatarPreview').addEventListener('click', () => $('regAvatarInput').click());
+
+$('regAvatarInput').addEventListener('change', e => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  if (file.size > 3 * 1024 * 1024){
+    $('regError').textContent = 'Файл слишком большой. Максимум 3 МБ.';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    regAvatarData = ev.target.result;
+    $('regAvatarPreview').src = regAvatarData;
+    $('regError').textContent = '';
+  };
+  reader.readAsDataURL(file);
+});
+
+/* сброс превью при переключении на регистрацию заново */
+function resetAvatarPreview(){
+  regAvatarData = null;
+  $('regAvatarInput').value = '';
+  $('regAvatarPreview').src = defaultAvatar($('regName').value || '?');
+}
+$('regName').addEventListener('input', () => {
+  if (!regAvatarData) $('regAvatarPreview').src = defaultAvatar($('regName').value || '?');
+});
+
+/* --- регистрация --- */
+$('form-register').addEventListener('submit', e => {
+  e.preventDefault();
+  const err = $('regError');
+  err.textContent = '';
+
+  const name     = $('regName').value.trim();
+  const username = normalizeUsername($('regUsername').value);
+  const pass     = $('regPass').value;
+  const pass2    = $('regPass2').value;
+
+  if (name.length < 2)                return err.textContent = 'Укажите имя (минимум 2 символа).';
+  if (username.length < 3)            return err.textContent = 'Имя пользователя должно содержать минимум 3 символа (a–z, 0–9, _).';
+  if (pass.length < 6)                return err.textContent = 'Пароль должен содержать минимум 6 символов.';
+  if (pass !== pass2)                 return err.textContent = 'Пароли не совпадают.';
+
+  const users = getUsers();
+  if (users.some(u => u.username === username))
+    return err.textContent = 'Это имя пользователя уже занято.';
+
+  const user = {
+    id: 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+    name,
+    username,
+    passHash: hashPassword(pass),
+    avatar: regAvatarData || null,
+    role: roleOf(username),
+    createdAt: Date.now()
+  };
+
+  users.push(user);
+  saveUsers(users);
+  setSession(user.id);
+
+  $('form-register').reset();
+  resetAvatarPreview();
+  enterApp(user);
+});
+
+/* --- вход --- */
+$('form-login').addEventListener('submit', e => {
+  e.preventDefault();
+  const err = $('logError');
+  err.textContent = '';
+
+  const username = normalizeUsername($('logUsername').value);
+  const pass     = $('logPass').value;
+
+  if (!username || !pass) return err.textContent = 'Заполните все поля.';
+
+  const user = getUsers().find(u => u.username === username);
+  if (!user) return err.textContent = 'Пользователь с таким именем не найден.';
+  if (user.passHash !== hashPassword(pass)) return err.textContent = 'Неверный пароль.';
+
+  setSession(user.id);
+  $('form-login').reset();
+  enterApp(user);
+});
+
+/* =========================================================
+   ЭКРАН 3 — ГЛАВНАЯ
+   ========================================================= */
+function enterApp(user){
+  const avatar = user.avatar || defaultAvatar(user.name);
+
+  $('topAvatar').src       = avatar;
+  $('popAvatar').src       = avatar;
+  $('popName').textContent = user.name;
+  $('popUsername').textContent = '@' + user.username;
+
+  const badge = $('popBadge');
+  badge.textContent = roleLabel(user.role);
+  badge.className = 'pop-badge ' + roleClass(user.role);
+
+  $('profilePopup').classList.add('hidden');
+  showScreen('screen-main');
+}
+
+/* --- выпадающее меню профиля --- */
+$('avatarBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  $('profilePopup').classList.toggle('hidden');
+});
+document.addEventListener('click', e => {
+  const popup = $('profilePopup');
+  if (!popup.classList.contains('hidden') && !popup.contains(e.target) && e.target !== $('avatarBtn')){
+    popup.classList.add('hidden');
+  }
+});
+
+/* --- выход --- */
+$('btnLogout').addEventListener('click', () => {
+  clearSession();
+  $('profilePopup').classList.add('hidden');
+  $('btnAccept').classList.remove('hidden');
+  $('btnCreateAccount').classList.add('hidden');
+  $('btnGoLogin').classList.add('hidden');
+  showScreen('screen-rules');
+});
+
+/* =========================================================
+   СТАРТ
+   ========================================================= */
+(function init(){
+  $('regAvatarPreview').src = defaultAvatar('?');
+
+  const sessionId = getSession();
+  const user = sessionId ? getUsers().find(u => u.id === sessionId) : null;
+
+  if (user){
+    enterApp(user);           // сессия сохранена — сразу на главную
+  } else {
+    clearSession();
+    showScreen('screen-rules');
+  }
+})();
+</script>
+</body>
+</html>
