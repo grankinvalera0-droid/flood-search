@@ -155,13 +155,23 @@
   .admin-msg-actions{display:flex;flex-direction:column;gap:8px}
   .admin-msg-actions .btn{width:100%;font-size:14px;padding:11px}
 
-  /* Кнопка "Обращения" для админа */
+  /* Кнопки в шапке */
   .admin-inbox-btn{
     background:transparent;border:1px solid var(--border);color:var(--muted);
     font:inherit;font-size:13px;font-weight:600;padding:8px 13px;border-radius:10px;
     cursor:pointer;display:flex;align-items:center;gap:7px;transition:.16s;
   }
   .admin-inbox-btn:hover{color:var(--text);border-color:#3a4152;background:var(--card-2)}
+
+  .my-tickets-btn{
+    background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);
+    color:#cbc3ff;font:inherit;font-size:13px;font-weight:600;
+    padding:8px 13px;border-radius:10px;cursor:pointer;
+    display:flex;align-items:center;gap:7px;transition:.16s;
+  }
+  .my-tickets-btn:hover{background:rgba(124,92,255,.2);color:#fff}
+  .my-tickets-btn .inbox-badge{background:var(--ok)}
+
   .inbox-badge{
     background:var(--accent);color:#fff;font-size:11px;font-weight:700;
     padding:2px 7px;border-radius:10px;min-width:18px;text-align:center;
@@ -244,9 +254,7 @@
   }
   .help-section p{font-size:14px;line-height:1.6;color:#c3c9d8}
 
-  .modal-footer-divider{
-    height:1px;background:var(--border);margin:22px 0 16px;
-  }
+  .modal-footer-divider{height:1px;background:var(--border);margin:22px 0 16px}
 
   .success-block{text-align:center;padding:16px 0}
   .success-icon{
@@ -260,9 +268,7 @@
   .success-block .btn{width:100%}
 
   /* ---------- Админ-панель ---------- */
-  .tickets-layout{
-    display:grid;grid-template-columns:280px 1fr;gap:18px;min-height:400px;
-  }
+  .tickets-layout{display:grid;grid-template-columns:280px 1fr;gap:18px;min-height:400px}
   @media(max-width:740px){.tickets-layout{grid-template-columns:1fr}}
   .tickets-list{
     border-right:1px solid var(--border);padding-right:14px;
@@ -299,9 +305,7 @@
   .ticket-field .value a{color:var(--accent-2);text-decoration:none}
   .ticket-field .value a:hover{text-decoration:underline}
 
-  .ticket-answer{
-    margin-top:18px;padding-top:18px;border-top:1px solid var(--border);
-  }
+  .ticket-answer{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
   .ticket-answer textarea{
     width:100%;min-height:90px;background:var(--card-2);
     border:1px solid var(--border);border-radius:11px;color:var(--text);
@@ -312,9 +316,41 @@
     border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16);
   }
 
-  .empty-state{
-    text-align:center;color:var(--muted);font-size:14px;padding:40px 20px;
+  .empty-state{text-align:center;color:var(--muted);font-size:14px;padding:40px 20px}
+
+  /* ---------- Мои обращения (для пользователя) ---------- */
+  .my-tickets-list{display:flex;flex-direction:column;gap:12px;max-height:65vh;overflow-y:auto;padding-right:6px}
+  .my-ticket-card{
+    background:var(--card-2);border:1px solid var(--border);
+    border-radius:14px;padding:16px;
   }
+  .my-ticket-card.answered{border-color:rgba(51,214,166,.4)}
+  .my-ticket-head{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    gap:12px;margin-bottom:10px;
+  }
+  .my-ticket-type{font-size:14.5px;font-weight:700}
+  .my-ticket-status{
+    font-size:11.5px;font-weight:700;letter-spacing:.3px;
+    padding:4px 10px;border-radius:20px;text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .status-new{color:var(--accent);background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.3)}
+  .status-answered{color:var(--ok);background:rgba(51,214,166,.12);border:1px solid rgba(51,214,166,.35)}
+  .my-ticket-body{font-size:13.5px;color:#c3c9d8;line-height:1.55}
+  .my-ticket-body p{margin-bottom:6px}
+  .my-ticket-body strong{color:var(--text);font-weight:600}
+  .my-ticket-answer{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+  .my-ticket-answer .label{
+    font-size:11.5px;color:var(--ok);text-transform:uppercase;
+    letter-spacing:.4px;font-weight:700;margin-bottom:6px;display:block;
+  }
+  .my-ticket-answer .answer-text{
+    font-size:13.5px;line-height:1.55;color:var(--text);
+    background:rgba(51,214,166,.06);padding:11px 13px;border-radius:10px;
+    border-left:3px solid var(--ok);
+  }
+  .my-ticket-answer .answered-at{font-size:11.5px;color:var(--muted);margin-top:7px}
 
   @media(max-width:640px){
     .admin-msg-btn span{display:none}
@@ -326,6 +362,7 @@
     .topbar{padding:10px 14px}
     .topbar .brand{font-size:16px}
     .admin-inbox-btn span:not(.inbox-badge){display:none}
+    .my-tickets-btn span:not(.inbox-badge){display:none}
   }
 </style>
 </head>
@@ -472,6 +509,9 @@
     </div>
 
     <div class="topbar-right">
+      <button class="my-tickets-btn hidden" id="myTicketsBtn">
+        📬 <span>Мои обращения</span> <span class="inbox-badge hidden" id="myTicketsBadge">0</span>
+      </button>
       <button class="admin-inbox-btn hidden" id="adminInboxBtn">
         📥 <span>Обращения</span> <span class="inbox-badge hidden" id="ticketsBadge">0</span>
       </button>
@@ -575,7 +615,7 @@
       <div class="success-block">
         <div class="success-icon">✓</div>
         <h2>Обращение отправлено</h2>
-        <p>Администрация рассмотрит его в ближайшее время.</p>
+        <p>Администрация рассмотрит его в ближайшее время. Ответ появится в разделе «Мои обращения».</p>
         <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
       </div>
     </div>
@@ -604,7 +644,7 @@
       <div class="success-block">
         <div class="success-icon">✓</div>
         <h2>Сообщение отправлено</h2>
-        <p>Администрация свяжется с вами при необходимости.</p>
+        <p>Администрация свяжется с вами. Ответ появится в разделе «Мои обращения».</p>
         <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
       </div>
     </div>
@@ -620,6 +660,15 @@
       <div class="tickets-list" id="ticketsList"></div>
       <div class="ticket-detail" id="ticketDetail"></div>
     </div>
+  </div>
+</div>
+
+<!-- ================= МОДАЛКА: МОИ ОБРАЩЕНИЯ ================= -->
+<div class="modal-overlay hidden" id="myTicketsModal">
+  <div class="modal">
+    <button class="modal-close" type="button">×</button>
+    <h2>📬 Мои обращения</h2>
+    <div class="my-tickets-list" id="myTicketsList"></div>
   </div>
 </div>
 
@@ -762,8 +811,10 @@ function resetModalView(modalId){
 }
 function showModalSuccess(modalId){
   const modal = $(modalId);
-  modal.querySelector('.modal-form-view').classList.add('hidden');
-  modal.querySelector('.modal-success').classList.remove('hidden');
+  const f = modal.querySelector('.modal-form-view');
+  const s = modal.querySelector('.modal-success');
+  if (f) f.classList.add('hidden');
+  if (s) s.classList.remove('hidden');
 }
 
 /* =========================================================
@@ -889,7 +940,10 @@ function enterApp(user){
   } else {
     $('adminInboxBtn').classList.add('hidden');
   }
+  // Кнопка "Мои обращения" — для всех
+  $('myTicketsBtn').classList.remove('hidden');
   updateAdminInbox();
+  updateMyTicketsBadge();
 
   $('profilePopup').classList.add('hidden');
   $('adminMsgPopup').classList.add('hidden');
@@ -928,6 +982,7 @@ $('btnLogout').addEventListener('click', () => {
   CURRENT_USER = null;
   $('profilePopup').classList.add('hidden');
   $('adminInboxBtn').classList.add('hidden');
+  $('myTicketsBtn').classList.add('hidden');
   $('btnAccept').classList.remove('hidden');
   $('btnCreateAccount').classList.add('hidden');
   $('btnGoLogin').classList.add('hidden');
@@ -991,6 +1046,7 @@ $('floodForm').addEventListener('submit', e => {
   tickets.push(ticket);
   saveTickets(tickets);
   updateAdminInbox();
+  updateMyTicketsBadge();
   $('floodForm').reset();
   showModalSuccess('floodModal');
 });
@@ -1020,6 +1076,7 @@ $('contactForm').addEventListener('submit', e => {
   tickets.push(ticket);
   saveTickets(tickets);
   updateAdminInbox();
+  updateMyTicketsBadge();
   $('contactForm').reset();
   showModalSuccess('contactModal');
 });
@@ -1134,9 +1191,117 @@ function renderAdminPanel(){
     t.answeredAt = Date.now();
     saveTickets(all);
     updateAdminInbox();
+    // обновляем бейдж у самого админа тоже (если он вдруг и юзер тоже)
+    updateMyTicketsBadge();
     renderAdminPanel();
   });
 }
+
+/* =========================================================
+   МОИ ОБРАЩЕНИЯ (для пользователя)
+   ========================================================= */
+function myAnsweredCount(){
+  if (!CURRENT_USER) return 0;
+  return getTickets().filter(t =>
+    t.fromId === CURRENT_USER.id && t.status === 'answered'
+  ).length;
+}
+
+function updateMyTicketsBadge(){
+  if (!CURRENT_USER) return;
+  const count = myAnsweredCount();
+  const badge = $('myTicketsBadge');
+  if (count > 0){
+    badge.textContent = count > 99 ? '99+' : count;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function renderMyTickets(){
+  const list = $('myTicketsList');
+  if (!CURRENT_USER){
+    list.innerHTML = '<div class="empty-state">Вы не авторизованы</div>';
+    return;
+  }
+  const tickets = getTickets()
+    .filter(t => t.fromId === CURRENT_USER.id)
+    .sort((a,b) => b.createdAt - a.createdAt);
+
+  if (tickets.length === 0){
+    list.innerHTML = '<div class="empty-state">У вас пока нет обращений.</div>';
+    return;
+  }
+
+  list.innerHTML = tickets.map(t => {
+    const isAnswered  = t.status === 'answered';
+    const typeLabel   = t.type === 'flood' ? '🚨 Сообщение о флуде' : '❓ Обращение за помощью';
+    const statusLabel = isAnswered ? 'Отвечено' : 'Ожидает ответа';
+    const statusClass = isAnswered ? 'status-answered' : 'status-new';
+
+    const safeLink = t.link ? safeUrl(t.link) : null;
+    const linkHtml = t.link
+      ? (safeLink
+          ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener" style="color:#5b8cff">${escapeHtml(t.link)}</a>`
+          : escapeHtml(t.link))
+      : '';
+
+    let body = '';
+    if (t.type === 'flood'){
+      body += `<p><strong>ФД:</strong> ${escapeHtml(t.fdName)}</p>`;
+      if (t.link) body += `<p><strong>Ссылка:</strong> ${linkHtml}</p>`;
+    }
+    if (t.message){
+      body += `<p><strong>Сообщение:</strong> ${escapeHtml(t.message).replace(/\n/g,'<br>')}</p>`;
+    }
+    body += `<p style="color:#8b93a7;font-size:12.5px;margin-top:8px">Отправлено: ${formatTime(t.createdAt)}</p>`;
+
+    let answerBlock = '';
+    if (isAnswered){
+      answerBlock = `
+        <div class="my-ticket-answer">
+          <span class="label">Ответ администрации</span>
+          <div class="answer-text">${escapeHtml(t.answer).replace(/\n/g,'<br>')}</div>
+          <div class="answered-at">${formatTime(t.answeredAt || t.createdAt)}</div>
+        </div>`;
+    }
+
+    return `
+      <div class="my-ticket-card ${isAnswered ? 'answered' : ''}">
+        <div class="my-ticket-head">
+          <div class="my-ticket-type">${typeLabel}</div>
+          <div class="my-ticket-status ${statusClass}">${statusLabel}</div>
+        </div>
+        <div class="my-ticket-body">${body}</div>
+        ${answerBlock}
+      </div>`;
+  }).join('');
+}
+
+$('myTicketsBtn').addEventListener('click', () => {
+  renderMyTickets();
+  openModal('myTicketsModal');
+});
+
+/* =========================================================
+   СИНХРОНИЗАЦИЯ МЕЖДУ ВКЛАДКАМИ
+   Если открыто две вкладки (админ + юзер) и админ ответил —
+   у юзера автоматически обновится бейдж.
+   ========================================================= */
+window.addEventListener('storage', e => {
+  if (e.key === LS_TICKETS){
+    updateAdminInbox();
+    updateMyTicketsBadge();
+    // если открыта модалка "Мои обращения" — перерисуем
+    if (!$('myTicketsModal').classList.contains('hidden')){
+      renderMyTickets();
+    }
+    if (!$('adminPanelModal').classList.contains('hidden')){
+      renderAdminPanel();
+    }
+  }
+});
 
 /* =========================================================
    СТАРТ
