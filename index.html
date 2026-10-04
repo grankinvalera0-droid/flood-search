@@ -121,11 +121,33 @@
   .badge-user{color:var(--muted);background:rgba(139,147,167,.1);border:1px solid rgba(139,147,167,.25)}
   .pop-divider{height:1px;background:var(--border);margin:0 0 14px}
 
+  /* ============================
+     ГЛАВНЫЙ ЭКРАН — большая кнопка поиска
+     ============================ */
   .content{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;text-align:center}
-  .placeholder{max-width:520px}
-  .placeholder h2{font-size:22px;font-weight:700;margin-bottom:10px}
-  .placeholder p{color:var(--muted);font-size:15px;line-height:1.6}
-  .soon{display:inline-block;margin-top:20px;font-size:12.5px;font-weight:600;color:var(--accent);background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.3);padding:7px 14px;border-radius:20px}
+
+  .search-hub-btn{
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    background:linear-gradient(135deg, rgba(124,92,255,.1), rgba(91,140,255,.1));
+    border:1px solid rgba(124,92,255,.35);
+    border-radius:26px;padding:52px 60px;cursor:pointer;
+    transition:.22s;text-align:center;color:var(--text);font:inherit;
+    max-width:460px;width:100%;
+    box-shadow:0 20px 60px -30px rgba(124,92,255,.5);
+  }
+  .search-hub-btn:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent);
+    box-shadow:0 26px 70px -20px rgba(124,92,255,.85);
+    background:linear-gradient(135deg, rgba(124,92,255,.2), rgba(91,140,255,.2));
+  }
+  .search-hub-btn:active{transform:translateY(-1px)}
+  .search-hub-icon{
+    font-size:56px;line-height:1;margin-bottom:4px;
+    filter:drop-shadow(0 6px 14px rgba(124,92,255,.6));
+  }
+  .search-hub-title{font-size:24px;font-weight:800;letter-spacing:-.4px}
+  .search-hub-sub{font-size:14px;color:var(--muted);line-height:1.55;max-width:320px}
 
   .fb-status{background:rgba(51,214,166,.08);border-bottom:1px solid rgba(51,214,166,.3);color:var(--ok);font-size:12.5px;padding:8px 22px;text-align:center}
 
@@ -279,6 +301,27 @@
     border:1px dashed var(--border);line-height:1.6;
   }
 
+  /* ============================
+     ПОИСК ФД (модалка)
+     ============================ */
+  .fd-search-tabs{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:16px}
+  .fd-search-tab{flex:1;font:inherit;font-size:13.5px;font-weight:600;background:transparent;border:none;color:var(--muted);padding:10px;border-radius:9px;cursor:pointer;transition:.16s}
+  .fd-search-tab.active{background:var(--accent);color:#fff;box-shadow:0 6px 16px -8px rgba(124,92,255,.9)}
+  .fd-search-results{display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow-y:auto;padding-right:4px;margin-top:4px}
+  .fd-search-result{
+    background:var(--card-2);border:1px solid var(--border);
+    border-radius:12px;padding:14px 16px;cursor:pointer;transition:.15s;
+  }
+  .fd-search-result:hover{border-color:var(--accent);transform:translateX(3px);background:rgba(124,92,255,.06)}
+  .fd-search-result-name{font-size:15px;font-weight:700;margin-bottom:4px;word-break:break-word}
+  .fd-search-result-desc{
+    font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:6px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    word-break:break-word;
+  }
+  .fd-search-result-meta{font-size:11.5px;color:var(--muted)}
+  .fd-search-empty{text-align:center;padding:36px 20px;color:var(--muted);font-size:13.5px;line-height:1.6}
+
   /* Редактор ссылок в форме */
   .fd-links-editor{display:flex;flex-direction:column;gap:8px;margin-top:6px}
   .fd-link-row{
@@ -323,6 +366,10 @@
     .admin-search-wrap input{font-size:13px;padding:8px 11px}
     .kebab-menu{width:220px}
     .fd-link-row{grid-template-columns:1fr 1fr 34px}
+    .search-hub-btn{padding:38px 28px;border-radius:20px}
+    .search-hub-icon{font-size:44px}
+    .search-hub-title{font-size:20px}
+    .search-hub-sub{font-size:13px}
   }
 </style>
 </head>
@@ -489,11 +536,11 @@
   <div class="fb-status" id="fbStatus">✅ Синхронизация включена — данные видны на всех устройствах</div>
 
   <main class="content">
-    <div class="placeholder">
-      <h2>Добро пожаловать в ФД Поиск</h2>
-      <p>Открой раздел «Фандомы» в шапке — там собраны все ФД и ссылки на их инфо-каналы.</p>
-      <div class="soon">Нажми 🌐 Фандомы →</div>
-    </div>
+    <button class="search-hub-btn" id="openSearchHub" type="button">
+      <div class="search-hub-icon">🔍</div>
+      <div class="search-hub-title">Найти ФД</div>
+      <div class="search-hub-sub">Поиск по названию или описанию — все ссылки на инфо-каналы внутри</div>
+    </button>
   </main>
 </section>
 
@@ -503,7 +550,7 @@
     <button class="modal-close" type="button">×</button>
     <h2>Помощь</h2>
     <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией и обсуждением.</p></div>
-    <div class="help-section"><h3>🔎 Как найти ФД?</h3><p>Открой раздел «🌐 Фандомы» в шапке сайта.</p></div>
+    <div class="help-section"><h3>🔎 Как найти ФД?</h3><p>Нажми большую кнопку «Найти ФД» в центре экрана — там можно искать по названию или описанию.</p></div>
     <div class="help-section"><h3>⚠️ Что считается флудом?</h3><p>Повторяющиеся, спамные или вводящие в заблуждение сообщения по конкретному ФД.</p></div>
     <div class="help-section"><h3>🚨 Как сообщить о флуде?</h3><p>«Сообщение администрации» → «Сообщить о флуде» → заполните форму.</p></div>
     <div class="help-section"><h3>⏱ Как долго рассматриваются обращения?</h3><p>Как правило — в течение 24 часов.</p></div>
@@ -652,7 +699,7 @@
   </div>
 </div>
 
-<!-- ФАНДОМЫ: форма создания/редактирования -->
+<!-- ФАНДОМЫ: форма -->
 <div class="modal-overlay hidden" id="fandomFormModal">
   <div class="modal">
     <button class="modal-close" type="button">×</button>
@@ -677,6 +724,25 @@
   </div>
 </div>
 
+<!-- ПОИСК ФД -->
+<div class="modal-overlay hidden" id="searchModal">
+  <div class="modal">
+    <button class="modal-close" type="button">×</button>
+    <h2>🔍 Поиск ФД</h2>
+
+    <div class="fd-search-tabs">
+      <button class="fd-search-tab active" data-mode="name" type="button">📛 По названию</button>
+      <button class="fd-search-tab" data-mode="desc" type="button">📝 По описанию</button>
+    </div>
+
+    <div class="field">
+      <input type="text" id="fdSearchInput" placeholder="Введите название ФД..." autocomplete="off" />
+    </div>
+
+    <div class="fd-search-results" id="fdSearchResults"></div>
+  </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getDatabase, ref, onValue, set, update, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
@@ -694,9 +760,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-/* =========================================================
-   ВЛАДЕЛЕЦ
-   ========================================================= */
 const OWNER_USERNAMES = ['ozisoofilion'];
 
 const RANKS = ['user', 'admin', 'owner'];
@@ -710,9 +773,7 @@ function prevRank(role){
   return i > 0 ? RANKS[i-1] : null;
 }
 
-/* =========================================================
-   SHA-256
-   ========================================================= */
+/* SHA-256 */
 function sha256(str){
   const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
   0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
@@ -758,9 +819,7 @@ function sha256(str){
 }
 const hashPassword = p => sha256('fd_salt_v1::' + p);
 
-/* =========================================================
-   СОСТОЯНИЕ
-   ========================================================= */
+/* СОСТОЯНИЕ */
 let usersCache = [];
 let ticketsCache = [];
 let fandomsCache = [];
@@ -770,6 +829,7 @@ let viewedUserId = null;
 let ownerMigrationDone = false;
 let selectedFandomId = null;
 let editingFandomId = null;
+let fdSearchMode = 'name';
 
 const getUsers = () => usersCache;
 const getTickets = () => ticketsCache;
@@ -783,9 +843,7 @@ const clearSessionId = () => localStorage.removeItem(LS_SESSION);
 
 const $ = id => document.getElementById(id);
 
-/* =========================================================
-   ПОДПИСКИ НА FIREBASE
-   ========================================================= */
+/* FIREBASE */
 try {
   onValue(ref(db, 'users'), snap => {
     const val = snap.val() || {};
@@ -832,10 +890,12 @@ try {
   onValue(ref(db, 'fandoms'), snap => {
     const val = snap.val() || {};
     fandomsCache = Object.values(val);
-    // Обновить открытые модалки фандомов
     if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList();
     if (!$('fandomDetailModal').classList.contains('hidden') && selectedFandomId){
       renderFandomDetail(selectedFandomId);
+    }
+    if (!$('searchModal').classList.contains('hidden')){
+      updateFdSearchResults();
     }
   }, err => {
     console.error('[Firebase] fandoms error:', err);
@@ -848,9 +908,7 @@ try {
   alert('Не удалось подключиться к Firebase: ' + e.message);
 }
 
-/* =========================================================
-   УТИЛИТЫ
-   ========================================================= */
+/* УТИЛИТЫ */
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   $(id).classList.add('active');
@@ -884,15 +942,9 @@ function roleClass(r){
   if (r === 'admin') return 'badge-admin';
   return 'badge-user';
 }
-function isAdminOrOwner(u){
-  return u && (u.role === 'admin' || u.role === 'owner');
-}
-function isOwner(u){
-  return u && u.role === 'owner';
-}
-function isHardcodedOwner(user){
-  return user && OWNER_USERNAMES.includes(user.username);
-}
+function isAdminOrOwner(u){ return u && (u.role === 'admin' || u.role === 'owner'); }
+function isOwner(u){ return u && u.role === 'owner'; }
+function isHardcodedOwner(user){ return user && OWNER_USERNAMES.includes(user.username); }
 
 function escapeHtml(s){
   return String(s == null ? '' : s)
@@ -921,10 +973,16 @@ function formatTime(ts){
 function formatDate(ts){
   return new Date(ts).toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'});
 }
+function plural(n, forms){
+  const a = Math.abs(n) % 100;
+  const b = a % 10;
+  if (a > 10 && a < 20) return forms[2];
+  if (b > 1 && b < 5) return forms[1];
+  if (b === 1) return forms[0];
+  return forms[2];
+}
 
-/* =========================================================
-   МОДАЛКИ
-   ========================================================= */
+/* МОДАЛКИ */
 function openModal(id){ $(id).classList.remove('hidden'); }
 function closeModal(ov){
   if (typeof ov === 'string') ov = $(ov);
@@ -941,9 +999,7 @@ function resetModalView(modalId){
   modal.querySelectorAll('.error').forEach(e => e.textContent = '');
 }
 
-/* =========================================================
-   ПРАВИЛА
-   ========================================================= */
+/* ПРАВИЛА */
 $('btnAccept').addEventListener('click', () => {
   $('btnAccept').classList.add('hidden');
   $('btnCreateAccount').classList.remove('hidden');
@@ -953,9 +1009,7 @@ $('btnCreateAccount').addEventListener('click', () => { switchTab('register'); s
 $('btnGoLogin').addEventListener('click', () => { switchTab('login'); showScreen('screen-auth'); });
 $('btnBackToRules').addEventListener('click', () => showScreen('screen-rules'));
 
-/* =========================================================
-   АВТОРИЗАЦИЯ
-   ========================================================= */
+/* АВТОРИЗАЦИЯ */
 function switchTab(tab){
   document.querySelectorAll('.tab').forEach(t =>
     t.classList.toggle('active', t.dataset.tab === tab));
@@ -1050,15 +1104,12 @@ $('form-login').addEventListener('submit', e => {
   enterApp(user);
 });
 
-/* =========================================================
-   ГЛАВНАЯ
-   ========================================================= */
+/* ГЛАВНАЯ */
 function enterApp(user){
   CURRENT_USER = user;
   updateProfileBadge();
 
-  const adminOrOwner = isAdminOrOwner(user);
-  if (adminOrOwner){
+  if (isAdminOrOwner(user)){
     $('adminInboxBtn').classList.remove('hidden');
     $('adminSearchWrap').classList.remove('hidden');
     $('topbarBrand').classList.add('hidden');
@@ -1151,7 +1202,80 @@ document.querySelectorAll('.modal-close').forEach(btn => {
 });
 
 /* =========================================================
-   ПОИСК ПО ЮЗЕРНЕЙМУ
+   ПОИСК ФД (главная кнопка)
+   ========================================================= */
+const searchModal = $('searchModal');
+const fdSearchInput = $('fdSearchInput');
+const fdSearchResults = $('fdSearchResults');
+
+$('openSearchHub').addEventListener('click', () => {
+  fdSearchMode = 'name';
+  document.querySelectorAll('.fd-search-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.mode === 'name'));
+  fdSearchInput.value = '';
+  fdSearchInput.placeholder = 'Введите название ФД...';
+  updateFdSearchResults();
+  openModal('searchModal');
+  setTimeout(() => fdSearchInput.focus(), 120);
+});
+
+document.querySelectorAll('.fd-search-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    fdSearchMode = t.dataset.mode;
+    document.querySelectorAll('.fd-search-tab').forEach(x =>
+      x.classList.toggle('active', x === t));
+    fdSearchInput.placeholder = fdSearchMode === 'name'
+      ? 'Введите название ФД...'
+      : 'Введите слово из описания...';
+    updateFdSearchResults();
+    fdSearchInput.focus();
+  });
+});
+
+fdSearchInput.addEventListener('input', updateFdSearchResults);
+
+function updateFdSearchResults(){
+  const q = fdSearchInput.value.trim().toLowerCase();
+  const all = getFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
+  const filtered = q
+    ? all.filter(f => {
+        if (fdSearchMode === 'name') return (f.name || '').toLowerCase().includes(q);
+        return (f.description || '').toLowerCase().includes(q);
+      })
+    : all;
+
+  if (filtered.length === 0){
+    fdSearchResults.innerHTML = q
+      ? '<div class="fd-search-empty">Ничего не найдено.<br>Попробуй другое слово или переключи режим поиска.</div>'
+      : '<div class="fd-search-empty">Пока нет ни одного ФД.<br>Загляни позже.</div>';
+    return;
+  }
+
+  fdSearchResults.innerHTML = filtered.map(f => {
+    const linksCount = Array.isArray(f.links) ? f.links.length : 0;
+    const linksLabel = linksCount > 0
+      ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}`
+      : '⚠️ инфо пока нет';
+    const desc = (f.description || '').trim();
+    return `
+      <div class="fd-search-result" data-id="${f.id}">
+        <div class="fd-search-result-name">${escapeHtml(f.name)}</div>
+        ${desc ? `<div class="fd-search-result-desc">${escapeHtml(desc)}</div>` : ''}
+        <div class="fd-search-result-meta">${linksLabel}</div>
+      </div>`;
+  }).join('');
+
+  fdSearchResults.querySelectorAll('.fd-search-result').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      closeModal('searchModal');
+      setTimeout(() => openFandomDetail(id), 240);
+    });
+  });
+}
+
+/* =========================================================
+   ПОИСК ПОЛЬЗОВАТЕЛЕЙ (для админов)
    ========================================================= */
 const searchInput = $('adminSearchInput');
 const searchResults = $('searchResults');
@@ -1337,7 +1461,6 @@ function renderFandomsList(){
   const list = $('fandomsList');
   const createBtn = $('createFandomBtn');
 
-  // Кнопка создания — только для админов/владельца
   if (isAdminOrOwner(CURRENT_USER)){
     createBtn.classList.remove('hidden');
   } else {
@@ -1376,24 +1499,11 @@ function renderFandomsList(){
   }).join('');
 
   list.querySelectorAll('.fandom-card').forEach(el => {
-    el.addEventListener('click', () => {
-      openFandomDetail(el.dataset.id);
-    });
+    el.addEventListener('click', () => openFandomDetail(el.dataset.id));
   });
 }
 
-function plural(n, forms){
-  const a = Math.abs(n) % 100;
-  const b = a % 10;
-  if (a > 10 && a < 20) return forms[2];
-  if (b > 1 && b < 5) return forms[1];
-  if (b === 1) return forms[0];
-  return forms[2];
-}
-
-/* =========================================================
-   ДЕТАЛИ ФД
-   ========================================================= */
+/* ДЕТАЛИ ФД */
 function openFandomDetail(fandomId){
   selectedFandomId = fandomId;
   renderFandomDetail(fandomId);
@@ -1407,7 +1517,6 @@ function renderFandomDetail(fandomId){
   $('fdDetailName').textContent = f.name;
   $('fdDetailDesc').textContent = f.description || '';
 
-  // Кнопки редактирования/удаления — только для админов/владельца
   const canEdit = isAdminOrOwner(CURRENT_USER);
   if (canEdit){
     $('editFandomBtn').classList.remove('hidden');
@@ -1443,9 +1552,7 @@ function renderFandomDetail(fandomId){
   }).join('');
 }
 
-/* =========================================================
-   СОЗДАНИЕ / РЕДАКТИРОВАНИЕ ФД
-   ========================================================= */
+/* СОЗДАНИЕ / РЕДАКТИРОВАНИЕ ФД */
 $('createFandomBtn').addEventListener('click', () => {
   if (!isAdminOrOwner(CURRENT_USER)) return;
   editingFandomId = null;
@@ -1493,9 +1600,7 @@ function addLinkRow(title = '', url = ''){
 
   row.querySelector('.fd-link-remove').addEventListener('click', () => {
     row.remove();
-    if (editor.children.length === 0){
-      addLinkRow();
-    }
+    if (editor.children.length === 0) addLinkRow();
   });
 }
 
@@ -1513,7 +1618,6 @@ $('fandomForm').addEventListener('submit', async e => {
 
   if (name.length < 2) return err.textContent = 'Укажите название ФД (минимум 2 символа).';
 
-  // Собираем ссылки
   const rows = $('fdLinksEditor').querySelectorAll('.fd-link-row');
   const links = [];
   rows.forEach(row => {
@@ -1530,17 +1634,12 @@ $('fandomForm').addEventListener('submit', async e => {
 
   try {
     if (editingFandomId){
-      // Редактирование
       await update(ref(db, 'fandoms/' + editingFandomId), {
         name, description, links
       });
       closeModal('fandomFormModal');
-      // Переоткрываем детали
-      setTimeout(() => {
-        openFandomDetail(editingFandomId);
-      }, 240);
+      setTimeout(() => openFandomDetail(editingFandomId), 240);
     } else {
-      // Создание
       const id = 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
       const fandom = {
         id, name, description, links,
@@ -1553,7 +1652,6 @@ $('fandomForm').addEventListener('submit', async e => {
       $('fdLinksEditor').innerHTML = '';
       addLinkRow();
       closeModal('fandomFormModal');
-      // Показать обновлённый список
       setTimeout(() => {
         renderFandomsList();
         openModal('fandomsModal');
@@ -1565,9 +1663,7 @@ $('fandomForm').addEventListener('submit', async e => {
   }
 });
 
-/* =========================================================
-   УДАЛЕНИЕ ФД
-   ========================================================= */
+/* УДАЛЕНИЕ ФД */
 $('deleteFandomBtn').addEventListener('click', async () => {
   if (!isAdminOrOwner(CURRENT_USER)) return;
   const f = getFandoms().find(x => x.id === selectedFandomId);
@@ -1585,9 +1681,7 @@ $('deleteFandomBtn').addEventListener('click', async () => {
   }
 });
 
-/* =========================================================
-   ФЛУД / ОБРАТНАЯ СВЯЗЬ
-   ========================================================= */
+/* ФЛУД / ОБРАТНАЯ СВЯЗЬ */
 $('openHelpBtn').addEventListener('click', () => {
   $('adminMsgPopup').classList.add('hidden');
   openModal('helpModal');
@@ -1667,9 +1761,7 @@ $('contactForm').addEventListener('submit', e => {
   f.querySelector('.modal-success').classList.remove('hidden');
 });
 
-/* =========================================================
-   АДМИН-ПАНЕЛЬ
-   ========================================================= */
+/* АДМИН-ПАНЕЛЬ */
 let selectedTicketId = null;
 
 function updateAdminInbox(){
@@ -1769,9 +1861,7 @@ function renderAdminPanel(){
   });
 }
 
-/* =========================================================
-   МОИ ОБРАЩЕНИЯ
-   ========================================================= */
+/* МОИ ОБРАЩЕНИЯ */
 function updateMyTicketsBadge(){
   if (!CURRENT_USER) return;
   const count = getTickets().filter(t =>
@@ -1858,9 +1948,7 @@ function refreshTicketUI(){
   if (!$('adminPanelModal').classList.contains('hidden')) renderAdminPanel();
 }
 
-/* =========================================================
-   СТАРТ
-   ========================================================= */
+/* СТАРТ */
 $('regAvatarPreview').src = defaultAvatar('?');
 
 const sessionId = getSessionId();
