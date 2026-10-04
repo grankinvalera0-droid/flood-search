@@ -89,28 +89,14 @@
   /* ЭКСКЛЮЗИВНЫЕ ОБВОДКИ АВАТАРОК */
   .av-frame{position:relative;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;line-height:0}
   .av-frame img{border-radius:50%;display:block;object-fit:cover;border:none !important}
-  .av-frame .av-badge{
-    position:absolute;bottom:-4px;right:-4px;
-    width:22px;height:22px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:12px;line-height:1;
-    background:var(--card);border:2px solid var(--border);
-    box-shadow:0 2px 8px rgba(0,0,0,.5);
-    z-index:2;
-  }
+  .av-frame .av-badge{position:absolute;bottom:-4px;right:-4px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1;background:var(--card);border:2px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.5);z-index:2}
   .av-frame .av-badge.hidden{display:none}
   .av-frame.av-user{padding:2px;background:var(--border)}
   .av-frame.av-admin{padding:2px;background:linear-gradient(135deg,#3b82f6,#06b6d4);box-shadow:0 0 12px rgba(59,130,246,.55)}
   .av-frame.av-admin .av-badge{border-color:#3b82f6}
   .av-frame.av-owner{padding:2px;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 16px rgba(251,191,36,.6)}
   .av-frame.av-owner .av-badge{border-color:#fbbf24}
-  .av-frame.av-founder{
-    padding:2px;
-    background:linear-gradient(135deg,#dc2626,#fbbf24,#dc2626,#fbbf24);
-    background-size:300% 300%;
-    animation:founderSpin 4s linear infinite;
-    box-shadow:0 0 20px rgba(220,38,38,.55),0 0 30px rgba(251,191,36,.35);
-  }
+  .av-frame.av-founder{padding:2px;background:linear-gradient(135deg,#dc2626,#fbbf24,#dc2626,#fbbf24);background-size:300% 300%;animation:founderSpin 4s linear infinite;box-shadow:0 0 20px rgba(220,38,38,.55),0 0 30px rgba(251,191,36,.35)}
   .av-frame.av-founder .av-badge{border-color:#fbbf24;font-size:13px}
   @keyframes founderSpin{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   .avatar-btn .av-frame img{width:38px;height:38px}
@@ -184,7 +170,7 @@
   .admin-search-wrap input{width:100%;font:inherit;font-size:14px;color:var(--text);background:var(--card-2);border:1px solid var(--border);border-radius:11px;padding:9px 14px;outline:none;transition:.15s}
   .admin-search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
   .admin-search-wrap input::placeholder{color:var(--muted)}
-  .search-results{position:absolute;top:46px;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 22px 55px -18px rgba(0,0,0,.6);max-height:360px;overflow-y:auto;z-index:150}
+  .search-results{position:absolute;top:46px;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 22px 55px -18px rgba(0,0,0,.6);max-height:400px;overflow-y:auto;z-index:150}
   .search-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;cursor:pointer;transition:.13s}
   .search-item:hover{background:var(--card-2)}
   .search-item img{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0}
@@ -581,7 +567,7 @@
     <div class="topbar-center">
       <div class="brand" id="topbarBrand">ФД<span>Поиск</span><span class="topbar-holiday-emoji" id="topbarEmoji"></span></div>
       <div class="admin-search-wrap hidden" id="adminSearchWrap">
-        <input type="text" id="adminSearchInput" placeholder="🔍 Поиск по @username" autocomplete="off" />
+        <input type="text" id="adminSearchInput" placeholder="🔍 Поиск по @username (или all)" autocomplete="off" />
         <div class="search-results hidden" id="searchResults"></div>
       </div>
     </div>
@@ -650,6 +636,7 @@
   <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в настройки в день праздника — тема откроется с эксклюзивными эффектами.</p></div>
   <div class="help-section"><h3>🛡️👑 Эксклюзивы</h3><p>Админам и владельцу доступны специальные темы с частицами и приветствием.</p></div>
   <div class="help-section"><h3>🏆 Достижения</h3><p>Жми 🏆 в шапке — там все твои награды.</p></div>
+  <div class="help-section"><h3>🔍 Поиск аккаунтов</h3><p>Админ может ввести <b>all</b> в поле поиска, чтобы увидеть все аккаунты.</p></div>
   <div class="modal-footer-divider"></div>
   <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
 </div></div>
@@ -1102,9 +1089,7 @@ function applyAvatarFrame(frameId, badgeId, user){
   frame.classList.remove('av-user','av-admin','av-owner','av-founder');
   badge.classList.add('hidden');
   badge.textContent = '';
-
   if (!user){ frame.classList.add('av-user'); return; }
-
   const isFounder = OWNER_USERNAMES.includes(user.username);
   if (isFounder){
     frame.classList.add('av-founder');
@@ -1707,12 +1692,31 @@ searchInput.addEventListener('input', () => doSearch(searchInput.value));
 searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) doSearch(searchInput.value); });
 
 function doSearch(query){
-  const q = query.trim().toLowerCase().replace(/^@+/, '');
+  const raw = query.trim();
+  const q = raw.toLowerCase().replace(/^@+/, '');
+
   if (!q){ searchResults.classList.add('hidden'); return; }
-  const results = usersCache.filter(u => u.username.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)).slice(0, 20);
-  if (results.length === 0) searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>';
-  else {
-    searchResults.innerHTML = results.map(u => {
+
+  const isAdminUser = CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
+  const showAll = isAdminUser && q === 'all';
+
+  let results;
+  if (showAll){
+    results = usersCache.slice().sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
+  } else {
+    results = usersCache.filter(u =>
+      u.username.toLowerCase().includes(q) ||
+      u.name.toLowerCase().includes(q)
+    ).slice(0, 20);
+  }
+
+  if (results.length === 0){
+    searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>';
+  } else {
+    const header = showAll
+      ? `<div class="search-empty" style="padding:8px 12px;font-size:11.5px;color:var(--muted);border-bottom:1px solid var(--border);margin-bottom:4px;text-align:left">Найдено всего: <b style="color:var(--accent)">${results.length}</b> ${plural(results.length, ['аккаунт','аккаунта','аккаунтов'])}</div>`
+      : '';
+    searchResults.innerHTML = header + results.map(u => {
       const avatar = u.avatar || defaultAvatar(u.name);
       const isSpecial = u.role !== 'user';
       const isFounder = OWNER_USERNAMES.includes(u.username);
@@ -1741,7 +1745,6 @@ function renderUserProfile(userId, silent){
   $('upStatus').textContent = user.banned ? '🚫 Забанен' : '✅ Активен';
   renderUserExclusiveBadges(userId);
 
-  // Дополнительная информация
   (async () => {
     try {
       const fandomCount = getFandoms().filter(f => f.createdBy === user.id).length;
