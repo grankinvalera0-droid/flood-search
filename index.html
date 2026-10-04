@@ -68,8 +68,22 @@
   .topbar{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid var(--border);background:rgba(13,14,18,.72);backdrop-filter:blur(14px);position:sticky;top:0;z-index:50}
   .topbar .brand{margin-bottom:0;font-size:18px}
   .topbar-left{flex-shrink:0;position:relative}
-  .topbar-center{flex:1;display:flex;justify-content:center}
+  .topbar-center{flex:1;display:flex;justify-content:center;align-items:center;min-width:0}
   .topbar-right{flex-shrink:0;display:flex;align-items:center;gap:10px}
+
+  .admin-search-wrap{position:relative;width:100%;max-width:420px}
+  .admin-search-wrap input{width:100%;font:inherit;font-size:14px;color:var(--text);background:var(--card-2);border:1px solid var(--border);border-radius:11px;padding:9px 14px;outline:none;transition:.15s}
+  .admin-search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
+  .admin-search-wrap input::placeholder{color:#5a6178}
+  .search-results{position:absolute;top:46px;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 22px 55px -18px rgba(0,0,0,.9);max-height:360px;overflow-y:auto;z-index:150}
+  .search-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;cursor:pointer;transition:.13s}
+  .search-item:hover{background:var(--card-2)}
+  .search-item img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+  .search-item-info{flex:1;min-width:0}
+  .search-item-name{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .search-item-username{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .search-item-role{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;text-transform:uppercase;letter-spacing:.3px;flex-shrink:0}
+  .search-empty{padding:16px;text-align:center;color:var(--muted);font-size:13px}
 
   .admin-msg-btn{display:flex;align-items:center;gap:8px;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);color:#cbc3ff;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;transition:.16s}
   .admin-msg-btn:hover{background:rgba(124,92,255,.2);color:#fff}
@@ -99,6 +113,7 @@
   .pop-name{text-align:center;font-size:17px;font-weight:700;margin-bottom:3px;word-break:break-word}
   .pop-username{text-align:center;font-size:13.5px;color:var(--muted);margin-bottom:12px;word-break:break-all}
   .pop-badge{display:block;text-align:center;width:fit-content;margin:0 auto 16px;font-size:12px;font-weight:700;letter-spacing:.4px;padding:5px 13px;border-radius:20px;text-transform:uppercase}
+  .badge-owner{color:#fff;background:linear-gradient(135deg,#7c5cff,#ff5c8a);border:1px solid transparent}
   .badge-admin{color:var(--gold);background:rgba(255,198,92,.12);border:1px solid rgba(255,198,92,.35)}
   .badge-user{color:var(--muted);background:rgba(139,147,167,.1);border:1px solid rgba(139,147,167,.25)}
   .pop-divider{height:1px;background:var(--border);margin:0 0 14px}
@@ -114,6 +129,7 @@
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:200}
   .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
   .modal-wide{max-width:860px}
+  .modal-narrow{max-width:440px}
   .modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;color:var(--muted);font-size:22px;cursor:pointer;width:34px;height:34px;border-radius:9px}
   .modal h2{font-size:20px;font-weight:700;margin-bottom:18px;padding-right:34px}
 
@@ -169,6 +185,32 @@
   .my-ticket-answer .answer-text{font-size:13.5px;line-height:1.55;color:var(--text);background:rgba(51,214,166,.06);padding:11px 13px;border-radius:10px;border-left:3px solid var(--ok)}
   .my-ticket-answer .answered-at{font-size:11.5px;color:var(--muted);margin-top:7px}
 
+  .up-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-right:34px}
+  .up-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--border);flex-shrink:0}
+  .up-meta{flex:1;min-width:0}
+  .up-name{font-size:17px;font-weight:700;word-break:break-word;margin-bottom:2px}
+  .up-username{font-size:13px;color:var(--muted);word-break:break-all}
+
+  .kebab-wrap{position:relative;flex-shrink:0;margin-left:auto}
+  .kebab-btn{background:transparent;border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:19px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;transition:.15s;padding-bottom:6px}
+  .kebab-btn:hover{background:var(--card-2);color:var(--text);border-color:#3a4152}
+  .kebab-menu{position:absolute;top:42px;right:0;width:230px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 22px 55px -18px rgba(0,0,0,.95);z-index:60}
+  .kebab-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;font-size:13.5px;font-weight:600;color:var(--text);background:transparent;border:none;padding:10px 12px;border-radius:9px;cursor:pointer;transition:.13s}
+  .kebab-item:hover{background:var(--card-2)}
+  .kebab-item:disabled{opacity:.4;cursor:not-allowed}
+  .kebab-item:disabled:hover{background:transparent}
+  .kebab-danger{color:var(--danger)}
+  .kebab-danger:hover{background:rgba(255,92,108,.12)}
+  .kebab-success{color:var(--ok)}
+  .kebab-success:hover{background:rgba(51,214,166,.12)}
+
+  .up-badge{display:inline-block;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:16px}
+  .up-info{background:var(--card-2);border-radius:12px;padding:6px 16px}
+  .up-info-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:10px 0;border-bottom:1px solid var(--border)}
+  .up-info-row:last-child{border-bottom:none}
+  .up-info-row span{color:var(--muted)}
+  .up-info-row b{color:var(--text);font-weight:600;text-align:right;word-break:break-all}
+
   @media(max-width:640px){
     .admin-msg-btn span{display:none}
     .admin-msg-btn{padding:9px 12px}
@@ -176,10 +218,12 @@
     .rules-card{padding:28px 22px}
     .auth-card{padding:26px 22px}
     .rules-text{max-height:52vh}
-    .topbar{padding:10px 14px}
-    .topbar .brand{font-size:16px}
+    .topbar{padding:10px 14px;gap:8px}
+    .topbar .brand{font-size:14px}
     .admin-inbox-btn span:not(.inbox-badge){display:none}
     .my-tickets-btn span:not(.inbox-badge){display:none}
+    .admin-search-wrap input{font-size:13px;padding:8px 11px}
+    .kebab-menu{width:200px}
   }
 </style>
 </head>
@@ -312,7 +356,11 @@
     </div>
 
     <div class="topbar-center">
-      <div class="brand">ФД<span>Поиск</span></div>
+      <div class="brand" id="topbarBrand">ФД<span>Поиск</span></div>
+      <div class="admin-search-wrap hidden" id="adminSearchWrap">
+        <input type="text" id="adminSearchInput" placeholder="🔍 Поиск по @username" autocomplete="off" />
+        <div class="search-results hidden" id="searchResults"></div>
+      </div>
     </div>
 
     <div class="topbar-right">
@@ -349,6 +397,7 @@
   </main>
 </section>
 
+<!-- Помощь -->
 <div class="modal-overlay hidden" id="helpModal">
   <div class="modal">
     <button class="modal-close" type="button">×</button>
@@ -364,6 +413,7 @@
   </div>
 </div>
 
+<!-- Флуд -->
 <div class="modal-overlay hidden" id="floodModal">
   <div class="modal">
     <button class="modal-close" type="button">×</button>
@@ -397,6 +447,7 @@
   </div>
 </div>
 
+<!-- Обратная связь -->
 <div class="modal-overlay hidden" id="contactModal">
   <div class="modal">
     <button class="modal-close" type="button">×</button>
@@ -422,6 +473,7 @@
   </div>
 </div>
 
+<!-- Админ-панель -->
 <div class="modal-overlay hidden" id="adminPanelModal">
   <div class="modal modal-wide">
     <button class="modal-close" type="button">×</button>
@@ -433,6 +485,7 @@
   </div>
 </div>
 
+<!-- Мои обращения -->
 <div class="modal-overlay hidden" id="myTicketsModal">
   <div class="modal">
     <button class="modal-close" type="button">×</button>
@@ -441,18 +494,37 @@
   </div>
 </div>
 
-<script type="module">
-/* =========================================================
-   ИМПОРТЫ FIREBASE (модульный SDK 12.19.0)
-   ========================================================= */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import {
-  getDatabase, ref, onValue, set, update
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+<!-- Профиль пользователя -->
+<div class="modal-overlay hidden" id="userProfileModal">
+  <div class="modal modal-narrow">
+    <button class="modal-close" type="button">×</button>
+    <div class="up-header">
+      <img id="upAvatar" class="up-avatar" alt="Аватар" />
+      <div class="up-meta">
+        <div class="up-name" id="upName"></div>
+        <div class="up-username" id="upUsername"></div>
+      </div>
+      <div class="kebab-wrap">
+        <button class="kebab-btn hidden" id="kebabBtn" type="button" aria-label="Действия">⋮</button>
+        <div class="kebab-menu hidden" id="kebabMenu">
+          <button class="kebab-item" id="kebabPromote" type="button">⬆️ Повысить до админа</button>
+          <button class="kebab-item kebab-danger" id="kebabBan" type="button">🚫 Забанить</button>
+        </div>
+      </div>
+    </div>
+    <div class="up-badge" id="upBadge"></div>
+    <div class="up-info">
+      <div class="up-info-row"><span>ID</span><b id="upId"></b></div>
+      <div class="up-info-row"><span>Регистрация</span><b id="upCreated"></b></div>
+      <div class="up-info-row"><span>Статус</span><b id="upStatus"></b></div>
+    </div>
+  </div>
+</div>
 
-/* =========================================================
-   FIREBASE КОНФИГ (твой)
-   ========================================================= */
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyC3CmTmqDANbklyHk_ET5_EgD2TwhnMeHs",
   authDomain: "fd-search-app.firebaseapp.com",
@@ -466,7 +538,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const ADMIN_USERNAMES = ['ozisoofilion'];
+/* =========================================================
+   ВЛАДЕЛЕЦ
+   ========================================================= */
+const OWNER_USERNAMES = ['ozisoofilion'];
 
 /* =========================================================
    SHA-256
@@ -523,6 +598,8 @@ let usersCache = [];
 let ticketsCache = [];
 let firebaseReady = false;
 let CURRENT_USER = null;
+let viewedUserId = null;
+let ownerMigrationDone = false;
 
 const getUsers = () => usersCache;
 const getTickets = () => ticketsCache;
@@ -536,13 +613,41 @@ const clearSessionId = () => localStorage.removeItem(LS_SESSION);
 const $ = id => document.getElementById(id);
 
 /* =========================================================
-   ПОДПИСКИ НА FIREBASE (в реальном времени)
+   ПОДПИСКИ НА FIREBASE
    ========================================================= */
 try {
   onValue(ref(db, 'users'), snap => {
     const val = snap.val() || {};
     usersCache = Object.values(val);
-    console.log('[Firebase] Пользователей:', usersCache.length);
+
+    // Авто-миграция владельца
+    if (!ownerMigrationDone){
+      ownerMigrationDone = true;
+      usersCache.forEach(u => {
+        if (OWNER_USERNAMES.includes(u.username) && u.role !== 'owner'){
+          update(ref(db, 'users/' + u.id), { role: 'owner' }).catch(()=>{});
+        }
+      });
+    }
+
+    // Обновляем текущего пользователя
+    if (CURRENT_USER){
+      const fresh = usersCache.find(u => u.id === CURRENT_USER.id);
+      if (fresh){
+        CURRENT_USER = fresh;
+        if (fresh.banned){
+          alert('Ваш аккаунт был заблокирован администрацией.');
+          forceLogout();
+          return;
+        }
+        updateProfileBadge();
+      }
+    }
+
+    // Обновить открытый профиль пользователя
+    if (!$('userProfileModal').classList.contains('hidden') && viewedUserId){
+      renderUserProfile(viewedUserId, true);
+    }
   }, err => {
     console.error('[Firebase] users error:', err);
     alert('Не удалось прочитать пользователей.\n\nПроверь правила Realtime Database.');
@@ -551,7 +656,6 @@ try {
   onValue(ref(db, 'tickets'), snap => {
     const val = snap.val() || {};
     ticketsCache = Object.values(val);
-    console.log('[Firebase] Тикетов:', ticketsCache.length);
     refreshTicketUI();
   }, err => {
     console.error('[Firebase] tickets error:', err);
@@ -585,9 +689,27 @@ function defaultAvatar(name){
     `fill="#ffffff" text-anchor="middle" dominant-baseline="middle">${letter}</text></svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
-const roleOf = u => ADMIN_USERNAMES.includes(u) ? 'admin' : 'user';
-const roleLabel = r => r === 'admin' ? 'Администрация' : 'Пользователь';
-const roleClass = r => r === 'admin' ? 'badge-admin' : 'badge-user';
+
+function roleOf(username){
+  if (OWNER_USERNAMES.includes(username)) return 'owner';
+  return 'user';
+}
+function roleLabel(r){
+  if (r === 'owner') return '👑 Владелец';
+  if (r === 'admin') return '🛡️ Администрация';
+  return 'Пользователь';
+}
+function roleClass(r){
+  if (r === 'owner') return 'badge-owner';
+  if (r === 'admin') return 'badge-admin';
+  return 'badge-user';
+}
+function isAdminOrOwner(u){
+  return u && (u.role === 'admin' || u.role === 'owner');
+}
+function isOwner(u){
+  return u && u.role === 'owner';
+}
 
 function escapeHtml(s){
   return String(s == null ? '' : s)
@@ -606,6 +728,9 @@ function formatTime(ts){
   if (diff < 86400_000)  return Math.floor(diff/3600_000) + ' ч назад';
   return d.toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' ' +
          d.toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
+}
+function formatDate(ts){
+  return new Date(ts).toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'});
 }
 
 /* =========================================================
@@ -687,7 +812,6 @@ $('regName').addEventListener('input', () => {
   if (!regAvatarData) $('regAvatarPreview').src = defaultAvatar($('regName').value || '?');
 });
 
-/* --- РЕГИСТРАЦИЯ --- */
 $('form-register').addEventListener('submit', async e => {
   e.preventDefault();
   const err = $('regError');
@@ -711,6 +835,7 @@ $('form-register').addEventListener('submit', async e => {
     passHash: hashPassword(pass),
     avatar: regAvatarData || null,
     role: roleOf(username),
+    banned: false,
     createdAt: Date.now()
   };
 
@@ -727,7 +852,6 @@ $('form-register').addEventListener('submit', async e => {
   }
 });
 
-/* --- ВХОД --- */
 $('form-login').addEventListener('submit', e => {
   e.preventDefault();
   const err = $('logError');
@@ -737,6 +861,7 @@ $('form-login').addEventListener('submit', e => {
   if (!username || !pass) return err.textContent = 'Заполните все поля.';
   const user = findUserByUsername(username);
   if (!user) return err.textContent = 'Пользователь не найден.';
+  if (user.banned) return err.textContent = 'Аккаунт заблокирован администрацией.';
   if (user.passHash !== hashPassword(pass)) return err.textContent = 'Неверный пароль.';
   setSessionId(user.id);
   $('form-login').reset();
@@ -748,25 +873,53 @@ $('form-login').addEventListener('submit', e => {
    ========================================================= */
 function enterApp(user){
   CURRENT_USER = user;
-  const avatar = user.avatar || defaultAvatar(user.name);
-  $('topAvatar').src = avatar;
-  $('popAvatar').src = avatar;
-  $('popName').textContent = user.name;
-  $('popUsername').textContent = '@' + user.username;
-  const badge = $('popBadge');
-  badge.textContent = roleLabel(user.role);
-  badge.className = 'pop-badge ' + roleClass(user.role);
+  updateProfileBadge();
 
-  if (user.role === 'admin'){
+  const adminOrOwner = isAdminOrOwner(user);
+  if (adminOrOwner){
     $('adminInboxBtn').classList.remove('hidden');
+    $('adminSearchWrap').classList.remove('hidden');
+    $('topbarBrand').classList.add('hidden');
   } else {
     $('adminInboxBtn').classList.add('hidden');
+    $('adminSearchWrap').classList.add('hidden');
+    $('topbarBrand').classList.remove('hidden');
   }
   $('myTicketsBtn').classList.remove('hidden');
+
   refreshTicketUI();
   $('profilePopup').classList.add('hidden');
   $('adminMsgPopup').classList.add('hidden');
+  $('searchResults').classList.add('hidden');
   showScreen('screen-main');
+}
+
+function updateProfileBadge(){
+  if (!CURRENT_USER) return;
+  const avatar = CURRENT_USER.avatar || defaultAvatar(CURRENT_USER.name);
+  $('topAvatar').src = avatar;
+  $('popAvatar').src = avatar;
+  $('popName').textContent = CURRENT_USER.name;
+  $('popUsername').textContent = '@' + CURRENT_USER.username;
+  const badge = $('popBadge');
+  badge.textContent = roleLabel(CURRENT_USER.role);
+  badge.className = 'pop-badge ' + roleClass(CURRENT_USER.role);
+}
+
+function forceLogout(){
+  clearSessionId();
+  CURRENT_USER = null;
+  viewedUserId = null;
+  $('profilePopup').classList.add('hidden');
+  $('adminInboxBtn').classList.add('hidden');
+  $('myTicketsBtn').classList.add('hidden');
+  $('adminSearchWrap').classList.add('hidden');
+  $('topbarBrand').classList.remove('hidden');
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
+  $('btnAccept').classList.remove('hidden');
+  $('btnCreateAccount').classList.add('hidden');
+  $('btnGoLogin').classList.add('hidden');
+  showScreen('screen-rules');
 }
 
 $('avatarBtn').addEventListener('click', e => {
@@ -779,6 +932,7 @@ $('adminMsgBtn').addEventListener('click', e => {
   $('adminMsgPopup').classList.toggle('hidden');
   $('profilePopup').classList.add('hidden');
 });
+
 document.addEventListener('click', e => {
   const pp = $('profilePopup');
   if (!pp.classList.contains('hidden') && !pp.contains(e.target) && e.target !== $('avatarBtn')){
@@ -789,18 +943,20 @@ document.addEventListener('click', e => {
   if (!amp.classList.contains('hidden') && !amp.contains(e.target) && !amb.contains(e.target)){
     amp.classList.add('hidden');
   }
+  const sr = $('searchResults');
+  const si = $('adminSearchInput');
+  if (!sr.classList.contains('hidden') && !sr.contains(e.target) && e.target !== si){
+    sr.classList.add('hidden');
+  }
+  const km = $('kebabMenu');
+  const kb = $('kebabBtn');
+  if (!km.classList.contains('hidden') && !km.contains(e.target) && e.target !== kb){
+    km.classList.add('hidden');
+  }
 });
 
 $('btnLogout').addEventListener('click', () => {
-  clearSessionId();
-  CURRENT_USER = null;
-  $('profilePopup').classList.add('hidden');
-  $('adminInboxBtn').classList.add('hidden');
-  $('myTicketsBtn').classList.add('hidden');
-  $('btnAccept').classList.remove('hidden');
-  $('btnCreateAccount').classList.add('hidden');
-  $('btnGoLogin').classList.add('hidden');
-  showScreen('screen-rules');
+  forceLogout();
 });
 
 document.querySelectorAll('.modal-overlay').forEach(ov => {
@@ -811,7 +967,156 @@ document.querySelectorAll('.modal-close, .modal-success-close').forEach(btn => {
 });
 
 /* =========================================================
-   ПОМОЩЬ / ФЛУД / ОБРАТНАЯ СВЯЗЬ
+   ПОИСК ПО ЮЗЕРНЕЙМУ
+   ========================================================= */
+const searchInput = $('adminSearchInput');
+const searchResults = $('searchResults');
+
+searchInput.addEventListener('input', () => doSearch(searchInput.value));
+searchInput.addEventListener('focus', () => {
+  if (searchInput.value.trim()) doSearch(searchInput.value);
+});
+
+function doSearch(query){
+  const q = query.trim().toLowerCase().replace(/^@+/, '');
+  if (!q){ searchResults.classList.add('hidden'); return; }
+
+  const results = usersCache
+    .filter(u =>
+      u.username.toLowerCase().includes(q) ||
+      u.name.toLowerCase().includes(q)
+    )
+    .slice(0, 20);
+
+  if (results.length === 0){
+    searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>';
+  } else {
+    searchResults.innerHTML = results.map(u => {
+      const avatar = u.avatar || defaultAvatar(u.name);
+      const isSpecial = u.role !== 'user';
+      return `
+        <div class="search-item" data-id="${u.id}">
+          <img src="${avatar}" alt="" />
+          <div class="search-item-info">
+            <div class="search-item-name">${escapeHtml(u.name)}${u.banned ? ' 🚫' : ''}</div>
+            <div class="search-item-username">@${escapeHtml(u.username)}</div>
+          </div>
+          ${isSpecial ? `<span class="search-item-role ${roleClass(u.role)}">${u.role === 'owner' ? 'Владелец' : 'Админ'}</span>` : ''}
+        </div>`;
+    }).join('');
+
+    searchResults.querySelectorAll('.search-item').forEach(el => {
+      el.addEventListener('click', () => {
+        openUserProfileById(el.dataset.id);
+        searchResults.classList.add('hidden');
+        searchInput.value = '';
+      });
+    });
+  }
+  searchResults.classList.remove('hidden');
+}
+
+/* =========================================================
+   ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ
+   ========================================================= */
+function openUserProfileById(userId){
+  viewedUserId = userId;
+  renderUserProfile(userId, false);
+  openModal('userProfileModal');
+}
+
+function renderUserProfile(userId, silent){
+  const user = usersCache.find(u => u.id === userId);
+  if (!user){ closeModal('userProfileModal'); return; }
+
+  $('upAvatar').src = user.avatar || defaultAvatar(user.name);
+  $('upName').textContent = user.name;
+  $('upUsername').textContent = '@' + user.username;
+
+  const badge = $('upBadge');
+  badge.textContent = roleLabel(user.role);
+  badge.className = 'up-badge ' + roleClass(user.role);
+
+  $('upId').textContent = user.id;
+  $('upCreated').textContent = formatDate(user.createdAt);
+  $('upStatus').textContent = user.banned ? '🚫 Забанен' : '✅ Активен';
+
+  const showKebab = isOwner(CURRENT_USER) && user.id !== CURRENT_USER.id;
+  const kebab = $('kebabBtn');
+  if (showKebab){
+    kebab.classList.remove('hidden');
+    const promoteBtn = $('kebabPromote');
+    const banBtn = $('kebabBan');
+
+    if (user.role === 'owner'){
+      promoteBtn.textContent = '👑 Владелец — нельзя изменить';
+      promoteBtn.disabled = true;
+      banBtn.textContent = '👑 Владельца нельзя забанить';
+      banBtn.disabled = true;
+    } else if (user.role === 'admin'){
+      promoteBtn.textContent = '⬇️ Понизить до пользователя';
+      promoteBtn.disabled = false;
+      banBtn.textContent = user.banned ? '✅ Разбанить' : '🚫 Забанить';
+      banBtn.disabled = false;
+    } else {
+      promoteBtn.textContent = '⬆️ Повысить до админа';
+      promoteBtn.disabled = false;
+      banBtn.textContent = user.banned ? '✅ Разбанить' : '🚫 Забанить';
+      banBtn.disabled = false;
+    }
+  } else {
+    kebab.classList.add('hidden');
+    $('kebabMenu').classList.add('hidden');
+  }
+
+  if (!silent){
+    $('kebabMenu').classList.add('hidden');
+  }
+}
+
+$('kebabBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  $('kebabMenu').classList.toggle('hidden');
+});
+
+$('kebabPromote').addEventListener('click', async () => {
+  if (!isOwner(CURRENT_USER)) return;
+  const user = usersCache.find(u => u.id === viewedUserId);
+  if (!user || user.role === 'owner') return;
+
+  const newRole = user.role === 'admin' ? 'user' : 'admin';
+  const label = newRole === 'admin' ? 'повысить до администратора' : 'понизить до пользователя';
+  if (!confirm(`Вы уверены, что хотите ${label} @${user.username}?`)) return;
+
+  try {
+    await update(ref(db, 'users/' + user.id), { role: newRole });
+    $('kebabMenu').classList.add('hidden');
+    renderUserProfile(viewedUserId, false);
+  } catch(e){
+    alert('Ошибка: ' + e.message);
+  }
+});
+
+$('kebabBan').addEventListener('click', async () => {
+  if (!isOwner(CURRENT_USER)) return;
+  const user = usersCache.find(u => u.id === viewedUserId);
+  if (!user || user.role === 'owner') return;
+
+  const newBanned = !user.banned;
+  const label = newBanned ? `забанить @${user.username}` : `разбанить @${user.username}`;
+  if (!confirm(`Вы уверены, что хотите ${label}?`)) return;
+
+  try {
+    await update(ref(db, 'users/' + user.id), { banned: newBanned });
+    $('kebabMenu').classList.add('hidden');
+    renderUserProfile(viewedUserId, false);
+  } catch(e){
+    alert('Ошибка: ' + e.message);
+  }
+});
+
+/* =========================================================
+   ФЛУД / ОБРАТНАЯ СВЯЗЬ
    ========================================================= */
 $('openHelpBtn').addEventListener('click', () => {
   $('adminMsgPopup').classList.add('hidden');
@@ -830,7 +1135,6 @@ async function sendTicket(ticket){
   if (!firebaseReady){ alert('Нет соединения.'); return; }
   try {
     await set(ref(db, 'tickets/' + ticket.id), ticket);
-    console.log('[Firebase] Тикет отправлен:', ticket.id);
   } catch(err){
     console.error(err);
     alert('Ошибка отправки: ' + err.message);
@@ -895,7 +1199,7 @@ $('contactForm').addEventListener('submit', e => {
 let selectedTicketId = null;
 
 function updateAdminInbox(){
-  if (!CURRENT_USER || CURRENT_USER.role !== 'admin') return;
+  if (!isAdminOrOwner(CURRENT_USER)) return;
   const newCount = getTickets().filter(t => t.status === 'new').length;
   const badge = $('ticketsBadge');
   if (newCount > 0){
@@ -1091,6 +1395,12 @@ if (sessionId){
     const user = usersCache.find(u => u.id === sessionId);
     if (user){
       clearInterval(tryEnter);
+      if (user.banned){
+        alert('Ваш аккаунт был заблокирован администрацией.');
+        clearSessionId();
+        showScreen('screen-rules');
+        return;
+      }
       enterApp(user);
     }
   }, 300);
