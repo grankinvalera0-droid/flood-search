@@ -22,7 +22,6 @@
   html[data-theme="march8"]{--bg:#1a0e1a;--bg-2:#33173a;--card:#22102a;--card-2:#2b1433;--border:#3f1f4a;--text:#f9e7ff;--muted:#b29ac4;--accent:#e26bb5;--accent-2:#d4a5ff}
   html[data-theme="spring"]{--bg:#0f1a12;--bg-2:#1c3324;--card:#122019;--card-2:#182a20;--border:#234236;--text:#e6f5ee;--muted:#8aa896;--accent:#52b788;--accent-2:#f7a072;--ok:#52b788}
   html[data-theme="cosmos"]{--bg:#05070f;--bg-2:#0c1430;--card:#0a1020;--card-2:#10172e;--border:#1a2547;--text:#e8ecff;--muted:#8891b8;--accent:#4a90e2;--accent-2:#7b68ee;--gold:#ffd166}
-  html[data-theme="mayday"]{--bg:#150608;--bg-2:#2a0c10;--card:#1d0a0e;--card-2:#260e13;--border:#3a1820;--text:#ffe6e8;--muted:#b88f95;--accent:#c1121f;--accent-2:#ffb703}
   html[data-theme="summer"]{--bg:#1a1208;--bg-2:#3a2808;--card:#221808;--card-2:#2c2008;--border:#3d2c10;--text:#fff4d6;--muted:#c4a878;--accent:#ff9e00;--accent-2:#00b4d8}
   html[data-theme="school"]{--bg:#0f1a2e;--bg-2:#1a2840;--card:#15223a;--card-2:#1b2a44;--border:#263855;--text:#e8eef8;--muted:#93a2ba;--accent:#f4a261;--accent-2:#2a9d8f;--ok:#2a9d8f}
   html[data-theme="autumn"]{--bg:#1a0f08;--bg-2:#331a0c;--card:#221407;--card-2:#2c1a0c;--border:#3e2611;--text:#ffeacf;--muted:#b89472;--accent:#d97706;--accent-2:#b45309}
@@ -31,7 +30,7 @@
 
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;background:radial-gradient(1100px 650px at 50% -15%, var(--bg-2) 0%, var(--bg) 62%);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;background:radial-gradient(1100px 650px at 50% -15%, var(--bg-2) 0%, var(--bg) 62%);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;position:relative}
   body.no-anim *{animation:none !important;transition:none !important}
   body.compact .fandom-card{padding:11px 13px}
   body.compact .fd-search-result{padding:10px 12px}
@@ -39,7 +38,74 @@
   body.compact .topbar{padding:8px 18px}
   body.compact .btn{padding:10px 18px;font-size:14px}
 
-  .screen{display:none;min-height:100vh}
+  /* =========================================================
+     ПРАЗДНИЧНЫЕ ЭФФЕКТЫ
+     ========================================================= */
+  .holiday-particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .holiday-particle{position:absolute;top:-10vh;line-height:1;user-select:none;will-change:transform;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
+  @keyframes holiday-fall{from{transform:translateY(-10vh) rotate(0deg)}to{transform:translateY(120vh) rotate(360deg)}}
+  @keyframes holiday-sway{0%,100%{margin-left:0}50%{margin-left:40px}}
+
+  .holiday-greeting{
+    display:none;align-items:center;gap:14px;
+    padding:16px 24px;border-radius:20px;
+    background:var(--card);border:2px solid var(--accent);
+    box-shadow:0 16px 40px -20px var(--accent);
+    font-size:18px;font-weight:800;letter-spacing:-.2px;
+    animation:greetingPulse 2.4s ease-in-out infinite;
+    text-align:center;max-width:520px;width:100%;
+  }
+  .holiday-greeting.show{display:flex;justify-content:center}
+  .holiday-greeting .hg-emoji{font-size:32px;line-height:1;animation:greetingBounce 1.6s ease-in-out infinite}
+  @keyframes greetingPulse{0%,100%{box-shadow:0 16px 40px -20px var(--accent)}50%{box-shadow:0 20px 50px -16px var(--accent)}}
+  @keyframes greetingBounce{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-6px) rotate(8deg)}}
+
+  .topbar-holiday-emoji{
+    display:none;font-size:22px;line-height:1;margin-left:6px;
+    animation:topbarEmojiBounce 2s ease-in-out infinite;
+    filter:drop-shadow(0 0 8px var(--accent));
+  }
+  .topbar-holiday-emoji.show{display:inline-block}
+  @keyframes topbarEmojiBounce{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.15) rotate(5deg)}}
+
+  /* Праздничное свечение карточек */
+  html[data-theme="halloween"] .fandom-card:hover,
+  html[data-theme="halloween"] .popular-item:hover{box-shadow:0 0 24px -6px var(--accent)}
+  html[data-theme="newyear"] .fandom-card:hover,
+  html[data-theme="newyear"] .popular-item:hover{box-shadow:0 0 24px -6px var(--gold)}
+  html[data-theme="valentine"] .fandom-card:hover,
+  html[data-theme="valentine"] .popular-item:hover{box-shadow:0 0 24px -6px #ff2d75}
+  html[data-theme="march8"] .fandom-card:hover,
+  html[data-theme="march8"] .popular-item:hover{box-shadow:0 0 24px -6px #e26bb5}
+  html[data-theme="spring"] .fandom-card:hover,
+  html[data-theme="spring"] .popular-item:hover{box-shadow:0 0 24px -6px #52b788}
+  html[data-theme="cosmos"] .fandom-card:hover,
+  html[data-theme="cosmos"] .popular-item:hover{box-shadow:0 0 24px -6px #7b68ee}
+  html[data-theme="summer"] .fandom-card:hover,
+  html[data-theme="summer"] .popular-item:hover{box-shadow:0 0 24px -6px #ff9e00}
+  html[data-theme="school"] .fandom-card:hover,
+  html[data-theme="school"] .popular-item:hover{box-shadow:0 0 24px -6px #f4a261}
+  html[data-theme="autumn"] .fandom-card:hover,
+  html[data-theme="autumn"] .popular-item:hover{box-shadow:0 0 24px -6px #d97706}
+  html[data-theme="winter"] .fandom-card:hover,
+  html[data-theme="winter"] .popular-item:hover{box-shadow:0 0 24px -6px #90e0ef}
+  html[data-theme="friday13"] .fandom-card:hover,
+  html[data-theme="friday13"] .popular-item:hover{box-shadow:0 0 24px -6px #dc2626}
+
+  /* Праздничная рамка вокруг search-hub */
+  html[data-theme="halloween"] .search-hub-btn{border-color:#ff6a00;background:linear-gradient(135deg, rgba(255,106,0,.15), rgba(157,78,221,.15))}
+  html[data-theme="newyear"] .search-hub-btn{border-color:#c1121f;background:linear-gradient(135deg, rgba(193,18,31,.15), rgba(42,157,143,.15))}
+  html[data-theme="valentine"] .search-hub-btn{border-color:#ff2d75;background:linear-gradient(135deg, rgba(255,45,117,.15), rgba(255,143,171,.15))}
+  html[data-theme="march8"] .search-hub-btn{border-color:#e26bb5;background:linear-gradient(135deg, rgba(226,107,181,.15), rgba(212,165,255,.15))}
+  html[data-theme="spring"] .search-hub-btn{border-color:#52b788;background:linear-gradient(135deg, rgba(82,183,136,.15), rgba(247,160,114,.15))}
+  html[data-theme="cosmos"] .search-hub-btn{border-color:#7b68ee;background:linear-gradient(135deg, rgba(74,144,226,.15), rgba(123,104,238,.15))}
+  html[data-theme="summer"] .search-hub-btn{border-color:#ff9e00;background:linear-gradient(135deg, rgba(255,158,0,.15), rgba(0,180,216,.15))}
+  html[data-theme="school"] .search-hub-btn{border-color:#f4a261;background:linear-gradient(135deg, rgba(244,162,97,.15), rgba(42,157,143,.15))}
+  html[data-theme="autumn"] .search-hub-btn{border-color:#d97706;background:linear-gradient(135deg, rgba(217,119,6,.15), rgba(180,83,9,.15))}
+  html[data-theme="winter"] .search-hub-btn{border-color:#90e0ef;background:linear-gradient(135deg, rgba(144,224,239,.15), rgba(72,202,228,.15))}
+  html[data-theme="friday13"] .search-hub-btn{border-color:#dc2626;background:linear-gradient(135deg, rgba(220,38,38,.15), rgba(127,29,29,.15))}
+
+  .screen{display:none;min-height:100vh;position:relative;z-index:2}
   .screen.active{display:flex}
   .hidden{display:none !important}
 
@@ -67,7 +133,7 @@
 
   #screen-rules{align-items:center;justify-content:center;padding:40px 20px}
   .rules-card{width:100%;max-width:780px;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:40px 42px;box-shadow:0 30px 70px -30px rgba(0,0,0,.5)}
-  .brand{font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:22px}
+  .brand{font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:22px;display:inline-flex;align-items:center;gap:6px}
   .brand span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .rules-card h1{font-size:23px;font-weight:700;margin-bottom:6px}
   .rules-sub{color:var(--muted);font-size:13.5px;margin-bottom:24px}
@@ -75,8 +141,6 @@
   .rules-text h2{font-size:14.5px;font-weight:700;color:var(--text);margin:18px 0 8px}
   .rules-text h2:first-child{margin-top:0}
   .rules-text p{margin-bottom:9px}
-  .rules-text ul{margin:6px 0 10px 20px}
-  .rules-text li{margin-bottom:6px}
   .rules-actions{display:flex;flex-direction:column;gap:11px}
   .rules-actions .btn{width:100%;text-align:center}
 
@@ -151,7 +215,7 @@
 
   .content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:44px 24px 60px;gap:26px}
   .search-hub-btn{display:flex;flex-direction:column;align-items:center;gap:14px;background:linear-gradient(135deg, rgba(124,92,255,.1), rgba(91,140,255,.1));border:1px solid rgba(124,92,255,.35);border-radius:26px;padding:48px 60px;cursor:pointer;transition:.22s;text-align:center;color:var(--text);font:inherit;max-width:460px;width:100%;box-shadow:0 20px 60px -30px rgba(124,92,255,.5)}
-  .search-hub-btn:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 26px 70px -20px rgba(124,92,255,.85);background:linear-gradient(135deg, rgba(124,92,255,.2), rgba(91,140,255,.2))}
+  .search-hub-btn:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 26px 70px -20px rgba(124,92,255,.85)}
   .search-hub-icon{font-size:54px;line-height:1;margin-bottom:4px;filter:drop-shadow(0 6px 14px rgba(124,92,255,.6))}
   .search-hub-title{font-size:24px;font-weight:800;letter-spacing:-.4px}
   .search-hub-sub{font-size:14px;color:var(--muted);line-height:1.55;max-width:320px}
@@ -393,10 +457,14 @@
     .search-hub-title{font-size:19px}
     .content{padding:28px 16px 40px;gap:18px}
     .theme-picker-holiday{grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:7px}
+    .holiday-greeting{font-size:15px;padding:12px 18px;gap:10px}
+    .holiday-greeting .hg-emoji{font-size:26px}
   }
 </style>
 </head>
 <body>
+
+<div class="holiday-particles" id="holidayParticles"></div>
 
 <section id="screen-rules" class="screen active">
   <div class="rules-card">
@@ -405,20 +473,19 @@
     <p class="rules-sub">Редакция от 01.01.2026.</p>
     <div class="rules-text">
       <h2>1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
-      <p>1.1. Настоящие Правила использования Сервиса регулируют отношения между Администрацией и Пользователем.</p>
-      <p>1.2. Начало использования Сервиса означает полное принятие Пользователем настоящих Правил (ст. 438 ГК РФ).</p>
-      <p>1.3. При несогласии с Правилами Пользователь обязан прекратить использование Сервиса.</p>
-      <h2>2. НАЗНАЧЕНИЕ СЕРВИСА</h2>
-      <p>2.1. Сервис предназначен для поиска, систематизации и публичного обсуждения информации об ФД.</p>
-      <p>2.2. Сервис не является средством для организации травли или иных противоправных действий.</p>
-      <h2>3. НЕДОПУСТИМЫЕ ДЕЙСТВИЯ</h2>
-      <p>3.1. Запрещается разжигание ненависти (ст. 282 УК РФ), клевета (ст. 128.1 УК РФ), оскорбления (ст. 5.61 КоАП РФ), угрозы (ст. 119 УК РФ), доксинг (ФЗ № 152-ФЗ), организация травли, нарушение авторских прав.</p>
-      <h2>4. ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ</h2>
-      <p>4.1. Сервис работает по принципу «как есть». Администрация не осуществляет предварительную модерацию. Ответственность за материалы несёт Пользователь.</p>
-      <h2>5. ПЕРСОНАЛЬНЫЕ ДАННЫЕ</h2>
-      <p>5.1. При регистрации Пользователь предоставляет имя, username, аватар, пароль. Данные сохраняются в Firebase.</p>
-      <h2>6. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</h2>
-      <p>6.1. Администрация вправе изменять Правила в одностороннем порядке.</p>
+      <p>1.1. Настоящие Правила регулируют отношения между Администрацией и Пользователем.</p>
+      <p>1.2. Начало использования Сервиса означает принятие Правил (ст. 438 ГК РФ).</p>
+      <h2>2. НАЗНАЧЕНИЕ</h2>
+      <p>2.1. Сервис предназначен для поиска информации об ФД.</p>
+      <p>2.2. Сервис не является средством для организации травли.</p>
+      <h2>3. ЗАПРЕЩЕНО</h2>
+      <p>Разжигание ненависти (ст. 282 УК РФ), клевета (ст. 128.1), оскорбления (ст. 5.61 КоАП), угрозы (ст. 119 УК), доксинг (ФЗ № 152-ФЗ), травля, нарушение авторских прав.</p>
+      <h2>4. ОТВЕТСТВЕННОСТЬ</h2>
+      <p>4.1. Сервис «как есть». Ответственность за материалы несёт Пользователь.</p>
+      <h2>5. ДАННЫЕ</h2>
+      <p>5.1. При регистрации Пользователь даёт имя, username, аватар, пароль. Хранится в Firebase.</p>
+      <h2>6. ИЗМЕНЕНИЯ</h2>
+      <p>6.1. Администрация вправе изменять Правила.</p>
     </div>
     <div class="rules-actions">
       <button id="btnAccept" class="btn btn-primary">Принять условия</button>
@@ -465,7 +532,7 @@
         <button class="admin-msg-btn" id="adminMsgBtn"><span>Сообщение администрации</span></button>
         <div class="admin-msg-popup hidden" id="adminMsgPopup">
           <div class="admin-msg-header">Сообщение от администрации</div>
-          <div class="admin-msg-text">Добро пожаловать! Если вы столкнулись с флудом по какому-либо ФД или у вас возник вопрос — выберите вариант ниже.</div>
+          <div class="admin-msg-text">Добро пожаловать! Если вы столкнулись с флудом или у вас вопрос — выберите вариант ниже.</div>
           <div class="admin-msg-actions">
             <button class="btn btn-ghost" id="openHelpBtn">Помощь</button>
             <button class="btn btn-primary" id="openFloodBtn">Сообщить о флуде</button>
@@ -475,7 +542,7 @@
       <button class="fandoms-btn" id="fandomsBtn">🌐 <span>Фандомы</span></button>
     </div>
     <div class="topbar-center">
-      <div class="brand" id="topbarBrand">ФД<span>Поиск</span></div>
+      <div class="brand" id="topbarBrand">ФД<span>Поиск</span><span class="topbar-holiday-emoji" id="topbarEmoji"></span></div>
       <div class="admin-search-wrap hidden" id="adminSearchWrap">
         <input type="text" id="adminSearchInput" placeholder="🔍 Поиск по @username" autocomplete="off" />
         <div class="search-results hidden" id="searchResults"></div>
@@ -500,6 +567,11 @@
   </header>
   <div class="fb-status" id="fbStatus">✅ Синхронизация включена</div>
   <main class="content">
+    <div class="holiday-greeting" id="holidayGreeting">
+      <span class="hg-emoji" id="hgEmoji"></span>
+      <span id="hgText"></span>
+      <span class="hg-emoji" id="hgEmoji2"></span>
+    </div>
     <button class="search-hub-btn" id="openSearchHub" type="button">
       <div class="search-hub-icon">🔍</div>
       <div class="search-hub-title">Найти ФД</div>
@@ -515,10 +587,9 @@
 <div class="modal-overlay hidden" id="helpModal"><div class="modal">
   <button class="modal-close" type="button">×</button>
   <h2>Помощь</h2>
-  <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией и обсуждением.</p></div>
-  <div class="help-section"><h3>🔎 Как найти ФД?</h3><p>Нажми большую кнопку «Найти ФД» в центре экрана.</p></div>
-  <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в раздел настроек в день праздника — тема откроется автоматически и останется навсегда.</p></div>
-  <div class="help-section"><h3>🚨 Как сообщить о флуде?</h3><p>«Сообщение администрации» → «Сообщить о флуде» → заполните форму.</p></div>
+  <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией.</p></div>
+  <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в настройки в день праздника — тема откроется автоматически с эксклюзивными эффектами.</p></div>
+  <div class="help-section"><h3>🚨 Как сообщить о флуде?</h3><p>«Сообщение администрации» → «Сообщить о флуде».</p></div>
   <div class="modal-footer-divider"></div>
   <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
 </div></div>
@@ -662,7 +733,7 @@
     <div class="settings-row" style="display:block;padding-top:6px">
       <div class="settings-row-info" style="margin-bottom:12px">
         <div class="settings-row-title">Тема оформления</div>
-        <div class="settings-row-sub">Праздничные темы открываются только в свой сезон — и остаются навсегда</div>
+        <div class="settings-row-sub">Праздничные темы — с эксклюзивными эффектами и частицами</div>
       </div>
 
       <div class="theme-group">
@@ -703,8 +774,13 @@
     </div>
 
     <div class="settings-row">
-      <div class="settings-row-info"><div class="settings-row-title">Анимации</div><div class="settings-row-sub">Плавные переходы</div></div>
+      <div class="settings-row-info"><div class="settings-row-title">Анимации</div><div class="settings-row-sub">Плавные переходы и частицы</div></div>
       <label class="switch"><input type="checkbox" id="setAnimations" /><span class="slider"></span></label>
+    </div>
+
+    <div class="settings-row">
+      <div class="settings-row-info"><div class="settings-row-title">Праздничные частицы</div><div class="settings-row-sub">Падающие эмодзи на фоне (эксклюзив темы)</div></div>
+      <label class="switch"><input type="checkbox" id="setParticles" /><span class="slider"></span></label>
     </div>
   </div>
 
@@ -760,34 +836,86 @@ function nextRank(role){ const i = RANKS.indexOf(role); return i >= 0 && i < RAN
 function prevRank(role){ const i = RANKS.indexOf(role); return i > 0 ? RANKS[i-1] : null; }
 
 /* =========================================================
-   ПРАЗДНИЧНЫЕ ТЕМЫ (без Дня Победы и Дня России)
+   ПРАЗДНИКИ С ЭКСКЛЮЗИВАМИ
    ========================================================= */
 const BASE_THEMES = ['dark', 'light', 'purple', 'ocean'];
 
 const HOLIDAYS = [
-  { id: 'halloween', name: 'Хэллоуин',     emoji: '🎃', start: [10, 20], end: [11, 3] },
-  { id: 'newyear',   name: 'Новый год',    emoji: '🎄', start: [12, 20], end: [1, 10] },
-  { id: 'winter',    name: 'Зима',         emoji: '❄️', start: [12, 1],  end: [2, 28] },
-  { id: 'valentine', name: 'Валентин',     emoji: '💝', start: [2, 7],   end: [2, 15] },
-  { id: 'march8',    name: '8 Марта',      emoji: '🌷', start: [3, 1],   end: [3, 10] },
-  { id: 'spring',    name: 'Весна',        emoji: '🌸', start: [3, 11],  end: [5, 31] },
-  { id: 'cosmos',    name: 'Космос',       emoji: '🚀', start: [4, 10],  end: [4, 13] },
-  { id: 'mayday',    name: 'Первое мая',   emoji: '🎉', start: [4, 28],  end: [5, 2] },
-  { id: 'summer',    name: 'Лето',         emoji: '☀️', start: [6, 1],   end: [8, 31] },
-  { id: 'school',    name: '1 Сентября',   emoji: '🎒', start: [9, 1],   end: [9, 5] },
-  { id: 'autumn',    name: 'Осень',        emoji: '🍁', start: [9, 15],  end: [11, 20] },
-  { id: 'friday13',  name: 'Пятница 13',   emoji: '😈', special: 'friday13' },
+  {
+    id: 'halloween', name: 'Хэллоуин', emoji: '🎃',
+    particles: ['🎃','👻','🦇','🕷️','🕸️','💀','🧙'],
+    greeting: 'С Хэллоуином!', greetingEmojis: ['🎃','👻'],
+    start: [10, 20], end: [11, 3]
+  },
+  {
+    id: 'newyear', name: 'Новый год', emoji: '🎄',
+    particles: ['❄️','🎄','⛄','🎁','🔔','⭐','🧦'],
+    greeting: 'С Новым годом!', greetingEmojis: ['🎄','🎁'],
+    start: [12, 20], end: [1, 10]
+  },
+  {
+    id: 'winter', name: 'Зима', emoji: '❄️',
+    particles: ['❄️','🌨️','⛄','🧊','💙'],
+    greeting: 'Зимняя сказка', greetingEmojis: ['❄️','⛄'],
+    start: [12, 1], end: [2, 28]
+  },
+  {
+    id: 'valentine', name: 'Валентин', emoji: '💝',
+    particles: ['💝','❤️','💕','🌹','💖','💘'],
+    greeting: 'С Днём Валентина!', greetingEmojis: ['💝','💕'],
+    start: [2, 7], end: [2, 15]
+  },
+  {
+    id: 'march8', name: '8 Марта', emoji: '🌷',
+    particles: ['🌷','🌹','💐','🌺','💮','🌸'],
+    greeting: 'С 8 Марта!', greetingEmojis: ['🌷','💐'],
+    start: [3, 1], end: [3, 10]
+  },
+  {
+    id: 'spring', name: 'Весна', emoji: '🌸',
+    particles: ['🌸','🌼','🌱','🦋','🌺','🐝'],
+    greeting: 'Весна пришла!', greetingEmojis: ['🌸','🦋'],
+    start: [3, 11], end: [5, 31]
+  },
+  {
+    id: 'cosmos', name: 'Космос', emoji: '🚀',
+    particles: ['⭐','✨','🌠','🛸','🚀','💫'],
+    greeting: 'Космический режим', greetingEmojis: ['🚀','🛸'],
+    start: [4, 10], end: [4, 13]
+  },
+  {
+    id: 'summer', name: 'Лето', emoji: '☀️',
+    particles: ['☀️','🌊','🏖️','🍦','🌴','🐚'],
+    greeting: 'Лето!', greetingEmojis: ['☀️','🌊'],
+    start: [6, 1], end: [8, 31]
+  },
+  {
+    id: 'school', name: '1 Сентября', emoji: '🎒',
+    particles: ['📚','✏️','🍎','🎒','📓','📖'],
+    greeting: 'С 1 Сентября!', greetingEmojis: ['🎒','📚'],
+    start: [9, 1], end: [9, 5]
+  },
+  {
+    id: 'autumn', name: 'Осень', emoji: '🍁',
+    particles: ['🍁','🍂','🌰','🍄','🌾','🌧️'],
+    greeting: 'Осень', greetingEmojis: ['🍁','🍂'],
+    start: [9, 15], end: [11, 20]
+  },
+  {
+    id: 'friday13', name: 'Пятница 13', emoji: '😈',
+    particles: ['😈','👿','🔮','🕯️','💀','🖤'],
+    greeting: 'Пятница 13-е...', greetingEmojis: ['😈','🔮'],
+    special: 'friday13'
+  },
 ];
 
-const MONTHS_RU = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+const MONTHS_RU = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
 
 function isHolidayActive(h, date = new Date()){
   if (h.special === 'friday13') return date.getDay() === 5 && date.getDate() === 13;
-  const [sm, sd] = h.start;
-  const [em, ed] = h.end;
+  const [sm, sd] = h.start, [em, ed] = h.end;
   const val = (date.getMonth() + 1) * 100 + date.getDate();
-  const sVal = sm * 100 + sd;
-  const eVal = em * 100 + ed;
+  const sVal = sm * 100 + sd, eVal = em * 100 + ed;
   if (sVal <= eVal) return val >= sVal && val <= eVal;
   return val >= sVal || val <= eVal;
 }
@@ -874,7 +1002,7 @@ function sha256(str){
 const hashPassword = p => sha256('fd_salt_v1::' + p);
 
 const LS_SETTINGS = 'fd_settings';
-const DEFAULT_SETTINGS = { theme: 'dark', fontSize: 1, compact: false, animations: true, showPopular: true, countViews: true, shortCards: false };
+const DEFAULT_SETTINGS = { theme: 'dark', fontSize: 1, compact: false, animations: true, showPopular: true, countViews: true, shortCards: false, particles: true };
 let settings = { ...DEFAULT_SETTINGS };
 
 function loadSettings(){ try { const raw = localStorage.getItem(LS_SETTINGS); if (raw) settings = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) }; } catch(e){ settings = { ...DEFAULT_SETTINGS }; } }
@@ -886,6 +1014,56 @@ function isThemeUnlocked(themeId){
   return getUnlockedThemes().includes(themeId);
 }
 
+function clearHolidayEffects(){
+  const p = document.getElementById('holidayParticles');
+  if (p) p.innerHTML = '';
+  const g = document.getElementById('holidayGreeting');
+  if (g) g.classList.remove('show');
+  const te = document.getElementById('topbarEmoji');
+  if (te){ te.textContent = ''; te.classList.remove('show'); }
+}
+
+function applyHolidayEffects(holiday){
+  // Частицы
+  const container = document.getElementById('holidayParticles');
+  if (container){
+    container.innerHTML = '';
+    if (settings.particles && settings.animations && holiday.particles && holiday.particles.length){
+      const count = 22;
+      for (let i = 0; i < count; i++){
+        const el = document.createElement('span');
+        el.className = 'holiday-particle';
+        el.textContent = holiday.particles[Math.floor(Math.random() * holiday.particles.length)];
+        el.style.left = (Math.random() * 100) + '%';
+        el.style.fontSize = (14 + Math.random() * 20) + 'px';
+        el.style.animationDuration = (7 + Math.random() * 8) + 's';
+        el.style.animationDelay = (-Math.random() * 10) + 's';
+        el.style.animationName = 'holiday-fall';
+        el.style.animationTimingFunction = 'linear';
+        el.style.animationIterationCount = 'infinite';
+        el.style.opacity = 0.55 + Math.random() * 0.35;
+        container.appendChild(el);
+      }
+    }
+  }
+
+  // Приветствие
+  const g = document.getElementById('holidayGreeting');
+  if (g){
+    document.getElementById('hgEmoji').textContent = holiday.greetingEmojis?.[0] || holiday.emoji;
+    document.getElementById('hgText').textContent = holiday.greeting || holiday.name;
+    document.getElementById('hgEmoji2').textContent = holiday.greetingEmojis?.[1] || holiday.emoji;
+    g.classList.add('show');
+  }
+
+  // Эмодзи в шапке
+  const te = document.getElementById('topbarEmoji');
+  if (te){
+    te.textContent = holiday.emoji;
+    te.classList.add('show');
+  }
+}
+
 function applySettings(){
   if (!isThemeUnlocked(settings.theme)){ settings.theme = 'dark'; saveSettings(); }
   document.documentElement.setAttribute('data-theme', settings.theme);
@@ -895,9 +1073,16 @@ function applySettings(){
   const pop = document.getElementById('popularSection');
   if (pop) pop.classList.toggle('hidden', !settings.showPopular);
   renderThemePicker();
+
+  // Праздничные эффекты
+  const h = HOLIDAYS.find(x => x.id === settings.theme);
+  if (h) applyHolidayEffects(h);
+  else clearHolidayEffects();
+
   document.querySelectorAll('.font-btn').forEach(b => b.classList.toggle('active', parseFloat(b.dataset.size) === settings.fontSize));
   const cc = document.getElementById('setCompact'); if (cc) cc.checked = settings.compact;
   const ca = document.getElementById('setAnimations'); if (ca) ca.checked = settings.animations;
+  const cp = document.getElementById('setParticles'); if (cp) cp.checked = settings.particles;
   const sp = document.getElementById('setShowPopular'); if (sp) sp.checked = settings.showPopular;
   const sc = document.getElementById('setCountViews'); if (sc) sc.checked = settings.countViews;
   const ss = document.getElementById('setShortCards'); if (ss) ss.checked = settings.shortCards;
@@ -948,6 +1133,8 @@ function renderThemePicker(){
       settings.theme = themeId;
       saveSettings();
       applySettings();
+      const h = HOLIDAYS.find(x => x.id === themeId);
+      if (h) showToast(h.emoji, `${h.name} включён!`, `Активированы эксклюзивные эффекты: частицы, приветствие и свечение.`);
     });
   });
 
@@ -1097,7 +1284,7 @@ $('form-register').addEventListener('submit', async e => {
     $('form-register').reset(); resetAvatarPreview();
     enterApp(user);
     const newlyUnlocked = checkHolidayUnlocks();
-    newlyUnlocked.forEach(h => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить.', 10000));
+    newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить эксклюзивные эффекты.', 10000), i * 400));
   } catch(e2){ err.textContent = 'Ошибка: ' + e2.message; }
 });
 
@@ -1113,7 +1300,7 @@ $('form-login').addEventListener('submit', e => {
   setSessionId(user.id); $('form-login').reset();
   enterApp(user);
   const newlyUnlocked = checkHolidayUnlocks();
-  newlyUnlocked.forEach(h => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить.', 10000));
+  newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить эксклюзивные эффекты.', 10000), i * 400));
 });
 
 function enterApp(user){
@@ -1158,6 +1345,7 @@ function forceLogout(){
   $('adminSearchWrap').classList.add('hidden');
   $('topbarBrand').classList.remove('hidden');
   document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
+  clearHolidayEffects();
   $('btnAccept').classList.remove('hidden');
   $('btnCreateAccount').classList.add('hidden');
   $('btnGoLogin').classList.add('hidden');
@@ -1187,6 +1375,7 @@ document.querySelectorAll('.font-btn').forEach(btn => {
 });
 $('setCompact').addEventListener('change', e => { settings.compact = e.target.checked; saveSettings(); applySettings(); });
 $('setAnimations').addEventListener('change', e => { settings.animations = e.target.checked; saveSettings(); applySettings(); });
+$('setParticles').addEventListener('change', e => { settings.particles = e.target.checked; saveSettings(); applySettings(); });
 $('setShowPopular').addEventListener('change', e => { settings.showPopular = e.target.checked; saveSettings(); applySettings(); renderPopular(); });
 $('setCountViews').addEventListener('change', e => { settings.countViews = e.target.checked; saveSettings(); });
 $('setShortCards').addEventListener('change', e => { settings.shortCards = e.target.checked; saveSettings(); if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList(); });
@@ -1573,7 +1762,7 @@ if (sessionId){
       const newlyUnlocked = checkHolidayUnlocks();
       if (newlyUnlocked.length){
         renderThemePicker();
-        newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить.', 10000), i * 500));
+        newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить эксклюзивные эффекты.', 10000), i * 400));
       }
     }
   }, 300);
