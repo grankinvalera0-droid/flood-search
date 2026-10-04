@@ -5,14 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ФД — поиск и обсуждение</title>
 <style>
-  :root{
-    --bg:#0d0e12; --bg-2:#1c1f2e;
-    --card:#161922; --card-2:#1c2029; --border:#262b38;
-    --text:#e9ebf1; --muted:#8b93a7;
-    --accent:#7c5cff; --accent-2:#5b8cff;
-    --danger:#ff5c6c; --ok:#33d6a6; --gold:#ffc65c;
-    --grad: linear-gradient(135deg,var(--accent),var(--accent-2));
-  }
+  :root{--bg:#0d0e12;--bg-2:#1c1f2e;--card:#161922;--card-2:#1c2029;--border:#262b38;--text:#e9ebf1;--muted:#8b93a7;--accent:#7c5cff;--accent-2:#5b8cff;--danger:#ff5c6c;--ok:#33d6a6;--gold:#ffc65c;--grad:linear-gradient(135deg,var(--accent),var(--accent-2))}
   html[data-theme="light"]{--bg:#f4f5f8;--bg-2:#e8eaf0;--card:#fff;--card-2:#f2f3f8;--border:#dcdfe7;--text:#1a1d29;--muted:#6b7280;--danger:#e5395a;--ok:#0fa77d;--gold:#c99311}
   html[data-theme="purple"]{--bg:#120b1f;--bg-2:#251442;--card:#1a1029;--card-2:#221537;--border:#2f2148;--text:#f0e9ff;--muted:#a294c2;--accent:#b06cff;--accent-2:#ff5c8a;--ok:#4ddfa0}
   html[data-theme="ocean"]{--bg:#07141f;--bg-2:#0e2536;--card:#0d1e2c;--card-2:#122a3c;--border:#1c3a52;--text:#e3f1fb;--muted:#7fa3bd;--accent:#22b8cf;--accent-2:#4c9aff;--danger:#ff6b8a;--ok:#2dd4bf}
@@ -30,65 +23,84 @@
   html[data-theme="autumn"]{--bg:#1a0f08;--bg-2:#331a0c;--card:#221407;--card-2:#2c1a0c;--border:#3e2611;--text:#ffeacf;--muted:#b89472;--accent:#d97706;--accent-2:#b45309}
   html[data-theme="winter"]{--bg:#0a1219;--bg-2:#132436;--card:#0f1c2a;--card-2:#152536;--border:#1f364a;--text:#e6f2fa;--muted:#8ba1b8;--accent:#90e0ef;--accent-2:#48cae4;--gold:#ffd60a}
   html[data-theme="friday13"]{--bg:#0a0505;--bg-2:#1f0808;--card:#140808;--card-2:#1c0c0c;--border:#2d1414;--text:#f0dada;--muted:#a88383;--accent:#dc2626;--accent-2:#7f1d1d;--danger:#dc2626}
-
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;background:radial-gradient(1100px 650px at 50% -15%, var(--bg-2) 0%, var(--bg) 62%);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;position:relative}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;background:radial-gradient(1100px 650px at 50% -15%,var(--bg-2) 0%,var(--bg) 62%);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;position:relative}
   body.no-anim *{animation:none !important;transition:none !important}
   body.compact .fandom-card{padding:11px 13px}
   body.compact .fd-search-result{padding:10px 12px}
   body.compact .popular-item{padding:9px 12px}
   body.compact .topbar{padding:8px 18px}
   body.compact .btn{padding:10px 18px;font-size:14px}
-
   .holiday-particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
   .holiday-particle{position:absolute;top:-10vh;line-height:1;user-select:none;will-change:transform;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
   @keyframes holiday-fall{from{transform:translateY(-10vh) rotate(0deg)}to{transform:translateY(120vh) rotate(360deg)}}
-
   .holiday-greeting{display:none;align-items:center;gap:14px;padding:16px 24px;border-radius:20px;background:var(--card);border:2px solid var(--accent);box-shadow:0 16px 40px -20px var(--accent);font-size:18px;font-weight:800;letter-spacing:-.2px;animation:greetingPulse 2.4s ease-in-out infinite;text-align:center;max-width:520px;width:100%}
   .holiday-greeting.show{display:flex;justify-content:center}
   .holiday-greeting .hg-emoji{font-size:32px;line-height:1;animation:greetingBounce 1.6s ease-in-out infinite}
   @keyframes greetingPulse{0%,100%{box-shadow:0 16px 40px -20px var(--accent)}50%{box-shadow:0 20px 50px -16px var(--accent)}}
   @keyframes greetingBounce{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-6px) rotate(8deg)}}
-
   .topbar-holiday-emoji{display:none;font-size:22px;line-height:1;margin-left:6px;animation:topbarEmojiBounce 2s ease-in-out infinite;filter:drop-shadow(0 0 8px var(--accent))}
   .topbar-holiday-emoji.show{display:inline-block}
   @keyframes topbarEmojiBounce{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.15) rotate(5deg)}}
 
-  html[data-theme="halloween"] .fandom-card:hover, html[data-theme="halloween"] .popular-item:hover{box-shadow:0 0 24px -6px var(--accent)}
-  html[data-theme="newyear"] .fandom-card:hover, html[data-theme="newyear"] .popular-item:hover{box-shadow:0 0 24px -6px var(--gold)}
-  html[data-theme="valentine"] .fandom-card:hover, html[data-theme="valentine"] .popular-item:hover{box-shadow:0 0 24px -6px #ff2d75}
-  html[data-theme="march8"] .fandom-card:hover, html[data-theme="march8"] .popular-item:hover{box-shadow:0 0 24px -6px #a855f7}
-  html[data-theme="spring"] .fandom-card:hover, html[data-theme="spring"] .popular-item:hover{box-shadow:0 0 24px -6px #52b788}
-  html[data-theme="cosmos"] .fandom-card:hover, html[data-theme="cosmos"] .popular-item:hover{box-shadow:0 0 24px -6px #7b68ee}
-  html[data-theme="summer"] .fandom-card:hover, html[data-theme="summer"] .popular-item:hover{box-shadow:0 0 24px -6px #ff9e00}
-  html[data-theme="school"] .fandom-card:hover, html[data-theme="school"] .popular-item:hover{box-shadow:0 0 24px -6px #f4a261}
-  html[data-theme="autumn"] .fandom-card:hover, html[data-theme="autumn"] .popular-item:hover{box-shadow:0 0 24px -6px #d97706}
-  html[data-theme="winter"] .fandom-card:hover, html[data-theme="winter"] .popular-item:hover{box-shadow:0 0 24px -6px #90e0ef}
-  html[data-theme="friday13"] .fandom-card:hover, html[data-theme="friday13"] .popular-item:hover{box-shadow:0 0 24px -6px #dc2626}
-  html[data-theme="admin"] .fandom-card:hover, html[data-theme="admin"] .popular-item:hover{box-shadow:0 0 24px -6px #3b82f6}
-  html[data-theme="owner"] .fandom-card:hover, html[data-theme="owner"] .popular-item:hover{box-shadow:0 0 24px -6px #fbbf24}
-  html[data-theme="superowner"] .fandom-card:hover, html[data-theme="superowner"] .popular-item:hover{box-shadow:0 0 24px -6px #dc2626}
+  /* ============ ВСПЫШКА ЭКСКЛЮЗИВА ============ */
+  .theme-flash{position:fixed;inset:0;pointer-events:none;z-index:500;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at center,var(--accent),transparent 65%);opacity:0}
+  .theme-flash.show{display:flex;animation:themeFlash 1.2s ease-out forwards}
+  @keyframes themeFlash{
+    0%{opacity:0;transform:scale(.3)}
+    30%{opacity:.75}
+    60%{opacity:.5}
+    100%{opacity:0;transform:scale(1.4)}
+  }
+  .theme-flash-emoji{font-size:180px;line-height:1;filter:drop-shadow(0 0 60px var(--accent));animation:flashEmoji .9s cubic-bezier(.2,1.2,.4,1)}
+  @keyframes flashEmoji{
+    0%{transform:scale(.2) rotate(-45deg);opacity:0}
+    40%{transform:scale(1.3) rotate(15deg);opacity:1}
+    70%{transform:scale(1.1) rotate(0deg);opacity:1}
+    100%{transform:scale(1.6);opacity:0}
+  }
+  .theme-flash-label{position:absolute;bottom:22%;left:50%;transform:translateX(-50%);font-size:22px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--text);text-shadow:0 4px 20px rgba(0,0,0,.8),0 0 40px var(--accent);animation:flashLabel 1.2s ease-out forwards;white-space:nowrap}
+  @keyframes flashLabel{
+    0%{opacity:0;transform:translateX(-50%) translateY(20px)}
+    30%{opacity:1;transform:translateX(-50%) translateY(0)}
+    80%{opacity:1}
+    100%{opacity:0;transform:translateX(-50%) translateY(-10px)}
+  }
+  body.no-anim .theme-flash{display:none !important}
 
-  html[data-theme="halloween"] .search-hub-btn{border-color:#ff6a00;background:linear-gradient(135deg, rgba(255,106,0,.15), rgba(157,78,221,.15))}
-  html[data-theme="newyear"] .search-hub-btn{border-color:#c1121f;background:linear-gradient(135deg, rgba(193,18,31,.15), rgba(42,157,143,.15))}
-  html[data-theme="valentine"] .search-hub-btn{border-color:#ff2d75;background:linear-gradient(135deg, rgba(255,45,117,.15), rgba(255,143,171,.15))}
-  html[data-theme="march8"] .search-hub-btn{border-color:#a855f7;background:linear-gradient(135deg, rgba(168,85,247,.15), rgba(217,70,239,.15))}
-  html[data-theme="spring"] .search-hub-btn{border-color:#52b788;background:linear-gradient(135deg, rgba(82,183,136,.15), rgba(247,160,114,.15))}
-  html[data-theme="cosmos"] .search-hub-btn{border-color:#7b68ee;background:linear-gradient(135deg, rgba(74,144,226,.15), rgba(123,104,238,.15))}
-  html[data-theme="summer"] .search-hub-btn{border-color:#ff9e00;background:linear-gradient(135deg, rgba(255,158,0,.15), rgba(0,180,216,.15))}
-  html[data-theme="school"] .search-hub-btn{border-color:#f4a261;background:linear-gradient(135deg, rgba(244,162,97,.15), rgba(42,157,143,.15))}
-  html[data-theme="autumn"] .search-hub-btn{border-color:#d97706;background:linear-gradient(135deg, rgba(217,119,6,.15), rgba(180,83,9,.15))}
-  html[data-theme="winter"] .search-hub-btn{border-color:#90e0ef;background:linear-gradient(135deg, rgba(144,224,239,.15), rgba(72,202,228,.15))}
-  html[data-theme="friday13"] .search-hub-btn{border-color:#dc2626;background:linear-gradient(135deg, rgba(220,38,38,.15), rgba(127,29,29,.15))}
-  html[data-theme="admin"] .search-hub-btn{border-color:#3b82f6;background:linear-gradient(135deg, rgba(59,130,246,.2), rgba(6,182,212,.2))}
-  html[data-theme="owner"] .search-hub-btn{border-color:#fbbf24;background:linear-gradient(135deg, rgba(251,191,36,.2), rgba(245,158,11,.2))}
-  html[data-theme="superowner"] .search-hub-btn{border-color:#dc2626;background:linear-gradient(135deg, rgba(220,38,38,.2), rgba(245,158,11,.2))}
+  /* ============ СЧЁТЧИК ЭКСКЛЮЗИВОВ В ПРОФИЛЕ ============ */
+  .pop-exclusive{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--grad);color:#fff;
+    border-radius:12px;padding:9px 12px;margin-bottom:12px;
+    font-size:12.5px;font-weight:800;letter-spacing:.3px;
+    box-shadow:0 6px 16px -6px var(--accent);
+  }
+  .pop-exclusive-count{font-size:16px;font-weight:900}
+  .pop-exclusive.hidden{display:none}
+
+  /* ============ БЕЙДЖИ В КАРТОЧКЕ ПОЛЬЗОВАТЕЛЯ ============ */
+  .up-exclusive-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;justify-content:center}
+  .up-exclusive-badge{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:5px 11px;border-radius:20px;
+    font-size:11.5px;font-weight:800;letter-spacing:.3px;
+    border:1px solid var(--accent);
+    background:linear-gradient(135deg,rgba(124,92,255,.15),rgba(91,140,255,.08));
+    color:var(--text);
+    animation:badgePulse 2.4s ease-in-out infinite;
+  }
+  .up-exclusive-badge.badge-admin{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(6,182,212,.1));border-color:#3b82f6}
+  .up-exclusive-badge.badge-owner{background:linear-gradient(135deg,rgba(251,191,36,.25),rgba(245,158,11,.12));border-color:#fbbf24;color:#fff}
+  .up-exclusive-badge.badge-holiday{background:linear-gradient(135deg,rgba(255,106,0,.2),rgba(157,78,221,.12));border-color:var(--accent)}
+  @keyframes badgePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+  .up-exclusive-badge .badge-emoji{font-size:14px;line-height:1}
+  .up-exclusive-empty{text-align:center;color:var(--muted);font-size:12px;margin-bottom:14px;padding:8px;border:1px dashed var(--border);border-radius:10px;line-height:1.5}
 
   .screen{display:none;min-height:100vh;position:relative;z-index:2}
   .screen.active{display:flex}
   .hidden{display:none !important}
-
   .btn{font:inherit;font-weight:600;font-size:15px;border:none;border-radius:12px;padding:13px 22px;cursor:pointer;transition:.18s;white-space:nowrap;color:var(--text)}
   .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 22px -8px rgba(0,0,0,.4)}
   .btn-primary:hover{transform:translateY(-1px)}
@@ -96,7 +108,6 @@
   .btn-ghost:hover{color:var(--text);border-color:var(--accent)}
   .btn-danger{background:rgba(255,92,108,.12);color:var(--danger);border:1px solid rgba(255,92,108,.35);width:100%;font-size:14px;padding:11px}
   .btn:disabled{opacity:.45;cursor:not-allowed}
-
   .field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
   .field label{font-size:13px;color:var(--muted);font-weight:500}
   .field input,.field textarea{font:inherit;font-size:15px;color:var(--text);background:var(--card-2);border:1px solid var(--border);border-radius:11px;padding:12px 14px;outline:none;transition:.15s;width:100%}
@@ -107,10 +118,8 @@
   .prefix-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
   .prefix-wrap span{color:var(--muted);font-size:15px;font-weight:600}
   .prefix-wrap input{border:none !important;background:transparent !important;box-shadow:none !important;padding-left:4px}
-
   .error{color:var(--danger);font-size:13.5px;line-height:1.45;min-height:0;margin-bottom:12px}
   .error:not(:empty){background:rgba(255,92,108,.08);border:1px solid rgba(255,92,108,.25);border-radius:10px;padding:10px 13px}
-
   #screen-rules{align-items:center;justify-content:center;padding:40px 20px}
   .rules-card{width:100%;max-width:780px;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:40px 42px;box-shadow:0 30px 70px -30px rgba(0,0,0,.5)}
   .brand{font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:22px;display:inline-flex;align-items:center;gap:6px}
@@ -123,7 +132,6 @@
   .rules-text p{margin-bottom:9px}
   .rules-actions{display:flex;flex-direction:column;gap:11px}
   .rules-actions .btn{width:100%;text-align:center}
-
   #screen-auth{align-items:center;justify-content:center;padding:40px 20px}
   .auth-card{width:100%;max-width:430px;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:32px;box-shadow:0 30px 70px -30px rgba(0,0,0,.5)}
   .tabs{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:26px}
@@ -132,14 +140,12 @@
   .avatar-picker{display:flex;flex-direction:column;align-items:center;gap:11px;margin-bottom:22px}
   .avatar-preview{width:92px;height:92px;border-radius:50%;object-fit:cover;border:2px solid var(--border);background:var(--card-2)}
   .avatar-hint{font-size:12.5px;color:var(--muted)}
-
   #screen-main{flex-direction:column}
-  .topbar{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid var(--border);background:color-mix(in srgb, var(--bg) 78%, transparent);backdrop-filter:blur(14px);position:sticky;top:0;z-index:50}
+  .topbar{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid var(--border);background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);position:sticky;top:0;z-index:50}
   .topbar .brand{margin-bottom:0;font-size:18px}
   .topbar-left{flex-shrink:0;position:relative;display:flex;align-items:center;gap:10px}
   .topbar-center{flex:1;display:flex;justify-content:center;align-items:center;min-width:0}
   .topbar-right{flex-shrink:0;display:flex;align-items:center;gap:10px}
-
   .admin-search-wrap{position:relative;width:100%;max-width:420px}
   .admin-search-wrap input{width:100%;font:inherit;font-size:14px;color:var(--text);background:var(--card-2);border:1px solid var(--border);border-radius:11px;padding:9px 14px;outline:none;transition:.15s}
   .admin-search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
@@ -153,39 +159,31 @@
   .search-item-username{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .search-item-role{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;text-transform:uppercase;letter-spacing:.3px;flex-shrink:0}
   .search-empty{padding:16px;text-align:center;color:var(--muted);font-size:13px}
-
   .admin-msg-btn,.fandoms-btn{display:flex;align-items:center;gap:8px;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;transition:.16s}
   .admin-msg-btn{background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);color:var(--accent)}
   .admin-msg-btn:hover{background:rgba(124,92,255,.2)}
   .admin-msg-btn::before{content:"📢";font-size:14px}
   .fandoms-btn{background:rgba(51,214,166,.1);border:1px solid rgba(51,214,166,.35);color:var(--ok)}
   .fandoms-btn:hover{background:rgba(51,214,166,.2)}
-
   .icon-btn-topbar{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:17px;transition:.16s;position:relative}
   .icon-btn-topbar:hover{color:var(--text);border-color:var(--accent)}
   .settings-btn:hover{transform:rotate(30deg)}
   .achievements-btn .ach-badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:#000;font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid var(--card)}
-
   .admin-msg-popup{position:absolute;top:48px;left:0;width:320px;z-index:100;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:0 26px 60px -22px rgba(0,0,0,.6)}
   .admin-msg-header{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px}
   .admin-msg-text{font-size:13.5px;line-height:1.55;color:var(--text);opacity:.85;margin-bottom:16px}
   .admin-msg-actions{display:flex;flex-direction:column;gap:8px}
   .admin-msg-actions .btn{width:100%;font-size:14px;padding:11px}
-
   .admin-inbox-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font:inherit;font-size:13px;font-weight:600;padding:8px 13px;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:.16s}
   .admin-inbox-btn:hover{color:var(--text);border-color:var(--accent);background:var(--card-2)}
-
   .my-tickets-btn{background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);color:var(--accent);font:inherit;font-size:13px;font-weight:600;padding:8px 13px;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:7px}
   .my-tickets-btn .inbox-badge{background:var(--ok);color:#fff}
-
   .inbox-badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px;min-width:18px;text-align:center}
   .inbox-badge.hidden{display:none}
-
   .user-area{position:relative}
   .avatar-btn{background:none;border:none;padding:0;cursor:pointer;border-radius:50%;line-height:0}
   .avatar-btn img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
-
-  .popup{position:absolute;top:56px;right:0;width:270px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 20px 18px;box-shadow:0 26px 60px -22px rgba(0,0,0,.6);z-index:100}
+  .popup{position:absolute;top:56px;right:0;width:280px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 20px 18px;box-shadow:0 26px 60px -22px rgba(0,0,0,.6);z-index:100}
   .popup img.pop-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--border);display:block;margin:0 auto 14px}
   .pop-name{text-align:center;font-size:17px;font-weight:700;margin-bottom:3px;word-break:break-word}
   .pop-username{text-align:center;font-size:13.5px;color:var(--muted);margin-bottom:12px;word-break:break-all}
@@ -194,14 +192,12 @@
   .badge-admin{color:var(--gold);background:rgba(255,198,92,.12);border:1px solid rgba(255,198,92,.35)}
   .badge-user{color:var(--muted);background:rgba(139,147,167,.1);border:1px solid rgba(139,147,167,.25)}
   .pop-divider{height:1px;background:var(--border);margin:0 0 14px}
-
   .content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:44px 24px 60px;gap:26px}
-  .search-hub-btn{display:flex;flex-direction:column;align-items:center;gap:14px;background:linear-gradient(135deg, rgba(124,92,255,.1), rgba(91,140,255,.1));border:1px solid rgba(124,92,255,.35);border-radius:26px;padding:48px 60px;cursor:pointer;transition:.22s;text-align:center;color:var(--text);font:inherit;max-width:460px;width:100%;box-shadow:0 20px 60px -30px rgba(124,92,255,.5)}
+  .search-hub-btn{display:flex;flex-direction:column;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(124,92,255,.1),rgba(91,140,255,.1));border:1px solid rgba(124,92,255,.35);border-radius:26px;padding:48px 60px;cursor:pointer;transition:.22s;text-align:center;color:var(--text);font:inherit;max-width:460px;width:100%;box-shadow:0 20px 60px -30px rgba(124,92,255,.5)}
   .search-hub-btn:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 26px 70px -20px rgba(124,92,255,.85)}
   .search-hub-icon{font-size:54px;line-height:1;margin-bottom:4px;filter:drop-shadow(0 6px 14px rgba(124,92,255,.6))}
   .search-hub-title{font-size:24px;font-weight:800;letter-spacing:-.4px}
   .search-hub-sub{font-size:14px;color:var(--muted);line-height:1.55;max-width:320px}
-
   .popular-section{width:100%;max-width:640px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px 22px;box-shadow:0 16px 40px -28px rgba(0,0,0,.5)}
   .popular-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
   .popular-title{font-size:15px;font-weight:800;letter-spacing:-.2px;display:flex;align-items:center;gap:8px}
@@ -219,9 +215,7 @@
   .popular-meta{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .popular-views{font-size:11.5px;font-weight:700;color:var(--ok);padding:4px 10px;border-radius:20px;flex-shrink:0;background:rgba(51,214,166,.1);border:1px solid rgba(51,214,166,.28)}
   .popular-empty{text-align:center;color:var(--muted);font-size:13.5px;padding:20px;line-height:1.55}
-
   .fb-status{background:rgba(51,214,166,.08);border-bottom:1px solid rgba(51,214,166,.3);color:var(--ok);font-size:12.5px;padding:8px 22px;text-align:center}
-
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:200}
   .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;position:relative;color:var(--text)}
   .modal-wide{max-width:860px}
@@ -229,18 +223,15 @@
   .modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;color:var(--muted);font-size:22px;cursor:pointer;width:34px;height:34px;border-radius:9px}
   .modal-close:hover{background:var(--card-2);color:var(--text)}
   .modal h2{font-size:20px;font-weight:700;margin-bottom:18px;padding-right:34px}
-
   .help-section{margin-bottom:16px}
   .help-section h3{font-size:14.5px;font-weight:700;color:var(--accent);margin-bottom:6px}
   .help-section p{font-size:14px;line-height:1.6;color:var(--text);opacity:.85}
   .modal-footer-divider{height:1px;background:var(--border);margin:22px 0 16px}
-
   .success-block{text-align:center;padding:16px 0}
   .success-icon{width:64px;height:64px;border-radius:50%;background:rgba(51,214,166,.12);border:2px solid var(--ok);color:var(--ok);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:28px;font-weight:700}
   .success-block h2{justify-content:center;text-align:center;padding-right:0}
   .success-block p{color:var(--muted);font-size:14.5px;line-height:1.55;margin-bottom:20px}
   .success-block .btn{width:100%}
-
   .tickets-layout{display:grid;grid-template-columns:280px 1fr;gap:18px;min-height:400px}
   @media(max-width:740px){.tickets-layout{grid-template-columns:1fr}}
   .tickets-list{border-right:1px solid var(--border);padding-right:14px;overflow-y:auto;max-height:62vh}
@@ -254,7 +245,6 @@
   .ticket-item .ticket-time{font-size:11px;margin-top:5px;font-weight:600}
   .ticket-status-new{color:var(--accent)}
   .ticket-status-answered{color:var(--ok)}
-
   .ticket-detail{padding:2px 4px}
   .ticket-detail h3{font-size:16px;font-weight:700;margin-bottom:16px}
   .ticket-field{margin-bottom:13px}
@@ -263,9 +253,7 @@
   .ticket-field .value a{color:var(--accent-2);text-decoration:none}
   .ticket-answer{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
   .ticket-answer textarea{width:100%;min-height:90px;background:var(--card-2);border:1px solid var(--border);border-radius:11px;color:var(--text);padding:12px 14px;font:inherit;font-size:14px;resize:vertical;outline:none;margin-bottom:10px;font-family:inherit}
-
   .empty-state{text-align:center;color:var(--muted);font-size:14px;padding:40px 20px}
-
   .my-tickets-list{display:flex;flex-direction:column;gap:12px;max-height:65vh;overflow-y:auto;padding-right:6px}
   .my-ticket-card{background:var(--card-2);border:1px solid var(--border);border-radius:14px;padding:16px}
   .my-ticket-card.answered{border-color:rgba(51,214,166,.4)}
@@ -281,13 +269,11 @@
   .my-ticket-answer .label{font-size:11.5px;color:var(--ok);text-transform:uppercase;letter-spacing:.4px;font-weight:700;margin-bottom:6px;display:block}
   .my-ticket-answer .answer-text{font-size:13.5px;line-height:1.55;color:var(--text);background:rgba(51,214,166,.06);padding:11px 13px;border-radius:10px;border-left:3px solid var(--ok)}
   .my-ticket-answer .answered-at{font-size:11.5px;color:var(--muted);margin-top:7px}
-
   .up-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-right:34px}
   .up-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--border);flex-shrink:0}
   .up-meta{flex:1;min-width:0}
   .up-name{font-size:17px;font-weight:700;word-break:break-word;margin-bottom:2px}
   .up-username{font-size:13px;color:var(--muted);word-break:break-all}
-
   .kebab-wrap{position:relative;flex-shrink:0;margin-left:auto}
   .kebab-btn{background:transparent;border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:19px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;transition:.15s;padding-bottom:6px}
   .kebab-btn:hover{background:var(--card-2);color:var(--text);border-color:var(--accent)}
@@ -300,14 +286,12 @@
   .kebab-danger:hover{background:rgba(255,92,108,.12)}
   .kebab-success{color:var(--ok)}
   .kebab-success:hover{background:rgba(51,214,166,.12)}
-
   .up-badge{display:inline-block;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:16px}
   .up-info{background:var(--card-2);border-radius:12px;padding:6px 16px}
   .up-info-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:10px 0;border-bottom:1px solid var(--border)}
   .up-info-row:last-child{border-bottom:none}
   .up-info-row span{color:var(--muted)}
   .up-info-row b{color:var(--text);font-weight:600;text-align:right;word-break:break-all}
-
   .fandoms-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;padding-right:34px}
   .fandoms-header h2{margin-bottom:0}
   .fandoms-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-right:6px}
@@ -319,7 +303,6 @@
   .fandom-card-links.empty{background:rgba(255,198,92,.12);color:var(--gold);border-color:rgba(255,198,92,.3)}
   .fandom-card-desc{font-size:13.5px;color:var(--text);opacity:.85;line-height:1.5;margin-bottom:6px;word-break:break-word}
   .fandom-card-meta{font-size:11.5px;color:var(--muted)}
-
   .fd-detail-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;padding-right:34px}
   .fd-detail-header h2{flex:1;margin-bottom:0;padding-right:0;word-break:break-word}
   .fd-actions{display:flex;gap:6px;flex-shrink:0}
@@ -338,7 +321,6 @@
   .fd-link-url{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .fd-link-arrow{color:var(--muted);font-size:16px;flex-shrink:0}
   .fd-links-empty{text-align:center;color:var(--muted);font-size:13.5px;padding:24px 16px;background:var(--card-2);border-radius:12px;border:1px dashed var(--border);line-height:1.6}
-
   .fd-search-tabs{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:16px}
   .fd-search-tab{flex:1;font:inherit;font-size:13.5px;font-weight:600;background:transparent;border:none;color:var(--muted);padding:10px;border-radius:9px;cursor:pointer;transition:.16s}
   .fd-search-tab.active{background:var(--accent);color:#fff}
@@ -349,7 +331,6 @@
   .fd-search-result-desc{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
   .fd-search-result-meta{font-size:11.5px;color:var(--muted)}
   .fd-search-empty{text-align:center;padding:36px 20px;color:var(--muted);font-size:13.5px;line-height:1.6}
-
   .fd-links-editor{display:flex;flex-direction:column;gap:8px;margin-top:6px}
   .fd-link-row{display:grid;grid-template-columns:1fr 1.4fr 34px;gap:8px;align-items:center}
   .fd-link-row input{font:inherit;font-size:14px;color:var(--text);background:var(--card-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;outline:none;transition:.15s;width:100%}
@@ -359,7 +340,6 @@
   .fd-link-remove:hover{color:var(--danger);border-color:rgba(255,92,108,.4);background:rgba(255,92,108,.1)}
   .btn-link-add{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;font:inherit;font-size:13.5px;font-weight:600;background:transparent;color:var(--accent-2);border:1px dashed rgba(91,140,255,.4);border-radius:10px;padding:10px;cursor:pointer;transition:.15s;width:100%}
   .btn-link-add:hover{background:rgba(91,140,255,.06);border-color:var(--accent-2)}
-
   .settings-section{margin-bottom:24px}
   .settings-section:last-of-type{margin-bottom:0}
   .settings-section-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
@@ -368,14 +348,12 @@
   .settings-row-info{flex:1;min-width:0}
   .settings-row-title{font-size:14px;font-weight:600;margin-bottom:2px}
   .settings-row-sub{font-size:12px;color:var(--muted);line-height:1.5}
-
   .switch{position:relative;width:46px;height:26px;flex-shrink:0}
   .switch input{opacity:0;width:0;height:0;position:absolute}
   .switch .slider{position:absolute;inset:0;background:var(--card-2);border:1px solid var(--border);border-radius:26px;cursor:pointer;transition:.2s}
   .switch .slider::before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;left:3px;top:3px;background:var(--muted);transition:.2s}
   .switch input:checked + .slider{background:var(--accent);border-color:var(--accent)}
   .switch input:checked + .slider::before{transform:translateX(20px);background:#fff}
-
   .theme-group{margin-bottom:18px}
   .theme-group:last-child{margin-bottom:0}
   .theme-group-title{font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
@@ -391,11 +369,7 @@
   .theme-swatch[data-theme-val="light"]{background:linear-gradient(135deg,#f4f5f8 50%,#ffffff 50%)}
   .theme-swatch[data-theme-val="purple"]{background:linear-gradient(135deg,#120b1f 50%,#b06cff 50%)}
   .theme-swatch[data-theme-val="ocean"]{background:linear-gradient(135deg,#07141f 50%,#22b8cf 50%)}
-  .theme-swatch[data-theme-val="admin"]{background:linear-gradient(135deg,#0a1428 50%,#3b82f6 50%)}
-  .theme-swatch[data-theme-val="owner"]{background:linear-gradient(135deg,#221808 50%,#fbbf24 50%)}
-  .theme-swatch[data-theme-val="superowner"]{background:linear-gradient(135deg,#140505 50%,#dc2626 50%)}
   .theme-swatch-label{position:absolute;bottom:3px;left:0;right:0;text-align:center;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.7)}
-
   .theme-swatch.holiday{width:100%;height:auto;aspect-ratio:1;flex-direction:column;gap:4px;padding:8px 6px;background:var(--card-2)}
   .theme-swatch.holiday .holiday-emoji{font-size:24px;line-height:1}
   .theme-swatch.holiday .theme-swatch-label{position:static;color:var(--text);text-shadow:none;text-transform:none;font-size:10px;font-weight:600;line-height:1.15;letter-spacing:0}
@@ -407,14 +381,12 @@
   .theme-swatch.holiday.active::after{display:none}
   .theme-swatch.holiday.active::before{content:"✓";position:absolute;top:4px;right:6px;color:#fff;font-weight:900;font-size:14px;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,.6)}
   .theme-swatch.holiday.owner-unlock::before{content:"👑";font-size:13px;top:4px;right:5px}
-
+  .theme-swatch.holiday.admin-unlock::before{content:"🛡️";font-size:11px;top:4px;right:5px}
   .font-picker{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:4px}
   .font-btn{flex:1;font:inherit;font-weight:700;background:transparent;border:none;color:var(--muted);padding:8px 12px;border-radius:9px;cursor:pointer;transition:.15s;min-width:52px}
   .font-btn.active{background:var(--accent);color:#fff}
-
   .settings-footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
-
-  .toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:10px;pointer-events:none;padding:0 20px;width:100%;max-width:420px;align-items:center}
+  .toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:600;display:flex;flex-direction:column;gap:10px;pointer-events:none;padding:0 20px;width:100%;max-width:420px;align-items:center}
   .toast{background:var(--card);border:2px solid var(--accent);border-radius:16px;padding:14px 18px;color:var(--text);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);display:flex;align-items:center;gap:14px;animation:toastIn .35s cubic-bezier(.2,1.2,.4,1);pointer-events:auto;width:100%}
   .toast.fadeout{animation:toastOut .3s ease-in forwards}
   @keyframes toastIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
@@ -425,8 +397,6 @@
   .toast-text{font-size:12.5px;color:var(--muted);line-height:1.45}
   .toast-close{background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:8px;flex-shrink:0}
   .toast-close:hover{background:var(--card-2);color:var(--text)}
-
-  /* ============ ДОСТИЖЕНИЯ ============ */
   .achievements-summary{text-align:center;margin-bottom:20px;padding:14px;background:var(--card-2);border-radius:14px}
   .achievements-summary .ach-total{font-size:28px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .achievements-summary .ach-progress{font-size:13px;color:var(--muted);margin-top:4px}
@@ -440,9 +410,7 @@
   .ach-name{font-size:12.5px;font-weight:700;margin-bottom:3px;position:relative;z-index:1;word-break:break-word}
   .ach-desc{font-size:10.5px;color:var(--muted);line-height:1.4;position:relative;z-index:1;word-break:break-word}
   .ach-lock{position:absolute;top:6px;right:6px;font-size:12px;opacity:.6}
-
-  /* ============ ПОЗДРАВЛЕНИЕ ============ */
-  .congrats-overlay{position:fixed;inset:0;background:radial-gradient(circle at center, rgba(124,92,255,.3), rgba(0,0,0,.85));backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:400}
+  .congrats-overlay{position:fixed;inset:0;background:radial-gradient(circle at center,rgba(124,92,255,.3),rgba(0,0,0,.85));backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:400}
   .congrats-card{background:var(--card);border:3px solid var(--accent);border-radius:28px;padding:44px 36px;max-width:520px;width:100%;text-align:center;position:relative;animation:congratsIn .55s cubic-bezier(.2,1.2,.4,1);box-shadow:0 30px 80px -20px var(--accent)}
   @keyframes congratsIn{from{opacity:0;transform:scale(.7) rotate(-5deg)}to{opacity:1;transform:none}}
   .congrats-crown{font-size:80px;line-height:1;margin-bottom:14px;animation:congratsBounce 1.4s ease-in-out infinite;filter:drop-shadow(0 0 24px var(--accent))}
@@ -455,10 +423,8 @@
   .congrats-role.dark{background:linear-gradient(135deg,rgba(220,38,38,.25),rgba(127,29,29,.15));border-color:#dc2626}
   .congrats-btn{font:inherit;font-weight:800;font-size:16px;padding:14px 40px;border-radius:14px;border:none;cursor:pointer;background:var(--grad);color:#fff;box-shadow:0 12px 30px -10px var(--accent);transition:.2s}
   .congrats-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px var(--accent)}
-
   .confetti{position:absolute;width:10px;height:10px;top:-20px;opacity:.9;pointer-events:none}
   @keyframes confettiFall{from{transform:translateY(-20px) rotate(0deg)}to{transform:translateY(110vh) rotate(720deg)}}
-
   @media(max-width:640px){
     .admin-msg-btn span,.fandoms-btn span{display:none}
     .admin-msg-btn,.fandoms-btn{padding:9px 12px}
@@ -482,6 +448,9 @@
     .congrats-card{padding:32px 24px}
     .congrats-crown{font-size:60px}
     .congrats-title{font-size:22px}
+    .theme-flash-emoji{font-size:120px}
+    .theme-flash-label{font-size:16px}
+    .popup{width:260px}
   }
 </style>
 </head>
@@ -489,64 +458,66 @@
 
 <div class="holiday-particles" id="holidayParticles"></div>
 
-<section id="screen-rules" class="screen active">
-  <div class="rules-card">
-    <div class="brand">ФД<span>Поиск</span></div>
-    <h1>Правила использования Сервиса</h1>
-    <p class="rules-sub">Редакция от 01.01.2026.</p>
-    <div class="rules-text">
-      <h2>1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
-      <p>1.1. Настоящие Правила регулируют отношения между Администрацией и Пользователем.</p>
-      <p>1.2. Начало использования Сервиса означает принятие Правил (ст. 438 ГК РФ).</p>
-      <h2>2. НАЗНАЧЕНИЕ</h2>
-      <p>2.1. Сервис предназначен для поиска информации об ФД.</p>
-      <p>2.2. Сервис не является средством для организации травли.</p>
-      <h2>3. ЗАПРЕЩЕНО</h2>
-      <p>Разжигание ненависти (ст. 282 УК РФ), клевета (ст. 128.1), оскорбления (ст. 5.61 КоАП), угрозы (ст. 119 УК), доксинг (ФЗ № 152-ФЗ), травля, нарушение авторских прав.</p>
-      <h2>4. ОТВЕТСТВЕННОСТЬ</h2>
-      <p>4.1. Сервис «как есть». Ответственность за материалы несёт Пользователь.</p>
-      <h2>5. ДАННЫЕ</h2>
-      <p>5.1. При регистрации Пользователь даёт имя, username, аватар, пароль. Хранится в Firebase.</p>
-      <h2>6. ИЗМЕНЕНИЯ</h2>
-      <p>6.1. Администрация вправе изменять Правила.</p>
-    </div>
-    <div class="rules-actions">
-      <button id="btnAccept" class="btn btn-primary">Принять условия</button>
-      <button id="btnCreateAccount" class="btn btn-primary hidden">Создать аккаунт</button>
-      <button id="btnGoLogin" class="btn btn-ghost hidden">У меня уже есть аккаунт</button>
-    </div>
-  </div>
-</section>
+<!-- ВСПЫШКА ЭКСКЛЮЗИВА -->
+<div class="theme-flash" id="themeFlash">
+  <div class="theme-flash-emoji" id="themeFlashEmoji">✨</div>
+  <div class="theme-flash-label" id="themeFlashLabel">ЭКСКЛЮЗИВ</div>
+</div>
 
-<section id="screen-auth" class="screen">
-  <div class="auth-card">
-    <div class="tabs">
-      <button class="tab active" data-tab="register">Регистрация</button>
-      <button class="tab" data-tab="login">Вход</button>
-    </div>
-    <form id="form-register" autocomplete="off">
-      <div class="avatar-picker">
-        <img id="regAvatarPreview" class="avatar-preview" alt="Аватар" />
-        <input type="file" id="regAvatarInput" accept="image/*" hidden />
-        <button type="button" id="regAvatarBtn" class="btn btn-ghost" style="font-size:13.5px;padding:9px 16px">Добавить фото</button>
-        <div class="avatar-hint">Необязательно</div>
-      </div>
-      <div class="field"><label for="regName">Имя</label><input id="regName" type="text" placeholder="Как вас зовут" maxlength="40" /></div>
-      <div class="field"><label for="regUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="regUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
-      <div class="field"><label for="regPass">Пароль</label><input id="regPass" type="password" placeholder="Минимум 6 символов" /></div>
-      <div class="field"><label for="regPass2">Повторите пароль</label><input id="regPass2" type="password" placeholder="Ещё раз" /></div>
-      <div class="error" id="regError"></div>
-      <button type="submit" class="btn btn-primary" style="width:100%">Создать аккаунт</button>
-    </form>
-    <form id="form-login" class="hidden" autocomplete="off">
-      <div class="field"><label for="logUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="logUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
-      <div class="field"><label for="logPass">Пароль</label><input id="logPass" type="password" placeholder="Ваш пароль" /></div>
-      <div class="error" id="logError"></div>
-      <button type="submit" class="btn btn-primary" style="width:100%">Войти</button>
-      <button type="button" id="btnBackToRules" class="btn btn-ghost" style="width:100%;margin-top:10px">Назад к правилам</button>
-    </form>
+<section id="screen-rules" class="screen active"><div class="rules-card">
+  <div class="brand">ФД<span>Поиск</span></div>
+  <h1>Правила использования Сервиса</h1>
+  <p class="rules-sub">Редакция от 01.01.2026.</p>
+  <div class="rules-text">
+    <h2>1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
+    <p>1.1. Настоящие Правила регулируют отношения между Администрацией и Пользователем.</p>
+    <p>1.2. Начало использования Сервиса означает принятие Правил (ст. 438 ГК РФ).</p>
+    <h2>2. НАЗНАЧЕНИЕ</h2>
+    <p>2.1. Сервис предназначен для поиска информации об ФД.</p>
+    <p>2.2. Сервис не является средством для организации травли.</p>
+    <h2>3. ЗАПРЕЩЕНО</h2>
+    <p>Разжигание ненависти (ст. 282 УК РФ), клевета (ст. 128.1), оскорбления (ст. 5.61 КоАП), угрозы (ст. 119 УК), доксинг (ФЗ № 152-ФЗ), травля, нарушение авторских прав.</p>
+    <h2>4. ОТВЕТСТВЕННОСТЬ</h2>
+    <p>4.1. Сервис «как есть». Ответственность за материалы несёт Пользователь.</p>
+    <h2>5. ДАННЫЕ</h2>
+    <p>5.1. При регистрации Пользователь даёт имя, username, аватар, пароль. Хранится в Firebase.</p>
+    <h2>6. ИЗМЕНЕНИЯ</h2>
+    <p>6.1. Администрация вправе изменять Правила.</p>
   </div>
-</section>
+  <div class="rules-actions">
+    <button id="btnAccept" class="btn btn-primary">Принять условия</button>
+    <button id="btnCreateAccount" class="btn btn-primary hidden">Создать аккаунт</button>
+    <button id="btnGoLogin" class="btn btn-ghost hidden">У меня уже есть аккаунт</button>
+  </div>
+</div></section>
+
+<section id="screen-auth" class="screen"><div class="auth-card">
+  <div class="tabs">
+    <button class="tab active" data-tab="register">Регистрация</button>
+    <button class="tab" data-tab="login">Вход</button>
+  </div>
+  <form id="form-register" autocomplete="off">
+    <div class="avatar-picker">
+      <img id="regAvatarPreview" class="avatar-preview" alt="Аватар" />
+      <input type="file" id="regAvatarInput" accept="image/*" hidden />
+      <button type="button" id="regAvatarBtn" class="btn btn-ghost" style="font-size:13.5px;padding:9px 16px">Добавить фото</button>
+      <div class="avatar-hint">Необязательно</div>
+    </div>
+    <div class="field"><label for="regName">Имя</label><input id="regName" type="text" placeholder="Как вас зовут" maxlength="40" /></div>
+    <div class="field"><label for="regUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="regUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
+    <div class="field"><label for="regPass">Пароль</label><input id="regPass" type="password" placeholder="Минимум 6 символов" /></div>
+    <div class="field"><label for="regPass2">Повторите пароль</label><input id="regPass2" type="password" placeholder="Ещё раз" /></div>
+    <div class="error" id="regError"></div>
+    <button type="submit" class="btn btn-primary" style="width:100%">Создать аккаунт</button>
+  </form>
+  <form id="form-login" class="hidden" autocomplete="off">
+    <div class="field"><label for="logUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="logUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
+    <div class="field"><label for="logPass">Пароль</label><input id="logPass" type="password" placeholder="Ваш пароль" /></div>
+    <div class="error" id="logError"></div>
+    <button type="submit" class="btn btn-primary" style="width:100%">Войти</button>
+    <button type="button" id="btnBackToRules" class="btn btn-ghost" style="width:100%;margin-top:10px">Назад к правилам</button>
+  </form>
+</div></section>
 
 <section id="screen-main" class="screen">
   <header class="topbar">
@@ -583,6 +554,11 @@
           <div class="pop-name" id="popName"></div>
           <div class="pop-username" id="popUsername"></div>
           <div class="pop-badge" id="popBadge"></div>
+          <div class="pop-exclusive hidden" id="popExclusive">
+            <span>🏅</span>
+            <span>Эксклюзивов:</span>
+            <span class="pop-exclusive-count" id="popExclusiveCount">0</span>
+          </div>
           <div class="pop-divider"></div>
           <button class="btn btn-danger" id="btnLogout">Выйти из аккаунта</button>
         </div>
@@ -613,8 +589,8 @@
   <h2>Помощь</h2>
   <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией.</p></div>
   <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в настройки в день праздника — тема откроется с эксклюзивными эффектами.</p></div>
-  <div class="help-section"><h3>🏆 Достижения</h3><p>Жми 🏆 в шапке — там все твои награды за активность на сайте.</p></div>
-  <div class="help-section"><h3>🚨 Как сообщить о флуде?</h3><p>«Сообщение администрации» → «Сообщить о флуде».</p></div>
+  <div class="help-section"><h3>🛡️👑 Эксклюзивы</h3><p>Админам и владельцу доступны специальные темы с частицами и приветствием.</p></div>
+  <div class="help-section"><h3>🏆 Достижения</h3><p>Жми 🏆 в шапке — там все твои награды.</p></div>
   <div class="modal-footer-divider"></div>
   <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
 </div></div>
@@ -631,12 +607,7 @@
       <button type="submit" class="btn btn-primary" style="width:100%">Отправить</button>
     </form>
   </div>
-  <div class="modal-success hidden"><div class="success-block">
-    <div class="success-icon">✓</div>
-    <h2>Обращение отправлено</h2>
-    <p>Ответ появится в разделе «Мои обращения».</p>
-    <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
-  </div></div>
+  <div class="modal-success hidden"><div class="success-block"><div class="success-icon">✓</div><h2>Обращение отправлено</h2><p>Ответ появится в разделе «Мои обращения».</p><button class="btn btn-primary modal-success-close" type="button">Закрыть</button></div></div>
 </div></div>
 
 <div class="modal-overlay hidden" id="contactModal"><div class="modal">
@@ -649,21 +620,13 @@
       <button type="submit" class="btn btn-primary" style="width:100%">Отправить</button>
     </form>
   </div>
-  <div class="modal-success hidden"><div class="success-block">
-    <div class="success-icon">✓</div>
-    <h2>Сообщение отправлено</h2>
-    <p>Ответ появится в разделе «Мои обращения».</p>
-    <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
-  </div></div>
+  <div class="modal-success hidden"><div class="success-block"><div class="success-icon">✓</div><h2>Сообщение отправлено</h2><p>Ответ появится в разделе «Мои обращения».</p><button class="btn btn-primary modal-success-close" type="button">Закрыть</button></div></div>
 </div></div>
 
 <div class="modal-overlay hidden" id="adminPanelModal"><div class="modal modal-wide">
   <button class="modal-close" type="button">×</button>
   <h2>📥 Обращения пользователей</h2>
-  <div class="tickets-layout">
-    <div class="tickets-list" id="ticketsList"></div>
-    <div class="ticket-detail" id="ticketDetail"></div>
-  </div>
+  <div class="tickets-layout"><div class="tickets-list" id="ticketsList"></div><div class="ticket-detail" id="ticketDetail"></div></div>
 </div></div>
 
 <div class="modal-overlay hidden" id="myTicketsModal"><div class="modal">
@@ -676,10 +639,7 @@
   <button class="modal-close" type="button">×</button>
   <div class="up-header">
     <img id="upAvatar" class="up-avatar" alt="Аватар" />
-    <div class="up-meta">
-      <div class="up-name" id="upName"></div>
-      <div class="up-username" id="upUsername"></div>
-    </div>
+    <div class="up-meta"><div class="up-name" id="upName"></div><div class="up-username" id="upUsername"></div></div>
     <div class="kebab-wrap">
       <button class="kebab-btn hidden" id="kebabBtn" type="button">⋮</button>
       <div class="kebab-menu hidden" id="kebabMenu">
@@ -691,6 +651,7 @@
     </div>
   </div>
   <div class="up-badge" id="upBadge"></div>
+  <div class="up-exclusive-badges hidden" id="upExclusiveBadges"></div>
   <div class="up-info">
     <div class="up-info-row"><span>ID</span><b id="upId"></b></div>
     <div class="up-info-row"><span>Регистрация</span><b id="upCreated"></b></div>
@@ -700,10 +661,7 @@
 
 <div class="modal-overlay hidden" id="fandomsModal"><div class="modal modal-wide">
   <button class="modal-close" type="button">×</button>
-  <div class="fandoms-header">
-    <h2>🌐 Фандомы</h2>
-    <button class="btn btn-primary hidden" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button>
-  </div>
+  <div class="fandoms-header"><h2>🌐 Фандомы</h2><button class="btn btn-primary hidden" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button></div>
   <div class="fandoms-list" id="fandomsList"></div>
 </div></div>
 
@@ -727,11 +685,7 @@
   <form id="fandomForm" autocomplete="off">
     <div class="field"><label for="fdName">Название ФД *</label><input id="fdName" type="text" placeholder="Например: Иван Иванов" maxlength="80" /></div>
     <div class="field"><label for="fdDesc">Описание</label><textarea id="fdDesc" placeholder="Кратко о том, кто это" maxlength="600"></textarea></div>
-    <div class="field">
-      <label>Ссылки на инфо-каналы</label>
-      <div class="fd-links-editor" id="fdLinksEditor"></div>
-      <button type="button" class="btn-link-add" id="addLinkBtn">+ Добавить ссылку</button>
-    </div>
+    <div class="field"><label>Ссылки на инфо-каналы</label><div class="fd-links-editor" id="fdLinksEditor"></div><button type="button" class="btn-link-add" id="addLinkBtn">+ Добавить ссылку</button></div>
     <div class="error" id="fandomError"></div>
     <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
   </form>
@@ -748,18 +702,16 @@
   <div class="fd-search-results" id="fdSearchResults"></div>
 </div></div>
 
-<!-- ДОСТИЖЕНИЯ -->
 <div class="modal-overlay hidden" id="achievementsModal"><div class="modal modal-wide">
   <button class="modal-close" type="button">×</button>
   <h2>🏆 Достижения</h2>
   <div class="achievements-summary">
-    <div class="ach-total" id="achTotal">0</div>
-    <div class="ach-progress" id="achProgress">из 0 разблокировано</div>
+    <div class="ach-total" id="achTotal">0 / 0</div>
+    <div class="ach-progress" id="achProgress">разблокировано</div>
   </div>
   <div class="achievements-grid" id="achievementsGrid"></div>
 </div></div>
 
-<!-- НАСТРОЙКИ -->
 <div class="modal-overlay hidden" id="settingsModal"><div class="modal">
   <button class="modal-close" type="button">×</button>
   <h2>⚙️ Настройки</h2>
@@ -770,11 +722,11 @@
     <div class="settings-row" style="display:block;padding-top:6px">
       <div class="settings-row-info" style="margin-bottom:12px">
         <div class="settings-row-title">Тема оформления</div>
-        <div class="settings-row-sub">Праздничные, админские и владельческие темы — с эксклюзивными эффектами</div>
+        <div class="settings-row-sub">Праздничные, админские и владельческие — с эксклюзивными эффектами</div>
       </div>
 
       <div class="theme-group">
-        <div class="theme-group-title">Обычные</div>
+        <div class="theme-group-title"><span>Обычные</span></div>
         <div class="theme-picker" id="themePickerBase">
           <div class="theme-swatch" data-theme-val="dark"><span class="theme-swatch-label">Тёмная</span></div>
           <div class="theme-swatch" data-theme-val="light"><span class="theme-swatch-label">Светлая</span></div>
@@ -785,23 +737,18 @@
 
       <div class="theme-group hidden" id="themeGroupAdmin">
         <div class="theme-group-title">
-          <span>🛡️ Администрация</span>
+          <span>🛡️ Администрация — эксклюзив</span>
           <span class="unlocked-count">🔓 Доступно</span>
         </div>
-        <div class="theme-picker" id="themePickerAdmin">
-          <div class="theme-swatch" data-theme-val="admin"><span class="theme-swatch-label">Синий</span></div>
-        </div>
+        <div class="theme-picker-holiday" id="themePickerAdmin"></div>
       </div>
 
       <div class="theme-group hidden" id="themeGroupOwner">
         <div class="theme-group-title">
-          <span>👑 Владелец</span>
+          <span>👑 Владелец — эксклюзив</span>
           <span class="unlocked-count owner-badge">🔓 Эксклюзив</span>
         </div>
-        <div class="theme-picker" id="themePickerOwner">
-          <div class="theme-swatch" data-theme-val="owner"><span class="theme-swatch-label">Золото</span></div>
-          <div class="theme-swatch" data-theme-val="superowner"><span class="theme-swatch-label">Тьма</span></div>
-        </div>
+        <div class="theme-picker-holiday" id="themePickerOwner"></div>
       </div>
 
       <div class="theme-group">
@@ -830,12 +777,10 @@
       <div class="settings-row-info"><div class="settings-row-title">Компактный режим</div><div class="settings-row-sub">Уменьшает отступы</div></div>
       <label class="switch"><input type="checkbox" id="setCompact" /><span class="slider"></span></label>
     </div>
-
     <div class="settings-row">
       <div class="settings-row-info"><div class="settings-row-title">Анимации</div><div class="settings-row-sub">Плавные переходы и частицы</div></div>
       <label class="switch"><input type="checkbox" id="setAnimations" /><span class="slider"></span></label>
     </div>
-
     <div class="settings-row">
       <div class="settings-row-info"><div class="settings-row-title">Праздничные частицы</div><div class="settings-row-sub">Падающие эмодзи на фоне</div></div>
       <label class="switch"><input type="checkbox" id="setParticles" /><span class="slider"></span></label>
@@ -872,7 +817,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getDatabase, ref, onValue, set, update, remove, runTransaction } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+import { getDatabase, ref, onValue, set, update, remove, runTransaction, get } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3CmTmqDANbklyHk_ET5_EgD2TwhnMeHs",
@@ -883,14 +828,10 @@ const firebaseConfig = {
   messagingSenderId: "293851625497",
   appId: "1:293851625497:web:1b99bc726388a117dad288"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const OWNER_USERNAMES = ['ozisoofilion'];
-const ADMIN_THEMES = ['admin'];
-const OWNER_THEMES = ['owner', 'superowner'];
-
 const RANKS = ['user', 'admin', 'owner'];
 const RANK_LABEL = { user: 'пользователя', admin: 'администратора', owner: 'владельца' };
 function nextRank(role){ const i = RANKS.indexOf(role); return i >= 0 && i < RANKS.length - 1 ? RANKS[i+1] : null; }
@@ -898,23 +839,36 @@ function prevRank(role){ const i = RANKS.indexOf(role); return i > 0 ? RANKS[i-1
 
 const BASE_THEMES = ['dark', 'light', 'purple', 'ocean'];
 
+const ADMIN_THEMES_DATA = [
+  { id: 'admin', name: 'Синий', emoji: '🛡️', particles: ['🛡️','⚔️','🔵','💠','⚡','✨','🔷'], greeting: 'Режим администратора', greetingEmojis: ['🛡️','⚔️'] }
+];
+
+const OWNER_THEMES_DATA = [
+  { id: 'owner', name: 'Золото', emoji: '👑', particles: ['👑','💎','⭐','✨','🏆','💛','🌟'], greeting: 'Режим владельца', greetingEmojis: ['👑','💎'] },
+  { id: 'superowner', name: 'Тьма', emoji: '⭐', particles: ['⭐','🔥','💀','⚡','💎','👑','🌟'], greeting: 'Абсолютная власть', greetingEmojis: ['⭐','👑'] }
+];
+
 const HOLIDAYS = [
-  { id: 'halloween', name: 'Хэллоуин', emoji: '🎃', particles: ['🎃','👻','🦇','🕷️','🕸️','💀','🧙'], greeting: 'С Хэллоуином!', greetingEmojis: ['🎃','👻'], start: [10, 20], end: [11, 3] },
-  { id: 'newyear', name: 'Новый год', emoji: '🎄', particles: ['❄️','🎄','⛄','🎁','🔔','⭐','🧦'], greeting: 'С Новым годом!', greetingEmojis: ['🎄','🎁'], start: [12, 20], end: [1, 10] },
-  { id: 'winter', name: 'Зима', emoji: '❄️', particles: ['❄️','🌨️','⛄','🧊','💙'], greeting: 'Зимняя сказка', greetingEmojis: ['❄️','⛄'], start: [12, 1], end: [2, 28] },
-  { id: 'valentine', name: 'Валентин', emoji: '💝', particles: ['💝','❤️','💕','🌹','💖','💘'], greeting: 'С Днём Валентина!', greetingEmojis: ['💝','💕'], start: [2, 7], end: [2, 15] },
-  { id: 'march8', name: '8 Марта', emoji: '♀️', particles: ['♀️','✊','💪','💜','🟣','🚺','👩','💜','♀️'], greeting: 'С 8 Марта! Солидарность!', greetingEmojis: ['♀️','✊'], start: [3, 1], end: [3, 10] },
-  { id: 'spring', name: 'Весна', emoji: '🌸', particles: ['🌸','🌼','🌱','🦋','🌺','🐝'], greeting: 'Весна пришла!', greetingEmojis: ['🌸','🦋'], start: [3, 11], end: [5, 31] },
-  { id: 'cosmos', name: 'Космос', emoji: '🚀', particles: ['⭐','✨','🌠','🛸','🚀','💫'], greeting: 'Космический режим', greetingEmojis: ['🚀','🛸'], start: [4, 10], end: [4, 13] },
-  { id: 'summer', name: 'Лето', emoji: '☀️', particles: ['☀️','🌊','🏖️','🍦','🌴','🐚'], greeting: 'Лето!', greetingEmojis: ['☀️','🌊'], start: [6, 1], end: [8, 31] },
-  { id: 'school', name: '1 Сентября', emoji: '🎒', particles: ['📚','✏️','🍎','🎒','📓','📖'], greeting: 'С 1 Сентября!', greetingEmojis: ['🎒','📚'], start: [9, 1], end: [9, 5] },
-  { id: 'autumn', name: 'Осень', emoji: '🍁', particles: ['🍁','🍂','🌰','🍄','🌾','🌧️'], greeting: 'Осень', greetingEmojis: ['🍁','🍂'], start: [9, 15], end: [11, 20] },
+  { id: 'halloween', name: 'Хэллоуин', emoji: '🎃', particles: ['🎃','👻','🦇','🕷️','🕸️','💀','🧙'], greeting: 'С Хэллоуином!', greetingEmojis: ['🎃','👻'], start: [10,20], end: [11,3] },
+  { id: 'newyear', name: 'Новый год', emoji: '🎄', particles: ['❄️','🎄','⛄','🎁','🔔','⭐','🧦'], greeting: 'С Новым годом!', greetingEmojis: ['🎄','🎁'], start: [12,20], end: [1,10] },
+  { id: 'winter', name: 'Зима', emoji: '❄️', particles: ['❄️','🌨️','⛄','🧊','💙'], greeting: 'Зимняя сказка', greetingEmojis: ['❄️','⛄'], start: [12,1], end: [2,28] },
+  { id: 'valentine', name: 'Валентин', emoji: '💝', particles: ['💝','❤️','💕','🌹','💖','💘'], greeting: 'С Днём Валентина!', greetingEmojis: ['💝','💕'], start: [2,7], end: [2,15] },
+  { id: 'march8', name: '8 Марта', emoji: '♀️', particles: ['♀️','✊','💪','💜','🟣','🚺','👩'], greeting: 'С 8 Марта! Солидарность!', greetingEmojis: ['♀️','✊'], start: [3,1], end: [3,10] },
+  { id: 'spring', name: 'Весна', emoji: '🌸', particles: ['🌸','🌼','🌱','🦋','🌺','🐝'], greeting: 'Весна пришла!', greetingEmojis: ['🌸','🦋'], start: [3,11], end: [5,31] },
+  { id: 'cosmos', name: 'Космос', emoji: '🚀', particles: ['⭐','✨','🌠','🛸','🚀','💫'], greeting: 'Космический режим', greetingEmojis: ['🚀','🛸'], start: [4,10], end: [4,13] },
+  { id: 'summer', name: 'Лето', emoji: '☀️', particles: ['☀️','🌊','🏖️','🍦','🌴','🐚'], greeting: 'Лето!', greetingEmojis: ['☀️','🌊'], start: [6,1], end: [8,31] },
+  { id: 'school', name: '1 Сентября', emoji: '🎒', particles: ['📚','✏️','🍎','🎒','📓','📖'], greeting: 'С 1 Сентября!', greetingEmojis: ['🎒','📚'], start: [9,1], end: [9,5] },
+  { id: 'autumn', name: 'Осень', emoji: '🍁', particles: ['🍁','🍂','🌰','🍄','🌾','🌧️'], greeting: 'Осень', greetingEmojis: ['🍁','🍂'], start: [9,15], end: [11,20] },
   { id: 'friday13', name: 'Пятница 13', emoji: '😈', particles: ['😈','👿','🔮','🕯️','💀','🖤'], greeting: 'Пятница 13-е...', greetingEmojis: ['😈','🔮'], special: 'friday13' }
 ];
+
+const ALL_EFFECT_THEMES = [...HOLIDAYS, ...ADMIN_THEMES_DATA, ...OWNER_THEMES_DATA];
+function findEffectTheme(id){ return ALL_EFFECT_THEMES.find(t => t.id === id); }
 
 const MONTHS_RU = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
 
 function isHolidayActive(h, date = new Date()){
+  if (!h.start) return false;
   if (h.special === 'friday13') return date.getDay() === 5 && date.getDate() === 13;
   const [sm, sd] = h.start, [em, ed] = h.end;
   const val = (date.getMonth() + 1) * 100 + date.getDate();
@@ -922,7 +876,6 @@ function isHolidayActive(h, date = new Date()){
   if (sVal <= eVal) return val >= sVal && val <= eVal;
   return val >= sVal || val <= eVal;
 }
-
 function nextUnlockDate(h){
   const now = new Date(), year = now.getFullYear();
   if (h.special === 'friday13'){
@@ -941,7 +894,10 @@ function formatUnlockDate(d){ return `${d.getDate()} ${MONTHS_RU[d.getMonth()]}`
 
 const LS_UNLOCKED = 'fd_unlocked_themes';
 function getUnlockedThemes(){ try { return JSON.parse(localStorage.getItem(LS_UNLOCKED) || '[]'); } catch(e){ return []; } }
-function saveUnlockedThemes(arr){ localStorage.setItem(LS_UNLOCKED, JSON.stringify(arr)); }
+function saveUnlockedThemes(arr){
+  localStorage.setItem(LS_UNLOCKED, JSON.stringify(arr));
+  saveUserThemesToFirebase();
+}
 function checkHolidayUnlocks(){
   const now = new Date();
   const unlocked = getUnlockedThemes();
@@ -1006,35 +962,101 @@ const DEFAULT_SETTINGS = { theme: 'dark', fontSize: 1, compact: false, animation
 let settings = { ...DEFAULT_SETTINGS };
 
 function loadSettings(){ try { const raw = localStorage.getItem(LS_SETTINGS); if (raw) settings = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) }; } catch(e){ settings = { ...DEFAULT_SETTINGS }; } }
-function saveSettings(){ localStorage.setItem(LS_SETTINGS, JSON.stringify(settings)); }
+function saveSettings(){
+  localStorage.setItem(LS_SETTINGS, JSON.stringify(settings));
+  saveUserSettingsToFirebase();
+}
+
+/* ============ СИНХРОНИЗАЦИЯ С FIREBASE ============ */
+async function saveUserSettingsToFirebase(){
+  if (!CURRENT_USER || !firebaseReady) return;
+  try {
+    await update(ref(db, 'userData/' + CURRENT_USER.id), {
+      settings,
+      currentTheme: settings.theme,
+      currentThemeData: {
+        id: settings.theme,
+        emoji: (findEffectTheme(settings.theme)?.emoji) || null,
+        name: (findEffectTheme(settings.theme)?.name) || null
+      }
+    });
+  } catch(e){ console.warn('[Sync] Настройки:', e); }
+}
+async function saveUserThemesToFirebase(){
+  if (!CURRENT_USER || !firebaseReady) return;
+  try { await update(ref(db, 'userData/' + CURRENT_USER.id), { unlockedThemes: getUnlockedThemes() }); }
+  catch(e){ console.warn('[Sync] Темы:', e); }
+}
+async function loadUserDataFromFirebase(userId){
+  if (!firebaseReady) return;
+  try {
+    const snap = await get(ref(db, 'userData/' + userId));
+    const data = snap.val() || {};
+    if (data.settings && typeof data.settings === 'object'){
+      settings = { ...DEFAULT_SETTINGS, ...data.settings };
+      localStorage.setItem(LS_SETTINGS, JSON.stringify(settings));
+    }
+    if (data.unlockedThemes && Array.isArray(data.unlockedThemes)){
+      const merged = Array.from(new Set([...getUnlockedThemes(), ...data.unlockedThemes]));
+      localStorage.setItem(LS_UNLOCKED, JSON.stringify(merged));
+    }
+    applySettings();
+    renderThemePicker();
+    updateExclusiveCounter();
+  } catch(e){ console.warn('[Sync] Загрузка:', e); }
+}
+
+/* ============ ПОДСЧЁТ ЭКСКЛЮЗИВОВ ============ */
+function countUserExclusives(){
+  if (!CURRENT_USER) return 0;
+  let count = 0;
+  if (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner') count += ADMIN_THEMES_DATA.length;
+  if (CURRENT_USER.role === 'owner') count += OWNER_THEMES_DATA.length;
+  count += getUnlockedThemes().length;
+  return count;
+}
+
+function updateExclusiveCounter(){
+  if (!CURRENT_USER) return;
+  const count = countUserExclusives();
+  const box = document.getElementById('popExclusive');
+  const cnt = document.getElementById('popExclusiveCount');
+  if (box && cnt){
+    cnt.textContent = count;
+    if (count > 0) box.classList.remove('hidden');
+    else box.classList.add('hidden');
+  }
+}
 
 function isThemeUnlocked(themeId){
   if (BASE_THEMES.includes(themeId)) return true;
-  if (ADMIN_THEMES.includes(themeId)) return CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
-  if (OWNER_THEMES.includes(themeId)) return CURRENT_USER && CURRENT_USER.role === 'owner';
+  if (ADMIN_THEMES_DATA.some(t => t.id === themeId)) return CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
+  if (OWNER_THEMES_DATA.some(t => t.id === themeId)) return CURRENT_USER && CURRENT_USER.role === 'owner';
   if (CURRENT_USER && CURRENT_USER.role === 'owner') return true;
   return getUnlockedThemes().includes(themeId);
 }
-
-function clearHolidayEffects(){
-  const p = document.getElementById('holidayParticles');
-  if (p) p.innerHTML = '';
-  const g = document.getElementById('holidayGreeting');
-  if (g) g.classList.remove('show');
-  const te = document.getElementById('topbarEmoji');
-  if (te){ te.textContent = ''; te.classList.remove('show'); }
+function isExclusiveTheme(themeId){
+  if (ADMIN_THEMES_DATA.some(t => t.id === themeId)) return true;
+  if (OWNER_THEMES_DATA.some(t => t.id === themeId)) return true;
+  if (HOLIDAYS.some(h => h.id === themeId)) return true;
+  return false;
 }
 
-function applyHolidayEffects(holiday){
+function clearHolidayEffects(){
+  const p = document.getElementById('holidayParticles'); if (p) p.innerHTML = '';
+  const g = document.getElementById('holidayGreeting'); if (g) g.classList.remove('show');
+  const te = document.getElementById('topbarEmoji'); if (te){ te.textContent = ''; te.classList.remove('show'); }
+}
+
+function applyThemeEffects(theme){
   const container = document.getElementById('holidayParticles');
   if (container){
     container.innerHTML = '';
-    if (settings.particles && settings.animations && holiday.particles && holiday.particles.length){
-      const count = 24;
-      for (let i = 0; i < count; i++){
+    if (settings.particles && settings.animations && theme.particles && theme.particles.length){
+      for (let i = 0; i < 24; i++){
         const el = document.createElement('span');
         el.className = 'holiday-particle';
-        el.textContent = holiday.particles[Math.floor(Math.random() * holiday.particles.length)];
+        el.textContent = theme.particles[Math.floor(Math.random() * theme.particles.length)];
         el.style.left = (Math.random() * 100) + '%';
         el.style.fontSize = (14 + Math.random() * 20) + 'px';
         el.style.animationDuration = (7 + Math.random() * 8) + 's';
@@ -1049,32 +1071,28 @@ function applyHolidayEffects(holiday){
   }
   const g = document.getElementById('holidayGreeting');
   if (g){
-    document.getElementById('hgEmoji').textContent = holiday.greetingEmojis?.[0] || holiday.emoji;
-    document.getElementById('hgText').textContent = holiday.greeting || holiday.name;
-    document.getElementById('hgEmoji2').textContent = holiday.greetingEmojis?.[1] || holiday.emoji;
+    document.getElementById('hgEmoji').textContent = theme.greetingEmojis?.[0] || theme.emoji;
+    document.getElementById('hgText').textContent = theme.greeting || theme.name;
+    document.getElementById('hgEmoji2').textContent = theme.greetingEmojis?.[1] || theme.emoji;
     g.classList.add('show');
   }
   const te = document.getElementById('topbarEmoji');
-  if (te){
-    te.textContent = holiday.emoji;
-    te.classList.add('show');
-  }
+  if (te){ te.textContent = theme.emoji; te.classList.add('show'); }
 }
 
-function applySpecialEffects(theme){
-  const container = document.getElementById('holidayParticles');
-  if (container) container.innerHTML = '';
-  const g = document.getElementById('holidayGreeting');
-  if (g) g.classList.remove('show');
-  const te = document.getElementById('topbarEmoji');
-  if (te){
-    if (theme === 'admin') te.textContent = '🛡️';
-    else if (theme === 'owner') te.textContent = '👑';
-    else if (theme === 'superowner') te.textContent = '⭐';
-    else te.textContent = '';
-    if (te.textContent) te.classList.add('show');
-    else te.classList.remove('show');
-  }
+/* ============ ВСПЫШКА ЭКСКЛЮЗИВА ============ */
+function showThemeFlash(theme){
+  if (!settings.animations) return;
+  const flash = document.getElementById('themeFlash');
+  const emojiEl = document.getElementById('themeFlashEmoji');
+  const labelEl = document.getElementById('themeFlashLabel');
+  if (!flash || !emojiEl || !labelEl) return;
+  emojiEl.textContent = theme.emoji || '✨';
+  labelEl.textContent = theme.name ? theme.name.toUpperCase() : 'ЭКСКЛЮЗИВ';
+  flash.classList.remove('show');
+  void flash.offsetWidth;
+  flash.classList.add('show');
+  setTimeout(() => flash.classList.remove('show'), 1400);
 }
 
 function applySettings(){
@@ -1087,9 +1105,8 @@ function applySettings(){
   if (pop) pop.classList.toggle('hidden', !settings.showPopular);
   renderThemePicker();
 
-  const h = HOLIDAYS.find(x => x.id === settings.theme);
-  if (h) applyHolidayEffects(h);
-  else if (ADMIN_THEMES.includes(settings.theme) || OWNER_THEMES.includes(settings.theme)) applySpecialEffects(settings.theme);
+  const theme = findEffectTheme(settings.theme);
+  if (theme && theme.particles) applyThemeEffects(theme);
   else clearHolidayEffects();
 
   document.querySelectorAll('.font-btn').forEach(b => b.classList.toggle('active', parseFloat(b.dataset.size) === settings.fontSize));
@@ -1099,18 +1116,51 @@ function applySettings(){
   const sp = document.getElementById('setShowPopular'); if (sp) sp.checked = settings.showPopular;
   const sc = document.getElementById('setCountViews'); if (sc) sc.checked = settings.countViews;
   const ss = document.getElementById('setShortCards'); if (ss) ss.checked = settings.shortCards;
+  updateExclusiveCounter();
+}
+
+function pickTheme(themeId){
+  const prev = settings.theme;
+  settings.theme = themeId;
+  saveSettings();
+  incrementStat('themeSwitchCount', 1);
+  applySettings();
+  const theme = findEffectTheme(themeId);
+  const wasExclusive = isExclusiveTheme(themeId);
+  if (wasExclusive && theme && prev !== themeId) showThemeFlash(theme);
+  if (theme) showToast(theme.emoji, `${theme.name} включён!`, wasExclusive ? 'Эксклюзивные эффекты активированы.' : 'Тема применена.');
+  checkAchievements();
 }
 
 function renderThemePicker(){
-  document.querySelectorAll('#themePickerBase .theme-swatch, #themePickerAdmin .theme-swatch, #themePickerOwner .theme-swatch').forEach(s => s.classList.toggle('active', s.dataset.themeVal === settings.theme));
+  document.querySelectorAll('#themePickerBase .theme-swatch').forEach(s => s.classList.toggle('active', s.dataset.themeVal === settings.theme));
 
   const isAdminUser = CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
   const isOwnerUser = CURRENT_USER && CURRENT_USER.role === 'owner';
   document.getElementById('themeGroupAdmin').classList.toggle('hidden', !isAdminUser);
   document.getElementById('themeGroupOwner').classList.toggle('hidden', !isOwnerUser);
 
+  const adminContainer = document.getElementById('themePickerAdmin');
+  adminContainer.innerHTML = ADMIN_THEMES_DATA.map(t => {
+    const isActive = settings.theme === t.id;
+    return `<div class="theme-swatch holiday admin-unlock ${isActive ? 'active' : ''}" data-theme-val="${t.id}" title="${t.name} — эксклюзив администрации">
+      <span class="holiday-emoji">${t.emoji}</span>
+      <span class="theme-swatch-label">${t.name}</span>
+    </div>`;
+  }).join('');
+  adminContainer.querySelectorAll('.theme-swatch').forEach(el => el.addEventListener('click', () => pickTheme(el.dataset.themeVal)));
+
+  const ownerContainer = document.getElementById('themePickerOwner');
+  ownerContainer.innerHTML = OWNER_THEMES_DATA.map(t => {
+    const isActive = settings.theme === t.id;
+    return `<div class="theme-swatch holiday owner-unlock ${isActive ? 'active' : ''}" data-theme-val="${t.id}" title="${t.name} — эксклюзив владельца">
+      <span class="holiday-emoji">${t.emoji}</span>
+      <span class="theme-swatch-label">${t.name}</span>
+    </div>`;
+  }).join('');
+  ownerContainer.querySelectorAll('.theme-swatch').forEach(el => el.addEventListener('click', () => pickTheme(el.dataset.themeVal)));
+
   const container = document.getElementById('themePickerHoliday');
-  if (!container) return;
   const unlocked = getUnlockedThemes();
 
   container.innerHTML = HOLIDAYS.map(h => {
@@ -1120,15 +1170,12 @@ function renderThemePicker(){
     if (isActive) classes += ' active';
     if (!isUnlocked) classes += ' locked';
     if (isOwnerUser) classes += ' owner-unlock';
-    let title = h.name;
-    let dateLabel = '';
+    let title = h.name, dateLabel = '';
     if (!isUnlocked){
       const d = nextUnlockDate(h);
       title = `${h.name} — откроется ${formatUnlockDate(d)}`;
       dateLabel = `<span class="holiday-unlock-date">${formatUnlockDate(d)}</span>`;
-    } else if (isOwnerUser){
-      title = `${h.name} — доступно как владельцу`;
-    }
+    } else if (isOwnerUser) title = `${h.name} — доступно как владельцу`;
     return `<div class="${classes}" data-theme-val="${h.id}" title="${title}">
       <span class="holiday-emoji">${h.emoji}</span>
       <span class="theme-swatch-label">${h.name}</span>
@@ -1145,13 +1192,7 @@ function renderThemePicker(){
         showToast('🔒', 'Тема заблокирована', `«${h.name}» откроется ${formatUnlockDate(d)}.`);
         return;
       }
-      settings.theme = themeId;
-      saveSettings();
-      incrementStat('themeSwitchCount', 1);
-      applySettings();
-      const h = HOLIDAYS.find(x => x.id === themeId);
-      if (h) showToast(h.emoji, `${h.name} включён!`, 'Активированы эксклюзивные эффекты.');
-      checkAchievements();
+      pickTheme(themeId);
     });
   });
 
@@ -1162,55 +1203,69 @@ function renderThemePicker(){
     countEl.textContent = isOwnerUser ? `👑 Все ${total} доступны` : `${cnt} / ${total}`;
     countEl.classList.toggle('owner-badge', isOwnerUser);
   }
+  updateExclusiveCounter();
 }
 
-document.querySelectorAll('#themePickerAdmin .theme-swatch, #themePickerOwner .theme-swatch').forEach(sw => {
-  sw.addEventListener('click', () => {
-    settings.theme = sw.dataset.themeVal;
-    saveSettings();
-    incrementStat('themeSwitchCount', 1);
-    applySettings();
-    checkAchievements();
-  });
-});
+/* ============ БЕЙДЖИ ЭКСКЛЮЗИВОВ В КАРТОЧКЕ ============ */
+async function renderUserExclusiveBadges(userId){
+  const box = document.getElementById('upExclusiveBadges');
+  if (!box) return;
+  box.innerHTML = '';
+  box.classList.add('hidden');
+  try {
+    const snap = await get(ref(db, 'userData/' + userId));
+    const data = snap.val() || {};
+    const badges = [];
+    const themeData = data.currentThemeData;
+    const currentThemeId = data.currentTheme || (data.settings && data.settings.theme);
+
+    if (themeData && themeData.emoji && themeData.name && currentThemeId && isExclusiveTheme(currentThemeId)){
+      let cls = 'up-exclusive-badge';
+      let label = themeData.name;
+      if (ADMIN_THEMES_DATA.some(t => t.id === currentThemeId)) cls += ' badge-admin';
+      else if (OWNER_THEMES_DATA.some(t => t.id === currentThemeId)) cls += ' badge-owner';
+      else cls += ' badge-holiday';
+      badges.push(`<span class="${cls}"><span class="badge-emoji">${themeData.emoji}</span>${escapeHtml(label)}</span>`);
+    }
+
+    const unlockedThemes = Array.isArray(data.unlockedThemes) ? data.unlockedThemes : [];
+    if (unlockedThemes.length > 0){
+      badges.push(`<span class="up-exclusive-badge badge-holiday"><span class="badge-emoji">🎁</span>Тем: ${unlockedThemes.length}</span>`);
+    }
+
+    if (box && badges.length){
+      box.innerHTML = badges.join('');
+      box.classList.remove('hidden');
+    }
+  } catch(e){ console.warn('[Badges]', e); }
+}
 
 /* =========================================================
    ДОСТИЖЕНИЯ
    ========================================================= */
 const LS_STATS_PREFIX = 'fd_stats_';
-const DEFAULT_STATS = {
-  totalViews: 0,
-  fandomsCreated: 0,
-  ticketsSent: 0,
-  themeSwitchCount: 0,
-  settingsChanged: false,
-  themesUnlocked: [],
-  role: 'user',
-  firstLogin: 0,
-  unlockedAchievements: [],
-  congratsShown: { admin: false, owner: false }
-};
+const DEFAULT_STATS = { totalViews: 0, fandomsCreated: 0, ticketsSent: 0, themeSwitchCount: 0, settingsChanged: false, themesUnlocked: [], role: 'user', firstLogin: 0, unlockedAchievements: [], congratsShown: { admin: false, owner: false } };
 let userStats = { ...DEFAULT_STATS };
 
 const ACHIEVEMENTS = [
-  { id: 'first_login',    emoji: '👋', name: 'Добро пожаловать', desc: 'Первый вход на сайт',              check: () => true },
-  { id: 'view_10',        emoji: '👁', name: 'Любопытный',       desc: 'Открыл 10 ФД',                     check: s => s.totalViews >= 10 },
-  { id: 'view_50',        emoji: '🔍', name: 'Следопыт',         desc: 'Открыл 50 ФД',                     check: s => s.totalViews >= 50 },
-  { id: 'view_100',       emoji: '🕵️', name: 'Детектив',        desc: 'Открыл 100 ФД',                    check: s => s.totalViews >= 100 },
-  { id: 'created_fd',     emoji: '📝', name: 'Создатель ФД',     desc: 'Создал свой первый ФД',            check: s => s.fandomsCreated >= 1 },
-  { id: 'created_5_fd',   emoji: '📚', name: 'Архивариус',       desc: 'Создал 5 ФД',                      check: s => s.fandomsCreated >= 5 },
-  { id: 'role_admin',     emoji: '🛡️', name: 'Администратор',   desc: 'Получил роль администратора',      check: s => s.role === 'admin' || s.role === 'owner' },
-  { id: 'role_owner',     emoji: '👑', name: 'Владелец',         desc: 'Получил роль владельца',           check: s => s.role === 'owner' },
-  { id: 'owner_founder',  emoji: '⭐', name: 'Основатель',       desc: 'Владелец проекта',                 check: s => OWNER_USERNAMES.includes(s.username || '') },
-  { id: 'first_ticket',   emoji: '📬', name: 'Голос',            desc: 'Отправил первое обращение',        check: s => s.ticketsSent >= 1 },
-  { id: 'tickets_5',      emoji: '📣', name: 'Активист',         desc: 'Отправил 5 обращений',             check: s => s.ticketsSent >= 5 },
-  { id: 'first_theme',    emoji: '🎨', name: 'Декоратор',        desc: 'Активировал праздничную тему',     check: s => s.themesUnlocked.length >= 1 },
-  { id: 'themes_5',       emoji: '🌈', name: 'Коллекционер',     desc: 'Собрал 5 праздничных тем',         check: s => s.themesUnlocked.length >= 5 },
-  { id: 'themes_all',     emoji: '🎭', name: 'Легенда',          desc: 'Собрал все праздничные темы',      check: s => s.themesUnlocked.length >= HOLIDAYS.length },
-  { id: 'switch_theme_5', emoji: '🎪', name: 'Экспериментатор',  desc: 'Сменил тему 5 раз',                check: s => s.themeSwitchCount >= 5 },
-  { id: 'switch_theme_20',emoji: '🎡', name: 'Стилист',          desc: 'Сменил тему 20 раз',               check: s => s.themeSwitchCount >= 20 },
-  { id: 'changed_settings',emoji: '⚙️',name: 'Настройщик',      desc: 'Изменил настройки',                check: s => s.settingsChanged },
-  { id: 'friday13',       emoji: '😈', name: 'Отважный',         desc: 'Зашёл в Пятницу 13',               check: () => isHolidayActive(HOLIDAYS.find(h => h.id === 'friday13')) }
+  { id: 'first_login', emoji: '👋', name: 'Добро пожаловать', desc: 'Первый вход на сайт', check: () => true },
+  { id: 'founder', emoji: '👑', name: 'Основатель', desc: 'Владелец проекта @ozisoofilion', check: s => s.username && OWNER_USERNAMES.includes(s.username) },
+  { id: 'view_10', emoji: '👁', name: 'Любопытный', desc: 'Открыл 10 ФД', check: s => s.totalViews >= 10 },
+  { id: 'view_50', emoji: '🔍', name: 'Следопыт', desc: 'Открыл 50 ФД', check: s => s.totalViews >= 50 },
+  { id: 'view_100', emoji: '🕵️', name: 'Детектив', desc: 'Открыл 100 ФД', check: s => s.totalViews >= 100 },
+  { id: 'view_500', emoji: '🎯', name: 'Мастер поиска', desc: 'Открыл 500 ФД', check: s => s.totalViews >= 500 },
+  { id: 'created_fd', emoji: '📝', name: 'Создатель ФД', desc: 'Создал свой первый ФД', check: s => s.fandomsCreated >= 1 },
+  { id: 'created_5_fd', emoji: '📚', name: 'Архивариус', desc: 'Создал 5 ФД', check: s => s.fandomsCreated >= 5 },
+  { id: 'created_25_fd', emoji: '🏛️', name: 'Хранитель', desc: 'Создал 25 ФД', check: s => s.fandomsCreated >= 25 },
+  { id: 'first_ticket', emoji: '📬', name: 'Голос', desc: 'Отправил первое обращение', check: s => s.ticketsSent >= 1 },
+  { id: 'tickets_5', emoji: '📣', name: 'Активист', desc: 'Отправил 5 обращений', check: s => s.ticketsSent >= 5 },
+  { id: 'first_theme', emoji: '🎨', name: 'Декоратор', desc: 'Активировал праздничную тему', check: s => s.themesUnlocked.length >= 1 },
+  { id: 'themes_5', emoji: '🌈', name: 'Коллекционер', desc: 'Собрал 5 праздничных тем', check: s => s.themesUnlocked.length >= 5 },
+  { id: 'themes_all', emoji: '🎭', name: 'Легенда', desc: 'Собрал все праздничные темы', check: s => s.themesUnlocked.length >= HOLIDAYS.length },
+  { id: 'switch_theme_5', emoji: '🎪', name: 'Экспериментатор', desc: 'Сменил тему 5 раз', check: s => s.themeSwitchCount >= 5 },
+  { id: 'switch_theme_20', emoji: '🎡', name: 'Стилист', desc: 'Сменил тему 20 раз', check: s => s.themeSwitchCount >= 20 },
+  { id: 'changed_settings', emoji: '⚙️', name: 'Настройщик', desc: 'Изменил настройки', check: s => s.settingsChanged },
+  { id: 'friday13', emoji: '😈', name: 'Отважный', desc: 'Зашёл в Пятницу 13', check: () => isHolidayActive(HOLIDAYS.find(h => h.id === 'friday13')) }
 ];
 
 function statsKey(){ return CURRENT_USER ? LS_STATS_PREFIX + CURRENT_USER.id : null; }
@@ -1227,20 +1282,10 @@ function loadStats(){
     saveStats();
   } catch(e){ userStats = { ...DEFAULT_STATS }; }
 }
-function saveStats(){
-  if (!CURRENT_USER) return;
-  localStorage.setItem(statsKey(), JSON.stringify(userStats));
-}
-function incrementStat(key, amount = 1){
-  if (!CURRENT_USER) return;
-  userStats[key] = (userStats[key] || 0) + amount;
-  saveStats();
-}
-function markSettingsChanged(){
-  if (!CURRENT_USER) return;
-  userStats.settingsChanged = true;
-  saveStats();
-}
+function saveStats(){ if (CURRENT_USER) localStorage.setItem(statsKey(), JSON.stringify(userStats)); }
+function incrementStat(key, amount = 1){ if (!CURRENT_USER) return; userStats[key] = (userStats[key] || 0) + amount; saveStats(); }
+function markSettingsChanged(){ if (!CURRENT_USER) return; userStats.settingsChanged = true; saveStats(); }
+
 function checkAchievements(){
   if (!CURRENT_USER) return;
   userStats.role = CURRENT_USER.role;
@@ -1254,9 +1299,7 @@ function checkAchievements(){
     }
   });
   if (newOnes.length) saveStats();
-  newOnes.forEach((a, i) => {
-    setTimeout(() => showToast(a.emoji, `Достижение: ${a.name}`, a.desc, 7000), i * 350);
-  });
+  newOnes.forEach((a, i) => setTimeout(() => showToast(a.emoji, `Достижение: ${a.name}`, a.desc, 7000), i * 350));
   updateAchBadge();
 }
 function updateAchBadge(){
@@ -1265,14 +1308,8 @@ function updateAchBadge(){
   const unlocked = userStats.unlockedAchievements.length;
   const badge = document.getElementById('achBadge');
   if (!badge) return;
-  const newOnes = total - unlocked;
-  if (newOnes > 0){
-    badge.textContent = unlocked + '/' + total;
-    badge.classList.remove('hidden');
-  } else {
-    badge.textContent = '✓';
-    badge.classList.remove('hidden');
-  }
+  badge.textContent = unlocked >= total ? '✓' : `${unlocked}/${total}`;
+  badge.classList.remove('hidden');
 }
 function renderAchievements(){
   const grid = document.getElementById('achievementsGrid');
@@ -1294,9 +1331,7 @@ function renderAchievements(){
   }).join('');
 }
 
-/* =========================================================
-   ПОЗДРАВЛЕНИЯ С РОЛЬЮ
-   ========================================================= */
+/* ============ ПОЗДРАВЛЕНИЕ С РОЛЬЮ ============ */
 function showRoleCongrats(role){
   const overlay = document.createElement('div');
   overlay.className = 'congrats-overlay';
@@ -1304,8 +1339,8 @@ function showRoleCongrats(role){
   const crown = isOwner ? '👑' : '🛡️';
   const title = isOwner ? 'Тебя назначили Владельцем!' : 'Тебя назначили Администратором!';
   const text = isOwner
-    ? 'Теперь у тебя есть абсолютная власть на этом сайте. Все эксклюзивные темы, все достижения и полный контроль. Управляй с умом!'
-    : 'Теперь ты следишь за порядком. Тебе доступны жалобы, управление пользователями и эксклюзивная админ-тема. Применяй власть справедливо!';
+    ? 'Теперь у тебя абсолютная власть. Эксклюзивные темы, все достижения и полный контроль. Управляй с умом!'
+    : 'Теперь ты следишь за порядком. Доступны жалобы, управление пользователями и эксклюзивная админ-тема.';
   const roleName = isOwner ? '👑 Владелец' : '🛡️ Администратор';
   const roleClass = isOwner ? 'gold' : 'dark';
 
@@ -1319,8 +1354,7 @@ function showRoleCongrats(role){
         ${isOwner ? '<span class="congrats-role">⭐ Основатель</span>' : ''}
       </div>
       <button class="congrats-btn" id="congratsClose">Принять роль ✨</button>
-    </div>
-  `;
+    </div>`;
   document.body.appendChild(overlay);
 
   for (let i = 0; i < 60; i++){
@@ -1344,18 +1378,15 @@ function showRoleCongrats(role){
     setTimeout(() => overlay.remove(), 350);
   });
 }
-
 function checkRoleChange(){
   if (!CURRENT_USER) return;
   const role = CURRENT_USER.role;
   userStats.role = role;
   if (role === 'admin' && !userStats.congratsShown.admin){
-    userStats.congratsShown.admin = true;
-    saveStats();
+    userStats.congratsShown.admin = true; saveStats();
     setTimeout(() => showRoleCongrats('admin'), 800);
   } else if (role === 'owner' && !userStats.congratsShown.owner){
-    userStats.congratsShown.owner = true;
-    saveStats();
+    userStats.congratsShown.owner = true; saveStats();
     setTimeout(() => showRoleCongrats('owner'), 800);
   }
 }
@@ -1404,17 +1435,12 @@ try {
         const oldRole = CURRENT_USER.role;
         CURRENT_USER = fresh;
         if (fresh.banned){ alert('Ваш аккаунт заблокирован.'); forceLogout(); return; }
-        updateProfileBadge();
-        renderThemePicker();
-        if (oldRole !== fresh.role){
-          userStats.role = fresh.role;
-          saveStats();
-          checkRoleChange();
-        }
+        updateProfileBadge(); renderThemePicker(); updateExclusiveCounter();
+        if (oldRole !== fresh.role){ userStats.role = fresh.role; saveStats(); checkRoleChange(); }
       }
     }
     if (!$('userProfileModal').classList.contains('hidden') && viewedUserId) renderUserProfile(viewedUserId, true);
-  }, err => { console.error(err); alert('Ошибка чтения пользователей. Проверь правила Firebase.'); });
+  }, err => { console.error(err); alert('Ошибка чтения пользователей.'); });
 
   onValue(ref(db, 'tickets'), snap => { ticketsCache = Object.values(snap.val() || {}); refreshTicketUI(); });
   onValue(ref(db, 'fandoms'), snap => {
@@ -1424,7 +1450,6 @@ try {
     if (!$('searchModal').classList.contains('hidden')) updateFdSearchResults();
     renderPopular();
   });
-
   firebaseReady = true;
   console.log('[Firebase] Готово');
 } catch(e){ console.error(e); alert('Ошибка Firebase: ' + e.message); }
@@ -1504,6 +1529,7 @@ $('form-register').addEventListener('submit', async e => {
     setSessionId(user.id); CURRENT_USER = user;
     $('form-register').reset(); resetAvatarPreview();
     enterApp(user);
+    setTimeout(() => { saveUserSettingsToFirebase(); saveUserThemesToFirebase(); }, 800);
     const newlyUnlocked = checkHolidayUnlocks();
     newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление.', 10000), i * 400));
     checkRoleChange();
@@ -1529,7 +1555,9 @@ $('form-login').addEventListener('submit', e => {
 function enterApp(user){
   CURRENT_USER = user;
   loadStats();
+  loadUserDataFromFirebase(user.id);
   updateProfileBadge();
+  updateExclusiveCounter();
   if (isAdminOrOwner(user)){
     $('adminInboxBtn').classList.remove('hidden');
     $('adminSearchWrap').classList.remove('hidden');
@@ -1579,7 +1607,12 @@ function forceLogout(){
   showScreen('screen-rules');
 }
 
-$('avatarBtn').addEventListener('click', e => { e.stopPropagation(); $('profilePopup').classList.toggle('hidden'); $('adminMsgPopup').classList.add('hidden'); });
+$('avatarBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  $('profilePopup').classList.toggle('hidden');
+  $('adminMsgPopup').classList.add('hidden');
+  updateExclusiveCounter();
+});
 $('adminMsgBtn').addEventListener('click', e => { e.stopPropagation(); $('adminMsgPopup').classList.toggle('hidden'); $('profilePopup').classList.add('hidden'); });
 
 document.addEventListener('click', e => {
@@ -1593,24 +1626,11 @@ $('btnLogout').addEventListener('click', () => forceLogout());
 document.querySelectorAll('.modal-overlay').forEach(ov => ov.addEventListener('click', e => { if (e.target === ov) closeModal(ov); }));
 document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay'))));
 
-$('achievementsBtn').addEventListener('click', () => {
-  renderAchievements();
-  openModal('achievementsModal');
-});
-
+$('achievementsBtn').addEventListener('click', () => { renderAchievements(); openModal('achievementsModal'); });
 $('settingsBtn').addEventListener('click', () => { applySettings(); openModal('settingsModal'); });
-document.querySelectorAll('#themePickerBase .theme-swatch').forEach(sw => {
-  sw.addEventListener('click', () => {
-    settings.theme = sw.dataset.themeVal;
-    saveSettings();
-    incrementStat('themeSwitchCount', 1);
-    applySettings();
-    checkAchievements();
-  });
-});
-document.querySelectorAll('.font-btn').forEach(btn => {
-  btn.addEventListener('click', () => { settings.fontSize = parseFloat(btn.dataset.size); saveSettings(); applySettings(); markSettingsChanged(); checkAchievements(); });
-});
+
+document.querySelectorAll('#themePickerBase .theme-swatch').forEach(sw => sw.addEventListener('click', () => pickTheme(sw.dataset.themeVal)));
+document.querySelectorAll('.font-btn').forEach(btn => btn.addEventListener('click', () => { settings.fontSize = parseFloat(btn.dataset.size); saveSettings(); applySettings(); markSettingsChanged(); checkAchievements(); }));
 $('setCompact').addEventListener('change', e => { settings.compact = e.target.checked; saveSettings(); applySettings(); markSettingsChanged(); checkAchievements(); });
 $('setAnimations').addEventListener('change', e => { settings.animations = e.target.checked; saveSettings(); applySettings(); markSettingsChanged(); checkAchievements(); });
 $('setParticles').addEventListener('change', e => { settings.particles = e.target.checked; saveSettings(); applySettings(); markSettingsChanged(); checkAchievements(); });
@@ -1620,11 +1640,10 @@ $('setShortCards').addEventListener('change', e => { settings.shortCards = e.tar
 
 $('resetSettingsBtn').addEventListener('click', () => {
   if (!confirm('Сбросить настройки оформления?')) return;
-  settings = { ...DEFAULT_SETTINGS }; saveSettings(); applySettings(); renderPopular();
-  markSettingsChanged(); checkAchievements();
+  settings = { ...DEFAULT_SETTINGS }; saveSettings(); applySettings(); renderPopular(); markSettingsChanged(); checkAchievements();
 });
 $('clearLocalDataBtn').addEventListener('click', () => {
-  if (!confirm('Удалить локальные данные (сессия, настройки, разблокированные темы, достижения)?')) return;
+  if (!confirm('Удалить локальные данные?')) return;
   const k = statsKey();
   localStorage.removeItem(LS_SESSION); localStorage.removeItem(LS_SETTINGS); localStorage.removeItem(LS_UNLOCKED);
   if (k) localStorage.removeItem(k);
@@ -1716,6 +1735,10 @@ function renderUserProfile(userId, silent){
   $('upId').textContent = user.id;
   $('upCreated').textContent = formatDate(user.createdAt);
   $('upStatus').textContent = user.banned ? '🚫 Забанен' : '✅ Активен';
+
+  // Бейджи эксклюзивов
+  renderUserExclusiveBadges(userId);
+
   const promoteBtn = $('kebabPromote'), demoteBtn = $('kebabDemote'), banBtn = $('kebabBan'), unbanBtn = $('kebabUnban'), kebab = $('kebabBtn');
   const showKebab = isOwner(CURRENT_USER) && user.id !== CURRENT_USER.id && !isHardcodedOwner(user);
   if (!showKebab){ kebab.classList.add('hidden'); $('kebabMenu').classList.add('hidden'); return; }
@@ -1861,8 +1884,7 @@ $('fandomForm').addEventListener('submit', async e => {
       $('fandomForm').reset(); $('fdLinksEditor').innerHTML = ''; addLinkRow();
       closeModal('fandomFormModal');
       setTimeout(() => { renderFandomsList(); openModal('fandomsModal'); }, 240);
-      incrementStat('fandomsCreated', 1);
-      checkAchievements();
+      incrementStat('fandomsCreated', 1); checkAchievements();
     }
   } catch(e2){ err.textContent = 'Ошибка: ' + e2.message; }
 });
@@ -1898,8 +1920,7 @@ $('floodForm').addEventListener('submit', e => {
   sendTicket({ id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2,8), type: 'flood', fromId: CURRENT_USER.id, fromName: CURRENT_USER.name, fromUsername: CURRENT_USER.username, fdName, link, message, createdAt: Date.now(), status: 'new', answer: '', answeredAt: null });
   $('floodForm').reset();
   const f = $('floodModal'); f.querySelector('.modal-form-view').classList.add('hidden'); f.querySelector('.modal-success').classList.remove('hidden');
-  incrementStat('ticketsSent', 1);
-  checkAchievements();
+  incrementStat('ticketsSent', 1); checkAchievements();
 });
 
 $('contactForm').addEventListener('submit', e => {
@@ -1910,8 +1931,7 @@ $('contactForm').addEventListener('submit', e => {
   sendTicket({ id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2,8), type: 'help', fromId: CURRENT_USER.id, fromName: CURRENT_USER.name, fromUsername: CURRENT_USER.username, fdName: '', link: '', message: msg, createdAt: Date.now(), status: 'new', answer: '', answeredAt: null });
   $('contactForm').reset();
   const f = $('contactModal'); f.querySelector('.modal-form-view').classList.add('hidden'); f.querySelector('.modal-success').classList.remove('hidden');
-  incrementStat('ticketsSent', 1);
-  checkAchievements();
+  incrementStat('ticketsSent', 1); checkAchievements();
 });
 
 let selectedTicketId = null;
