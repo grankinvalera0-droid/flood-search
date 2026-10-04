@@ -13,35 +13,25 @@
     --danger:#ff5c6c; --ok:#33d6a6; --gold:#ffc65c;
     --grad: linear-gradient(135deg,var(--accent),var(--accent-2));
   }
-  html[data-theme="light"]{
-    --bg:#f4f5f8; --bg-2:#e8eaf0;
-    --card:#ffffff; --card-2:#f2f3f8; --border:#dcdfe7;
-    --text:#1a1d29; --muted:#6b7280;
-    --accent:#7c5cff; --accent-2:#5b8cff;
-    --danger:#e5395a; --ok:#0fa77d; --gold:#c99311;
-  }
-  html[data-theme="purple"]{
-    --bg:#120b1f; --bg-2:#251442;
-    --card:#1a1029; --card-2:#221537; --border:#2f2148;
-    --text:#f0e9ff; --muted:#a294c2;
-    --accent:#b06cff; --accent-2:#ff5c8a;
-    --danger:#ff5c6c; --ok:#4ddfa0; --gold:#ffc65c;
-  }
-  html[data-theme="ocean"]{
-    --bg:#07141f; --bg-2:#0e2536;
-    --card:#0d1e2c; --card-2:#122a3c; --border:#1c3a52;
-    --text:#e3f1fb; --muted:#7fa3bd;
-    --accent:#22b8cf; --accent-2:#4c9aff;
-    --danger:#ff6b8a; --ok:#2dd4bf; --gold:#ffc65c;
-  }
+  html[data-theme="light"]{--bg:#f4f5f8;--bg-2:#e8eaf0;--card:#fff;--card-2:#f2f3f8;--border:#dcdfe7;--text:#1a1d29;--muted:#6b7280;--danger:#e5395a;--ok:#0fa77d;--gold:#c99311}
+  html[data-theme="purple"]{--bg:#120b1f;--bg-2:#251442;--card:#1a1029;--card-2:#221537;--border:#2f2148;--text:#f0e9ff;--muted:#a294c2;--accent:#b06cff;--accent-2:#ff5c8a;--ok:#4ddfa0}
+  html[data-theme="ocean"]{--bg:#07141f;--bg-2:#0e2536;--card:#0d1e2c;--card-2:#122a3c;--border:#1c3a52;--text:#e3f1fb;--muted:#7fa3bd;--accent:#22b8cf;--accent-2:#4c9aff;--danger:#ff6b8a;--ok:#2dd4bf}
+  html[data-theme="halloween"]{--bg:#0a0508;--bg-2:#2a0d1a;--card:#140810;--card-2:#1d0f18;--border:#2e1520;--text:#ffe8d6;--muted:#a38a7a;--accent:#ff6a00;--accent-2:#9d4edd;--gold:#ffb703}
+  html[data-theme="newyear"]{--bg:#0a1220;--bg-2:#122033;--card:#0f1a2c;--card-2:#152238;--border:#1f3450;--text:#f0f4f8;--muted:#8a9eb5;--accent:#c1121f;--accent-2:#2a9d8f;--gold:#ffd60a}
+  html[data-theme="valentine"]{--bg:#1a0a12;--bg-2:#3a1528;--card:#22101c;--card-2:#2c1424;--border:#3d1f33;--text:#ffe4ec;--muted:#c294a8;--accent:#ff2d75;--accent-2:#ff8fab;--danger:#ff2d75}
+  html[data-theme="march8"]{--bg:#1a0e1a;--bg-2:#33173a;--card:#22102a;--card-2:#2b1433;--border:#3f1f4a;--text:#f9e7ff;--muted:#b29ac4;--accent:#e26bb5;--accent-2:#d4a5ff}
+  html[data-theme="spring"]{--bg:#0f1a12;--bg-2:#1c3324;--card:#122019;--card-2:#182a20;--border:#234236;--text:#e6f5ee;--muted:#8aa896;--accent:#52b788;--accent-2:#f7a072;--ok:#52b788}
+  html[data-theme="cosmos"]{--bg:#05070f;--bg-2:#0c1430;--card:#0a1020;--card-2:#10172e;--border:#1a2547;--text:#e8ecff;--muted:#8891b8;--accent:#4a90e2;--accent-2:#7b68ee;--gold:#ffd166}
+  html[data-theme="mayday"]{--bg:#150608;--bg-2:#2a0c10;--card:#1d0a0e;--card-2:#260e13;--border:#3a1820;--text:#ffe6e8;--muted:#b88f95;--accent:#c1121f;--accent-2:#ffb703}
+  html[data-theme="summer"]{--bg:#1a1208;--bg-2:#3a2808;--card:#221808;--card-2:#2c2008;--border:#3d2c10;--text:#fff4d6;--muted:#c4a878;--accent:#ff9e00;--accent-2:#00b4d8}
+  html[data-theme="school"]{--bg:#0f1a2e;--bg-2:#1a2840;--card:#15223a;--card-2:#1b2a44;--border:#263855;--text:#e8eef8;--muted:#93a2ba;--accent:#f4a261;--accent-2:#2a9d8f;--ok:#2a9d8f}
+  html[data-theme="autumn"]{--bg:#1a0f08;--bg-2:#331a0c;--card:#221407;--card-2:#2c1a0c;--border:#3e2611;--text:#ffeacf;--muted:#b89472;--accent:#d97706;--accent-2:#b45309}
+  html[data-theme="winter"]{--bg:#0a1219;--bg-2:#132436;--card:#0f1c2a;--card-2:#152536;--border:#1f364a;--text:#e6f2fa;--muted:#8ba1b8;--accent:#90e0ef;--accent-2:#48cae4;--gold:#ffd60a}
+  html[data-theme="friday13"]{--bg:#0a0505;--bg-2:#1f0808;--card:#140808;--card-2:#1c0c0c;--border:#2d1414;--text:#f0dada;--muted:#a88383;--accent:#dc2626;--accent-2:#7f1d1d;--danger:#dc2626}
+
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
-    background:radial-gradient(1100px 650px at 50% -15%, var(--bg-2) 0%, var(--bg) 62%);
-    color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;
-    transition:background .25s, color .25s;
-  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;background:radial-gradient(1100px 650px at 50% -15%, var(--bg-2) 0%, var(--bg) 62%);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
   body.no-anim *{animation:none !important;transition:none !important}
   body.compact .fandom-card{padding:11px 13px}
   body.compact .fd-search-result{padding:10px 12px}
@@ -54,7 +44,7 @@
   .hidden{display:none !important}
 
   .btn{font:inherit;font-weight:600;font-size:15px;border:none;border-radius:12px;padding:13px 22px;cursor:pointer;transition:.18s;white-space:nowrap;color:var(--text)}
-  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 22px -8px rgba(124,92,255,.8)}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 22px -8px rgba(0,0,0,.4)}
   .btn-primary:hover{transform:translateY(-1px)}
   .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
   .btn-ghost:hover{color:var(--text);border-color:var(--accent)}
@@ -95,7 +85,6 @@
   .tabs{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:26px}
   .tab{flex:1;font:inherit;font-size:14px;font-weight:600;background:transparent;border:none;color:var(--muted);padding:10px;border-radius:9px;cursor:pointer}
   .tab.active{background:var(--accent);color:#fff}
-
   .avatar-picker{display:flex;flex-direction:column;align-items:center;gap:11px;margin-bottom:22px}
   .avatar-preview{width:92px;height:92px;border-radius:50%;object-fit:cover;border:2px solid var(--border);background:var(--card-2)}
   .avatar-hint{font-size:12.5px;color:var(--muted)}
@@ -121,19 +110,14 @@
   .search-item-role{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;text-transform:uppercase;letter-spacing:.3px;flex-shrink:0}
   .search-empty{padding:16px;text-align:center;color:var(--muted);font-size:13px}
 
-  .admin-msg-btn{display:flex;align-items:center;gap:8px;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);color:var(--accent);font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;transition:.16s}
+  .admin-msg-btn,.fandoms-btn{display:flex;align-items:center;gap:8px;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;transition:.16s}
+  .admin-msg-btn{background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);color:var(--accent)}
   .admin-msg-btn:hover{background:rgba(124,92,255,.2)}
   .admin-msg-btn::before{content:"📢";font-size:14px}
-
-  .fandoms-btn{display:flex;align-items:center;gap:8px;background:rgba(51,214,166,.1);border:1px solid rgba(51,214,166,.35);color:var(--ok);font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;transition:.16s}
+  .fandoms-btn{background:rgba(51,214,166,.1);border:1px solid rgba(51,214,166,.35);color:var(--ok)}
   .fandoms-btn:hover{background:rgba(51,214,166,.2)}
 
-  .settings-btn{
-    display:flex;align-items:center;justify-content:center;
-    width:38px;height:38px;border-radius:50%;
-    background:transparent;border:1px solid var(--border);color:var(--muted);
-    cursor:pointer;font-size:17px;transition:.16s;
-  }
+  .settings-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:17px;transition:.16s}
   .settings-btn:hover{color:var(--text);border-color:var(--accent);transform:rotate(30deg)}
 
   .admin-msg-popup{position:absolute;top:48px;left:0;width:320px;z-index:100;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:0 26px 60px -22px rgba(0,0,0,.6)}
@@ -165,74 +149,30 @@
   .badge-user{color:var(--muted);background:rgba(139,147,167,.1);border:1px solid rgba(139,147,167,.25)}
   .pop-divider{height:1px;background:var(--border);margin:0 0 14px}
 
-  /* ============================
-     ГЛАВНЫЙ ЭКРАН
-     ============================ */
-  .content{
-    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-    padding:44px 24px 60px;gap:26px;
-  }
-
-  .search-hub-btn{
-    display:flex;flex-direction:column;align-items:center;gap:14px;
-    background:linear-gradient(135deg, rgba(124,92,255,.1), rgba(91,140,255,.1));
-    border:1px solid rgba(124,92,255,.35);
-    border-radius:26px;padding:48px 60px;cursor:pointer;
-    transition:.22s;text-align:center;color:var(--text);font:inherit;
-    max-width:460px;width:100%;
-    box-shadow:0 20px 60px -30px rgba(124,92,255,.5);
-  }
-  .search-hub-btn:hover{
-    transform:translateY(-4px);border-color:var(--accent);
-    box-shadow:0 26px 70px -20px rgba(124,92,255,.85);
-    background:linear-gradient(135deg, rgba(124,92,255,.2), rgba(91,140,255,.2));
-  }
-  .search-hub-btn:active{transform:translateY(-1px)}
+  .content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:44px 24px 60px;gap:26px}
+  .search-hub-btn{display:flex;flex-direction:column;align-items:center;gap:14px;background:linear-gradient(135deg, rgba(124,92,255,.1), rgba(91,140,255,.1));border:1px solid rgba(124,92,255,.35);border-radius:26px;padding:48px 60px;cursor:pointer;transition:.22s;text-align:center;color:var(--text);font:inherit;max-width:460px;width:100%;box-shadow:0 20px 60px -30px rgba(124,92,255,.5)}
+  .search-hub-btn:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 26px 70px -20px rgba(124,92,255,.85);background:linear-gradient(135deg, rgba(124,92,255,.2), rgba(91,140,255,.2))}
   .search-hub-icon{font-size:54px;line-height:1;margin-bottom:4px;filter:drop-shadow(0 6px 14px rgba(124,92,255,.6))}
   .search-hub-title{font-size:24px;font-weight:800;letter-spacing:-.4px}
   .search-hub-sub{font-size:14px;color:var(--muted);line-height:1.55;max-width:320px}
 
-  /* Популярные ФД */
-  .popular-section{
-    width:100%;max-width:640px;
-    background:var(--card);border:1px solid var(--border);
-    border-radius:20px;padding:20px 22px;
-    box-shadow:0 16px 40px -28px rgba(0,0,0,.5);
-  }
+  .popular-section{width:100%;max-width:640px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:20px 22px;box-shadow:0 16px 40px -28px rgba(0,0,0,.5)}
   .popular-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
   .popular-title{font-size:15px;font-weight:800;letter-spacing:-.2px;display:flex;align-items:center;gap:8px}
   .popular-title::before{content:"🔥";font-size:17px}
   .popular-count{font-size:11.5px;color:var(--muted);font-weight:600}
   .popular-list{display:flex;flex-direction:column;gap:6px}
-  .popular-item{
-    display:flex;align-items:center;gap:12px;
-    padding:11px 14px;border-radius:12px;cursor:pointer;
-    border:1px solid transparent;transition:.15s;
-    background:var(--card-2);
-  }
+  .popular-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:.15s;background:var(--card-2)}
   .popular-item:hover{border-color:var(--accent);background:rgba(124,92,255,.08);transform:translateX(3px)}
-  .popular-rank{
-    width:30px;height:30px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:800;flex-shrink:0;
-    background:rgba(124,92,255,.12);color:var(--accent);
-    border:1px solid rgba(124,92,255,.3);
-  }
+  .popular-rank{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;background:rgba(124,92,255,.12);color:var(--accent);border:1px solid rgba(124,92,255,.3)}
   .popular-item:nth-child(1) .popular-rank{background:linear-gradient(135deg,#ffb03b,#ff7a45);color:#fff;border:none;box-shadow:0 0 12px rgba(255,140,60,.5)}
   .popular-item:nth-child(2) .popular-rank{background:linear-gradient(135deg,#c0c6d4,#8b93a7);color:#fff;border:none}
   .popular-item:nth-child(3) .popular-rank{background:linear-gradient(135deg,#cd7f32,#a0522d);color:#fff;border:none}
   .popular-body{flex:1;min-width:0}
   .popular-name{font-size:14px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .popular-meta{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .popular-views{
-    font-size:11.5px;font-weight:700;color:var(--ok);
-    padding:4px 10px;border-radius:20px;flex-shrink:0;
-    background:rgba(51,214,166,.1);border:1px solid rgba(51,214,166,.28);
-  }
-  .popular-empty{
-    text-align:center;color:var(--muted);font-size:13.5px;
-    padding:20px;line-height:1.55;
-  }
+  .popular-views{font-size:11.5px;font-weight:700;color:var(--ok);padding:4px 10px;border-radius:20px;flex-shrink:0;background:rgba(51,214,166,.1);border:1px solid rgba(51,214,166,.28)}
+  .popular-empty{text-align:center;color:var(--muted);font-size:13.5px;padding:20px;line-height:1.55}
 
   .fb-status{background:rgba(51,214,166,.08);border-bottom:1px solid rgba(51,214,166,.3);color:var(--ok);font-size:12.5px;padding:8px 22px;text-align:center}
 
@@ -322,7 +262,6 @@
   .up-info-row span{color:var(--muted)}
   .up-info-row b{color:var(--text);font-weight:600;text-align:right;word-break:break-all}
 
-  /* ФАНДОМЫ */
   .fandoms-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;padding-right:34px}
   .fandoms-header h2{margin-bottom:0}
   .fandoms-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-right:6px}
@@ -341,10 +280,8 @@
   .btn-icon{width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
   .btn-icon:hover{background:var(--card-2);color:var(--text);border-color:var(--accent)}
   .btn-icon.danger:hover{color:var(--danger);border-color:rgba(255,92,108,.4);background:rgba(255,92,108,.1)}
-
   .fd-detail-desc{font-size:14px;color:var(--text);opacity:.85;line-height:1.6;margin-bottom:20px;background:var(--card-2);border-radius:12px;padding:12px 14px;word-break:break-word}
   .fd-detail-desc:empty{display:none}
-
   .fd-links-header{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:10px}
   .fd-links{display:flex;flex-direction:column;gap:8px}
   .fd-link-item{display:flex;align-items:center;gap:12px;background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--text);transition:.15s}
@@ -354,13 +291,11 @@
   .fd-link-title{font-size:14px;font-weight:600;margin-bottom:2px;word-break:break-word}
   .fd-link-url{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .fd-link-arrow{color:var(--muted);font-size:16px;flex-shrink:0}
-
   .fd-links-empty{text-align:center;color:var(--muted);font-size:13.5px;padding:24px 16px;background:var(--card-2);border-radius:12px;border:1px dashed var(--border);line-height:1.6}
 
-  /* ПОИСК ФД */
   .fd-search-tabs{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:16px}
   .fd-search-tab{flex:1;font:inherit;font-size:13.5px;font-weight:600;background:transparent;border:none;color:var(--muted);padding:10px;border-radius:9px;cursor:pointer;transition:.16s}
-  .fd-search-tab.active{background:var(--accent);color:#fff;box-shadow:0 6px 16px -8px rgba(124,92,255,.9)}
+  .fd-search-tab.active{background:var(--accent);color:#fff}
   .fd-search-results{display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow-y:auto;padding-right:4px;margin-top:4px}
   .fd-search-result{background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;transition:.15s}
   .fd-search-result:hover{border-color:var(--accent);transform:translateX(3px);background:rgba(124,92,255,.06)}
@@ -369,7 +304,6 @@
   .fd-search-result-meta{font-size:11.5px;color:var(--muted)}
   .fd-search-empty{text-align:center;padding:36px 20px;color:var(--muted);font-size:13.5px;line-height:1.6}
 
-  /* Редактор ссылок */
   .fd-links-editor{display:flex;flex-direction:column;gap:8px;margin-top:6px}
   .fd-link-row{display:grid;grid-template-columns:1fr 1.4fr 34px;gap:8px;align-items:center}
   .fd-link-row input{font:inherit;font-size:14px;color:var(--text);background:var(--card-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;outline:none;transition:.15s;width:100%}
@@ -380,98 +314,85 @@
   .btn-link-add{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;font:inherit;font-size:13.5px;font-weight:600;background:transparent;color:var(--accent-2);border:1px dashed rgba(91,140,255,.4);border-radius:10px;padding:10px;cursor:pointer;transition:.15s;width:100%}
   .btn-link-add:hover{background:rgba(91,140,255,.06);border-color:var(--accent-2)}
 
-  /* ============================
-     НАСТРОЙКИ
-     ============================ */
   .settings-section{margin-bottom:24px}
   .settings-section:last-of-type{margin-bottom:0}
-  .settings-section-title{
-    font-size:12px;color:var(--muted);text-transform:uppercase;
-    letter-spacing:.5px;font-weight:700;margin-bottom:12px;
-    display:flex;align-items:center;gap:8px;
-  }
-  .settings-row{
-    display:flex;align-items:center;justify-content:space-between;
-    gap:14px;padding:12px 0;border-bottom:1px solid var(--border);
-  }
+  .settings-section-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .settings-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--border)}
   .settings-row:last-child{border-bottom:none}
   .settings-row-info{flex:1;min-width:0}
   .settings-row-title{font-size:14px;font-weight:600;margin-bottom:2px}
   .settings-row-sub{font-size:12px;color:var(--muted);line-height:1.5}
 
-  /* Переключатель */
   .switch{position:relative;width:46px;height:26px;flex-shrink:0}
   .switch input{opacity:0;width:0;height:0;position:absolute}
-  .switch .slider{
-    position:absolute;inset:0;background:var(--card-2);
-    border:1px solid var(--border);border-radius:26px;
-    cursor:pointer;transition:.2s;
-  }
-  .switch .slider::before{
-    content:"";position:absolute;width:18px;height:18px;border-radius:50%;
-    left:3px;top:3px;background:var(--muted);transition:.2s;
-  }
+  .switch .slider{position:absolute;inset:0;background:var(--card-2);border:1px solid var(--border);border-radius:26px;cursor:pointer;transition:.2s}
+  .switch .slider::before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;left:3px;top:3px;background:var(--muted);transition:.2s}
   .switch input:checked + .slider{background:var(--accent);border-color:var(--accent)}
   .switch input:checked + .slider::before{transform:translateX(20px);background:#fff}
 
-  /* Палитра тем */
+  .theme-group{margin-bottom:18px}
+  .theme-group:last-child{margin-bottom:0}
+  .theme-group-title{font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .theme-group-title .unlocked-count{background:var(--card-2);color:var(--text);font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--border);font-weight:600}
+  .theme-group-title .unlocked-count.owner-badge{background:var(--grad);color:#fff;border-color:transparent}
   .theme-picker{display:flex;gap:10px;flex-wrap:wrap}
-  .theme-swatch{
-    width:58px;height:58px;border-radius:14px;cursor:pointer;
-    border:2px solid var(--border);transition:.15s;position:relative;
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-  }
+  .theme-picker-holiday{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:9px}
+  .theme-swatch{width:58px;height:58px;border-radius:14px;cursor:pointer;border:2px solid var(--border);transition:.15s;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .theme-swatch:hover{transform:translateY(-2px)}
   .theme-swatch.active{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.25)}
-  .theme-swatch.active::after{
-    content:"✓";position:absolute;color:#fff;font-weight:900;font-size:18px;
-    text-shadow:0 2px 6px rgba(0,0,0,.5);
-  }
+  .theme-swatch.active::after{content:"✓";position:absolute;color:#fff;font-weight:900;font-size:18px;text-shadow:0 2px 6px rgba(0,0,0,.5)}
   .theme-swatch[data-theme-val="dark"]{background:linear-gradient(135deg,#0d0e12 50%,#1c1f2e 50%)}
   .theme-swatch[data-theme-val="light"]{background:linear-gradient(135deg,#f4f5f8 50%,#ffffff 50%)}
   .theme-swatch[data-theme-val="purple"]{background:linear-gradient(135deg,#120b1f 50%,#b06cff 50%)}
   .theme-swatch[data-theme-val="ocean"]{background:linear-gradient(135deg,#07141f 50%,#22b8cf 50%)}
-  .theme-swatch-label{
-    position:absolute;bottom:3px;left:0;right:0;text-align:center;
-    font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;
-    color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.7);
-  }
+  .theme-swatch-label{position:absolute;bottom:3px;left:0;right:0;text-align:center;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.7)}
 
-  /* Размер шрифта */
+  .theme-swatch.holiday{width:100%;height:auto;aspect-ratio:1;flex-direction:column;gap:4px;padding:8px 6px;background:var(--card-2)}
+  .theme-swatch.holiday .holiday-emoji{font-size:24px;line-height:1}
+  .theme-swatch.holiday .theme-swatch-label{position:static;color:var(--text);text-shadow:none;text-transform:none;font-size:10px;font-weight:600;line-height:1.15;letter-spacing:0}
+  .theme-swatch.holiday.locked{opacity:.45;cursor:not-allowed}
+  .theme-swatch.holiday.locked:hover{transform:none}
+  .theme-swatch.holiday.locked .holiday-emoji{filter:grayscale(1)}
+  .theme-swatch.holiday.locked::before{content:"🔒";position:absolute;top:5px;right:5px;font-size:11px;line-height:1}
+  .theme-swatch.holiday .holiday-unlock-date{font-size:8.5px;color:var(--muted);font-weight:600}
+  .theme-swatch.holiday.active::after{display:none}
+  .theme-swatch.holiday.active::before{content:"✓";position:absolute;top:4px;right:6px;color:#fff;font-weight:900;font-size:14px;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+  .theme-swatch.holiday.owner-unlock::before{content:"👑";font-size:13px;top:4px;right:5px}
+
   .font-picker{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:4px}
-  .font-btn{
-    flex:1;font:inherit;font-weight:700;background:transparent;border:none;
-    color:var(--muted);padding:8px 12px;border-radius:9px;cursor:pointer;transition:.15s;
-    min-width:52px;
-  }
+  .font-btn{flex:1;font:inherit;font-weight:700;background:transparent;border:none;color:var(--muted);padding:8px 12px;border-radius:9px;cursor:pointer;transition:.15s;min-width:52px}
   .font-btn.active{background:var(--accent);color:#fff}
 
   .settings-footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
 
+  .toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:10px;pointer-events:none;padding:0 20px;width:100%;max-width:420px;align-items:center}
+  .toast{background:var(--card);border:2px solid var(--accent);border-radius:16px;padding:14px 18px;color:var(--text);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);display:flex;align-items:center;gap:14px;animation:toastIn .35s cubic-bezier(.2,1.2,.4,1);pointer-events:auto;width:100%}
+  .toast.fadeout{animation:toastOut .3s ease-in forwards}
+  @keyframes toastIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+  @keyframes toastOut{to{opacity:0;transform:translateY(24px) scale(.94)}}
+  .toast-icon{font-size:28px;flex-shrink:0;line-height:1}
+  .toast-body{flex:1;min-width:0}
+  .toast-title{font-size:14px;font-weight:800;margin-bottom:3px}
+  .toast-text{font-size:12.5px;color:var(--muted);line-height:1.45}
+  .toast-close{background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:8px;flex-shrink:0}
+  .toast-close:hover{background:var(--card-2);color:var(--text)}
+
   @media(max-width:640px){
-    .admin-msg-btn span{display:none}
-    .admin-msg-btn{padding:9px 12px}
-    .fandoms-btn span{display:none}
-    .fandoms-btn{padding:9px 12px}
+    .admin-msg-btn span,.fandoms-btn span{display:none}
+    .admin-msg-btn,.fandoms-btn{padding:9px 12px}
     .admin-msg-popup{width:280px;left:-10px}
-    .rules-card{padding:28px 22px}
-    .auth-card{padding:26px 22px}
+    .rules-card,.auth-card{padding:26px 22px}
     .rules-text{max-height:52vh}
     .topbar{padding:10px 14px;gap:8px}
     .topbar .brand{font-size:14px}
-    .admin-inbox-btn span:not(.inbox-badge){display:none}
-    .my-tickets-btn span:not(.inbox-badge){display:none}
-    .admin-search-wrap input{font-size:13px;padding:8px 11px}
+    .admin-inbox-btn span:not(.inbox-badge),.my-tickets-btn span:not(.inbox-badge){display:none}
     .kebab-menu{width:220px}
     .fd-link-row{grid-template-columns:1fr 1fr 34px}
     .search-hub-btn{padding:34px 24px;border-radius:20px}
     .search-hub-icon{font-size:42px}
     .search-hub-title{font-size:19px}
-    .search-hub-sub{font-size:12.5px}
     .content{padding:28px 16px 40px;gap:18px}
-    .popular-section{padding:16px}
-    .settings-row{flex-wrap:wrap}
+    .theme-picker-holiday{grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:7px}
   }
 </style>
 </head>
@@ -482,43 +403,23 @@
     <div class="brand">ФД<span>Поиск</span></div>
     <h1>Правила использования Сервиса</h1>
     <p class="rules-sub">Редакция от 01.01.2026.</p>
-
     <div class="rules-text">
       <h2>1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
       <p>1.1. Настоящие Правила использования Сервиса регулируют отношения между Администрацией и Пользователем.</p>
       <p>1.2. Начало использования Сервиса означает полное принятие Пользователем настоящих Правил (ст. 438 ГК РФ).</p>
       <p>1.3. При несогласии с Правилами Пользователь обязан прекратить использование Сервиса.</p>
-
       <h2>2. НАЗНАЧЕНИЕ СЕРВИСА</h2>
       <p>2.1. Сервис предназначен для поиска, систематизации и публичного обсуждения информации об ФД.</p>
       <p>2.2. Сервис не является средством для организации травли или иных противоправных действий.</p>
-
       <h2>3. НЕДОПУСТИМЫЕ ДЕЙСТВИЯ</h2>
-      <p>3.1. Запрещается:</p>
-      <ul>
-        <li>разжигание ненависти либо вражды (ст. 282 УК РФ, ст. 20.3 КоАП РФ);</li>
-        <li>клевета (ст. 128.1 УК РФ), оскорбления (ст. 5.61 КоАП РФ), угрозы (ст. 119 УК РФ);</li>
-        <li>распространение персональных данных без согласия (ФЗ № 152-ФЗ);</li>
-        <li>организация и подстрекательство к травле;</li>
-        <li>нарушение авторских и смежных прав третьих лиц.</li>
-      </ul>
-
+      <p>3.1. Запрещается разжигание ненависти (ст. 282 УК РФ), клевета (ст. 128.1 УК РФ), оскорбления (ст. 5.61 КоАП РФ), угрозы (ст. 119 УК РФ), доксинг (ФЗ № 152-ФЗ), организация травли, нарушение авторских прав.</p>
       <h2>4. ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ</h2>
-      <p>4.1. Сервис работает по принципу «как есть» (as is).</p>
-      <p>4.2. Администрация не осуществляет предварительную модерацию материалов.</p>
-      <p>4.3. Ответственность за содержание материалов несёт Пользователь.</p>
-      <p>4.4. Администрация вправе удалять материалы и ограничивать доступ при нарушении Правил.</p>
-
+      <p>4.1. Сервис работает по принципу «как есть». Администрация не осуществляет предварительную модерацию. Ответственность за материалы несёт Пользователь.</p>
       <h2>5. ПЕРСОНАЛЬНЫЕ ДАННЫЕ</h2>
-      <p>5.1. При регистрации Пользователь предоставляет имя, username, изображение профиля и пароль.</p>
-      <p>5.2. Данные сохраняются в облачном хранилище Firebase.</p>
-      <p>5.3. Пользователь несёт ответственность за действия со своей учётной записи.</p>
-
+      <p>5.1. При регистрации Пользователь предоставляет имя, username, аватар, пароль. Данные сохраняются в Firebase.</p>
       <h2>6. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</h2>
       <p>6.1. Администрация вправе изменять Правила в одностороннем порядке.</p>
-      <p>6.2. Продолжение использования означает согласие с новой редакцией.</p>
     </div>
-
     <div class="rules-actions">
       <button id="btnAccept" class="btn btn-primary">Принять условия</button>
       <button id="btnCreateAccount" class="btn btn-primary hidden">Создать аккаунт</button>
@@ -533,7 +434,6 @@
       <button class="tab active" data-tab="register">Регистрация</button>
       <button class="tab" data-tab="login">Вход</button>
     </div>
-
     <form id="form-register" autocomplete="off">
       <div class="avatar-picker">
         <img id="regAvatarPreview" class="avatar-preview" alt="Аватар" />
@@ -541,42 +441,16 @@
         <button type="button" id="regAvatarBtn" class="btn btn-ghost" style="font-size:13.5px;padding:9px 16px">Добавить фото</button>
         <div class="avatar-hint">Необязательно</div>
       </div>
-
-      <div class="field">
-        <label for="regName">Имя</label>
-        <input id="regName" type="text" placeholder="Как вас зовут" maxlength="40" />
-      </div>
-
-      <div class="field">
-        <label for="regUsername">Имя пользователя</label>
-        <div class="prefix-wrap"><span>@</span><input id="regUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div>
-      </div>
-
-      <div class="field">
-        <label for="regPass">Пароль</label>
-        <input id="regPass" type="password" placeholder="Минимум 6 символов" />
-      </div>
-
-      <div class="field">
-        <label for="regPass2">Повторите пароль</label>
-        <input id="regPass2" type="password" placeholder="Ещё раз" />
-      </div>
-
+      <div class="field"><label for="regName">Имя</label><input id="regName" type="text" placeholder="Как вас зовут" maxlength="40" /></div>
+      <div class="field"><label for="regUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="regUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
+      <div class="field"><label for="regPass">Пароль</label><input id="regPass" type="password" placeholder="Минимум 6 символов" /></div>
+      <div class="field"><label for="regPass2">Повторите пароль</label><input id="regPass2" type="password" placeholder="Ещё раз" /></div>
       <div class="error" id="regError"></div>
       <button type="submit" class="btn btn-primary" style="width:100%">Создать аккаунт</button>
     </form>
-
     <form id="form-login" class="hidden" autocomplete="off">
-      <div class="field">
-        <label for="logUsername">Имя пользователя</label>
-        <div class="prefix-wrap"><span>@</span><input id="logUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div>
-      </div>
-
-      <div class="field">
-        <label for="logPass">Пароль</label>
-        <input id="logPass" type="password" placeholder="Ваш пароль" />
-      </div>
-
+      <div class="field"><label for="logUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="logUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
+      <div class="field"><label for="logPass">Пароль</label><input id="logPass" type="password" placeholder="Ваш пароль" /></div>
       <div class="error" id="logError"></div>
       <button type="submit" class="btn btn-primary" style="width:100%">Войти</button>
       <button type="button" id="btnBackToRules" class="btn btn-ghost" style="width:100%;margin-top:10px">Назад к правилам</button>
@@ -591,10 +465,7 @@
         <button class="admin-msg-btn" id="adminMsgBtn"><span>Сообщение администрации</span></button>
         <div class="admin-msg-popup hidden" id="adminMsgPopup">
           <div class="admin-msg-header">Сообщение от администрации</div>
-          <div class="admin-msg-text">
-            Добро пожаловать! Если вы столкнулись с флудом по какому-либо ФД
-            или у вас возник вопрос — выберите вариант ниже.
-          </div>
+          <div class="admin-msg-text">Добро пожаловать! Если вы столкнулись с флудом по какому-либо ФД или у вас возник вопрос — выберите вариант ниже.</div>
           <div class="admin-msg-actions">
             <button class="btn btn-ghost" id="openHelpBtn">Помощь</button>
             <button class="btn btn-primary" id="openFloodBtn">Сообщить о флуде</button>
@@ -603,7 +474,6 @@
       </div>
       <button class="fandoms-btn" id="fandomsBtn">🌐 <span>Фандомы</span></button>
     </div>
-
     <div class="topbar-center">
       <div class="brand" id="topbarBrand">ФД<span>Поиск</span></div>
       <div class="admin-search-wrap hidden" id="adminSearchWrap">
@@ -611,19 +481,12 @@
         <div class="search-results hidden" id="searchResults"></div>
       </div>
     </div>
-
     <div class="topbar-right">
-      <button class="my-tickets-btn hidden" id="myTicketsBtn">
-        📬 <span>Мои обращения</span> <span class="inbox-badge hidden" id="myTicketsBadge">0</span>
-      </button>
-      <button class="admin-inbox-btn hidden" id="adminInboxBtn">
-        📥 <span>Обращения</span> <span class="inbox-badge hidden" id="ticketsBadge">0</span>
-      </button>
+      <button class="my-tickets-btn hidden" id="myTicketsBtn">📬 <span>Мои обращения</span> <span class="inbox-badge hidden" id="myTicketsBadge">0</span></button>
+      <button class="admin-inbox-btn hidden" id="adminInboxBtn">📥 <span>Обращения</span> <span class="inbox-badge hidden" id="ticketsBadge">0</span></button>
       <button class="settings-btn" id="settingsBtn" title="Настройки">⚙️</button>
       <div class="user-area">
-        <button class="avatar-btn" id="avatarBtn">
-          <img id="topAvatar" alt="Аватар" />
-        </button>
+        <button class="avatar-btn" id="avatarBtn"><img id="topAvatar" alt="Аватар" /></button>
         <div class="popup hidden" id="profilePopup">
           <img id="popAvatar" class="pop-avatar" alt="Аватар" />
           <div class="pop-name" id="popName"></div>
@@ -635,338 +498,243 @@
       </div>
     </div>
   </header>
-
-  <div class="fb-status" id="fbStatus">✅ Синхронизация включена — данные видны на всех устройствах</div>
-
+  <div class="fb-status" id="fbStatus">✅ Синхронизация включена</div>
   <main class="content">
     <button class="search-hub-btn" id="openSearchHub" type="button">
       <div class="search-hub-icon">🔍</div>
       <div class="search-hub-title">Найти ФД</div>
       <div class="search-hub-sub">Поиск по названию или описанию — все ссылки на инфо-каналы внутри</div>
     </button>
-
     <section class="popular-section" id="popularSection">
-      <div class="popular-header">
-        <div class="popular-title">Популярные ФД</div>
-        <div class="popular-count" id="popularCount"></div>
-      </div>
+      <div class="popular-header"><div class="popular-title">Популярные ФД</div><div class="popular-count" id="popularCount"></div></div>
       <div class="popular-list" id="popularList"></div>
     </section>
   </main>
 </section>
 
-<!-- Помощь -->
-<div class="modal-overlay hidden" id="helpModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <h2>Помощь</h2>
-    <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией и обсуждением.</p></div>
-    <div class="help-section"><h3>🔎 Как найти ФД?</h3><p>Нажми большую кнопку «Найти ФД» в центре экрана — там можно искать по названию или описанию.</p></div>
-    <div class="help-section"><h3>⚠️ Что считается флудом?</h3><p>Повторяющиеся, спамные или вводящие в заблуждение сообщения по конкретному ФД.</p></div>
-    <div class="help-section"><h3>🚨 Как сообщить о флуде?</h3><p>«Сообщение администрации» → «Сообщить о флуде» → заполните форму.</p></div>
-    <div class="help-section"><h3>⏱ Как долго рассматриваются обращения?</h3><p>Как правило — в течение 24 часов.</p></div>
-    <div class="help-section"><h3>📜 Что нельзя публиковать?</h3><p>Оскорбления, угрозы, разжигание вражды, доксинг и клевета.</p></div>
-    <div class="modal-footer-divider"></div>
-    <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
-  </div>
-</div>
+<div class="modal-overlay hidden" id="helpModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <h2>Помощь</h2>
+  <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией и обсуждением.</p></div>
+  <div class="help-section"><h3>🔎 Как найти ФД?</h3><p>Нажми большую кнопку «Найти ФД» в центре экрана.</p></div>
+  <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в раздел настроек в день праздника — тема откроется автоматически и останется навсегда.</p></div>
+  <div class="help-section"><h3>🚨 Как сообщить о флуде?</h3><p>«Сообщение администрации» → «Сообщить о флуде» → заполните форму.</p></div>
+  <div class="modal-footer-divider"></div>
+  <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
+</div></div>
 
-<!-- Флуд -->
-<div class="modal-overlay hidden" id="floodModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <div class="modal-form-view">
-      <h2>Сообщить о флуде</h2>
-      <form id="floodForm" autocomplete="off">
-        <div class="field">
-          <label for="floodFd">По какому ФД флуд *</label>
-          <input id="floodFd" type="text" placeholder="Название ФД" maxlength="120" />
-        </div>
-        <div class="field">
-          <label for="floodLink">Ссылка на инфо *</label>
-          <input id="floodLink" type="text" placeholder="https://..." maxlength="500" />
-        </div>
-        <div class="field">
-          <label for="floodMsg">Комментарий (необязательно)</label>
-          <textarea id="floodMsg" placeholder="Опишите ситуацию" maxlength="800"></textarea>
-        </div>
-        <div class="error" id="floodError"></div>
-        <button type="submit" class="btn btn-primary" style="width:100%">Отправить обращение</button>
-      </form>
-    </div>
-    <div class="modal-success hidden">
-      <div class="success-block">
-        <div class="success-icon">✓</div>
-        <h2>Обращение отправлено</h2>
-        <p>Администрация рассмотрит его в ближайшее время. Ответ появится в разделе «Мои обращения».</p>
-        <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Обратная связь -->
-<div class="modal-overlay hidden" id="contactModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <div class="modal-form-view">
-      <h2>Обратиться к администрации</h2>
-      <form id="contactForm" autocomplete="off">
-        <div class="field">
-          <label for="contactMsg">Ваше сообщение *</label>
-          <textarea id="contactMsg" placeholder="Опишите ваш вопрос" maxlength="1500"></textarea>
-        </div>
-        <div class="error" id="contactError"></div>
-        <button type="submit" class="btn btn-primary" style="width:100%">Отправить</button>
-      </form>
-    </div>
-    <div class="modal-success hidden">
-      <div class="success-block">
-        <div class="success-icon">✓</div>
-        <h2>Сообщение отправлено</h2>
-        <p>Ответ появится в разделе «Мои обращения».</p>
-        <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Админ-панель -->
-<div class="modal-overlay hidden" id="adminPanelModal">
-  <div class="modal modal-wide">
-    <button class="modal-close" type="button">×</button>
-    <h2>📥 Обращения пользователей</h2>
-    <div class="tickets-layout">
-      <div class="tickets-list" id="ticketsList"></div>
-      <div class="ticket-detail" id="ticketDetail"></div>
-    </div>
-  </div>
-</div>
-
-<!-- Мои обращения -->
-<div class="modal-overlay hidden" id="myTicketsModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <h2>📬 Мои обращения</h2>
-    <div class="my-tickets-list" id="myTicketsList"></div>
-  </div>
-</div>
-
-<!-- Профиль пользователя -->
-<div class="modal-overlay hidden" id="userProfileModal">
-  <div class="modal modal-narrow">
-    <button class="modal-close" type="button">×</button>
-    <div class="up-header">
-      <img id="upAvatar" class="up-avatar" alt="Аватар" />
-      <div class="up-meta">
-        <div class="up-name" id="upName"></div>
-        <div class="up-username" id="upUsername"></div>
-      </div>
-      <div class="kebab-wrap">
-        <button class="kebab-btn hidden" id="kebabBtn" type="button" aria-label="Действия">⋮</button>
-        <div class="kebab-menu hidden" id="kebabMenu">
-          <button class="kebab-item" id="kebabPromote" type="button">⬆️ Повысить</button>
-          <button class="kebab-item" id="kebabDemote" type="button">⬇️ Понизить</button>
-          <button class="kebab-item kebab-danger" id="kebabBan" type="button">🚫 Забанить</button>
-          <button class="kebab-item kebab-success" id="kebabUnban" type="button">✅ Разбанить</button>
-        </div>
-      </div>
-    </div>
-    <div class="up-badge" id="upBadge"></div>
-    <div class="up-info">
-      <div class="up-info-row"><span>ID</span><b id="upId"></b></div>
-      <div class="up-info-row"><span>Регистрация</span><b id="upCreated"></b></div>
-      <div class="up-info-row"><span>Статус</span><b id="upStatus"></b></div>
-    </div>
-  </div>
-</div>
-
-<!-- ФАНДОМЫ: список -->
-<div class="modal-overlay hidden" id="fandomsModal">
-  <div class="modal modal-wide">
-    <button class="modal-close" type="button">×</button>
-    <div class="fandoms-header">
-      <h2>🌐 Фандомы</h2>
-      <button class="btn btn-primary hidden" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button>
-    </div>
-    <div class="fandoms-list" id="fandomsList"></div>
-  </div>
-</div>
-
-<!-- ФАНДОМЫ: детали -->
-<div class="modal-overlay hidden" id="fandomDetailModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <div class="fd-detail-header">
-      <h2 id="fdDetailName"></h2>
-      <div class="fd-actions">
-        <button class="btn-icon hidden" id="editFandomBtn" type="button" title="Редактировать">✏️</button>
-        <button class="btn-icon danger hidden" id="deleteFandomBtn" type="button" title="Удалить">🗑️</button>
-      </div>
-    </div>
-    <div class="fd-detail-desc" id="fdDetailDesc"></div>
-    <div class="fd-links-header">🔗 Ссылки на инфо-каналы флуда</div>
-    <div class="fd-links" id="fdDetailLinks"></div>
-  </div>
-</div>
-
-<!-- ФАНДОМЫ: форма -->
-<div class="modal-overlay hidden" id="fandomFormModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <h2 id="fandomFormTitle">Создать ФД</h2>
-    <form id="fandomForm" autocomplete="off">
-      <div class="field">
-        <label for="fdName">Название ФД *</label>
-        <input id="fdName" type="text" placeholder="Например: Иван Иванов" maxlength="80" />
-      </div>
-      <div class="field">
-        <label for="fdDesc">Описание (необязательно)</label>
-        <textarea id="fdDesc" placeholder="Кратко о том, кто это и почему добавлен" maxlength="600"></textarea>
-      </div>
-      <div class="field">
-        <label>Ссылки на инфо-каналы флуда</label>
-        <div class="fd-links-editor" id="fdLinksEditor"></div>
-        <button type="button" class="btn-link-add" id="addLinkBtn">+ Добавить ссылку</button>
-      </div>
-      <div class="error" id="fandomError"></div>
-      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+<div class="modal-overlay hidden" id="floodModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <div class="modal-form-view">
+    <h2>Сообщить о флуде</h2>
+    <form id="floodForm" autocomplete="off">
+      <div class="field"><label for="floodFd">По какому ФД флуд *</label><input id="floodFd" type="text" placeholder="Название ФД" maxlength="120" /></div>
+      <div class="field"><label for="floodLink">Ссылка на инфо *</label><input id="floodLink" type="text" placeholder="https://..." maxlength="500" /></div>
+      <div class="field"><label for="floodMsg">Комментарий</label><textarea id="floodMsg" placeholder="Опишите ситуацию" maxlength="800"></textarea></div>
+      <div class="error" id="floodError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Отправить</button>
     </form>
   </div>
-</div>
+  <div class="modal-success hidden"><div class="success-block">
+    <div class="success-icon">✓</div>
+    <h2>Обращение отправлено</h2>
+    <p>Ответ появится в разделе «Мои обращения».</p>
+    <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
+  </div></div>
+</div></div>
 
-<!-- ПОИСК ФД -->
-<div class="modal-overlay hidden" id="searchModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <h2>🔍 Поиск ФД</h2>
+<div class="modal-overlay hidden" id="contactModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <div class="modal-form-view">
+    <h2>Обратиться к администрации</h2>
+    <form id="contactForm" autocomplete="off">
+      <div class="field"><label for="contactMsg">Ваше сообщение *</label><textarea id="contactMsg" placeholder="Опишите ваш вопрос" maxlength="1500"></textarea></div>
+      <div class="error" id="contactError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Отправить</button>
+    </form>
+  </div>
+  <div class="modal-success hidden"><div class="success-block">
+    <div class="success-icon">✓</div>
+    <h2>Сообщение отправлено</h2>
+    <p>Ответ появится в разделе «Мои обращения».</p>
+    <button class="btn btn-primary modal-success-close" type="button">Закрыть</button>
+  </div></div>
+</div></div>
 
-    <div class="fd-search-tabs">
-      <button class="fd-search-tab active" data-mode="name" type="button">📛 По названию</button>
-      <button class="fd-search-tab" data-mode="desc" type="button">📝 По описанию</button>
+<div class="modal-overlay hidden" id="adminPanelModal"><div class="modal modal-wide">
+  <button class="modal-close" type="button">×</button>
+  <h2>📥 Обращения пользователей</h2>
+  <div class="tickets-layout">
+    <div class="tickets-list" id="ticketsList"></div>
+    <div class="ticket-detail" id="ticketDetail"></div>
+  </div>
+</div></div>
+
+<div class="modal-overlay hidden" id="myTicketsModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <h2>📬 Мои обращения</h2>
+  <div class="my-tickets-list" id="myTicketsList"></div>
+</div></div>
+
+<div class="modal-overlay hidden" id="userProfileModal"><div class="modal modal-narrow">
+  <button class="modal-close" type="button">×</button>
+  <div class="up-header">
+    <img id="upAvatar" class="up-avatar" alt="Аватар" />
+    <div class="up-meta">
+      <div class="up-name" id="upName"></div>
+      <div class="up-username" id="upUsername"></div>
     </div>
+    <div class="kebab-wrap">
+      <button class="kebab-btn hidden" id="kebabBtn" type="button">⋮</button>
+      <div class="kebab-menu hidden" id="kebabMenu">
+        <button class="kebab-item" id="kebabPromote" type="button">⬆️ Повысить</button>
+        <button class="kebab-item" id="kebabDemote" type="button">⬇️ Понизить</button>
+        <button class="kebab-item kebab-danger" id="kebabBan" type="button">🚫 Забанить</button>
+        <button class="kebab-item kebab-success" id="kebabUnban" type="button">✅ Разбанить</button>
+      </div>
+    </div>
+  </div>
+  <div class="up-badge" id="upBadge"></div>
+  <div class="up-info">
+    <div class="up-info-row"><span>ID</span><b id="upId"></b></div>
+    <div class="up-info-row"><span>Регистрация</span><b id="upCreated"></b></div>
+    <div class="up-info-row"><span>Статус</span><b id="upStatus"></b></div>
+  </div>
+</div></div>
 
+<div class="modal-overlay hidden" id="fandomsModal"><div class="modal modal-wide">
+  <button class="modal-close" type="button">×</button>
+  <div class="fandoms-header">
+    <h2>🌐 Фандомы</h2>
+    <button class="btn btn-primary hidden" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button>
+  </div>
+  <div class="fandoms-list" id="fandomsList"></div>
+</div></div>
+
+<div class="modal-overlay hidden" id="fandomDetailModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <div class="fd-detail-header">
+    <h2 id="fdDetailName"></h2>
+    <div class="fd-actions">
+      <button class="btn-icon hidden" id="editFandomBtn" type="button" title="Редактировать">✏️</button>
+      <button class="btn-icon danger hidden" id="deleteFandomBtn" type="button" title="Удалить">🗑️</button>
+    </div>
+  </div>
+  <div class="fd-detail-desc" id="fdDetailDesc"></div>
+  <div class="fd-links-header">🔗 Ссылки на инфо-каналы флуда</div>
+  <div class="fd-links" id="fdDetailLinks"></div>
+</div></div>
+
+<div class="modal-overlay hidden" id="fandomFormModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <h2 id="fandomFormTitle">Создать ФД</h2>
+  <form id="fandomForm" autocomplete="off">
+    <div class="field"><label for="fdName">Название ФД *</label><input id="fdName" type="text" placeholder="Например: Иван Иванов" maxlength="80" /></div>
+    <div class="field"><label for="fdDesc">Описание</label><textarea id="fdDesc" placeholder="Кратко о том, кто это" maxlength="600"></textarea></div>
     <div class="field">
-      <input type="text" id="fdSearchInput" placeholder="Введите название ФД..." autocomplete="off" />
+      <label>Ссылки на инфо-каналы</label>
+      <div class="fd-links-editor" id="fdLinksEditor"></div>
+      <button type="button" class="btn-link-add" id="addLinkBtn">+ Добавить ссылку</button>
     </div>
+    <div class="error" id="fandomError"></div>
+    <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+  </form>
+</div></div>
 
-    <div class="fd-search-results" id="fdSearchResults"></div>
+<div class="modal-overlay hidden" id="searchModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <h2>🔍 Поиск ФД</h2>
+  <div class="fd-search-tabs">
+    <button class="fd-search-tab active" data-mode="name" type="button">📛 По названию</button>
+    <button class="fd-search-tab" data-mode="desc" type="button">📝 По описанию</button>
   </div>
-</div>
+  <div class="field"><input type="text" id="fdSearchInput" placeholder="Введите название ФД..." autocomplete="off" /></div>
+  <div class="fd-search-results" id="fdSearchResults"></div>
+</div></div>
 
-<!-- НАСТРОЙКИ -->
-<div class="modal-overlay hidden" id="settingsModal">
-  <div class="modal">
-    <button class="modal-close" type="button">×</button>
-    <h2>⚙️ Настройки</h2>
+<div class="modal-overlay hidden" id="settingsModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <h2>⚙️ Настройки</h2>
 
-    <div class="settings-section">
-      <div class="settings-section-title">🎨 Оформление</div>
+  <div class="settings-section">
+    <div class="settings-section-title">🎨 Оформление</div>
 
-      <div class="settings-row" style="display:block">
-        <div class="settings-row-info" style="margin-bottom:10px">
-          <div class="settings-row-title">Тема оформления</div>
-          <div class="settings-row-sub">Выбери цветовую схему сайта</div>
-        </div>
-        <div class="theme-picker" id="themePicker">
-          <div class="theme-swatch" data-theme-val="dark" title="Тёмная">
-            <span class="theme-swatch-label">Тёмная</span>
-          </div>
-          <div class="theme-swatch" data-theme-val="light" title="Светлая">
-            <span class="theme-swatch-label">Светлая</span>
-          </div>
-          <div class="theme-swatch" data-theme-val="purple" title="Фиолетовая">
-            <span class="theme-swatch-label">Фиолет</span>
-          </div>
-          <div class="theme-swatch" data-theme-val="ocean" title="Океан">
-            <span class="theme-swatch-label">Океан</span>
-          </div>
+    <div class="settings-row" style="display:block;padding-top:6px">
+      <div class="settings-row-info" style="margin-bottom:12px">
+        <div class="settings-row-title">Тема оформления</div>
+        <div class="settings-row-sub">Праздничные темы открываются только в свой сезон — и остаются навсегда</div>
+      </div>
+
+      <div class="theme-group">
+        <div class="theme-group-title">Обычные</div>
+        <div class="theme-picker" id="themePickerBase">
+          <div class="theme-swatch" data-theme-val="dark"><span class="theme-swatch-label">Тёмная</span></div>
+          <div class="theme-swatch" data-theme-val="light"><span class="theme-swatch-label">Светлая</span></div>
+          <div class="theme-swatch" data-theme-val="purple"><span class="theme-swatch-label">Фиолет</span></div>
+          <div class="theme-swatch" data-theme-val="ocean"><span class="theme-swatch-label">Океан</span></div>
         </div>
       </div>
 
-      <div class="settings-row" style="display:block">
-        <div class="settings-row-info" style="margin-bottom:10px">
-          <div class="settings-row-title">Размер шрифта и элементов</div>
-          <div class="settings-row-sub">Влияет на весь интерфейс</div>
+      <div class="theme-group">
+        <div class="theme-group-title">
+          <span>🎁 Праздничные</span>
+          <span class="unlocked-count" id="holidayCount">0 / 0</span>
         </div>
-        <div class="font-picker" id="fontPicker">
-          <button class="font-btn" data-size="0.85" type="button">Мелкий</button>
-          <button class="font-btn" data-size="1" type="button">Обычный</button>
-          <button class="font-btn" data-size="1.1" type="button">Крупный</button>
-          <button class="font-btn" data-size="1.2" type="button">Очень крупный</button>
-        </div>
-      </div>
-
-      <div class="settings-row">
-        <div class="settings-row-info">
-          <div class="settings-row-title">Компактный режим</div>
-          <div class="settings-row-sub">Уменьшает отступы — больше влезает на экран</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="setCompact" />
-          <span class="slider"></span>
-        </label>
-      </div>
-
-      <div class="settings-row">
-        <div class="settings-row-info">
-          <div class="settings-row-title">Анимации интерфейса</div>
-          <div class="settings-row-sub">Плавные переходы, всплывающие меню</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="setAnimations" />
-          <span class="slider"></span>
-        </label>
+        <div class="theme-picker-holiday" id="themePickerHoliday"></div>
       </div>
     </div>
 
-    <div class="settings-section">
-      <div class="settings-section-title">📱 Главный экран</div>
-
-      <div class="settings-row">
-        <div class="settings-row-info">
-          <div class="settings-row-title">Показывать популярные ФД</div>
-          <div class="settings-row-sub">Блок «🔥 Популярные ФД» на главной</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="setShowPopular" />
-          <span class="slider"></span>
-        </label>
+    <div class="settings-row" style="display:block">
+      <div class="settings-row-info" style="margin-bottom:10px">
+        <div class="settings-row-title">Размер шрифта</div>
+        <div class="settings-row-sub">Влияет на весь интерфейс</div>
       </div>
-
-      <div class="settings-row">
-        <div class="settings-row-info">
-          <div class="settings-row-title">Считать просмотры ФД</div>
-          <div class="settings-row-sub">Включать в популярные при открытии карточки</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="setCountViews" />
-          <span class="slider"></span>
-        </label>
+      <div class="font-picker" id="fontPicker">
+        <button class="font-btn" data-size="0.85" type="button">Мелкий</button>
+        <button class="font-btn" data-size="1" type="button">Обычный</button>
+        <button class="font-btn" data-size="1.1" type="button">Крупный</button>
+        <button class="font-btn" data-size="1.2" type="button">XL</button>
       </div>
     </div>
 
-    <div class="settings-section">
-      <div class="settings-section-title">🔧 Прочее</div>
-
-      <div class="settings-row">
-        <div class="settings-row-info">
-          <div class="settings-row-title">Компактные карточки ФД</div>
-          <div class="settings-row-sub">Меньше описания — быстрее просмотр</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="setShortCards" />
-          <span class="slider"></span>
-        </label>
-      </div>
+    <div class="settings-row">
+      <div class="settings-row-info"><div class="settings-row-title">Компактный режим</div><div class="settings-row-sub">Уменьшает отступы</div></div>
+      <label class="switch"><input type="checkbox" id="setCompact" /><span class="slider"></span></label>
     </div>
 
-    <div class="settings-footer">
-      <button class="btn btn-ghost" id="resetSettingsBtn" type="button">↺ Сбросить настройки</button>
-      <button class="btn btn-danger" id="clearLocalDataBtn" type="button">🗑 Очистить локальные данные</button>
+    <div class="settings-row">
+      <div class="settings-row-info"><div class="settings-row-title">Анимации</div><div class="settings-row-sub">Плавные переходы</div></div>
+      <label class="switch"><input type="checkbox" id="setAnimations" /><span class="slider"></span></label>
     </div>
   </div>
-</div>
+
+  <div class="settings-section">
+    <div class="settings-section-title">📱 Главный экран</div>
+    <div class="settings-row">
+      <div class="settings-row-info"><div class="settings-row-title">Показывать популярные ФД</div><div class="settings-row-sub">Блок на главной</div></div>
+      <label class="switch"><input type="checkbox" id="setShowPopular" /><span class="slider"></span></label>
+    </div>
+    <div class="settings-row">
+      <div class="settings-row-info"><div class="settings-row-title">Считать просмотры ФД</div><div class="settings-row-sub">Включать в популярные</div></div>
+      <label class="switch"><input type="checkbox" id="setCountViews" /><span class="slider"></span></label>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-section-title">🔧 Прочее</div>
+    <div class="settings-row">
+      <div class="settings-row-info"><div class="settings-row-title">Компактные карточки ФД</div><div class="settings-row-sub">Меньше описания</div></div>
+      <label class="switch"><input type="checkbox" id="setShortCards" /><span class="slider"></span></label>
+    </div>
+  </div>
+
+  <div class="settings-footer">
+    <button class="btn btn-ghost" id="resetSettingsBtn" type="button">↺ Сбросить настройки</button>
+    <button class="btn btn-danger" id="clearLocalDataBtn" type="button">🗑 Очистить локальные данные</button>
+  </div>
+</div></div>
+
+<div class="toast-container" id="toastContainer"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -986,16 +754,77 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const OWNER_USERNAMES = ['ozisoofilion'];
-
 const RANKS = ['user', 'admin', 'owner'];
 const RANK_LABEL = { user: 'пользователя', admin: 'администратора', owner: 'владельца' };
-function nextRank(role){
-  const i = RANKS.indexOf(role);
-  return i >= 0 && i < RANKS.length - 1 ? RANKS[i+1] : null;
+function nextRank(role){ const i = RANKS.indexOf(role); return i >= 0 && i < RANKS.length - 1 ? RANKS[i+1] : null; }
+function prevRank(role){ const i = RANKS.indexOf(role); return i > 0 ? RANKS[i-1] : null; }
+
+/* =========================================================
+   ПРАЗДНИЧНЫЕ ТЕМЫ (без Дня Победы и Дня России)
+   ========================================================= */
+const BASE_THEMES = ['dark', 'light', 'purple', 'ocean'];
+
+const HOLIDAYS = [
+  { id: 'halloween', name: 'Хэллоуин',     emoji: '🎃', start: [10, 20], end: [11, 3] },
+  { id: 'newyear',   name: 'Новый год',    emoji: '🎄', start: [12, 20], end: [1, 10] },
+  { id: 'winter',    name: 'Зима',         emoji: '❄️', start: [12, 1],  end: [2, 28] },
+  { id: 'valentine', name: 'Валентин',     emoji: '💝', start: [2, 7],   end: [2, 15] },
+  { id: 'march8',    name: '8 Марта',      emoji: '🌷', start: [3, 1],   end: [3, 10] },
+  { id: 'spring',    name: 'Весна',        emoji: '🌸', start: [3, 11],  end: [5, 31] },
+  { id: 'cosmos',    name: 'Космос',       emoji: '🚀', start: [4, 10],  end: [4, 13] },
+  { id: 'mayday',    name: 'Первое мая',   emoji: '🎉', start: [4, 28],  end: [5, 2] },
+  { id: 'summer',    name: 'Лето',         emoji: '☀️', start: [6, 1],   end: [8, 31] },
+  { id: 'school',    name: '1 Сентября',   emoji: '🎒', start: [9, 1],   end: [9, 5] },
+  { id: 'autumn',    name: 'Осень',        emoji: '🍁', start: [9, 15],  end: [11, 20] },
+  { id: 'friday13',  name: 'Пятница 13',   emoji: '😈', special: 'friday13' },
+];
+
+const MONTHS_RU = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+
+function isHolidayActive(h, date = new Date()){
+  if (h.special === 'friday13') return date.getDay() === 5 && date.getDate() === 13;
+  const [sm, sd] = h.start;
+  const [em, ed] = h.end;
+  const val = (date.getMonth() + 1) * 100 + date.getDate();
+  const sVal = sm * 100 + sd;
+  const eVal = em * 100 + ed;
+  if (sVal <= eVal) return val >= sVal && val <= eVal;
+  return val >= sVal || val <= eVal;
 }
-function prevRank(role){
-  const i = RANKS.indexOf(role);
-  return i > 0 ? RANKS[i-1] : null;
+
+function nextUnlockDate(h){
+  const now = new Date(), year = now.getFullYear();
+  if (h.special === 'friday13'){
+    for (let m = 0; m < 24; m++){
+      const d = new Date(year, now.getMonth() + m, 13);
+      if (d.getDay() === 5 && d > now) return d;
+    }
+    return new Date(year + 1, 0, 13);
+  }
+  const [sm, sd] = h.start;
+  let candidate = new Date(year, sm - 1, sd);
+  if (candidate <= now) candidate = new Date(year + 1, sm - 1, sd);
+  return candidate;
+}
+
+function formatUnlockDate(d){ return `${d.getDate()} ${MONTHS_RU[d.getMonth()]}`; }
+
+const LS_UNLOCKED = 'fd_unlocked_themes';
+function getUnlockedThemes(){ try { return JSON.parse(localStorage.getItem(LS_UNLOCKED) || '[]'); } catch(e){ return []; } }
+function saveUnlockedThemes(arr){ localStorage.setItem(LS_UNLOCKED, JSON.stringify(arr)); }
+
+function checkHolidayUnlocks(){
+  const now = new Date();
+  const unlocked = getUnlockedThemes();
+  const newlyUnlocked = [];
+  HOLIDAYS.forEach(h => {
+    if (isHolidayActive(h, now) && !unlocked.includes(h.id)){
+      unlocked.push(h.id);
+      newlyUnlocked.push(h);
+    }
+  });
+  if (newlyUnlocked.length) saveUnlockedThemes(unlocked);
+  return newlyUnlocked;
 }
 
 /* SHA-256 */
@@ -1044,43 +873,29 @@ function sha256(str){
 }
 const hashPassword = p => sha256('fd_salt_v1::' + p);
 
-/* =========================================================
-   НАСТРОЙКИ
-   ========================================================= */
 const LS_SETTINGS = 'fd_settings';
-const DEFAULT_SETTINGS = {
-  theme: 'dark',
-  fontSize: 1,
-  compact: false,
-  animations: true,
-  showPopular: true,
-  countViews: true,
-  shortCards: false
-};
+const DEFAULT_SETTINGS = { theme: 'dark', fontSize: 1, compact: false, animations: true, showPopular: true, countViews: true, shortCards: false };
 let settings = { ...DEFAULT_SETTINGS };
 
-function loadSettings(){
-  try {
-    const raw = localStorage.getItem(LS_SETTINGS);
-    if (raw) settings = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
-  } catch(e){ settings = { ...DEFAULT_SETTINGS }; }
+function loadSettings(){ try { const raw = localStorage.getItem(LS_SETTINGS); if (raw) settings = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) }; } catch(e){ settings = { ...DEFAULT_SETTINGS }; } }
+function saveSettings(){ localStorage.setItem(LS_SETTINGS, JSON.stringify(settings)); }
+
+function isThemeUnlocked(themeId){
+  if (BASE_THEMES.includes(themeId)) return true;
+  if (CURRENT_USER && CURRENT_USER.role === 'owner') return true;
+  return getUnlockedThemes().includes(themeId);
 }
-function saveSettings(){
-  localStorage.setItem(LS_SETTINGS, JSON.stringify(settings));
-}
+
 function applySettings(){
+  if (!isThemeUnlocked(settings.theme)){ settings.theme = 'dark'; saveSettings(); }
   document.documentElement.setAttribute('data-theme', settings.theme);
   document.body.style.zoom = settings.fontSize;
   document.body.classList.toggle('compact', settings.compact);
   document.body.classList.toggle('no-anim', !settings.animations);
-  // Показ популярных
   const pop = document.getElementById('popularSection');
   if (pop) pop.classList.toggle('hidden', !settings.showPopular);
-  // Синхронизируем UI настроек
-  document.querySelectorAll('.theme-swatch').forEach(s =>
-    s.classList.toggle('active', s.dataset.themeVal === settings.theme));
-  document.querySelectorAll('.font-btn').forEach(b =>
-    b.classList.toggle('active', parseFloat(b.dataset.size) === settings.fontSize));
+  renderThemePicker();
+  document.querySelectorAll('.font-btn').forEach(b => b.classList.toggle('active', parseFloat(b.dataset.size) === settings.fontSize));
   const cc = document.getElementById('setCompact'); if (cc) cc.checked = settings.compact;
   const ca = document.getElementById('setAnimations'); if (ca) ca.checked = settings.animations;
   const sp = document.getElementById('setShowPopular'); if (sp) sp.checked = settings.showPopular;
@@ -1088,16 +903,67 @@ function applySettings(){
   const ss = document.getElementById('setShortCards'); if (ss) ss.checked = settings.shortCards;
 }
 
+function renderThemePicker(){
+  document.querySelectorAll('#themePickerBase .theme-swatch').forEach(s => s.classList.toggle('active', s.dataset.themeVal === settings.theme));
+  const container = document.getElementById('themePickerHoliday');
+  if (!container) return;
+
+  const unlocked = getUnlockedThemes();
+  const isOwnerUser = !!(CURRENT_USER && CURRENT_USER.role === 'owner');
+
+  container.innerHTML = HOLIDAYS.map(h => {
+    const isUnlocked = isOwnerUser || unlocked.includes(h.id);
+    const isActive = settings.theme === h.id;
+    let classes = 'theme-swatch holiday';
+    if (isActive) classes += ' active';
+    if (!isUnlocked) classes += ' locked';
+    if (isOwnerUser) classes += ' owner-unlock';
+
+    let title = h.name;
+    let dateLabel = '';
+    if (!isUnlocked){
+      const d = nextUnlockDate(h);
+      title = `${h.name} — откроется ${formatUnlockDate(d)}`;
+      dateLabel = `<span class="holiday-unlock-date">${formatUnlockDate(d)}</span>`;
+    } else if (isOwnerUser){
+      title = `${h.name} — доступно как владельцу`;
+    }
+
+    return `<div class="${classes}" data-theme-val="${h.id}" title="${title}">
+      <span class="holiday-emoji">${h.emoji}</span>
+      <span class="theme-swatch-label">${h.name}</span>
+      ${dateLabel}
+    </div>`;
+  }).join('');
+
+  container.querySelectorAll('.theme-swatch').forEach(el => {
+    el.addEventListener('click', () => {
+      const themeId = el.dataset.themeVal;
+      if (el.classList.contains('locked')){
+        const h = HOLIDAYS.find(x => x.id === themeId);
+        const d = nextUnlockDate(h);
+        showToast('🔒', 'Тема заблокирована', `«${h.name}» откроется ${formatUnlockDate(d)}. Зайди в этот день, чтобы получить её навсегда.`);
+        return;
+      }
+      settings.theme = themeId;
+      saveSettings();
+      applySettings();
+    });
+  });
+
+  const total = HOLIDAYS.length;
+  const cnt = isOwnerUser ? total : unlocked.length;
+  const countEl = document.getElementById('holidayCount');
+  if (countEl){
+    countEl.textContent = isOwnerUser ? `👑 Все ${total} доступны` : `${cnt} / ${total}`;
+    countEl.classList.toggle('owner-badge', isOwnerUser);
+  }
+}
+
 /* СОСТОЯНИЕ */
-let usersCache = [];
-let ticketsCache = [];
-let fandomsCache = [];
-let firebaseReady = false;
-let CURRENT_USER = null;
-let viewedUserId = null;
-let ownerMigrationDone = false;
-let selectedFandomId = null;
-let editingFandomId = null;
+let usersCache = [], ticketsCache = [], fandomsCache = [];
+let firebaseReady = false, CURRENT_USER = null, viewedUserId = null;
+let ownerMigrationDone = false, selectedFandomId = null, editingFandomId = null;
 let fdSearchMode = 'name';
 
 const getUsers = () => usersCache;
@@ -1112,271 +978,147 @@ const clearSessionId = () => localStorage.removeItem(LS_SESSION);
 
 const $ = id => document.getElementById(id);
 
-/* FIREBASE */
+function showToast(icon, title, text, duration = 8000){
+  const container = $('toastContainer'); if (!container) return;
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-body"><div class="toast-title">${escapeHtml(title)}</div><div class="toast-text">${escapeHtml(text)}</div></div><button class="toast-close" type="button">×</button>`;
+  container.appendChild(el);
+  const close = () => { el.classList.add('fadeout'); setTimeout(() => el.remove(), 320); };
+  el.querySelector('.toast-close').addEventListener('click', close);
+  setTimeout(close, duration);
+}
+
 try {
   onValue(ref(db, 'users'), snap => {
-    const val = snap.val() || {};
-    usersCache = Object.values(val);
-
+    usersCache = Object.values(snap.val() || {});
     if (!ownerMigrationDone){
       ownerMigrationDone = true;
-      usersCache.forEach(u => {
-        if (OWNER_USERNAMES.includes(u.username) && u.role !== 'owner'){
-          update(ref(db, 'users/' + u.id), { role: 'owner' }).catch(()=>{});
-        }
-      });
+      usersCache.forEach(u => { if (OWNER_USERNAMES.includes(u.username) && u.role !== 'owner') update(ref(db, 'users/' + u.id), { role: 'owner' }).catch(()=>{}); });
     }
-
     if (CURRENT_USER){
       const fresh = usersCache.find(u => u.id === CURRENT_USER.id);
       if (fresh){
         CURRENT_USER = fresh;
-        if (fresh.banned){
-          alert('Ваш аккаунт был заблокирован администрацией.');
-          forceLogout();
-          return;
-        }
+        if (fresh.banned){ alert('Ваш аккаунт заблокирован.'); forceLogout(); return; }
         updateProfileBadge();
+        renderThemePicker();
       }
     }
+    if (!$('userProfileModal').classList.contains('hidden') && viewedUserId) renderUserProfile(viewedUserId, true);
+  }, err => { console.error(err); alert('Ошибка чтения пользователей. Проверь правила Firebase.'); });
 
-    if (!$('userProfileModal').classList.contains('hidden') && viewedUserId){
-      renderUserProfile(viewedUserId, true);
-    }
-  }, err => {
-    console.error('[Firebase] users error:', err);
-    alert('Не удалось прочитать пользователей.\n\nПроверь правила Realtime Database.');
-  });
-
-  onValue(ref(db, 'tickets'), snap => {
-    const val = snap.val() || {};
-    ticketsCache = Object.values(val);
-    refreshTicketUI();
-  }, err => {
-    console.error('[Firebase] tickets error:', err);
-  });
-
+  onValue(ref(db, 'tickets'), snap => { ticketsCache = Object.values(snap.val() || {}); refreshTicketUI(); });
   onValue(ref(db, 'fandoms'), snap => {
-    const val = snap.val() || {};
-    fandomsCache = Object.values(val);
+    fandomsCache = Object.values(snap.val() || {});
     if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList();
-    if (!$('fandomDetailModal').classList.contains('hidden') && selectedFandomId){
-      renderFandomDetail(selectedFandomId);
-    }
+    if (!$('fandomDetailModal').classList.contains('hidden') && selectedFandomId) renderFandomDetail(selectedFandomId);
     if (!$('searchModal').classList.contains('hidden')) updateFdSearchResults();
     renderPopular();
-  }, err => {
-    console.error('[Firebase] fandoms error:', err);
   });
 
   firebaseReady = true;
   console.log('[Firebase] Готово');
-} catch(e){
-  console.error('[Firebase] Init error:', e);
-  alert('Не удалось подключиться к Firebase: ' + e.message);
-}
+} catch(e){ console.error(e); alert('Ошибка Firebase: ' + e.message); }
 
-/* УТИЛИТЫ */
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  $(id).classList.add('active');
-  window.scrollTo(0, 0);
-}
-function normalizeUsername(v){
-  return String(v || '').replace(/^@+/, '').toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 32);
-}
+function showScreen(id){ document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); $(id).classList.add('active'); window.scrollTo(0,0); }
+function normalizeUsername(v){ return String(v || '').replace(/^@+/, '').toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 32); }
 function defaultAvatar(name){
   const letter = ((name || '?').trim()[0] || '?').toUpperCase();
   const palette = ['#7c5cff','#5b8cff','#ff5c8a','#ffb03b','#33d6a6','#ff7a45'];
   const color = palette[letter.charCodeAt(0) % palette.length];
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">` +
-    `<rect width="200" height="200" fill="${color}"/>` +
-    `<text x="100" y="104" font-size="96" font-family="Arial,Helvetica,sans-serif" ` +
-    `fill="#ffffff" text-anchor="middle" dominant-baseline="middle">${letter}</text></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect width="200" height="200" fill="${color}"/><text x="100" y="104" font-size="96" font-family="Arial,Helvetica,sans-serif" fill="#fff" text-anchor="middle" dominant-baseline="middle">${letter}</text></svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
-
-function roleOf(username){
-  if (OWNER_USERNAMES.includes(username)) return 'owner';
-  return 'user';
-}
-function roleLabel(r){
-  if (r === 'owner') return '👑 Владелец';
-  if (r === 'admin') return '🛡️ Администрация';
-  return 'Пользователь';
-}
-function roleClass(r){
-  if (r === 'owner') return 'badge-owner';
-  if (r === 'admin') return 'badge-admin';
-  return 'badge-user';
-}
+function roleOf(u){ return OWNER_USERNAMES.includes(u) ? 'owner' : 'user'; }
+function roleLabel(r){ return r === 'owner' ? '👑 Владелец' : r === 'admin' ? '🛡️ Администрация' : 'Пользователь'; }
+function roleClass(r){ return r === 'owner' ? 'badge-owner' : r === 'admin' ? 'badge-admin' : 'badge-user'; }
 function isAdminOrOwner(u){ return u && (u.role === 'admin' || u.role === 'owner'); }
 function isOwner(u){ return u && u.role === 'owner'; }
 function isHardcodedOwner(user){ return user && OWNER_USERNAMES.includes(user.username); }
-
-function escapeHtml(s){
-  return String(s == null ? '' : s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-function safeUrl(url){
-  try { const u = new URL(url); if (u.protocol === 'http:' || u.protocol === 'https:') return url; } catch(e){}
-  return null;
-}
-function normalizeUrl(url){
-  let u = String(url || '').trim();
-  if (!u) return '';
-  if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
-  return u;
-}
+function escapeHtml(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function safeUrl(url){ try { const u = new URL(url); if (u.protocol === 'http:' || u.protocol === 'https:') return url; } catch(e){} return null; }
+function normalizeUrl(url){ let u = String(url || '').trim(); if (!u) return ''; if (!/^https?:\/\//i.test(u)) u = 'https://' + u; return u; }
 function formatTime(ts){
-  const d = new Date(ts), now = new Date();
-  const diff = now - d;
-  if (diff < 60_000)     return 'только что';
-  if (diff < 3600_000)   return Math.floor(diff/60_000) + ' мин назад';
-  if (diff < 86400_000)  return Math.floor(diff/3600_000) + ' ч назад';
-  return d.toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' ' +
-         d.toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
+  const d = new Date(ts), diff = Date.now() - d;
+  if (diff < 60_000) return 'только что';
+  if (diff < 3600_000) return Math.floor(diff/60_000) + ' мин назад';
+  if (diff < 86400_000) return Math.floor(diff/3600_000) + ' ч назад';
+  return d.toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' + d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
 }
-function formatDate(ts){
-  return new Date(ts).toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric'});
-}
-function plural(n, forms){
-  const a = Math.abs(n) % 100;
-  const b = a % 10;
-  if (a > 10 && a < 20) return forms[2];
-  if (b > 1 && b < 5) return forms[1];
-  if (b === 1) return forms[0];
-  return forms[2];
-}
+function formatDate(ts){ return new Date(ts).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'}); }
+function plural(n, forms){ const a = Math.abs(n)%100, b = a%10; if (a > 10 && a < 20) return forms[2]; if (b > 1 && b < 5) return forms[1]; if (b === 1) return forms[0]; return forms[2]; }
 
-/* МОДАЛКИ */
 function openModal(id){ $(id).classList.remove('hidden'); }
-function closeModal(ov){
-  if (typeof ov === 'string') ov = $(ov);
-  ov.classList.add('hidden');
-  setTimeout(() => resetModalView(ov.id), 220);
-}
-function resetModalView(modalId){
-  const modal = $(modalId);
-  if (!modal) return;
-  const form = modal.querySelector('.modal-form-view');
-  const suc  = modal.querySelector('.modal-success');
-  if (form) form.classList.remove('hidden');
-  if (suc)  suc.classList.add('hidden');
-  modal.querySelectorAll('.error').forEach(e => e.textContent = '');
+function closeModal(ov){ if (typeof ov === 'string') ov = $(ov); ov.classList.add('hidden'); setTimeout(() => resetModalView(ov.id), 220); }
+function resetModalView(mid){
+  const m = $(mid); if (!m) return;
+  const f = m.querySelector('.modal-form-view'), s = m.querySelector('.modal-success');
+  if (f) f.classList.remove('hidden'); if (s) s.classList.add('hidden');
+  m.querySelectorAll('.error').forEach(e => e.textContent = '');
 }
 
-/* ПРАВИЛА */
-$('btnAccept').addEventListener('click', () => {
-  $('btnAccept').classList.add('hidden');
-  $('btnCreateAccount').classList.remove('hidden');
-  $('btnGoLogin').classList.remove('hidden');
-});
+$('btnAccept').addEventListener('click', () => { $('btnAccept').classList.add('hidden'); $('btnCreateAccount').classList.remove('hidden'); $('btnGoLogin').classList.remove('hidden'); });
 $('btnCreateAccount').addEventListener('click', () => { switchTab('register'); showScreen('screen-auth'); });
 $('btnGoLogin').addEventListener('click', () => { switchTab('login'); showScreen('screen-auth'); });
 $('btnBackToRules').addEventListener('click', () => showScreen('screen-rules'));
 
-/* АВТОРИЗАЦИЯ */
-function switchTab(tab){
-  document.querySelectorAll('.tab').forEach(t =>
-    t.classList.toggle('active', t.dataset.tab === tab));
-  $('form-register').classList.toggle('hidden', tab !== 'register');
-  $('form-login').classList.toggle('hidden', tab !== 'login');
-  $('regError').textContent = '';
-  $('logError').textContent = '';
-}
-document.querySelectorAll('.tab').forEach(t =>
-  t.addEventListener('click', () => switchTab(t.dataset.tab)));
+function switchTab(tab){ document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab)); $('form-register').classList.toggle('hidden', tab !== 'register'); $('form-login').classList.toggle('hidden', tab !== 'login'); $('regError').textContent = ''; $('logError').textContent = ''; }
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
 
 let regAvatarData = null;
 $('regAvatarBtn').addEventListener('click', () => $('regAvatarInput').click());
 $('regAvatarPreview').addEventListener('click', () => $('regAvatarInput').click());
 $('regAvatarInput').addEventListener('change', e => {
-  const file = e.target.files && e.target.files[0];
-  if (!file) return;
-  if (file.size > 500 * 1024){
-    $('regError').textContent = 'Файл слишком большой. Максимум 500 КБ.';
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = ev => {
-    regAvatarData = ev.target.result;
-    $('regAvatarPreview').src = regAvatarData;
-    $('regError').textContent = '';
-  };
-  reader.readAsDataURL(file);
+  const file = e.target.files && e.target.files[0]; if (!file) return;
+  if (file.size > 500 * 1024){ $('regError').textContent = 'Файл больше 500 КБ.'; return; }
+  const r = new FileReader();
+  r.onload = ev => { regAvatarData = ev.target.result; $('regAvatarPreview').src = regAvatarData; $('regError').textContent = ''; };
+  r.readAsDataURL(file);
 });
-function resetAvatarPreview(){
-  regAvatarData = null;
-  $('regAvatarInput').value = '';
-  $('regAvatarPreview').src = defaultAvatar($('regName').value || '?');
-}
-$('regName').addEventListener('input', () => {
-  if (!regAvatarData) $('regAvatarPreview').src = defaultAvatar($('regName').value || '?');
-});
+function resetAvatarPreview(){ regAvatarData = null; $('regAvatarInput').value = ''; $('regAvatarPreview').src = defaultAvatar($('regName').value || '?'); }
+$('regName').addEventListener('input', () => { if (!regAvatarData) $('regAvatarPreview').src = defaultAvatar($('regName').value || '?'); });
 
 $('form-register').addEventListener('submit', async e => {
   e.preventDefault();
-  const err = $('regError');
-  err.textContent = '';
-  if (!firebaseReady){ err.textContent = 'Нет соединения. Обнови страницу.'; return; }
-
-  const name     = $('regName').value.trim();
-  const username = normalizeUsername($('regUsername').value);
-  const pass     = $('regPass').value;
-  const pass2    = $('regPass2').value;
-
-  if (name.length < 2)     return err.textContent = 'Укажите имя (минимум 2 символа).';
-  if (username.length < 3) return err.textContent = 'Username минимум 3 символа (a–z, 0–9, _).';
-  if (pass.length < 6)     return err.textContent = 'Пароль минимум 6 символов.';
-  if (pass !== pass2)      return err.textContent = 'Пароли не совпадают.';
-  if (findUserByUsername(username)) return err.textContent = 'Это имя пользователя уже занято.';
-
-  const user = {
-    id: 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-    name, username,
-    passHash: hashPassword(pass),
-    avatar: regAvatarData || null,
-    role: roleOf(username),
-    banned: false,
-    createdAt: Date.now()
-  };
-
+  const err = $('regError'); err.textContent = '';
+  if (!firebaseReady){ err.textContent = 'Нет соединения.'; return; }
+  const name = $('regName').value.trim(), username = normalizeUsername($('regUsername').value);
+  const pass = $('regPass').value, pass2 = $('regPass2').value;
+  if (name.length < 2) return err.textContent = 'Имя минимум 2 символа.';
+  if (username.length < 3) return err.textContent = 'Username минимум 3 символа.';
+  if (pass.length < 6) return err.textContent = 'Пароль минимум 6 символов.';
+  if (pass !== pass2) return err.textContent = 'Пароли не совпадают.';
+  if (findUserByUsername(username)) return err.textContent = 'Это имя занято.';
+  const user = { id: 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2,8), name, username, passHash: hashPassword(pass), avatar: regAvatarData || null, role: roleOf(username), banned: false, createdAt: Date.now() };
   try {
     await set(ref(db, 'users/' + user.id), user);
-    setSessionId(user.id);
-    CURRENT_USER = user;
-    $('form-register').reset();
-    resetAvatarPreview();
+    setSessionId(user.id); CURRENT_USER = user;
+    $('form-register').reset(); resetAvatarPreview();
     enterApp(user);
-  } catch(e2){
-    console.error(e2);
-    err.textContent = 'Ошибка: ' + e2.message;
-  }
+    const newlyUnlocked = checkHolidayUnlocks();
+    newlyUnlocked.forEach(h => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить.', 10000));
+  } catch(e2){ err.textContent = 'Ошибка: ' + e2.message; }
 });
 
 $('form-login').addEventListener('submit', e => {
   e.preventDefault();
-  const err = $('logError');
-  err.textContent = '';
-  const username = normalizeUsername($('logUsername').value);
-  const pass     = $('logPass').value;
+  const err = $('logError'); err.textContent = '';
+  const username = normalizeUsername($('logUsername').value), pass = $('logPass').value;
   if (!username || !pass) return err.textContent = 'Заполните все поля.';
   const user = findUserByUsername(username);
   if (!user) return err.textContent = 'Пользователь не найден.';
-  if (user.banned) return err.textContent = 'Аккаунт заблокирован администрацией.';
+  if (user.banned) return err.textContent = 'Аккаунт заблокирован.';
   if (user.passHash !== hashPassword(pass)) return err.textContent = 'Неверный пароль.';
-  setSessionId(user.id);
-  $('form-login').reset();
+  setSessionId(user.id); $('form-login').reset();
   enterApp(user);
+  const newlyUnlocked = checkHolidayUnlocks();
+  newlyUnlocked.forEach(h => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить.', 10000));
 });
 
-/* ГЛАВНАЯ */
 function enterApp(user){
   CURRENT_USER = user;
   updateProfileBadge();
-
   if (isAdminOrOwner(user)){
     $('adminInboxBtn').classList.remove('hidden');
     $('adminSearchWrap').classList.remove('hidden');
@@ -1387,9 +1129,9 @@ function enterApp(user){
     $('topbarBrand').classList.remove('hidden');
   }
   $('myTicketsBtn').classList.remove('hidden');
-
   refreshTicketUI();
   renderPopular();
+  applySettings();
   $('profilePopup').classList.add('hidden');
   $('adminMsgPopup').classList.add('hidden');
   $('searchResults').classList.add('hidden');
@@ -1409,11 +1151,7 @@ function updateProfileBadge(){
 }
 
 function forceLogout(){
-  clearSessionId();
-  CURRENT_USER = null;
-  viewedUserId = null;
-  selectedFandomId = null;
-  editingFandomId = null;
+  clearSessionId(); CURRENT_USER = null; viewedUserId = null; selectedFandomId = null; editingFandomId = null;
   $('profilePopup').classList.add('hidden');
   $('adminInboxBtn').classList.add('hidden');
   $('myTicketsBtn').classList.add('hidden');
@@ -1426,531 +1164,224 @@ function forceLogout(){
   showScreen('screen-rules');
 }
 
-$('avatarBtn').addEventListener('click', e => {
-  e.stopPropagation();
-  $('profilePopup').classList.toggle('hidden');
-  $('adminMsgPopup').classList.add('hidden');
-});
-$('adminMsgBtn').addEventListener('click', e => {
-  e.stopPropagation();
-  $('adminMsgPopup').classList.toggle('hidden');
-  $('profilePopup').classList.add('hidden');
-});
+$('avatarBtn').addEventListener('click', e => { e.stopPropagation(); $('profilePopup').classList.toggle('hidden'); $('adminMsgPopup').classList.add('hidden'); });
+$('adminMsgBtn').addEventListener('click', e => { e.stopPropagation(); $('adminMsgPopup').classList.toggle('hidden'); $('profilePopup').classList.add('hidden'); });
 
 document.addEventListener('click', e => {
-  const pp = $('profilePopup');
-  if (!pp.classList.contains('hidden') && !pp.contains(e.target) && e.target !== $('avatarBtn')){
-    pp.classList.add('hidden');
-  }
-  const amp = $('adminMsgPopup');
-  const amb = $('adminMsgBtn');
-  if (!amp.classList.contains('hidden') && !amp.contains(e.target) && !amb.contains(e.target)){
-    amp.classList.add('hidden');
-  }
-  const sr = $('searchResults');
-  const si = $('adminSearchInput');
-  if (!sr.classList.contains('hidden') && !sr.contains(e.target) && e.target !== si){
-    sr.classList.add('hidden');
-  }
-  const km = $('kebabMenu');
-  const kb = $('kebabBtn');
-  if (!km.classList.contains('hidden') && !km.contains(e.target) && e.target !== kb){
-    km.classList.add('hidden');
-  }
+  const pp = $('profilePopup'); if (!pp.classList.contains('hidden') && !pp.contains(e.target) && e.target !== $('avatarBtn')) pp.classList.add('hidden');
+  const amp = $('adminMsgPopup'); const amb = $('adminMsgBtn'); if (!amp.classList.contains('hidden') && !amp.contains(e.target) && !amb.contains(e.target)) amp.classList.add('hidden');
+  const sr = $('searchResults'); const si = $('adminSearchInput'); if (!sr.classList.contains('hidden') && !sr.contains(e.target) && e.target !== si) sr.classList.add('hidden');
+  const km = $('kebabMenu'); const kb = $('kebabBtn'); if (!km.classList.contains('hidden') && !km.contains(e.target) && e.target !== kb) km.classList.add('hidden');
 });
 
-$('btnLogout').addEventListener('click', () => {
-  forceLogout();
-});
+$('btnLogout').addEventListener('click', () => forceLogout());
+document.querySelectorAll('.modal-overlay').forEach(ov => ov.addEventListener('click', e => { if (e.target === ov) closeModal(ov); }));
+document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay'))));
 
-document.querySelectorAll('.modal-overlay').forEach(ov => {
-  ov.addEventListener('click', e => { if (e.target === ov) closeModal(ov); });
+$('settingsBtn').addEventListener('click', () => { applySettings(); openModal('settingsModal'); });
+document.querySelectorAll('#themePickerBase .theme-swatch').forEach(sw => {
+  sw.addEventListener('click', () => { settings.theme = sw.dataset.themeVal; saveSettings(); applySettings(); });
 });
-document.querySelectorAll('.modal-close').forEach(btn => {
-  btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay')));
-});
-
-/* =========================================================
-   НАСТРОЙКИ
-   ========================================================= */
-$('settingsBtn').addEventListener('click', () => {
-  applySettings();
-  openModal('settingsModal');
-});
-
-document.querySelectorAll('.theme-swatch').forEach(sw => {
-  sw.addEventListener('click', () => {
-    settings.theme = sw.dataset.themeVal;
-    saveSettings();
-    applySettings();
-  });
-});
-
 document.querySelectorAll('.font-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    settings.fontSize = parseFloat(btn.dataset.size);
-    saveSettings();
-    applySettings();
-  });
+  btn.addEventListener('click', () => { settings.fontSize = parseFloat(btn.dataset.size); saveSettings(); applySettings(); });
 });
-
-$('setCompact').addEventListener('change', e => {
-  settings.compact = e.target.checked;
-  saveSettings(); applySettings();
-});
-$('setAnimations').addEventListener('change', e => {
-  settings.animations = e.target.checked;
-  saveSettings(); applySettings();
-});
-$('setShowPopular').addEventListener('change', e => {
-  settings.showPopular = e.target.checked;
-  saveSettings(); applySettings(); renderPopular();
-});
-$('setCountViews').addEventListener('change', e => {
-  settings.countViews = e.target.checked;
-  saveSettings();
-});
-$('setShortCards').addEventListener('change', e => {
-  settings.shortCards = e.target.checked;
-  saveSettings();
-  if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList();
-});
+$('setCompact').addEventListener('change', e => { settings.compact = e.target.checked; saveSettings(); applySettings(); });
+$('setAnimations').addEventListener('change', e => { settings.animations = e.target.checked; saveSettings(); applySettings(); });
+$('setShowPopular').addEventListener('change', e => { settings.showPopular = e.target.checked; saveSettings(); applySettings(); renderPopular(); });
+$('setCountViews').addEventListener('change', e => { settings.countViews = e.target.checked; saveSettings(); });
+$('setShortCards').addEventListener('change', e => { settings.shortCards = e.target.checked; saveSettings(); if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList(); });
 
 $('resetSettingsBtn').addEventListener('click', () => {
-  if (!confirm('Сбросить все настройки оформления?')) return;
-  settings = { ...DEFAULT_SETTINGS };
-  saveSettings(); applySettings(); renderPopular();
-  if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList();
+  if (!confirm('Сбросить настройки оформления?')) return;
+  settings = { ...DEFAULT_SETTINGS }; saveSettings(); applySettings(); renderPopular();
 });
-
 $('clearLocalDataBtn').addEventListener('click', () => {
-  if (!confirm('Удалить все локальные данные (сессия, настройки)?\n\nДанные в Firebase останутся нетронутыми.')) return;
-  localStorage.removeItem(LS_SESSION);
-  localStorage.removeItem(LS_SETTINGS);
-  settings = { ...DEFAULT_SETTINGS };
-  applySettings();
-  closeModal('settingsModal');
-  forceLogout();
+  if (!confirm('Удалить локальные данные (сессия, настройки, разблокированные темы)?')) return;
+  localStorage.removeItem(LS_SESSION); localStorage.removeItem(LS_SETTINGS); localStorage.removeItem(LS_UNLOCKED);
+  settings = { ...DEFAULT_SETTINGS }; applySettings();
+  closeModal('settingsModal'); forceLogout();
 });
 
-/* =========================================================
-   ПОПУЛЯРНЫЕ ФД
-   ========================================================= */
 function renderPopular(){
-  const section = $('popularSection');
-  if (!section) return;
-  if (!settings.showPopular){
-    section.classList.add('hidden');
-    return;
-  }
+  const section = $('popularSection'); if (!section) return;
+  if (!settings.showPopular){ section.classList.add('hidden'); return; }
   section.classList.remove('hidden');
-
-  const list = $('popularList');
-  const count = $('popularCount');
-
-  const all = getFandoms()
-    .filter(f => (f.views || 0) > 0)
-    .sort((a,b) => (b.views||0) - (a.views||0))
-    .slice(0, 5);
-
-  if (all.length === 0){
-    count.textContent = '';
-    list.innerHTML = '<div class="popular-empty">Пока нет данных о просмотрах.<br>Открой любой ФД — и он появится здесь.</div>';
-    return;
-  }
-
+  const list = $('popularList'), count = $('popularCount');
+  const all = getFandoms().filter(f => (f.views || 0) > 0).sort((a,b) => (b.views||0) - (a.views||0)).slice(0, 5);
+  if (all.length === 0){ count.textContent = ''; list.innerHTML = '<div class="popular-empty">Пока нет данных о просмотрах.<br>Открой любой ФД — и он появится здесь.</div>'; return; }
   count.textContent = `Топ ${all.length}`;
-
   list.innerHTML = all.map((f, i) => {
     const views = f.views || 0;
     const linksCount = Array.isArray(f.links) ? f.links.length : 0;
     const desc = (f.description || '').trim();
     const sub = desc ? desc : `${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}`;
-    return `
-      <div class="popular-item" data-id="${f.id}">
-        <div class="popular-rank">${i+1}</div>
-        <div class="popular-body">
-          <div class="popular-name">${escapeHtml(f.name)}</div>
-          <div class="popular-meta">${escapeHtml(sub)}</div>
-        </div>
-        <div class="popular-views">👁 ${views}</div>
-      </div>`;
+    return `<div class="popular-item" data-id="${f.id}"><div class="popular-rank">${i+1}</div><div class="popular-body"><div class="popular-name">${escapeHtml(f.name)}</div><div class="popular-meta">${escapeHtml(sub)}</div></div><div class="popular-views">👁 ${views}</div></div>`;
   }).join('');
-
-  list.querySelectorAll('.popular-item').forEach(el => {
-    el.addEventListener('click', () => openFandomDetail(el.dataset.id));
-  });
+  list.querySelectorAll('.popular-item').forEach(el => el.addEventListener('click', () => openFandomDetail(el.dataset.id)));
 }
 
-/* =========================================================
-   ПОИСК ФД
-   ========================================================= */
-const searchModal = $('searchModal');
-const fdSearchInput = $('fdSearchInput');
-const fdSearchResults = $('fdSearchResults');
-
+const fdSearchInput = $('fdSearchInput'), fdSearchResults = $('fdSearchResults');
 $('openSearchHub').addEventListener('click', () => {
   fdSearchMode = 'name';
-  document.querySelectorAll('.fd-search-tab').forEach(t =>
-    t.classList.toggle('active', t.dataset.mode === 'name'));
-  fdSearchInput.value = '';
-  fdSearchInput.placeholder = 'Введите название ФД...';
+  document.querySelectorAll('.fd-search-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === 'name'));
+  fdSearchInput.value = ''; fdSearchInput.placeholder = 'Введите название ФД...';
   updateFdSearchResults();
   openModal('searchModal');
   setTimeout(() => fdSearchInput.focus(), 120);
 });
-
 document.querySelectorAll('.fd-search-tab').forEach(t => {
   t.addEventListener('click', () => {
     fdSearchMode = t.dataset.mode;
-    document.querySelectorAll('.fd-search-tab').forEach(x =>
-      x.classList.toggle('active', x === t));
-    fdSearchInput.placeholder = fdSearchMode === 'name'
-      ? 'Введите название ФД...'
-      : 'Введите слово из описания...';
-    updateFdSearchResults();
-    fdSearchInput.focus();
+    document.querySelectorAll('.fd-search-tab').forEach(x => x.classList.toggle('active', x === t));
+    fdSearchInput.placeholder = fdSearchMode === 'name' ? 'Введите название ФД...' : 'Введите слово из описания...';
+    updateFdSearchResults(); fdSearchInput.focus();
   });
 });
-
 fdSearchInput.addEventListener('input', updateFdSearchResults);
 
 function updateFdSearchResults(){
   const q = fdSearchInput.value.trim().toLowerCase();
   const all = getFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
-  const filtered = q
-    ? all.filter(f => {
-        if (fdSearchMode === 'name') return (f.name || '').toLowerCase().includes(q);
-        return (f.description || '').toLowerCase().includes(q);
-      })
-    : all;
-
-  if (filtered.length === 0){
-    fdSearchResults.innerHTML = q
-      ? '<div class="fd-search-empty">Ничего не найдено.<br>Попробуй другое слово или переключи режим поиска.</div>'
-      : '<div class="fd-search-empty">Пока нет ни одного ФД.<br>Загляни позже.</div>';
-    return;
-  }
-
+  const filtered = q ? all.filter(f => fdSearchMode === 'name' ? (f.name||'').toLowerCase().includes(q) : (f.description||'').toLowerCase().includes(q)) : all;
+  if (filtered.length === 0){ fdSearchResults.innerHTML = `<div class="fd-search-empty">${q ? 'Ничего не найдено.' : 'Пока нет ни одного ФД.'}</div>`; return; }
   fdSearchResults.innerHTML = filtered.map(f => {
     const linksCount = Array.isArray(f.links) ? f.links.length : 0;
-    const linksLabel = linksCount > 0
-      ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}`
-      : '⚠️ инфо пока нет';
+    const linksLabel = linksCount > 0 ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}` : '⚠️ инфо пока нет';
     const desc = (f.description || '').trim();
     const showDesc = desc && !settings.shortCards;
-    return `
-      <div class="fd-search-result" data-id="${f.id}">
-        <div class="fd-search-result-name">${escapeHtml(f.name)}</div>
-        ${showDesc ? `<div class="fd-search-result-desc">${escapeHtml(desc)}</div>` : ''}
-        <div class="fd-search-result-meta">${linksLabel}</div>
-      </div>`;
+    return `<div class="fd-search-result" data-id="${f.id}"><div class="fd-search-result-name">${escapeHtml(f.name)}</div>${showDesc ? `<div class="fd-search-result-desc">${escapeHtml(desc)}</div>` : ''}<div class="fd-search-result-meta">${linksLabel}</div></div>`;
   }).join('');
-
-  fdSearchResults.querySelectorAll('.fd-search-result').forEach(el => {
-    el.addEventListener('click', () => {
-      const id = el.dataset.id;
-      closeModal('searchModal');
-      setTimeout(() => openFandomDetail(id), 240);
-    });
-  });
+  fdSearchResults.querySelectorAll('.fd-search-result').forEach(el => el.addEventListener('click', () => { const id = el.dataset.id; closeModal('searchModal'); setTimeout(() => openFandomDetail(id), 240); }));
 }
 
-/* ПОИСК ПОЛЬЗОВАТЕЛЕЙ */
-const searchInput = $('adminSearchInput');
-const searchResults = $('searchResults');
-
+const searchInput = $('adminSearchInput'), searchResults = $('searchResults');
 searchInput.addEventListener('input', () => doSearch(searchInput.value));
-searchInput.addEventListener('focus', () => {
-  if (searchInput.value.trim()) doSearch(searchInput.value);
-});
+searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) doSearch(searchInput.value); });
 
 function doSearch(query){
   const q = query.trim().toLowerCase().replace(/^@+/, '');
   if (!q){ searchResults.classList.add('hidden'); return; }
-
-  const results = usersCache
-    .filter(u =>
-      u.username.toLowerCase().includes(q) ||
-      u.name.toLowerCase().includes(q)
-    )
-    .slice(0, 20);
-
-  if (results.length === 0){
-    searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>';
-  } else {
+  const results = usersCache.filter(u => u.username.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)).slice(0, 20);
+  if (results.length === 0) searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>';
+  else {
     searchResults.innerHTML = results.map(u => {
       const avatar = u.avatar || defaultAvatar(u.name);
       const isSpecial = u.role !== 'user';
-      return `
-        <div class="search-item" data-id="${u.id}">
-          <img src="${avatar}" alt="" />
-          <div class="search-item-info">
-            <div class="search-item-name">${escapeHtml(u.name)}${u.banned ? ' 🚫' : ''}</div>
-            <div class="search-item-username">@${escapeHtml(u.username)}</div>
-          </div>
-          ${isSpecial ? `<span class="search-item-role ${roleClass(u.role)}">${u.role === 'owner' ? 'Владелец' : 'Админ'}</span>` : ''}
-        </div>`;
+      return `<div class="search-item" data-id="${u.id}"><img src="${avatar}" alt="" /><div class="search-item-info"><div class="search-item-name">${escapeHtml(u.name)}${u.banned ? ' 🚫' : ''}</div><div class="search-item-username">@${escapeHtml(u.username)}</div></div>${isSpecial ? `<span class="search-item-role ${roleClass(u.role)}">${u.role === 'owner' ? 'Владелец' : 'Админ'}</span>` : ''}</div>`;
     }).join('');
-
-    searchResults.querySelectorAll('.search-item').forEach(el => {
-      el.addEventListener('click', () => {
-        openUserProfileById(el.dataset.id);
-        searchResults.classList.add('hidden');
-        searchInput.value = '';
-      });
-    });
+    searchResults.querySelectorAll('.search-item').forEach(el => el.addEventListener('click', () => { openUserProfileById(el.dataset.id); searchResults.classList.add('hidden'); searchInput.value = ''; }));
   }
   searchResults.classList.remove('hidden');
 }
 
-/* ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ */
-function openUserProfileById(userId){
-  viewedUserId = userId;
-  renderUserProfile(userId, false);
-  openModal('userProfileModal');
-}
+function openUserProfileById(userId){ viewedUserId = userId; renderUserProfile(userId, false); openModal('userProfileModal'); }
 
 function renderUserProfile(userId, silent){
   const user = usersCache.find(u => u.id === userId);
   if (!user){ closeModal('userProfileModal'); return; }
-
   $('upAvatar').src = user.avatar || defaultAvatar(user.name);
   $('upName').textContent = user.name;
   $('upUsername').textContent = '@' + user.username;
-
-  const badge = $('upBadge');
-  badge.textContent = roleLabel(user.role);
-  badge.className = 'up-badge ' + roleClass(user.role);
-
+  const badge = $('upBadge'); badge.textContent = roleLabel(user.role); badge.className = 'up-badge ' + roleClass(user.role);
   $('upId').textContent = user.id;
   $('upCreated').textContent = formatDate(user.createdAt);
   $('upStatus').textContent = user.banned ? '🚫 Забанен' : '✅ Активен';
-
-  const promoteBtn = $('kebabPromote');
-  const demoteBtn  = $('kebabDemote');
-  const banBtn     = $('kebabBan');
-  const unbanBtn   = $('kebabUnban');
-  const kebab      = $('kebabBtn');
-
-  const showKebab = isOwner(CURRENT_USER)
-                  && user.id !== CURRENT_USER.id
-                  && !isHardcodedOwner(user);
-
-  if (!showKebab){
-    kebab.classList.add('hidden');
-    $('kebabMenu').classList.add('hidden');
-    return;
-  }
-
+  const promoteBtn = $('kebabPromote'), demoteBtn = $('kebabDemote'), banBtn = $('kebabBan'), unbanBtn = $('kebabUnban'), kebab = $('kebabBtn');
+  const showKebab = isOwner(CURRENT_USER) && user.id !== CURRENT_USER.id && !isHardcodedOwner(user);
+  if (!showKebab){ kebab.classList.add('hidden'); $('kebabMenu').classList.add('hidden'); return; }
   kebab.classList.remove('hidden');
-
   const up = nextRank(user.role);
-  if (up){
-    promoteBtn.textContent = `⬆️ Повысить до ${RANK_LABEL[up]}`;
-    promoteBtn.classList.remove('hidden');
-    promoteBtn.disabled = false;
-  } else {
-    promoteBtn.classList.add('hidden');
-  }
-
+  if (up){ promoteBtn.textContent = `⬆️ Повысить до ${RANK_LABEL[up]}`; promoteBtn.classList.remove('hidden'); promoteBtn.disabled = false; } else promoteBtn.classList.add('hidden');
   const down = prevRank(user.role);
-  if (down){
-    demoteBtn.textContent = `⬇️ Понизить до ${RANK_LABEL[down]}`;
-    demoteBtn.classList.remove('hidden');
-    demoteBtn.disabled = false;
-  } else {
-    demoteBtn.classList.add('hidden');
-  }
-
-  if (user.banned){
-    banBtn.classList.add('hidden');
-    unbanBtn.classList.remove('hidden');
-  } else {
-    banBtn.classList.remove('hidden');
-    unbanBtn.classList.add('hidden');
-  }
-
+  if (down){ demoteBtn.textContent = `⬇️ Понизить до ${RANK_LABEL[down]}`; demoteBtn.classList.remove('hidden'); demoteBtn.disabled = false; } else demoteBtn.classList.add('hidden');
+  if (user.banned){ banBtn.classList.add('hidden'); unbanBtn.classList.remove('hidden'); } else { banBtn.classList.remove('hidden'); unbanBtn.classList.add('hidden'); }
   if (!silent) $('kebabMenu').classList.add('hidden');
 }
 
-$('kebabBtn').addEventListener('click', e => {
-  e.stopPropagation();
-  $('kebabMenu').classList.toggle('hidden');
-});
-
+$('kebabBtn').addEventListener('click', e => { e.stopPropagation(); $('kebabMenu').classList.toggle('hidden'); });
 $('kebabPromote').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user)) return;
-  const newRole = nextRank(user.role);
-  if (!newRole) return;
+  const newRole = nextRank(user.role); if (!newRole) return;
   if (!confirm(`Повысить @${user.username} до ${RANK_LABEL[newRole]}?`)) return;
-  try {
-    await update(ref(db, 'users/' + user.id), { role: newRole });
-    $('kebabMenu').classList.add('hidden');
-  } catch(e){ alert('Ошибка: ' + e.message); }
+  try { await update(ref(db, 'users/' + user.id), { role: newRole }); $('kebabMenu').classList.add('hidden'); } catch(e){ alert(e.message); }
 });
-
 $('kebabDemote').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user)) return;
-  const newRole = prevRank(user.role);
-  if (!newRole) return;
+  const newRole = prevRank(user.role); if (!newRole) return;
   if (!confirm(`Понизить @${user.username} до ${RANK_LABEL[newRole]}?`)) return;
-  try {
-    await update(ref(db, 'users/' + user.id), { role: newRole });
-    $('kebabMenu').classList.add('hidden');
-  } catch(e){ alert('Ошибка: ' + e.message); }
+  try { await update(ref(db, 'users/' + user.id), { role: newRole }); $('kebabMenu').classList.add('hidden'); } catch(e){ alert(e.message); }
 });
-
 $('kebabBan').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user) || user.banned) return;
   if (!confirm(`Забанить @${user.username}?`)) return;
-  try {
-    await update(ref(db, 'users/' + user.id), { banned: true });
-    $('kebabMenu').classList.add('hidden');
-  } catch(e){ alert('Ошибка: ' + e.message); }
+  try { await update(ref(db, 'users/' + user.id), { banned: true }); $('kebabMenu').classList.add('hidden'); } catch(e){ alert(e.message); }
 });
-
 $('kebabUnban').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user) || !user.banned) return;
   if (!confirm(`Разбанить @${user.username}?`)) return;
-  try {
-    await update(ref(db, 'users/' + user.id), { banned: false });
-    $('kebabMenu').classList.add('hidden');
-  } catch(e){ alert('Ошибка: ' + e.message); }
+  try { await update(ref(db, 'users/' + user.id), { banned: false }); $('kebabMenu').classList.add('hidden'); } catch(e){ alert(e.message); }
 });
 
-/* ФАНДОМЫ */
-$('fandomsBtn').addEventListener('click', () => {
-  renderFandomsList();
-  openModal('fandomsModal');
-});
+$('fandomsBtn').addEventListener('click', () => { renderFandomsList(); openModal('fandomsModal'); });
 
 function renderFandomsList(){
-  const list = $('fandomsList');
-  const createBtn = $('createFandomBtn');
-
-  if (isAdminOrOwner(CURRENT_USER)) createBtn.classList.remove('hidden');
-  else createBtn.classList.add('hidden');
-
+  const list = $('fandomsList'), createBtn = $('createFandomBtn');
+  if (isAdminOrOwner(CURRENT_USER)) createBtn.classList.remove('hidden'); else createBtn.classList.add('hidden');
   const fandoms = getFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
-
-  if (fandoms.length === 0){
-    list.innerHTML = `
-      <div class="empty-state">
-        Пока нет ни одного ФД.<br>
-        ${isAdminOrOwner(CURRENT_USER) ? 'Нажми «+ Создать ФД» выше, чтобы добавить первый.' : 'Загляни позже.'}
-      </div>`;
-    return;
-  }
-
+  if (fandoms.length === 0){ list.innerHTML = `<div class="empty-state">Пока нет ни одного ФД.<br>${isAdminOrOwner(CURRENT_USER) ? 'Нажми «+ Создать ФД».' : 'Загляни позже.'}</div>`; return; }
   list.innerHTML = fandoms.map(f => {
     const linksCount = Array.isArray(f.links) ? f.links.length : 0;
-    const linksLabel = linksCount > 0
-      ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}`
-      : '⚠️ инфо пока нет';
+    const linksLabel = linksCount > 0 ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}` : '⚠️ инфо пока нет';
     const linksClass = linksCount > 0 ? '' : 'empty';
     const desc = (f.description || '').trim();
     const showDesc = desc && !settings.shortCards;
     const viewsLabel = (f.views || 0) > 0 ? ` · 👁 ${f.views}` : '';
-    return `
-      <div class="fandom-card" data-id="${f.id}">
-        <div class="fandom-card-top">
-          <div class="fandom-card-name">${escapeHtml(f.name)}</div>
-          <div class="fandom-card-links ${linksClass}">${linksLabel}</div>
-        </div>
-        ${showDesc ? `<div class="fandom-card-desc">${escapeHtml(desc)}</div>` : ''}
-        <div class="fandom-card-meta">
-          Создал: ${escapeHtml(f.createdByName || '—')} · ${formatTime(f.createdAt)}${viewsLabel}
-        </div>
-      </div>`;
+    return `<div class="fandom-card" data-id="${f.id}"><div class="fandom-card-top"><div class="fandom-card-name">${escapeHtml(f.name)}</div><div class="fandom-card-links ${linksClass}">${linksLabel}</div></div>${showDesc ? `<div class="fandom-card-desc">${escapeHtml(desc)}</div>` : ''}<div class="fandom-card-meta">Создал: ${escapeHtml(f.createdByName || '—')} · ${formatTime(f.createdAt)}${viewsLabel}</div></div>`;
   }).join('');
-
-  list.querySelectorAll('.fandom-card').forEach(el => {
-    el.addEventListener('click', () => openFandomDetail(el.dataset.id));
-  });
+  list.querySelectorAll('.fandom-card').forEach(el => el.addEventListener('click', () => openFandomDetail(el.dataset.id)));
 }
 
-/* ДЕТАЛИ ФД + счётчик просмотров */
 function openFandomDetail(fandomId){
   selectedFandomId = fandomId;
   renderFandomDetail(fandomId);
-
-  // Инкремент просмотров (если включено в настройках)
   if (settings.countViews && firebaseReady){
     const f = getFandoms().find(x => x.id === fandomId);
-    if (f){
-      runTransaction(ref(db, 'fandoms/' + fandomId + '/views'), cur => {
-        return (cur || 0) + 1;
-      }).catch(err => console.warn('Не удалось увеличить счётчик просмотров:', err));
-    }
+    if (f) runTransaction(ref(db, 'fandoms/' + fandomId + '/views'), cur => (cur || 0) + 1).catch(()=>{});
   }
-
   openModal('fandomDetailModal');
 }
 
 function renderFandomDetail(fandomId){
   const f = getFandoms().find(x => x.id === fandomId);
   if (!f){ closeModal('fandomDetailModal'); return; }
-
   $('fdDetailName').textContent = f.name;
   $('fdDetailDesc').textContent = f.description || '';
-
   const canEdit = isAdminOrOwner(CURRENT_USER);
-  if (canEdit){
-    $('editFandomBtn').classList.remove('hidden');
-    $('deleteFandomBtn').classList.remove('hidden');
-  } else {
-    $('editFandomBtn').classList.add('hidden');
-    $('deleteFandomBtn').classList.add('hidden');
-  }
-
+  if (canEdit){ $('editFandomBtn').classList.remove('hidden'); $('deleteFandomBtn').classList.remove('hidden'); } else { $('editFandomBtn').classList.add('hidden'); $('deleteFandomBtn').classList.add('hidden'); }
   const linksEl = $('fdDetailLinks');
   const links = Array.isArray(f.links) ? f.links.filter(l => l && l.url) : [];
-
-  if (links.length === 0){
-    linksEl.innerHTML = `<div class="fd-links-empty">Инфо по этому ФД пока нет.<br>Если у вас есть данные — сообщите администрации.</div>`;
-    return;
-  }
-
+  if (links.length === 0){ linksEl.innerHTML = `<div class="fd-links-empty">Инфо по этому ФД пока нет.</div>`; return; }
   linksEl.innerHTML = links.map(l => {
-    const url = normalizeUrl(l.url);
-    const safe = safeUrl(url);
+    const url = normalizeUrl(l.url), safe = safeUrl(url);
     const title = (l.title || '').trim() || 'Открыть ссылку';
-    const href = safe ? safe : '#';
-    const target = safe ? 'target="_blank" rel="noopener"' : '';
-    return `
-      <a class="fd-link-item" href="${escapeHtml(href)}" ${target}>
-        <div class="fd-link-icon">🔗</div>
-        <div class="fd-link-body">
-          <div class="fd-link-title">${escapeHtml(title)}</div>
-          <div class="fd-link-url">${escapeHtml(url)}</div>
-        </div>
-        <div class="fd-link-arrow">→</div>
-      </a>`;
+    const href = safe ? safe : '#', target = safe ? 'target="_blank" rel="noopener"' : '';
+    return `<a class="fd-link-item" href="${escapeHtml(href)}" ${target}><div class="fd-link-icon">🔗</div><div class="fd-link-body"><div class="fd-link-title">${escapeHtml(title)}</div><div class="fd-link-url">${escapeHtml(url)}</div></div><div class="fd-link-arrow">→</div></a>`;
   }).join('');
 }
 
-/* СОЗДАНИЕ / РЕДАКТИРОВАНИЕ */
-$('createFandomBtn').addEventListener('click', () => {
-  if (!isAdminOrOwner(CURRENT_USER)) return;
-  editingFandomId = null;
-  openFandomForm(null);
-});
-
+$('createFandomBtn').addEventListener('click', () => { if (!isAdminOrOwner(CURRENT_USER)) return; editingFandomId = null; openFandomForm(null); });
 $('editFandomBtn').addEventListener('click', () => {
   if (!isAdminOrOwner(CURRENT_USER)) return;
-  const f = getFandoms().find(x => x.id === selectedFandomId);
-  if (!f) return;
-  editingFandomId = f.id;
-  openFandomForm(f);
+  const f = getFandoms().find(x => x.id === selectedFandomId); if (!f) return;
+  editingFandomId = f.id; openFandomForm(f);
 });
 
 function openFandomForm(fandom){
@@ -1958,385 +1389,174 @@ function openFandomForm(fandom){
   $('fdName').value = fandom ? fandom.name : '';
   $('fdDesc').value = fandom ? (fandom.description || '') : '';
   $('fandomError').textContent = '';
-
-  const editor = $('fdLinksEditor');
-  editor.innerHTML = '';
-
+  const editor = $('fdLinksEditor'); editor.innerHTML = '';
   const links = (fandom && Array.isArray(fandom.links)) ? fandom.links : [];
-  if (links.length === 0){
-    addLinkRow();
-  } else {
-    links.forEach(l => addLinkRow(l.title || '', l.url || ''));
-  }
-
-  closeModal('fandomsModal');
-  openModal('fandomFormModal');
+  if (links.length === 0) addLinkRow(); else links.forEach(l => addLinkRow(l.title || '', l.url || ''));
+  closeModal('fandomsModal'); openModal('fandomFormModal');
 }
 
 function addLinkRow(title = '', url = ''){
   const editor = $('fdLinksEditor');
-  const row = document.createElement('div');
-  row.className = 'fd-link-row';
-  row.innerHTML = `
-    <input type="text" class="fd-link-title" placeholder="Название канала" maxlength="80" value="${escapeHtml(title)}" />
-    <input type="text" class="fd-link-url" placeholder="https://..." maxlength="500" value="${escapeHtml(url)}" />
-    <button type="button" class="fd-link-remove" title="Удалить">×</button>
-  `;
+  const row = document.createElement('div'); row.className = 'fd-link-row';
+  row.innerHTML = `<input type="text" class="fd-link-title" placeholder="Название" maxlength="80" value="${escapeHtml(title)}" /><input type="text" class="fd-link-url" placeholder="https://..." maxlength="500" value="${escapeHtml(url)}" /><button type="button" class="fd-link-remove">×</button>`;
   editor.appendChild(row);
-
-  row.querySelector('.fd-link-remove').addEventListener('click', () => {
-    row.remove();
-    if (editor.children.length === 0) addLinkRow();
-  });
+  row.querySelector('.fd-link-remove').addEventListener('click', () => { row.remove(); if (editor.children.length === 0) addLinkRow(); });
 }
-
 $('addLinkBtn').addEventListener('click', () => addLinkRow());
 
 $('fandomForm').addEventListener('submit', async e => {
   e.preventDefault();
   if (!isAdminOrOwner(CURRENT_USER)) return;
-
-  const err = $('fandomError');
-  err.textContent = '';
-
-  const name = $('fdName').value.trim();
-  const description = $('fdDesc').value.trim();
-
-  if (name.length < 2) return err.textContent = 'Укажите название ФД (минимум 2 символа).';
-
+  const err = $('fandomError'); err.textContent = '';
+  const name = $('fdName').value.trim(), description = $('fdDesc').value.trim();
+  if (name.length < 2) return err.textContent = 'Укажите название ФД.';
   const rows = $('fdLinksEditor').querySelectorAll('.fd-link-row');
   const links = [];
   rows.forEach(row => {
     const t = row.querySelector('.fd-link-title').value.trim();
     const u = row.querySelector('.fd-link-url').value.trim();
-    if (u){
-      links.push({
-        id: 'l_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
-        title: t || '',
-        url: u
-      });
-    }
+    if (u) links.push({ id: 'l_' + Date.now() + '_' + Math.random().toString(36).slice(2,6), title: t || '', url: u });
   });
-
   try {
     if (editingFandomId){
-      await update(ref(db, 'fandoms/' + editingFandomId), {
-        name, description, links
-      });
+      await update(ref(db, 'fandoms/' + editingFandomId), { name, description, links });
       closeModal('fandomFormModal');
       setTimeout(() => openFandomDetail(editingFandomId), 240);
     } else {
-      const id = 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
-      const fandom = {
-        id, name, description, links,
-        views: 0,
-        createdBy: CURRENT_USER.id,
-        createdByName: CURRENT_USER.name,
-        createdAt: Date.now()
-      };
+      const id = 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
+      const fandom = { id, name, description, links, views: 0, createdBy: CURRENT_USER.id, createdByName: CURRENT_USER.name, createdAt: Date.now() };
       await set(ref(db, 'fandoms/' + id), fandom);
-      $('fandomForm').reset();
-      $('fdLinksEditor').innerHTML = '';
-      addLinkRow();
+      $('fandomForm').reset(); $('fdLinksEditor').innerHTML = ''; addLinkRow();
       closeModal('fandomFormModal');
-      setTimeout(() => {
-        renderFandomsList();
-        openModal('fandomsModal');
-      }, 240);
+      setTimeout(() => { renderFandomsList(); openModal('fandomsModal'); }, 240);
     }
-  } catch(e2){
-    console.error(e2);
-    err.textContent = 'Ошибка: ' + e2.message;
-  }
+  } catch(e2){ err.textContent = 'Ошибка: ' + e2.message; }
 });
 
 $('deleteFandomBtn').addEventListener('click', async () => {
   if (!isAdminOrOwner(CURRENT_USER)) return;
-  const f = getFandoms().find(x => x.id === selectedFandomId);
-  if (!f) return;
-  if (!confirm(`Удалить ФД «${f.name}»?\nВсе ссылки будут удалены безвозвратно.`)) return;
+  const f = getFandoms().find(x => x.id === selectedFandomId); if (!f) return;
+  if (!confirm(`Удалить ФД «${f.name}»?`)) return;
   try {
     await remove(ref(db, 'fandoms/' + f.id));
     closeModal('fandomDetailModal');
-    setTimeout(() => {
-      renderFandomsList();
-      openModal('fandomsModal');
-    }, 240);
-  } catch(e){
-    alert('Ошибка: ' + e.message);
-  }
+    setTimeout(() => { renderFandomsList(); openModal('fandomsModal'); }, 240);
+  } catch(e){ alert('Ошибка: ' + e.message); }
 });
 
-/* ФЛУД / ОБРАТНАЯ СВЯЗЬ */
-$('openHelpBtn').addEventListener('click', () => {
-  $('adminMsgPopup').classList.add('hidden');
-  openModal('helpModal');
-});
-$('openFloodBtn').addEventListener('click', () => {
-  $('adminMsgPopup').classList.add('hidden');
-  openModal('floodModal');
-});
-$('contactFromHelpBtn').addEventListener('click', () => {
-  closeModal('helpModal');
-  setTimeout(() => openModal('contactModal'), 240);
-});
+$('openHelpBtn').addEventListener('click', () => { $('adminMsgPopup').classList.add('hidden'); openModal('helpModal'); });
+$('openFloodBtn').addEventListener('click', () => { $('adminMsgPopup').classList.add('hidden'); openModal('floodModal'); });
+$('contactFromHelpBtn').addEventListener('click', () => { closeModal('helpModal'); setTimeout(() => openModal('contactModal'), 240); });
 
-async function sendTicket(ticket){
+async function sendTicket(t){
   if (!firebaseReady){ alert('Нет соединения.'); return; }
-  try {
-    await set(ref(db, 'tickets/' + ticket.id), ticket);
-  } catch(err){
-    console.error(err);
-    alert('Ошибка отправки: ' + err.message);
-  }
+  try { await set(ref(db, 'tickets/' + t.id), t); } catch(e){ alert('Ошибка: ' + e.message); }
 }
 
 $('floodForm').addEventListener('submit', e => {
-  e.preventDefault();
-  if (!CURRENT_USER) return;
-  const err = $('floodError');
-  err.textContent = '';
-  const fdName = $('floodFd').value.trim();
-  let   link   = $('floodLink').value.trim();
+  e.preventDefault(); if (!CURRENT_USER) return;
+  const err = $('floodError'); err.textContent = '';
+  const fdName = $('floodFd').value.trim(); let link = $('floodLink').value.trim();
   const message = $('floodMsg').value.trim();
   if (!fdName) return err.textContent = 'Укажите ФД.';
-  if (!link)   return err.textContent = 'Укажите ссылку.';
+  if (!link) return err.textContent = 'Укажите ссылку.';
   if (!/^https?:\/\//i.test(link)) link = 'https://' + link;
-
-  sendTicket({
-    id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-    type: 'flood',
-    fromId: CURRENT_USER.id,
-    fromName: CURRENT_USER.name,
-    fromUsername: CURRENT_USER.username,
-    fdName, link, message,
-    createdAt: Date.now(),
-    status: 'new',
-    answer: '',
-    answeredAt: null
-  });
+  sendTicket({ id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2,8), type: 'flood', fromId: CURRENT_USER.id, fromName: CURRENT_USER.name, fromUsername: CURRENT_USER.username, fdName, link, message, createdAt: Date.now(), status: 'new', answer: '', answeredAt: null });
   $('floodForm').reset();
-  const f = $('floodModal');
-  f.querySelector('.modal-form-view').classList.add('hidden');
-  f.querySelector('.modal-success').classList.remove('hidden');
+  const f = $('floodModal'); f.querySelector('.modal-form-view').classList.add('hidden'); f.querySelector('.modal-success').classList.remove('hidden');
 });
 
 $('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  if (!CURRENT_USER) return;
-  const err = $('contactError');
-  err.textContent = '';
+  e.preventDefault(); if (!CURRENT_USER) return;
+  const err = $('contactError'); err.textContent = '';
   const msg = $('contactMsg').value.trim();
   if (msg.length < 5) return err.textContent = 'Минимум 5 символов.';
-
-  sendTicket({
-    id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
-    type: 'help',
-    fromId: CURRENT_USER.id,
-    fromName: CURRENT_USER.name,
-    fromUsername: CURRENT_USER.username,
-    fdName: '', link: '', message: msg,
-    createdAt: Date.now(),
-    status: 'new',
-    answer: '',
-    answeredAt: null
-  });
+  sendTicket({ id: 't_' + Date.now() + '_' + Math.random().toString(36).slice(2,8), type: 'help', fromId: CURRENT_USER.id, fromName: CURRENT_USER.name, fromUsername: CURRENT_USER.username, fdName: '', link: '', message: msg, createdAt: Date.now(), status: 'new', answer: '', answeredAt: null });
   $('contactForm').reset();
-  const f = $('contactModal');
-  f.querySelector('.modal-form-view').classList.add('hidden');
-  f.querySelector('.modal-success').classList.remove('hidden');
+  const f = $('contactModal'); f.querySelector('.modal-form-view').classList.add('hidden'); f.querySelector('.modal-success').classList.remove('hidden');
 });
 
-/* АДМИН-ПАНЕЛЬ */
 let selectedTicketId = null;
-
 function updateAdminInbox(){
   if (!isAdminOrOwner(CURRENT_USER)) return;
   const newCount = getTickets().filter(t => t.status === 'new').length;
   const badge = $('ticketsBadge');
-  if (newCount > 0){
-    badge.textContent = newCount > 99 ? '99+' : newCount;
-    badge.classList.remove('hidden');
-  } else {
-    badge.classList.add('hidden');
-  }
+  if (newCount > 0){ badge.textContent = newCount > 99 ? '99+' : newCount; badge.classList.remove('hidden'); } else badge.classList.add('hidden');
 }
-
-$('adminInboxBtn').addEventListener('click', () => {
-  selectedTicketId = null;
-  renderAdminPanel();
-  openModal('adminPanelModal');
-});
+$('adminInboxBtn').addEventListener('click', () => { selectedTicketId = null; renderAdminPanel(); openModal('adminPanelModal'); });
 
 function renderAdminPanel(){
   const tickets = getTickets().slice().sort((a,b) => b.createdAt - a.createdAt);
-  const list   = $('ticketsList');
-  const detail = $('ticketDetail');
-
-  if (tickets.length === 0){
-    list.innerHTML = '<div class="empty-state">Обращений пока нет</div>';
-    detail.innerHTML = '<div class="empty-state">Здесь появятся обращения</div>';
-    return;
-  }
-
+  const list = $('ticketsList'), detail = $('ticketDetail');
+  if (tickets.length === 0){ list.innerHTML = '<div class="empty-state">Обращений пока нет</div>'; detail.innerHTML = '<div class="empty-state">Здесь появятся обращения</div>'; return; }
   list.innerHTML = tickets.map(t => {
     const isActive = t.id === selectedTicketId;
     const statusClass = t.status === 'new' ? 'ticket-status-new' : 'ticket-status-answered';
     const statusLabel = t.status === 'new' ? 'новое' : 'отвечено';
     const typeLabel = t.type === 'flood' ? '🚨 Флуд' : '❓ Вопрос';
     const preview = t.fdName ? t.fdName : (t.message ? t.message : '—');
-    return `
-      <div class="ticket-item ${isActive?'active':''}" data-id="${t.id}">
-        <div class="ticket-from">${escapeHtml(t.fromName)} <span class="handle">@${escapeHtml(t.fromUsername)}</span></div>
-        <div class="ticket-preview">${typeLabel} · ${escapeHtml(preview)}</div>
-        <div class="ticket-time ${statusClass}">${statusLabel} · ${formatTime(t.createdAt)}</div>
-      </div>`;
+    return `<div class="ticket-item ${isActive?'active':''}" data-id="${t.id}"><div class="ticket-from">${escapeHtml(t.fromName)} <span class="handle">@${escapeHtml(t.fromUsername)}</span></div><div class="ticket-preview">${typeLabel} · ${escapeHtml(preview)}</div><div class="ticket-time ${statusClass}">${statusLabel} · ${formatTime(t.createdAt)}</div></div>`;
   }).join('');
-
-  list.querySelectorAll('.ticket-item').forEach(el => {
-    el.addEventListener('click', () => {
-      selectedTicketId = el.dataset.id;
-      renderAdminPanel();
-    });
-  });
-
+  list.querySelectorAll('.ticket-item').forEach(el => el.addEventListener('click', () => { selectedTicketId = el.dataset.id; renderAdminPanel(); }));
   const selected = tickets.find(t => t.id === selectedTicketId);
-  if (!selected){
-    detail.innerHTML = '<div class="empty-state">Выберите обращение слева</div>';
-    return;
-  }
-
+  if (!selected){ detail.innerHTML = '<div class="empty-state">Выберите обращение слева</div>'; return; }
   const safeLink = selected.link ? safeUrl(selected.link) : null;
-  const linkHtml = selected.link
-    ? (safeLink
-        ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener">${escapeHtml(selected.link)}</a>`
-        : escapeHtml(selected.link))
-    : '';
-
+  const linkHtml = selected.link ? (safeLink ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener">${escapeHtml(selected.link)}</a>` : escapeHtml(selected.link)) : '';
   detail.innerHTML = `
     <h3>${selected.type === 'flood' ? '🚨 Сообщение о флуде' : '❓ Обращение за помощью'}</h3>
-    <div class="ticket-field"><span class="label">От</span>
-      <span class="value">${escapeHtml(selected.fromName)} · @${escapeHtml(selected.fromUsername)}</span></div>
-    ${selected.fdName ? `<div class="ticket-field"><span class="label">ФД</span>
-      <span class="value">${escapeHtml(selected.fdName)}</span></div>` : ''}
-    ${selected.link ? `<div class="ticket-field"><span class="label">Ссылка</span>
-      <span class="value">${linkHtml}</span></div>` : ''}
-    ${selected.message ? `<div class="ticket-field"><span class="label">Сообщение</span>
-      <span class="value">${escapeHtml(selected.message).replace(/\n/g,'<br>')}</span></div>` : ''}
-    <div class="ticket-field"><span class="label">Отправлено</span>
-      <span class="value">${formatTime(selected.createdAt)}</span></div>
-    <div class="ticket-answer">
-      <div class="ticket-field"><span class="label">Ответ администрации</span></div>
-      <textarea id="answerText" placeholder="Введите ответ...">${escapeHtml(selected.answer || '')}</textarea>
-      <div class="error" id="answerError"></div>
-      <button class="btn btn-primary" id="sendAnswerBtn" style="width:100%">
-        ${selected.answer ? 'Обновить ответ' : 'Отправить ответ'}
-      </button>
-    </div>`;
-
+    <div class="ticket-field"><span class="label">От</span><span class="value">${escapeHtml(selected.fromName)} · @${escapeHtml(selected.fromUsername)}</span></div>
+    ${selected.fdName ? `<div class="ticket-field"><span class="label">ФД</span><span class="value">${escapeHtml(selected.fdName)}</span></div>` : ''}
+    ${selected.link ? `<div class="ticket-field"><span class="label">Ссылка</span><span class="value">${linkHtml}</span></div>` : ''}
+    ${selected.message ? `<div class="ticket-field"><span class="label">Сообщение</span><span class="value">${escapeHtml(selected.message).replace(/\n/g,'<br>')}</span></div>` : ''}
+    <div class="ticket-field"><span class="label">Отправлено</span><span class="value">${formatTime(selected.createdAt)}</span></div>
+    <div class="ticket-answer"><div class="ticket-field"><span class="label">Ответ администрации</span></div>
+    <textarea id="answerText" placeholder="Введите ответ...">${escapeHtml(selected.answer || '')}</textarea>
+    <div class="error" id="answerError"></div>
+    <button class="btn btn-primary" id="sendAnswerBtn" style="width:100%">${selected.answer ? 'Обновить ответ' : 'Отправить ответ'}</button></div>`;
   $('sendAnswerBtn').addEventListener('click', async () => {
     const text = $('answerText').value.trim();
-    if (!text){ $('answerError').textContent = 'Введите текст ответа.'; return; }
-    try {
-      await update(ref(db, 'tickets/' + selected.id), {
-        answer: text, status: 'answered', answeredAt: Date.now()
-      });
-    } catch(err){
-      alert('Ошибка: ' + err.message);
-    }
+    if (!text){ $('answerError').textContent = 'Введите текст.'; return; }
+    try { await update(ref(db, 'tickets/' + selected.id), { answer: text, status: 'answered', answeredAt: Date.now() }); } catch(e){ alert(e.message); }
   });
 }
 
-/* МОИ ОБРАЩЕНИЯ */
 function updateMyTicketsBadge(){
   if (!CURRENT_USER) return;
-  const count = getTickets().filter(t =>
-    t.fromId === CURRENT_USER.id && t.status === 'answered'
-  ).length;
+  const count = getTickets().filter(t => t.fromId === CURRENT_USER.id && t.status === 'answered').length;
   const badge = $('myTicketsBadge');
-  if (count > 0){
-    badge.textContent = count > 99 ? '99+' : count;
-    badge.classList.remove('hidden');
-  } else {
-    badge.classList.add('hidden');
-  }
+  if (count > 0){ badge.textContent = count > 99 ? '99+' : count; badge.classList.remove('hidden'); } else badge.classList.add('hidden');
 }
 
 function renderMyTickets(){
   const list = $('myTicketsList');
-  if (!CURRENT_USER){
-    list.innerHTML = '<div class="empty-state">Не авторизованы</div>';
-    return;
-  }
-  const tickets = getTickets()
-    .filter(t => t.fromId === CURRENT_USER.id)
-    .sort((a,b) => b.createdAt - a.createdAt);
-
-  if (tickets.length === 0){
-    list.innerHTML = '<div class="empty-state">У вас пока нет обращений.</div>';
-    return;
-  }
-
+  if (!CURRENT_USER){ list.innerHTML = '<div class="empty-state">Не авторизованы</div>'; return; }
+  const tickets = getTickets().filter(t => t.fromId === CURRENT_USER.id).sort((a,b) => b.createdAt - a.createdAt);
+  if (tickets.length === 0){ list.innerHTML = '<div class="empty-state">У вас пока нет обращений.</div>'; return; }
   list.innerHTML = tickets.map(t => {
-    const isAnswered  = t.status === 'answered';
-    const typeLabel   = t.type === 'flood' ? '🚨 Сообщение о флуде' : '❓ Обращение за помощью';
+    const isAnswered = t.status === 'answered';
+    const typeLabel = t.type === 'flood' ? '🚨 Сообщение о флуде' : '❓ Обращение за помощью';
     const statusLabel = isAnswered ? 'Отвечено' : 'Ожидает ответа';
     const statusClass = isAnswered ? 'status-answered' : 'status-new';
-
     const safeLink = t.link ? safeUrl(t.link) : null;
-    const linkHtml = t.link
-      ? (safeLink
-          ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener" style="color:var(--accent-2)">${escapeHtml(t.link)}</a>`
-          : escapeHtml(t.link))
-      : '';
-
+    const linkHtml = t.link ? (safeLink ? `<a href="${escapeHtml(safeLink)}" target="_blank" rel="noopener" style="color:var(--accent-2)">${escapeHtml(t.link)}</a>` : escapeHtml(t.link)) : '';
     let body = '';
-    if (t.type === 'flood'){
-      body += `<p><strong>ФД:</strong> ${escapeHtml(t.fdName)}</p>`;
-      if (t.link) body += `<p><strong>Ссылка:</strong> ${linkHtml}</p>`;
-    }
-    if (t.message){
-      body += `<p><strong>Сообщение:</strong> ${escapeHtml(t.message).replace(/\n/g,'<br>')}</p>`;
-    }
+    if (t.type === 'flood'){ body += `<p><strong>ФД:</strong> ${escapeHtml(t.fdName)}</p>`; if (t.link) body += `<p><strong>Ссылка:</strong> ${linkHtml}</p>`; }
+    if (t.message) body += `<p><strong>Сообщение:</strong> ${escapeHtml(t.message).replace(/\n/g,'<br>')}</p>`;
     body += `<p style="color:var(--muted);font-size:12.5px;margin-top:8px">Отправлено: ${formatTime(t.createdAt)}</p>`;
-
     let answerBlock = '';
-    if (isAnswered){
-      answerBlock = `
-        <div class="my-ticket-answer">
-          <span class="label">Ответ администрации</span>
-          <div class="answer-text">${escapeHtml(t.answer).replace(/\n/g,'<br>')}</div>
-          <div class="answered-at">${formatTime(t.answeredAt || t.createdAt)}</div>
-        </div>`;
-    }
-
-    return `
-      <div class="my-ticket-card ${isAnswered ? 'answered' : ''}">
-        <div class="my-ticket-head">
-          <div class="my-ticket-type">${typeLabel}</div>
-          <div class="my-ticket-status ${statusClass}">${statusLabel}</div>
-        </div>
-        <div class="my-ticket-body">${body}</div>
-        ${answerBlock}
-      </div>`;
+    if (isAnswered) answerBlock = `<div class="my-ticket-answer"><span class="label">Ответ администрации</span><div class="answer-text">${escapeHtml(t.answer).replace(/\n/g,'<br>')}</div><div class="answered-at">${formatTime(t.answeredAt || t.createdAt)}</div></div>`;
+    return `<div class="my-ticket-card ${isAnswered ? 'answered' : ''}"><div class="my-ticket-head"><div class="my-ticket-type">${typeLabel}</div><div class="my-ticket-status ${statusClass}">${statusLabel}</div></div><div class="my-ticket-body">${body}</div>${answerBlock}</div>`;
   }).join('');
 }
 
-$('myTicketsBtn').addEventListener('click', () => {
-  renderMyTickets();
-  openModal('myTicketsModal');
-});
+$('myTicketsBtn').addEventListener('click', () => { renderMyTickets(); openModal('myTicketsModal'); });
 
 function refreshTicketUI(){
-  updateAdminInbox();
-  updateMyTicketsBadge();
+  updateAdminInbox(); updateMyTicketsBadge();
   if (!$('myTicketsModal').classList.contains('hidden')) renderMyTickets();
   if (!$('adminPanelModal').classList.contains('hidden')) renderAdminPanel();
 }
 
-/* =========================================================
-   СТАРТ
-   ========================================================= */
 loadSettings();
 applySettings();
 
@@ -2348,25 +1568,17 @@ if (sessionId){
     const user = usersCache.find(u => u.id === sessionId);
     if (user){
       clearInterval(tryEnter);
-      if (user.banned){
-        alert('Ваш аккаунт был заблокирован администрацией.');
-        clearSessionId();
-        showScreen('screen-rules');
-        return;
-      }
+      if (user.banned){ alert('Аккаунт заблокирован.'); clearSessionId(); showScreen('screen-rules'); return; }
       enterApp(user);
+      const newlyUnlocked = checkHolidayUnlocks();
+      if (newlyUnlocked.length){
+        renderThemePicker();
+        newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление, чтобы включить.', 10000), i * 500));
+      }
     }
   }, 300);
-  setTimeout(() => {
-    clearInterval(tryEnter);
-    if (!CURRENT_USER){
-      clearSessionId();
-      showScreen('screen-rules');
-    }
-  }, 5000);
-} else {
-  showScreen('screen-rules');
-}
+  setTimeout(() => { clearInterval(tryEnter); if (!CURRENT_USER){ clearSessionId(); showScreen('screen-rules'); } }, 5000);
+} else showScreen('screen-rules');
 </script>
 </body>
 </html>
