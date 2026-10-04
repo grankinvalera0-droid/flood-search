@@ -67,7 +67,7 @@
   #screen-main{flex-direction:column}
   .topbar{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid var(--border);background:rgba(13,14,18,.72);backdrop-filter:blur(14px);position:sticky;top:0;z-index:50}
   .topbar .brand{margin-bottom:0;font-size:18px}
-  .topbar-left{flex-shrink:0;position:relative}
+  .topbar-left{flex-shrink:0;position:relative;display:flex;align-items:center;gap:10px}
   .topbar-center{flex:1;display:flex;justify-content:center;align-items:center;min-width:0}
   .topbar-right{flex-shrink:0;display:flex;align-items:center;gap:10px}
 
@@ -88,6 +88,9 @@
   .admin-msg-btn{display:flex;align-items:center;gap:8px;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);color:#cbc3ff;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;transition:.16s}
   .admin-msg-btn:hover{background:rgba(124,92,255,.2);color:#fff}
   .admin-msg-btn::before{content:"📢";font-size:14px}
+
+  .fandoms-btn{display:flex;align-items:center;gap:8px;background:rgba(51,214,166,.1);border:1px solid rgba(51,214,166,.35);color:#a8f0d8;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;transition:.16s}
+  .fandoms-btn:hover{background:rgba(51,214,166,.2);color:#fff}
 
   .admin-msg-popup{position:absolute;top:48px;left:0;width:320px;z-index:100;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:0 26px 60px -22px rgba(0,0,0,.9)}
   .admin-msg-header{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px}
@@ -211,9 +214,104 @@
   .up-info-row span{color:var(--muted)}
   .up-info-row b{color:var(--text);font-weight:600;text-align:right;word-break:break-all}
 
+  /* ============================
+     ФАНДОМЫ
+     ============================ */
+  .fandoms-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;padding-right:34px}
+  .fandoms-header h2{margin-bottom:0}
+  .fandoms-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-right:6px}
+  .fandom-card{
+    background:var(--card-2);border:1px solid var(--border);border-radius:14px;
+    padding:16px 18px;cursor:pointer;transition:.15s;
+  }
+  .fandom-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .fandom-card-top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .fandom-card-name{font-size:16px;font-weight:700;flex:1;min-width:0;word-break:break-word}
+  .fandom-card-links{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;background:rgba(51,214,166,.12);color:var(--ok);border:1px solid rgba(51,214,166,.3)}
+  .fandom-card-links.empty{background:rgba(255,198,92,.12);color:var(--gold);border-color:rgba(255,198,92,.3)}
+  .fandom-card-desc{font-size:13.5px;color:#c3c9d8;line-height:1.5;margin-bottom:6px;word-break:break-word}
+  .fandom-card-meta{font-size:11.5px;color:var(--muted)}
+
+  .fd-detail-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;padding-right:34px}
+  .fd-detail-header h2{flex:1;margin-bottom:0;padding-right:0;word-break:break-word}
+  .fd-actions{display:flex;gap:6px;flex-shrink:0}
+  .btn-icon{
+    width:34px;height:34px;border-radius:9px;border:1px solid var(--border);
+    background:transparent;color:var(--muted);font-size:15px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:.15s;
+  }
+  .btn-icon:hover{background:var(--card-2);color:var(--text);border-color:#3a4152}
+  .btn-icon.danger:hover{color:var(--danger);border-color:rgba(255,92,108,.4);background:rgba(255,92,108,.1)}
+
+  .fd-detail-desc{
+    font-size:14px;color:#c3c9d8;line-height:1.6;margin-bottom:20px;
+    background:var(--card-2);border-radius:12px;padding:12px 14px;
+    word-break:break-word;
+  }
+  .fd-detail-desc:empty{display:none}
+
+  .fd-links-header{
+    font-size:12px;color:var(--muted);text-transform:uppercase;
+    letter-spacing:.5px;font-weight:700;margin-bottom:10px;
+  }
+  .fd-links{display:flex;flex-direction:column;gap:8px}
+  .fd-link-item{
+    display:flex;align-items:center;gap:12px;
+    background:var(--card-2);border:1px solid var(--border);
+    border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--text);
+    transition:.15s;
+  }
+  .fd-link-item:hover{border-color:var(--accent-2);background:rgba(91,140,255,.06)}
+  .fd-link-icon{
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(91,140,255,.12);border:1px solid rgba(91,140,255,.35);
+    display:flex;align-items:center;justify-content:center;font-size:16px;
+    flex-shrink:0;
+  }
+  .fd-link-body{flex:1;min-width:0}
+  .fd-link-title{font-size:14px;font-weight:600;margin-bottom:2px;word-break:break-word}
+  .fd-link-url{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fd-link-arrow{color:var(--muted);font-size:16px;flex-shrink:0}
+
+  .fd-links-empty{
+    text-align:center;color:var(--muted);font-size:13.5px;
+    padding:24px 16px;background:var(--card-2);border-radius:12px;
+    border:1px dashed var(--border);line-height:1.6;
+  }
+
+  /* Редактор ссылок в форме */
+  .fd-links-editor{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .fd-link-row{
+    display:grid;grid-template-columns:1fr 1.4fr 34px;
+    gap:8px;align-items:center;
+  }
+  .fd-link-row input{
+    font:inherit;font-size:14px;color:var(--text);
+    background:var(--card-2);border:1px solid var(--border);
+    border-radius:10px;padding:10px 12px;outline:none;transition:.15s;
+    width:100%;
+  }
+  .fd-link-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
+  .fd-link-row input::placeholder{color:#5a6178}
+  .fd-link-remove{
+    width:34px;height:34px;border-radius:9px;border:1px solid var(--border);
+    background:transparent;color:var(--muted);font-size:17px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:.15s;
+  }
+  .fd-link-remove:hover{color:var(--danger);border-color:rgba(255,92,108,.4);background:rgba(255,92,108,.1)}
+  .btn-link-add{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    margin-top:8px;font:inherit;font-size:13.5px;font-weight:600;
+    background:transparent;color:var(--accent-2);border:1px dashed rgba(91,140,255,.4);
+    border-radius:10px;padding:10px;cursor:pointer;transition:.15s;width:100%;
+  }
+  .btn-link-add:hover{background:rgba(91,140,255,.06);border-color:var(--accent-2)}
+
   @media(max-width:640px){
     .admin-msg-btn span{display:none}
     .admin-msg-btn{padding:9px 12px}
+    .fandoms-btn span{display:none}
+    .fandoms-btn{padding:9px 12px}
     .admin-msg-popup{width:280px;left:-10px}
     .rules-card{padding:28px 22px}
     .auth-card{padding:26px 22px}
@@ -224,6 +322,7 @@
     .my-tickets-btn span:not(.inbox-badge){display:none}
     .admin-search-wrap input{font-size:13px;padding:8px 11px}
     .kebab-menu{width:220px}
+    .fd-link-row{grid-template-columns:1fr 1fr 34px}
   }
 </style>
 </head>
@@ -353,6 +452,7 @@
           </div>
         </div>
       </div>
+      <button class="fandoms-btn" id="fandomsBtn">🌐 <span>Фандомы</span></button>
     </div>
 
     <div class="topbar-center">
@@ -390,9 +490,9 @@
 
   <main class="content">
     <div class="placeholder">
-      <h2>Здесь будет поиск ФД</h2>
-      <p>Лента, поиск и обсуждения появятся на следующем этапе.</p>
-      <div class="soon">Следующий этап →</div>
+      <h2>Добро пожаловать в ФД Поиск</h2>
+      <p>Открой раздел «Фандомы» в шапке — там собраны все ФД и ссылки на их инфо-каналы.</p>
+      <div class="soon">Нажми 🌐 Фандомы →</div>
     </div>
   </main>
 </section>
@@ -403,7 +503,7 @@
     <button class="modal-close" type="button">×</button>
     <h2>Помощь</h2>
     <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией и обсуждением.</p></div>
-    <div class="help-section"><h3>🔎 Как найти ФД?</h3><p>Через поиск в главном меню по названию или ключевому слову.</p></div>
+    <div class="help-section"><h3>🔎 Как найти ФД?</h3><p>Открой раздел «🌐 Фандомы» в шапке сайта.</p></div>
     <div class="help-section"><h3>⚠️ Что считается флудом?</h3><p>Повторяющиеся, спамные или вводящие в заблуждение сообщения по конкретному ФД.</p></div>
     <div class="help-section"><h3>🚨 Как сообщить о флуде?</h3><p>«Сообщение администрации» → «Сообщить о флуде» → заполните форму.</p></div>
     <div class="help-section"><h3>⏱ Как долго рассматриваются обращения?</h3><p>Как правило — в течение 24 часов.</p></div>
@@ -523,9 +623,63 @@
   </div>
 </div>
 
+<!-- ФАНДОМЫ: список -->
+<div class="modal-overlay hidden" id="fandomsModal">
+  <div class="modal modal-wide">
+    <button class="modal-close" type="button">×</button>
+    <div class="fandoms-header">
+      <h2>🌐 Фандомы</h2>
+      <button class="btn btn-primary hidden" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button>
+    </div>
+    <div class="fandoms-list" id="fandomsList"></div>
+  </div>
+</div>
+
+<!-- ФАНДОМЫ: детали -->
+<div class="modal-overlay hidden" id="fandomDetailModal">
+  <div class="modal">
+    <button class="modal-close" type="button">×</button>
+    <div class="fd-detail-header">
+      <h2 id="fdDetailName"></h2>
+      <div class="fd-actions">
+        <button class="btn-icon hidden" id="editFandomBtn" type="button" title="Редактировать">✏️</button>
+        <button class="btn-icon danger hidden" id="deleteFandomBtn" type="button" title="Удалить">🗑️</button>
+      </div>
+    </div>
+    <div class="fd-detail-desc" id="fdDetailDesc"></div>
+    <div class="fd-links-header">🔗 Ссылки на инфо-каналы флуда</div>
+    <div class="fd-links" id="fdDetailLinks"></div>
+  </div>
+</div>
+
+<!-- ФАНДОМЫ: форма создания/редактирования -->
+<div class="modal-overlay hidden" id="fandomFormModal">
+  <div class="modal">
+    <button class="modal-close" type="button">×</button>
+    <h2 id="fandomFormTitle">Создать ФД</h2>
+    <form id="fandomForm" autocomplete="off">
+      <div class="field">
+        <label for="fdName">Название ФД *</label>
+        <input id="fdName" type="text" placeholder="Например: Иван Иванов" maxlength="80" />
+      </div>
+      <div class="field">
+        <label for="fdDesc">Описание (необязательно)</label>
+        <textarea id="fdDesc" placeholder="Кратко о том, кто это и почему добавлен" maxlength="600"></textarea>
+      </div>
+      <div class="field">
+        <label>Ссылки на инфо-каналы флуда</label>
+        <div class="fd-links-editor" id="fdLinksEditor"></div>
+        <button type="button" class="btn-link-add" id="addLinkBtn">+ Добавить ссылку</button>
+      </div>
+      <div class="error" id="fandomError"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Сохранить</button>
+    </form>
+  </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+import { getDatabase, ref, onValue, set, update, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3CmTmqDANbklyHk_ET5_EgD2TwhnMeHs",
@@ -541,14 +695,10 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 /* =========================================================
-   ВЛАДЕЛЕЦ (неприкосновенный аккаунт)
+   ВЛАДЕЛЕЦ
    ========================================================= */
 const OWNER_USERNAMES = ['ozisoofilion'];
 
-/* =========================================================
-   РАНГИ
-   user < admin < owner
-   ========================================================= */
 const RANKS = ['user', 'admin', 'owner'];
 const RANK_LABEL = { user: 'пользователя', admin: 'администратора', owner: 'владельца' };
 function nextRank(role){
@@ -613,13 +763,17 @@ const hashPassword = p => sha256('fd_salt_v1::' + p);
    ========================================================= */
 let usersCache = [];
 let ticketsCache = [];
+let fandomsCache = [];
 let firebaseReady = false;
 let CURRENT_USER = null;
 let viewedUserId = null;
 let ownerMigrationDone = false;
+let selectedFandomId = null;
+let editingFandomId = null;
 
 const getUsers = () => usersCache;
 const getTickets = () => ticketsCache;
+const getFandoms = () => fandomsCache;
 function findUserByUsername(u){ return usersCache.find(x => x.username === u); }
 
 const LS_SESSION = 'fd_session';
@@ -637,7 +791,6 @@ try {
     const val = snap.val() || {};
     usersCache = Object.values(val);
 
-    // Авто-миграция владельца (если по какой-то причине роль не owner)
     if (!ownerMigrationDone){
       ownerMigrationDone = true;
       usersCache.forEach(u => {
@@ -674,6 +827,18 @@ try {
     refreshTicketUI();
   }, err => {
     console.error('[Firebase] tickets error:', err);
+  });
+
+  onValue(ref(db, 'fandoms'), snap => {
+    const val = snap.val() || {};
+    fandomsCache = Object.values(val);
+    // Обновить открытые модалки фандомов
+    if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList();
+    if (!$('fandomDetailModal').classList.contains('hidden') && selectedFandomId){
+      renderFandomDetail(selectedFandomId);
+    }
+  }, err => {
+    console.error('[Firebase] fandoms error:', err);
   });
 
   firebaseReady = true;
@@ -738,6 +903,12 @@ function safeUrl(url){
   try { const u = new URL(url); if (u.protocol === 'http:' || u.protocol === 'https:') return url; } catch(e){}
   return null;
 }
+function normalizeUrl(url){
+  let u = String(url || '').trim();
+  if (!u) return '';
+  if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+  return u;
+}
 function formatTime(ts){
   const d = new Date(ts), now = new Date();
   const diff = now - d;
@@ -768,13 +939,6 @@ function resetModalView(modalId){
   if (form) form.classList.remove('hidden');
   if (suc)  suc.classList.add('hidden');
   modal.querySelectorAll('.error').forEach(e => e.textContent = '');
-}
-function showModalSuccess(modalId){
-  const modal = $(modalId);
-  const f = modal.querySelector('.modal-form-view');
-  const s = modal.querySelector('.modal-success');
-  if (f) f.classList.add('hidden');
-  if (s) s.classList.remove('hidden');
 }
 
 /* =========================================================
@@ -928,6 +1092,8 @@ function forceLogout(){
   clearSessionId();
   CURRENT_USER = null;
   viewedUserId = null;
+  selectedFandomId = null;
+  editingFandomId = null;
   $('profilePopup').classList.add('hidden');
   $('adminInboxBtn').classList.add('hidden');
   $('myTicketsBtn').classList.add('hidden');
@@ -980,7 +1146,7 @@ $('btnLogout').addEventListener('click', () => {
 document.querySelectorAll('.modal-overlay').forEach(ov => {
   ov.addEventListener('click', e => { if (e.target === ov) closeModal(ov); });
 });
-document.querySelectorAll('.modal-close, .modal-success-close').forEach(btn => {
+document.querySelectorAll('.modal-close').forEach(btn => {
   btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay')));
 });
 
@@ -1065,8 +1231,6 @@ function renderUserProfile(userId, silent){
   const unbanBtn   = $('kebabUnban');
   const kebab      = $('kebabBtn');
 
-  // Кебаб показываем только владельцу, только на чужом профиле,
-  // и НЕ на неприкосновенном @ozisoofilion
   const showKebab = isOwner(CURRENT_USER)
                   && user.id !== CURRENT_USER.id
                   && !isHardcodedOwner(user);
@@ -1079,7 +1243,6 @@ function renderUserProfile(userId, silent){
 
   kebab.classList.remove('hidden');
 
-  // --- Повысить ---
   const up = nextRank(user.role);
   if (up){
     promoteBtn.textContent = `⬆️ Повысить до ${RANK_LABEL[up]}`;
@@ -1089,7 +1252,6 @@ function renderUserProfile(userId, silent){
     promoteBtn.classList.add('hidden');
   }
 
-  // --- Понизить ---
   const down = prevRank(user.role);
   if (down){
     demoteBtn.textContent = `⬇️ Понизить до ${RANK_LABEL[down]}`;
@@ -1099,7 +1261,6 @@ function renderUserProfile(userId, silent){
     demoteBtn.classList.add('hidden');
   }
 
-  // --- Забанить / Разбанить ---
   if (user.banned){
     banBtn.classList.add('hidden');
     unbanBtn.classList.remove('hidden');
@@ -1108,9 +1269,7 @@ function renderUserProfile(userId, silent){
     unbanBtn.classList.add('hidden');
   }
 
-  if (!silent){
-    $('kebabMenu').classList.add('hidden');
-  }
+  if (!silent) $('kebabMenu').classList.add('hidden');
 }
 
 $('kebabBtn').addEventListener('click', e => {
@@ -1118,67 +1277,309 @@ $('kebabBtn').addEventListener('click', e => {
   $('kebabMenu').classList.toggle('hidden');
 });
 
-/* --- Повысить на 1 ранг --- */
 $('kebabPromote').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user)) return;
-
   const newRole = nextRank(user.role);
   if (!newRole) return;
   if (!confirm(`Повысить @${user.username} до ${RANK_LABEL[newRole]}?`)) return;
-
   try {
     await update(ref(db, 'users/' + user.id), { role: newRole });
     $('kebabMenu').classList.add('hidden');
-  } catch(e){
-    alert('Ошибка: ' + e.message);
-  }
+  } catch(e){ alert('Ошибка: ' + e.message); }
 });
 
-/* --- Понизить на 1 ранг --- */
 $('kebabDemote').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user)) return;
-
   const newRole = prevRank(user.role);
   if (!newRole) return;
   if (!confirm(`Понизить @${user.username} до ${RANK_LABEL[newRole]}?`)) return;
-
   try {
     await update(ref(db, 'users/' + user.id), { role: newRole });
     $('kebabMenu').classList.add('hidden');
-  } catch(e){
-    alert('Ошибка: ' + e.message);
-  }
+  } catch(e){ alert('Ошибка: ' + e.message); }
 });
 
-/* --- Забанить --- */
 $('kebabBan').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user) || user.banned) return;
   if (!confirm(`Забанить @${user.username}?`)) return;
-
   try {
     await update(ref(db, 'users/' + user.id), { banned: true });
     $('kebabMenu').classList.add('hidden');
-  } catch(e){
-    alert('Ошибка: ' + e.message);
-  }
+  } catch(e){ alert('Ошибка: ' + e.message); }
 });
 
-/* --- Разбанить --- */
 $('kebabUnban').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
   if (!user || isHardcodedOwner(user) || !user.banned) return;
   if (!confirm(`Разбанить @${user.username}?`)) return;
-
   try {
     await update(ref(db, 'users/' + user.id), { banned: false });
     $('kebabMenu').classList.add('hidden');
+  } catch(e){ alert('Ошибка: ' + e.message); }
+});
+
+/* =========================================================
+   ФАНДОМЫ
+   ========================================================= */
+$('fandomsBtn').addEventListener('click', () => {
+  renderFandomsList();
+  openModal('fandomsModal');
+});
+
+function renderFandomsList(){
+  const list = $('fandomsList');
+  const createBtn = $('createFandomBtn');
+
+  // Кнопка создания — только для админов/владельца
+  if (isAdminOrOwner(CURRENT_USER)){
+    createBtn.classList.remove('hidden');
+  } else {
+    createBtn.classList.add('hidden');
+  }
+
+  const fandoms = getFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
+
+  if (fandoms.length === 0){
+    list.innerHTML = `
+      <div class="empty-state">
+        Пока нет ни одного ФД.<br>
+        ${isAdminOrOwner(CURRENT_USER) ? 'Нажми «+ Создать ФД» выше, чтобы добавить первый.' : 'Загляни позже.'}
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = fandoms.map(f => {
+    const linksCount = Array.isArray(f.links) ? f.links.length : 0;
+    const linksLabel = linksCount > 0
+      ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}`
+      : '⚠️ инфо пока нет';
+    const linksClass = linksCount > 0 ? '' : 'empty';
+    const desc = (f.description || '').trim();
+    return `
+      <div class="fandom-card" data-id="${f.id}">
+        <div class="fandom-card-top">
+          <div class="fandom-card-name">${escapeHtml(f.name)}</div>
+          <div class="fandom-card-links ${linksClass}">${linksLabel}</div>
+        </div>
+        ${desc ? `<div class="fandom-card-desc">${escapeHtml(desc)}</div>` : ''}
+        <div class="fandom-card-meta">
+          Создал: ${escapeHtml(f.createdByName || '—')} · ${formatTime(f.createdAt)}
+        </div>
+      </div>`;
+  }).join('');
+
+  list.querySelectorAll('.fandom-card').forEach(el => {
+    el.addEventListener('click', () => {
+      openFandomDetail(el.dataset.id);
+    });
+  });
+}
+
+function plural(n, forms){
+  const a = Math.abs(n) % 100;
+  const b = a % 10;
+  if (a > 10 && a < 20) return forms[2];
+  if (b > 1 && b < 5) return forms[1];
+  if (b === 1) return forms[0];
+  return forms[2];
+}
+
+/* =========================================================
+   ДЕТАЛИ ФД
+   ========================================================= */
+function openFandomDetail(fandomId){
+  selectedFandomId = fandomId;
+  renderFandomDetail(fandomId);
+  openModal('fandomDetailModal');
+}
+
+function renderFandomDetail(fandomId){
+  const f = getFandoms().find(x => x.id === fandomId);
+  if (!f){ closeModal('fandomDetailModal'); return; }
+
+  $('fdDetailName').textContent = f.name;
+  $('fdDetailDesc').textContent = f.description || '';
+
+  // Кнопки редактирования/удаления — только для админов/владельца
+  const canEdit = isAdminOrOwner(CURRENT_USER);
+  if (canEdit){
+    $('editFandomBtn').classList.remove('hidden');
+    $('deleteFandomBtn').classList.remove('hidden');
+  } else {
+    $('editFandomBtn').classList.add('hidden');
+    $('deleteFandomBtn').classList.add('hidden');
+  }
+
+  const linksEl = $('fdDetailLinks');
+  const links = Array.isArray(f.links) ? f.links.filter(l => l && l.url) : [];
+
+  if (links.length === 0){
+    linksEl.innerHTML = `<div class="fd-links-empty">Инфо по этому ФД пока нет.<br>Если у вас есть данные — сообщите администрации.</div>`;
+    return;
+  }
+
+  linksEl.innerHTML = links.map(l => {
+    const url = normalizeUrl(l.url);
+    const safe = safeUrl(url);
+    const title = (l.title || '').trim() || 'Открыть ссылку';
+    const href = safe ? safe : '#';
+    const target = safe ? 'target="_blank" rel="noopener"' : '';
+    return `
+      <a class="fd-link-item" href="${escapeHtml(href)}" ${target}>
+        <div class="fd-link-icon">🔗</div>
+        <div class="fd-link-body">
+          <div class="fd-link-title">${escapeHtml(title)}</div>
+          <div class="fd-link-url">${escapeHtml(url)}</div>
+        </div>
+        <div class="fd-link-arrow">→</div>
+      </a>`;
+  }).join('');
+}
+
+/* =========================================================
+   СОЗДАНИЕ / РЕДАКТИРОВАНИЕ ФД
+   ========================================================= */
+$('createFandomBtn').addEventListener('click', () => {
+  if (!isAdminOrOwner(CURRENT_USER)) return;
+  editingFandomId = null;
+  openFandomForm(null);
+});
+
+$('editFandomBtn').addEventListener('click', () => {
+  if (!isAdminOrOwner(CURRENT_USER)) return;
+  const f = getFandoms().find(x => x.id === selectedFandomId);
+  if (!f) return;
+  editingFandomId = f.id;
+  openFandomForm(f);
+});
+
+function openFandomForm(fandom){
+  $('fandomFormTitle').textContent = fandom ? 'Редактировать ФД' : 'Создать ФД';
+  $('fdName').value = fandom ? fandom.name : '';
+  $('fdDesc').value = fandom ? (fandom.description || '') : '';
+  $('fandomError').textContent = '';
+
+  const editor = $('fdLinksEditor');
+  editor.innerHTML = '';
+
+  const links = (fandom && Array.isArray(fandom.links)) ? fandom.links : [];
+  if (links.length === 0){
+    addLinkRow();
+  } else {
+    links.forEach(l => addLinkRow(l.title || '', l.url || ''));
+  }
+
+  closeModal('fandomsModal');
+  openModal('fandomFormModal');
+}
+
+function addLinkRow(title = '', url = ''){
+  const editor = $('fdLinksEditor');
+  const row = document.createElement('div');
+  row.className = 'fd-link-row';
+  row.innerHTML = `
+    <input type="text" class="fd-link-title" placeholder="Название канала" maxlength="80" value="${escapeHtml(title)}" />
+    <input type="text" class="fd-link-url" placeholder="https://..." maxlength="500" value="${escapeHtml(url)}" />
+    <button type="button" class="fd-link-remove" title="Удалить">×</button>
+  `;
+  editor.appendChild(row);
+
+  row.querySelector('.fd-link-remove').addEventListener('click', () => {
+    row.remove();
+    if (editor.children.length === 0){
+      addLinkRow();
+    }
+  });
+}
+
+$('addLinkBtn').addEventListener('click', () => addLinkRow());
+
+$('fandomForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!isAdminOrOwner(CURRENT_USER)) return;
+
+  const err = $('fandomError');
+  err.textContent = '';
+
+  const name = $('fdName').value.trim();
+  const description = $('fdDesc').value.trim();
+
+  if (name.length < 2) return err.textContent = 'Укажите название ФД (минимум 2 символа).';
+
+  // Собираем ссылки
+  const rows = $('fdLinksEditor').querySelectorAll('.fd-link-row');
+  const links = [];
+  rows.forEach(row => {
+    const t = row.querySelector('.fd-link-title').value.trim();
+    const u = row.querySelector('.fd-link-url').value.trim();
+    if (u){
+      links.push({
+        id: 'l_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+        title: t || '',
+        url: u
+      });
+    }
+  });
+
+  try {
+    if (editingFandomId){
+      // Редактирование
+      await update(ref(db, 'fandoms/' + editingFandomId), {
+        name, description, links
+      });
+      closeModal('fandomFormModal');
+      // Переоткрываем детали
+      setTimeout(() => {
+        openFandomDetail(editingFandomId);
+      }, 240);
+    } else {
+      // Создание
+      const id = 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+      const fandom = {
+        id, name, description, links,
+        createdBy: CURRENT_USER.id,
+        createdByName: CURRENT_USER.name,
+        createdAt: Date.now()
+      };
+      await set(ref(db, 'fandoms/' + id), fandom);
+      $('fandomForm').reset();
+      $('fdLinksEditor').innerHTML = '';
+      addLinkRow();
+      closeModal('fandomFormModal');
+      // Показать обновлённый список
+      setTimeout(() => {
+        renderFandomsList();
+        openModal('fandomsModal');
+      }, 240);
+    }
+  } catch(e2){
+    console.error(e2);
+    err.textContent = 'Ошибка: ' + e2.message;
+  }
+});
+
+/* =========================================================
+   УДАЛЕНИЕ ФД
+   ========================================================= */
+$('deleteFandomBtn').addEventListener('click', async () => {
+  if (!isAdminOrOwner(CURRENT_USER)) return;
+  const f = getFandoms().find(x => x.id === selectedFandomId);
+  if (!f) return;
+  if (!confirm(`Удалить ФД «${f.name}»?\nВсе ссылки будут удалены безвозвратно.`)) return;
+  try {
+    await remove(ref(db, 'fandoms/' + f.id));
+    closeModal('fandomDetailModal');
+    setTimeout(() => {
+      renderFandomsList();
+      openModal('fandomsModal');
+    }, 240);
   } catch(e){
     alert('Ошибка: ' + e.message);
   }
@@ -1235,7 +1636,9 @@ $('floodForm').addEventListener('submit', e => {
     answeredAt: null
   });
   $('floodForm').reset();
-  showModalSuccess('floodModal');
+  const f = $('floodModal');
+  f.querySelector('.modal-form-view').classList.add('hidden');
+  f.querySelector('.modal-success').classList.remove('hidden');
 });
 
 $('contactForm').addEventListener('submit', e => {
@@ -1259,7 +1662,9 @@ $('contactForm').addEventListener('submit', e => {
     answeredAt: null
   });
   $('contactForm').reset();
-  showModalSuccess('contactModal');
+  const f = $('contactModal');
+  f.querySelector('.modal-form-view').classList.add('hidden');
+  f.querySelector('.modal-success').classList.remove('hidden');
 });
 
 /* =========================================================
