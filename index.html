@@ -194,7 +194,7 @@
   .kebab-wrap{position:relative;flex-shrink:0;margin-left:auto}
   .kebab-btn{background:transparent;border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:19px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;transition:.15s;padding-bottom:6px}
   .kebab-btn:hover{background:var(--card-2);color:var(--text);border-color:#3a4152}
-  .kebab-menu{position:absolute;top:42px;right:0;width:230px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 22px 55px -18px rgba(0,0,0,.95);z-index:60}
+  .kebab-menu{position:absolute;top:42px;right:0;width:250px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 22px 55px -18px rgba(0,0,0,.95);z-index:60}
   .kebab-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;font-size:13.5px;font-weight:600;color:var(--text);background:transparent;border:none;padding:10px 12px;border-radius:9px;cursor:pointer;transition:.13s}
   .kebab-item:hover{background:var(--card-2)}
   .kebab-item:disabled{opacity:.4;cursor:not-allowed}
@@ -223,7 +223,7 @@
     .admin-inbox-btn span:not(.inbox-badge){display:none}
     .my-tickets-btn span:not(.inbox-badge){display:none}
     .admin-search-wrap input{font-size:13px;padding:8px 11px}
-    .kebab-menu{width:200px}
+    .kebab-menu{width:220px}
   }
 </style>
 </head>
@@ -507,8 +507,10 @@
       <div class="kebab-wrap">
         <button class="kebab-btn hidden" id="kebabBtn" type="button" aria-label="Действия">⋮</button>
         <div class="kebab-menu hidden" id="kebabMenu">
-          <button class="kebab-item" id="kebabPromote" type="button">⬆️ Повысить до админа</button>
+          <button class="kebab-item" id="kebabPromote" type="button">⬆️ Повысить</button>
+          <button class="kebab-item" id="kebabDemote" type="button">⬇️ Понизить</button>
           <button class="kebab-item kebab-danger" id="kebabBan" type="button">🚫 Забанить</button>
+          <button class="kebab-item kebab-success" id="kebabUnban" type="button">✅ Разбанить</button>
         </div>
       </div>
     </div>
@@ -539,9 +541,24 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 /* =========================================================
-   ВЛАДЕЛЕЦ
+   ВЛАДЕЛЕЦ (неприкосновенный аккаунт)
    ========================================================= */
 const OWNER_USERNAMES = ['ozisoofilion'];
+
+/* =========================================================
+   РАНГИ
+   user < admin < owner
+   ========================================================= */
+const RANKS = ['user', 'admin', 'owner'];
+const RANK_LABEL = { user: 'пользователя', admin: 'администратора', owner: 'владельца' };
+function nextRank(role){
+  const i = RANKS.indexOf(role);
+  return i >= 0 && i < RANKS.length - 1 ? RANKS[i+1] : null;
+}
+function prevRank(role){
+  const i = RANKS.indexOf(role);
+  return i > 0 ? RANKS[i-1] : null;
+}
 
 /* =========================================================
    SHA-256
@@ -620,7 +637,7 @@ try {
     const val = snap.val() || {};
     usersCache = Object.values(val);
 
-    // Авто-миграция владельца
+    // Авто-миграция владельца (если по какой-то причине роль не owner)
     if (!ownerMigrationDone){
       ownerMigrationDone = true;
       usersCache.forEach(u => {
@@ -630,7 +647,6 @@ try {
       });
     }
 
-    // Обновляем текущего пользователя
     if (CURRENT_USER){
       const fresh = usersCache.find(u => u.id === CURRENT_USER.id);
       if (fresh){
@@ -644,7 +660,6 @@ try {
       }
     }
 
-    // Обновить открытый профиль пользователя
     if (!$('userProfileModal').classList.contains('hidden') && viewedUserId){
       renderUserProfile(viewedUserId, true);
     }
@@ -709,6 +724,9 @@ function isAdminOrOwner(u){
 }
 function isOwner(u){
   return u && u.role === 'owner';
+}
+function isHardcodedOwner(user){
+  return user && OWNER_USERNAMES.includes(user.username);
 }
 
 function escapeHtml(s){
@@ -1041,32 +1059,53 @@ function renderUserProfile(userId, silent){
   $('upCreated').textContent = formatDate(user.createdAt);
   $('upStatus').textContent = user.banned ? '🚫 Забанен' : '✅ Активен';
 
-  const showKebab = isOwner(CURRENT_USER) && user.id !== CURRENT_USER.id;
-  const kebab = $('kebabBtn');
-  if (showKebab){
-    kebab.classList.remove('hidden');
-    const promoteBtn = $('kebabPromote');
-    const banBtn = $('kebabBan');
+  const promoteBtn = $('kebabPromote');
+  const demoteBtn  = $('kebabDemote');
+  const banBtn     = $('kebabBan');
+  const unbanBtn   = $('kebabUnban');
+  const kebab      = $('kebabBtn');
 
-    if (user.role === 'owner'){
-      promoteBtn.textContent = '👑 Владелец — нельзя изменить';
-      promoteBtn.disabled = true;
-      banBtn.textContent = '👑 Владельца нельзя забанить';
-      banBtn.disabled = true;
-    } else if (user.role === 'admin'){
-      promoteBtn.textContent = '⬇️ Понизить до пользователя';
-      promoteBtn.disabled = false;
-      banBtn.textContent = user.banned ? '✅ Разбанить' : '🚫 Забанить';
-      banBtn.disabled = false;
-    } else {
-      promoteBtn.textContent = '⬆️ Повысить до админа';
-      promoteBtn.disabled = false;
-      banBtn.textContent = user.banned ? '✅ Разбанить' : '🚫 Забанить';
-      banBtn.disabled = false;
-    }
-  } else {
+  // Кебаб показываем только владельцу, только на чужом профиле,
+  // и НЕ на неприкосновенном @ozisoofilion
+  const showKebab = isOwner(CURRENT_USER)
+                  && user.id !== CURRENT_USER.id
+                  && !isHardcodedOwner(user);
+
+  if (!showKebab){
     kebab.classList.add('hidden');
     $('kebabMenu').classList.add('hidden');
+    return;
+  }
+
+  kebab.classList.remove('hidden');
+
+  // --- Повысить ---
+  const up = nextRank(user.role);
+  if (up){
+    promoteBtn.textContent = `⬆️ Повысить до ${RANK_LABEL[up]}`;
+    promoteBtn.classList.remove('hidden');
+    promoteBtn.disabled = false;
+  } else {
+    promoteBtn.classList.add('hidden');
+  }
+
+  // --- Понизить ---
+  const down = prevRank(user.role);
+  if (down){
+    demoteBtn.textContent = `⬇️ Понизить до ${RANK_LABEL[down]}`;
+    demoteBtn.classList.remove('hidden');
+    demoteBtn.disabled = false;
+  } else {
+    demoteBtn.classList.add('hidden');
+  }
+
+  // --- Забанить / Разбанить ---
+  if (user.banned){
+    banBtn.classList.add('hidden');
+    unbanBtn.classList.remove('hidden');
+  } else {
+    banBtn.classList.remove('hidden');
+    unbanBtn.classList.add('hidden');
   }
 
   if (!silent){
@@ -1079,37 +1118,67 @@ $('kebabBtn').addEventListener('click', e => {
   $('kebabMenu').classList.toggle('hidden');
 });
 
+/* --- Повысить на 1 ранг --- */
 $('kebabPromote').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
-  if (!user || user.role === 'owner') return;
+  if (!user || isHardcodedOwner(user)) return;
 
-  const newRole = user.role === 'admin' ? 'user' : 'admin';
-  const label = newRole === 'admin' ? 'повысить до администратора' : 'понизить до пользователя';
-  if (!confirm(`Вы уверены, что хотите ${label} @${user.username}?`)) return;
+  const newRole = nextRank(user.role);
+  if (!newRole) return;
+  if (!confirm(`Повысить @${user.username} до ${RANK_LABEL[newRole]}?`)) return;
 
   try {
     await update(ref(db, 'users/' + user.id), { role: newRole });
     $('kebabMenu').classList.add('hidden');
-    renderUserProfile(viewedUserId, false);
   } catch(e){
     alert('Ошибка: ' + e.message);
   }
 });
 
+/* --- Понизить на 1 ранг --- */
+$('kebabDemote').addEventListener('click', async () => {
+  if (!isOwner(CURRENT_USER)) return;
+  const user = usersCache.find(u => u.id === viewedUserId);
+  if (!user || isHardcodedOwner(user)) return;
+
+  const newRole = prevRank(user.role);
+  if (!newRole) return;
+  if (!confirm(`Понизить @${user.username} до ${RANK_LABEL[newRole]}?`)) return;
+
+  try {
+    await update(ref(db, 'users/' + user.id), { role: newRole });
+    $('kebabMenu').classList.add('hidden');
+  } catch(e){
+    alert('Ошибка: ' + e.message);
+  }
+});
+
+/* --- Забанить --- */
 $('kebabBan').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
   const user = usersCache.find(u => u.id === viewedUserId);
-  if (!user || user.role === 'owner') return;
-
-  const newBanned = !user.banned;
-  const label = newBanned ? `забанить @${user.username}` : `разбанить @${user.username}`;
-  if (!confirm(`Вы уверены, что хотите ${label}?`)) return;
+  if (!user || isHardcodedOwner(user) || user.banned) return;
+  if (!confirm(`Забанить @${user.username}?`)) return;
 
   try {
-    await update(ref(db, 'users/' + user.id), { banned: newBanned });
+    await update(ref(db, 'users/' + user.id), { banned: true });
     $('kebabMenu').classList.add('hidden');
-    renderUserProfile(viewedUserId, false);
+  } catch(e){
+    alert('Ошибка: ' + e.message);
+  }
+});
+
+/* --- Разбанить --- */
+$('kebabUnban').addEventListener('click', async () => {
+  if (!isOwner(CURRENT_USER)) return;
+  const user = usersCache.find(u => u.id === viewedUserId);
+  if (!user || isHardcodedOwner(user) || !user.banned) return;
+  if (!confirm(`Разбанить @${user.username}?`)) return;
+
+  try {
+    await update(ref(db, 'users/' + user.id), { banned: false });
+    $('kebabMenu').classList.add('hidden');
   } catch(e){
     alert('Ошибка: ' + e.message);
   }
