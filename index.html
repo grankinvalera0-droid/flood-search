@@ -19,7 +19,7 @@
   html[data-theme="halloween"]{--bg:#0a0508;--bg-2:#2a0d1a;--card:#140810;--card-2:#1d0f18;--border:#2e1520;--text:#ffe8d6;--muted:#a38a7a;--accent:#ff6a00;--accent-2:#9d4edd;--gold:#ffb703}
   html[data-theme="newyear"]{--bg:#0a1220;--bg-2:#122033;--card:#0f1a2c;--card-2:#152238;--border:#1f3450;--text:#f0f4f8;--muted:#8a9eb5;--accent:#c1121f;--accent-2:#2a9d8f;--gold:#ffd60a}
   html[data-theme="valentine"]{--bg:#1a0a12;--bg-2:#3a1528;--card:#22101c;--card-2:#2c1424;--border:#3d1f33;--text:#ffe4ec;--muted:#c294a8;--accent:#ff2d75;--accent-2:#ff8fab;--danger:#ff2d75}
-  html[data-theme="march8"]{--bg:#1a0e1a;--bg-2:#33173a;--card:#22102a;--card-2:#2b1433;--border:#3f1f4a;--text:#f9e7ff;--muted:#b29ac4;--accent:#e26bb5;--accent-2:#d4a5ff}
+  html[data-theme="march8"]{--bg:#1a0a1f;--bg-2:#2d1040;--card:#221030;--card-2:#2c1540;--border:#3f1f55;--text:#f9e7ff;--muted:#b8a4d4;--accent:#a855f7;--accent-2:#d946ef}
   html[data-theme="spring"]{--bg:#0f1a12;--bg-2:#1c3324;--card:#122019;--card-2:#182a20;--border:#234236;--text:#e6f5ee;--muted:#8aa896;--accent:#52b788;--accent-2:#f7a072;--ok:#52b788}
   html[data-theme="cosmos"]{--bg:#05070f;--bg-2:#0c1430;--card:#0a1020;--card-2:#10172e;--border:#1a2547;--text:#e8ecff;--muted:#8891b8;--accent:#4a90e2;--accent-2:#7b68ee;--gold:#ffd166}
   html[data-theme="summer"]{--bg:#1a1208;--bg-2:#3a2808;--card:#221808;--card-2:#2c2008;--border:#3d2c10;--text:#fff4d6;--muted:#c4a878;--accent:#ff9e00;--accent-2:#00b4d8}
@@ -38,13 +38,9 @@
   body.compact .topbar{padding:8px 18px}
   body.compact .btn{padding:10px 18px;font-size:14px}
 
-  /* =========================================================
-     ПРАЗДНИЧНЫЕ ЭФФЕКТЫ
-     ========================================================= */
   .holiday-particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
   .holiday-particle{position:absolute;top:-10vh;line-height:1;user-select:none;will-change:transform;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
   @keyframes holiday-fall{from{transform:translateY(-10vh) rotate(0deg)}to{transform:translateY(120vh) rotate(360deg)}}
-  @keyframes holiday-sway{0%,100%{margin-left:0}50%{margin-left:40px}}
 
   .holiday-greeting{
     display:none;align-items:center;gap:14px;
@@ -68,7 +64,6 @@
   .topbar-holiday-emoji.show{display:inline-block}
   @keyframes topbarEmojiBounce{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.15) rotate(5deg)}}
 
-  /* Праздничное свечение карточек */
   html[data-theme="halloween"] .fandom-card:hover,
   html[data-theme="halloween"] .popular-item:hover{box-shadow:0 0 24px -6px var(--accent)}
   html[data-theme="newyear"] .fandom-card:hover,
@@ -76,7 +71,7 @@
   html[data-theme="valentine"] .fandom-card:hover,
   html[data-theme="valentine"] .popular-item:hover{box-shadow:0 0 24px -6px #ff2d75}
   html[data-theme="march8"] .fandom-card:hover,
-  html[data-theme="march8"] .popular-item:hover{box-shadow:0 0 24px -6px #e26bb5}
+  html[data-theme="march8"] .popular-item:hover{box-shadow:0 0 24px -6px #a855f7}
   html[data-theme="spring"] .fandom-card:hover,
   html[data-theme="spring"] .popular-item:hover{box-shadow:0 0 24px -6px #52b788}
   html[data-theme="cosmos"] .fandom-card:hover,
@@ -92,11 +87,10 @@
   html[data-theme="friday13"] .fandom-card:hover,
   html[data-theme="friday13"] .popular-item:hover{box-shadow:0 0 24px -6px #dc2626}
 
-  /* Праздничная рамка вокруг search-hub */
   html[data-theme="halloween"] .search-hub-btn{border-color:#ff6a00;background:linear-gradient(135deg, rgba(255,106,0,.15), rgba(157,78,221,.15))}
   html[data-theme="newyear"] .search-hub-btn{border-color:#c1121f;background:linear-gradient(135deg, rgba(193,18,31,.15), rgba(42,157,143,.15))}
   html[data-theme="valentine"] .search-hub-btn{border-color:#ff2d75;background:linear-gradient(135deg, rgba(255,45,117,.15), rgba(255,143,171,.15))}
-  html[data-theme="march8"] .search-hub-btn{border-color:#e26bb5;background:linear-gradient(135deg, rgba(226,107,181,.15), rgba(212,165,255,.15))}
+  html[data-theme="march8"] .search-hub-btn{border-color:#a855f7;background:linear-gradient(135deg, rgba(168,85,247,.15), rgba(217,70,239,.15))}
   html[data-theme="spring"] .search-hub-btn{border-color:#52b788;background:linear-gradient(135deg, rgba(82,183,136,.15), rgba(247,160,114,.15))}
   html[data-theme="cosmos"] .search-hub-btn{border-color:#7b68ee;background:linear-gradient(135deg, rgba(74,144,226,.15), rgba(123,104,238,.15))}
   html[data-theme="summer"] .search-hub-btn{border-color:#ff9e00;background:linear-gradient(135deg, rgba(255,158,0,.15), rgba(0,180,216,.15))}
@@ -835,9 +829,6 @@ const RANK_LABEL = { user: 'пользователя', admin: 'админист�
 function nextRank(role){ const i = RANKS.indexOf(role); return i >= 0 && i < RANKS.length - 1 ? RANKS[i+1] : null; }
 function prevRank(role){ const i = RANKS.indexOf(role); return i > 0 ? RANKS[i-1] : null; }
 
-/* =========================================================
-   ПРАЗДНИКИ С ЭКСКЛЮЗИВАМИ
-   ========================================================= */
 const BASE_THEMES = ['dark', 'light', 'purple', 'ocean'];
 
 const HOLIDAYS = [
@@ -866,9 +857,9 @@ const HOLIDAYS = [
     start: [2, 7], end: [2, 15]
   },
   {
-    id: 'march8', name: '8 Марта', emoji: '🌷',
-    particles: ['🌷','🌹','💐','🌺','💮','🌸'],
-    greeting: 'С 8 Марта!', greetingEmojis: ['🌷','💐'],
+    id: 'march8', name: '8 Марта', emoji: '♀️',
+    particles: ['♀️','✊','💪','💜','🟣','🚺','👩','💜','♀️'],
+    greeting: 'С 8 Марта! Солидарность!', greetingEmojis: ['♀️','✊'],
     start: [3, 1], end: [3, 10]
   },
   {
@@ -955,7 +946,6 @@ function checkHolidayUnlocks(){
   return newlyUnlocked;
 }
 
-/* SHA-256 */
 function sha256(str){
   const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
   0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
@@ -1024,12 +1014,11 @@ function clearHolidayEffects(){
 }
 
 function applyHolidayEffects(holiday){
-  // Частицы
   const container = document.getElementById('holidayParticles');
   if (container){
     container.innerHTML = '';
     if (settings.particles && settings.animations && holiday.particles && holiday.particles.length){
-      const count = 22;
+      const count = 24;
       for (let i = 0; i < count; i++){
         const el = document.createElement('span');
         el.className = 'holiday-particle';
@@ -1047,7 +1036,6 @@ function applyHolidayEffects(holiday){
     }
   }
 
-  // Приветствие
   const g = document.getElementById('holidayGreeting');
   if (g){
     document.getElementById('hgEmoji').textContent = holiday.greetingEmojis?.[0] || holiday.emoji;
@@ -1056,7 +1044,6 @@ function applyHolidayEffects(holiday){
     g.classList.add('show');
   }
 
-  // Эмодзи в шапке
   const te = document.getElementById('topbarEmoji');
   if (te){
     te.textContent = holiday.emoji;
@@ -1074,7 +1061,6 @@ function applySettings(){
   if (pop) pop.classList.toggle('hidden', !settings.showPopular);
   renderThemePicker();
 
-  // Праздничные эффекты
   const h = HOLIDAYS.find(x => x.id === settings.theme);
   if (h) applyHolidayEffects(h);
   else clearHolidayEffects();
@@ -1147,7 +1133,6 @@ function renderThemePicker(){
   }
 }
 
-/* СОСТОЯНИЕ */
 let usersCache = [], ticketsCache = [], fandomsCache = [];
 let firebaseReady = false, CURRENT_USER = null, viewedUserId = null;
 let ownerMigrationDone = false, selectedFandomId = null, editingFandomId = null;
