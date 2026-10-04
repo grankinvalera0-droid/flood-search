@@ -86,17 +86,41 @@
   [data-theme="winter"] .search-hub-btn{border-color:#90e0ef;background:linear-gradient(135deg,rgba(144,224,239,.15),rgba(72,202,228,.15))}
   [data-theme="friday13"] .search-hub-btn{border-color:#dc2626;background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(127,29,29,.15))}
 
+  /* АНИМАЦИЯ АВАТАРКИ */
+  @keyframes avatarFloat{
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%      { transform: translateY(-3px) rotate(-1.5deg); }
+    75%      { transform: translateY(3px) rotate(1.5deg); }
+  }
+  @keyframes avatarGlow{
+    0%, 100% { box-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent-2); }
+    50%      { box-shadow: 0 0 14px var(--accent), 0 0 28px var(--accent-2), 0 0 40px rgba(124,92,255,.6); }
+  }
+  @keyframes avatarBadgeSpin{
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50%      { transform: rotate(12deg) scale(1.15); }
+  }
+  #topAvatarFrame, #popAvatarFrame, #upAvatarFrame {
+    animation: avatarFloat 3.2s ease-in-out infinite, avatarGlow 2.4s ease-in-out infinite;
+    transition: transform .3s;
+  }
+  #topAvatarFrame:hover { animation-play-state: paused; transform: scale(1.15); }
+  #topAvatarFrame .av-badge, #popAvatarFrame .av-badge, #upAvatarFrame .av-badge {
+    animation: avatarBadgeSpin 2s ease-in-out infinite;
+  }
+  body.no-anim #topAvatarFrame, body.no-anim #popAvatarFrame, body.no-anim #upAvatarFrame { animation: none !important; }
+
   /* ЭКСКЛЮЗИВНЫЕ ОБВОДКИ АВАТАРОК */
   .av-frame{position:relative;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;line-height:0}
   .av-frame img{border-radius:50%;display:block;object-fit:cover;border:none !important}
   .av-frame .av-badge{position:absolute;bottom:-4px;right:-4px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1;background:var(--card);border:2px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.5);z-index:2}
   .av-frame .av-badge.hidden{display:none}
   .av-frame.av-user{padding:2px;background:var(--border)}
-  .av-frame.av-admin{padding:2px;background:linear-gradient(135deg,#3b82f6,#06b6d4);box-shadow:0 0 12px rgba(59,130,246,.55)}
+  .av-frame.av-admin{padding:2px;background:linear-gradient(135deg,#3b82f6,#06b6d4)}
   .av-frame.av-admin .av-badge{border-color:#3b82f6}
-  .av-frame.av-owner{padding:2px;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 16px rgba(251,191,36,.6)}
+  .av-frame.av-owner{padding:2px;background:linear-gradient(135deg,#fbbf24,#f59e0b)}
   .av-frame.av-owner .av-badge{border-color:#fbbf24}
-  .av-frame.av-founder{padding:2px;background:linear-gradient(135deg,#dc2626,#fbbf24,#dc2626,#fbbf24);background-size:300% 300%;animation:founderSpin 4s linear infinite;box-shadow:0 0 20px rgba(220,38,38,.55),0 0 30px rgba(251,191,36,.35)}
+  .av-frame.av-founder{padding:2px;background:linear-gradient(135deg,#dc2626,#fbbf24,#dc2626,#fbbf24);background-size:300% 300%;animation:founderSpin 4s linear infinite, avatarGlow 2.4s ease-in-out infinite;box-shadow:0 0 20px rgba(220,38,38,.55),0 0 30px rgba(251,191,36,.35)}
   .av-frame.av-founder .av-badge{border-color:#fbbf24;font-size:13px}
   @keyframes founderSpin{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   .avatar-btn .av-frame img{width:38px;height:38px}
@@ -158,7 +182,8 @@
   .tab{flex:1;font:inherit;font-size:14px;font-weight:600;background:transparent;border:none;color:var(--muted);padding:10px;border-radius:9px;cursor:pointer}
   .tab.active{background:var(--accent);color:#fff}
   .avatar-picker{display:flex;flex-direction:column;align-items:center;gap:11px;margin-bottom:22px}
-  .avatar-preview{width:92px;height:92px;border-radius:50%;object-fit:cover;border:2px solid var(--border);background:var(--card-2)}
+  .avatar-preview{width:92px;height:92px;border-radius:50%;object-fit:cover;border:2px solid var(--border);background:var(--card-2);animation:avatarFloat 3.2s ease-in-out infinite}
+  body.no-anim .avatar-preview{animation:none}
   .avatar-hint{font-size:12.5px;color:var(--muted)}
   #screen-main{flex-direction:column}
   .topbar{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid var(--border);background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);position:sticky;top:0;z-index:50}
@@ -228,7 +253,7 @@
   .popular-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:.15s;background:var(--card-2)}
   .popular-item:hover{border-color:var(--accent);background:rgba(124,92,255,.08);transform:translateX(3px)}
   .popular-rank{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;background:rgba(124,92,255,.12);color:var(--accent);border:1px solid rgba(124,92,255,.3)}
-  .popular-item:nth-child(1) .popular-rank{background:linear-gradient(135deg,#ffb03b,#ff7a45);color:#fff;border:none;box-shadow:0 0 12px rgba(255,140,60,.5)}
+  .popular-item:nth-child(1) .popular-rank{background:linear-gradient(135deg,#ffb03b,#ff7a45);color:#fff;border:none}
   .popular-item:nth-child(2) .popular-rank{background:linear-gradient(135deg,#c0c6d4,#8b93a7);color:#fff;border:none}
   .popular-item:nth-child(3) .popular-rank{background:linear-gradient(135deg,#cd7f32,#a0522d);color:#fff;border:none}
   .popular-body{flex:1;min-width:0}
@@ -448,7 +473,7 @@
   .congrats-role.gold{background:linear-gradient(135deg,rgba(251,191,36,.25),rgba(245,158,11,.15));border-color:#fbbf24}
   .congrats-role.dark{background:linear-gradient(135deg,rgba(220,38,38,.25),rgba(127,29,29,.15));border-color:#dc2626}
   .congrats-btn{font:inherit;font-weight:800;font-size:16px;padding:14px 40px;border-radius:14px;border:none;cursor:pointer;background:var(--grad);color:#fff;box-shadow:0 12px 30px -10px var(--accent);transition:.2s}
-  .congrats-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px var(--accent)}
+  .congrats-btn:hover{transform:translateY(-2px)}
   .confetti{position:absolute;width:10px;height:10px;top:-20px;opacity:.9;pointer-events:none}
   @keyframes confettiFall{from{transform:translateY(-20px) rotate(0deg)}to{transform:translateY(110vh) rotate(720deg)}}
   @media(max-width:640px){
@@ -529,8 +554,8 @@
     <div class="avatar-picker">
       <img id="regAvatarPreview" class="avatar-preview" alt="Аватар" />
       <input type="file" id="regAvatarInput" accept="image/*" hidden />
-      <button type="button" id="regAvatarBtn" class="btn btn-ghost" style="font-size:13.5px;padding:9px 16px">Добавить фото</button>
-      <div class="avatar-hint">Необязательно</div>
+      <button type="button" id="regAvatarBtn" class="btn btn-ghost" style="font-size:13.5px;padding:9px 16px">Добавить своё фото</button>
+      <div class="avatar-hint">Если не загрузить — будет наш фирменный персонаж</div>
     </div>
     <div class="field"><label for="regName">Имя</label><input id="regName" type="text" placeholder="Как вас зовут" maxlength="40" /></div>
     <div class="field"><label for="regUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="regUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
@@ -1082,6 +1107,50 @@ function showThemeFlash(theme){
   setTimeout(() => flash.classList.remove('show'), 1400);
 }
 
+/* =========================================================
+   НОВЫЙ ПЕРСОНАЖ-АВАТАРКА (SVG)
+   ========================================================= */
+function defaultAvatar(name){
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<defs>
+<radialGradient id="bg" cx="50%" cy="35%"><stop offset="0" stop-color="#3d1a45"/><stop offset="1" stop-color="#0a0208"/></radialGradient>
+<linearGradient id="coat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8b1e3f"/><stop offset="1" stop-color="#3a0a1e"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd93b"/><stop offset="1" stop-color="#c89000"/></linearGradient>
+</defs>
+<circle cx="100" cy="100" r="100" fill="url(#bg)"/>
+<rect x="78" y="162" width="16" height="32" fill="#1a0812"/>
+<rect x="106" y="162" width="16" height="32" fill="#1a0812"/>
+<rect x="76" y="188" width="20" height="8" rx="2" fill="#0a0208"/>
+<rect x="104" y="188" width="20" height="8" rx="2" fill="#0a0208"/>
+<path d="M66 88 Q58 105 62 150 L64 168 L136 168 L138 150 Q142 105 134 88 L118 80 L100 92 L82 80 Z" fill="url(#coat)"/>
+<path d="M82 80 L100 92 L118 80 L124 92 L100 104 L76 92 Z" fill="#3a0a1e"/>
+<path d="M82 80 L100 92 L96 128 L78 100 Z" fill="#5a0f28" opacity="0.5"/>
+<path d="M118 80 L100 92 L104 128 L122 100 Z" fill="#5a0f28" opacity="0.5"/>
+<circle cx="100" cy="126" r="7" fill="#ffd93b" stroke="#7c5cff" stroke-width="2"/>
+<circle cx="100" cy="126" r="3" fill="#7c5cff"/>
+<circle cx="100" cy="146" r="2.5" fill="#ffd93b"/>
+<circle cx="100" cy="156" r="2.5" fill="#ffd93b"/>
+<rect x="64" y="34" width="72" height="58" rx="6" fill="#f0ddc0"/>
+<circle cx="82" cy="63" r="15" fill="#f5e8d0"/>
+<circle cx="82" cy="63" r="13" fill="none" stroke="#2a0d1a" stroke-width="2"/>
+<circle cx="82" cy="63" r="9" fill="none" stroke="#2a0d1a" stroke-width="2"/>
+<circle cx="82" cy="63" r="5" fill="none" stroke="#2a0d1a" stroke-width="2"/>
+<circle cx="82" cy="63" r="2" fill="#2a0d1a"/>
+<rect x="100" y="34" width="36" height="58" rx="6" fill="url(#gold)"/>
+<rect x="104" y="36" width="2" height="54" fill="#8b6400" opacity="0.5"/>
+<rect x="110" y="36" width="2" height="54" fill="#8b6400" opacity="0.5"/>
+<rect x="116" y="36" width="2" height="54" fill="#8b6400" opacity="0.5"/>
+<rect x="122" y="36" width="2" height="54" fill="#8b6400" opacity="0.5"/>
+<rect x="128" y="36" width="2" height="54" fill="#8b6400" opacity="0.5"/>
+<rect x="134" y="36" width="2" height="54" fill="#8b6400" opacity="0.5"/>
+<rect x="64" y="34" width="72" height="58" rx="6" fill="none" stroke="#2a0818" stroke-width="2.5"/>
+<path d="M60 36 Q62 20 100 16 Q138 20 140 36 L136 40 Q100 30 64 40 Z" fill="#2a0818"/>
+<ellipse cx="100" cy="34" rx="40" ry="5" fill="#3a0a1e"/>
+<path d="M98 16 L96 6 L104 6 L102 16 Z" fill="#ffd93b"/>
+</svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
 function applyAvatarFrame(frameId, badgeId, user){
   const frame = document.getElementById(frameId);
   const badge = document.getElementById(badgeId);
@@ -1444,13 +1513,6 @@ try {
 
 function showScreen(id){ document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); $(id).classList.add('active'); window.scrollTo(0,0); }
 function normalizeUsername(v){ return String(v || '').replace(/^@+/, '').toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 32); }
-function defaultAvatar(name){
-  const letter = ((name || '?').trim()[0] || '?').toUpperCase();
-  const palette = ['#7c5cff','#5b8cff','#ff5c8a','#ffb03b','#33d6a6','#ff7a45'];
-  const color = palette[letter.charCodeAt(0) % palette.length];
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect width="200" height="200" fill="${color}"/><text x="100" y="104" font-size="96" font-family="Arial,Helvetica,sans-serif" fill="#fff" text-anchor="middle" dominant-baseline="middle">${letter}</text></svg>`;
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-}
 function roleOf(u){ return OWNER_USERNAMES.includes(u) ? 'owner' : 'user'; }
 function roleLabel(r){ return r === 'owner' ? '👑 Владелец' : r === 'admin' ? '🛡️ Администрация' : 'Пользователь'; }
 function roleClass(r){ return r === 'owner' ? 'badge-owner' : r === 'admin' ? 'badge-admin' : 'badge-user'; }
@@ -1694,22 +1756,15 @@ searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) doSe
 function doSearch(query){
   const raw = query.trim();
   const q = raw.toLowerCase().replace(/^@+/, '');
-
   if (!q){ searchResults.classList.add('hidden'); return; }
-
   const isAdminUser = CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
   const showAll = isAdminUser && q === 'all';
-
   let results;
   if (showAll){
     results = usersCache.slice().sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
   } else {
-    results = usersCache.filter(u =>
-      u.username.toLowerCase().includes(q) ||
-      u.name.toLowerCase().includes(q)
-    ).slice(0, 20);
+    results = usersCache.filter(u => u.username.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)).slice(0, 20);
   }
-
   if (results.length === 0){
     searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>';
   } else {
@@ -1751,7 +1806,6 @@ function renderUserProfile(userId, silent){
       const ticketCount = getTickets().filter(t => t.fromId === user.id).length;
       const fandomEl = $('upFandoms'); if (fandomEl) fandomEl.textContent = fandomCount;
       const ticketEl = $('upTickets'); if (ticketEl) ticketEl.textContent = ticketCount;
-
       const snap = await get(ref(db, 'userData/' + user.id));
       const data = snap.val() || {};
       const themes = Array.isArray(data.unlockedThemes) ? data.unlockedThemes : [];
@@ -1759,17 +1813,12 @@ function renderUserProfile(userId, silent){
       if (user.role === 'admin' || user.role === 'owner') exclCount += ADMIN_THEMES_DATA.length;
       if (user.role === 'owner') exclCount += OWNER_THEMES_DATA.length;
       const exclEl = $('upExclusives'); if (exclEl) exclEl.textContent = exclCount;
-
       const themeData = data.currentThemeData;
       const themeEl = $('upTheme');
       if (themeEl){
-        if (themeData && themeData.emoji && themeData.name){
-          themeEl.textContent = `${themeData.emoji} ${themeData.name}`;
-        } else if (data.currentTheme){
-          themeEl.textContent = data.currentTheme;
-        } else {
-          themeEl.textContent = '—';
-        }
+        if (themeData && themeData.emoji && themeData.name) themeEl.textContent = `${themeData.emoji} ${themeData.name}`;
+        else if (data.currentTheme) themeEl.textContent = data.currentTheme;
+        else themeEl.textContent = '—';
       }
     } catch(e){ console.warn('[Profile stats]', e); }
   })();
@@ -2062,7 +2111,6 @@ function updateTgBanner(){
   const now = Date.now();
   const shouldShow = !hiddenAt || (now - hiddenAt) >= TG_BANNER_RETURN_MS;
   banner.classList.toggle('hidden', !shouldShow);
-
   if (tgBannerTimer){ clearTimeout(tgBannerTimer); tgBannerTimer = null; }
   if (!shouldShow){
     const remaining = TG_BANNER_RETURN_MS - (now - hiddenAt);
