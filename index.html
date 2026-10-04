@@ -13,6 +13,7 @@
   html[data-theme="owner"]{--bg:#160f02;--bg-2:#3d2a05;--card:#221808;--card-2:#2e220c;--border:#4a3812;--text:#fff4d6;--muted:#c4a86a;--accent:#fbbf24;--accent-2:#f59e0b;--gold:#fcd34d}
   html[data-theme="superowner"]{--bg:#0a0202;--bg-2:#2a0606;--card:#140505;--card-2:#1e0808;--border:#3a0a0a;--text:#ffe0e0;--muted:#b88a8a;--accent:#dc2626;--accent-2:#f59e0b;--gold:#fcd34d;--danger:#ef4444}
   html[data-theme="birthday"]{--bg:#1a0812;--bg-2:#3a1030;--card:#220c1c;--card-2:#2c1024;--border:#3d1a33;--text:#ffe4f2;--muted:#c894b8;--accent:#ff4fa3;--accent-2:#ffb03b;--gold:#ffd60a}
+  html[data-theme="april1"]{--bg:#1a0f1e;--bg-2:#3a1a40;--card:#220f28;--card-2:#2c1433;--border:#3f1f4a;--text:#ffe6f5;--muted:#c494c4;--accent:#ff4fb3;--accent-2:#ffd93b;--gold:#ffd93b}
   html[data-theme="halloween"]{--bg:#0a0508;--bg-2:#2a0d1a;--card:#140810;--card-2:#1d0f18;--border:#2e1520;--text:#ffe8d6;--muted:#a38a7a;--accent:#ff6a00;--accent-2:#9d4edd;--gold:#ffb703}
   html[data-theme="newyear"]{--bg:#0a1220;--bg-2:#122033;--card:#0f1a2c;--card-2:#152238;--border:#1f3450;--text:#f0f4f8;--muted:#8a9eb5;--accent:#c1121f;--accent-2:#2a9d8f;--gold:#ffd60a}
   html[data-theme="valentine"]{--bg:#1a0a12;--bg-2:#3a1528;--card:#22101c;--card-2:#2c1424;--border:#3d1f33;--text:#ffe4ec;--muted:#c294a8;--accent:#ff2d75;--accent-2:#ff8fab;--danger:#ff2d75}
@@ -56,6 +57,7 @@
   [data-theme="owner"] .fandom-card:hover,[data-theme="owner"] .popular-item:hover{box-shadow:0 0 24px -6px #fbbf24}
   [data-theme="superowner"] .fandom-card:hover,[data-theme="superowner"] .popular-item:hover{box-shadow:0 0 24px -6px #dc2626}
   [data-theme="birthday"] .fandom-card:hover,[data-theme="birthday"] .popular-item:hover{box-shadow:0 0 24px -6px #ff4fa3}
+  [data-theme="april1"] .fandom-card:hover,[data-theme="april1"] .popular-item:hover{box-shadow:0 0 24px -6px #ff4fb3}
   [data-theme="halloween"] .fandom-card:hover,[data-theme="halloween"] .popular-item:hover{box-shadow:0 0 24px -6px var(--accent)}
   [data-theme="newyear"] .fandom-card:hover,[data-theme="newyear"] .popular-item:hover{box-shadow:0 0 24px -6px var(--gold)}
   [data-theme="valentine"] .fandom-card:hover,[data-theme="valentine"] .popular-item:hover{box-shadow:0 0 24px -6px #ff2d75}
@@ -71,6 +73,7 @@
   [data-theme="owner"] .search-hub-btn{border-color:#fbbf24;background:linear-gradient(135deg,rgba(251,191,36,.2),rgba(245,158,11,.2))}
   [data-theme="superowner"] .search-hub-btn{border-color:#dc2626;background:linear-gradient(135deg,rgba(220,38,38,.2),rgba(245,158,11,.2))}
   [data-theme="birthday"] .search-hub-btn{border-color:#ff4fa3;background:linear-gradient(135deg,rgba(255,79,163,.2),rgba(255,176,59,.2))}
+  [data-theme="april1"] .search-hub-btn{border-color:#ff4fb3;background:linear-gradient(135deg,rgba(255,79,179,.2),rgba(255,217,59,.2))}
   [data-theme="halloween"] .search-hub-btn{border-color:#ff6a00;background:linear-gradient(135deg,rgba(255,106,0,.15),rgba(157,78,221,.15))}
   [data-theme="newyear"] .search-hub-btn{border-color:#c1121f;background:linear-gradient(135deg,rgba(193,18,31,.15),rgba(42,157,143,.15))}
   [data-theme="valentine"] .search-hub-btn{border-color:#ff2d75;background:linear-gradient(135deg,rgba(255,45,117,.15),rgba(255,143,171,.15))}
@@ -82,6 +85,42 @@
   [data-theme="autumn"] .search-hub-btn{border-color:#d97706;background:linear-gradient(135deg,rgba(217,119,6,.15),rgba(180,83,9,.15))}
   [data-theme="winter"] .search-hub-btn{border-color:#90e0ef;background:linear-gradient(135deg,rgba(144,224,239,.15),rgba(72,202,228,.15))}
   [data-theme="friday13"] .search-hub-btn{border-color:#dc2626;background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(127,29,29,.15))}
+
+  /* ЭКСКЛЮЗИВНЫЕ ОБВОДКИ АВАТАРОК */
+  .av-frame{position:relative;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;line-height:0}
+  .av-frame img{border-radius:50%;display:block;object-fit:cover;border:none !important}
+  .av-frame .av-badge{
+    position:absolute;bottom:-4px;right:-4px;
+    width:22px;height:22px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;line-height:1;
+    background:var(--card);border:2px solid var(--border);
+    box-shadow:0 2px 8px rgba(0,0,0,.5);
+    z-index:2;
+  }
+  .av-frame .av-badge.hidden{display:none}
+  .av-frame.av-user{padding:2px;background:var(--border)}
+  .av-frame.av-admin{padding:2px;background:linear-gradient(135deg,#3b82f6,#06b6d4);box-shadow:0 0 12px rgba(59,130,246,.55)}
+  .av-frame.av-admin .av-badge{border-color:#3b82f6}
+  .av-frame.av-owner{padding:2px;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 16px rgba(251,191,36,.6)}
+  .av-frame.av-owner .av-badge{border-color:#fbbf24}
+  .av-frame.av-founder{
+    padding:2px;
+    background:linear-gradient(135deg,#dc2626,#fbbf24,#dc2626,#fbbf24);
+    background-size:300% 300%;
+    animation:founderSpin 4s linear infinite;
+    box-shadow:0 0 20px rgba(220,38,38,.55),0 0 30px rgba(251,191,36,.35);
+  }
+  .av-frame.av-founder .av-badge{border-color:#fbbf24;font-size:13px}
+  @keyframes founderSpin{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .avatar-btn .av-frame img{width:38px;height:38px}
+  .avatar-btn .av-frame .av-badge{width:16px;height:16px;font-size:10px;bottom:-2px;right:-2px;border-width:2px}
+  .popup .av-wrap{display:flex;justify-content:center;margin-bottom:14px}
+  .popup .av-frame img.pop-avatar{width:70px;height:70px;margin:0}
+  .popup .av-frame .av-badge{width:24px;height:24px;font-size:13px}
+  .up-header .av-frame img.up-avatar{width:64px;height:64px}
+  .up-header .av-frame .av-badge{width:24px;height:24px;font-size:13px}
+
   .tg-banner{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;border-radius:14px;padding:12px 16px;width:100%;max-width:640px;box-shadow:0 8px 24px -10px rgba(34,158,217,.7);animation:tgBannerIn .5s cubic-bezier(.2,1.2,.4,1);position:relative}
   @keyframes tgBannerIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
   .tg-banner.hidden{display:none}
@@ -148,7 +187,7 @@
   .search-results{position:absolute;top:46px;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 22px 55px -18px rgba(0,0,0,.6);max-height:360px;overflow-y:auto;z-index:150}
   .search-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;cursor:pointer;transition:.13s}
   .search-item:hover{background:var(--card-2)}
-  .search-item img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+  .search-item img{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0}
   .search-item-info{flex:1;min-width:0}
   .search-item-name{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .search-item-username{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -177,9 +216,7 @@
   .inbox-badge.hidden{display:none}
   .user-area{position:relative}
   .avatar-btn{background:none;border:none;padding:0;cursor:pointer;border-radius:50%;line-height:0}
-  .avatar-btn img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
   .popup{position:absolute;top:56px;right:0;width:280px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 20px 18px;box-shadow:0 26px 60px -22px rgba(0,0,0,.6);z-index:100}
-  .popup img.pop-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--border);display:block;margin:0 auto 14px}
   .pop-name{text-align:center;font-size:17px;font-weight:700;margin-bottom:3px;word-break:break-word}
   .pop-username{text-align:center;font-size:13.5px;color:var(--muted);margin-bottom:12px;word-break:break-all}
   .pop-badge{display:block;text-align:center;width:fit-content;margin:0 auto 16px;font-size:12px;font-weight:700;letter-spacing:.4px;padding:5px 13px;border-radius:20px;text-transform:uppercase}
@@ -267,7 +304,6 @@
   .my-ticket-answer .answer-text{font-size:13.5px;line-height:1.55;color:var(--text);background:rgba(51,214,166,.06);padding:11px 13px;border-radius:10px;border-left:3px solid var(--ok)}
   .my-ticket-answer .answered-at{font-size:11.5px;color:var(--muted);margin-top:7px}
   .up-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-right:34px}
-  .up-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--border);flex-shrink:0}
   .up-meta{flex:1;min-width:0}
   .up-name{font-size:17px;font-weight:700;word-break:break-word;margin-bottom:2px}
   .up-username{font-size:13px;color:var(--muted);word-break:break-all}
@@ -555,9 +591,19 @@
       <button class="icon-btn-topbar achievements-btn" id="achievementsBtn" title="Достижения">🏆<span class="ach-badge hidden" id="achBadge">0</span></button>
       <button class="icon-btn-topbar settings-btn" id="settingsBtn" title="Настройки">⚙️</button>
       <div class="user-area">
-        <button class="avatar-btn" id="avatarBtn"><img id="topAvatar" alt="Аватар" /></button>
+        <button class="avatar-btn" id="avatarBtn">
+          <span class="av-frame av-user" id="topAvatarFrame">
+            <img id="topAvatar" alt="Аватар" />
+            <span class="av-badge hidden" id="topAvatarBadge"></span>
+          </span>
+        </button>
         <div class="popup hidden" id="profilePopup">
-          <img id="popAvatar" class="pop-avatar" alt="Аватар" />
+          <div class="av-wrap">
+            <span class="av-frame av-user" id="popAvatarFrame">
+              <img id="popAvatar" class="pop-avatar" alt="Аватар" />
+              <span class="av-badge hidden" id="popAvatarBadge"></span>
+            </span>
+          </div>
           <div class="pop-name" id="popName"></div>
           <div class="pop-username" id="popUsername"></div>
           <div class="pop-badge" id="popBadge"></div>
@@ -651,7 +697,10 @@
 <div class="modal-overlay hidden" id="userProfileModal"><div class="modal modal-narrow">
   <button class="modal-close" type="button">×</button>
   <div class="up-header">
-    <img id="upAvatar" class="up-avatar" alt="Аватар" />
+    <span class="av-frame av-user" id="upAvatarFrame">
+      <img id="upAvatar" class="up-avatar" alt="Аватар" />
+      <span class="av-badge hidden" id="upAvatarBadge"></span>
+    </span>
     <div class="up-meta"><div class="up-name" id="upName"></div><div class="up-username" id="upUsername"></div></div>
     <div class="kebab-wrap">
       <button class="kebab-btn hidden" id="kebabBtn" type="button">⋮</button>
@@ -669,6 +718,10 @@
     <div class="up-info-row"><span>ID</span><b id="upId"></b></div>
     <div class="up-info-row"><span>Регистрация</span><b id="upCreated"></b></div>
     <div class="up-info-row"><span>Статус</span><b id="upStatus"></b></div>
+    <div class="up-info-row"><span>Создано ФД</span><b id="upFandoms">0</b></div>
+    <div class="up-info-row"><span>Обращений</span><b id="upTickets">0</b></div>
+    <div class="up-info-row"><span>Эксклюзивов</span><b id="upExclusives">0</b></div>
+    <div class="up-info-row"><span>Текущая тема</span><b id="upTheme">—</b></div>
   </div>
 </div></div>
 
@@ -863,6 +916,7 @@ const OWNER_THEMES_DATA = [
 
 const HOLIDAYS = [
   { id: 'birthday', name: 'День рождения', emoji: '🎂', particles: ['🎂','🎉','🎈','🎁','🥳','✨','🎊'], greeting: 'С днём рождения сайта!', greetingEmojis: ['🎂','🎉'], start: [10, 1], end: [10, 31] },
+  { id: 'april1', name: '1 Апреля', emoji: '🤡', particles: ['🤡','😂','🤣','🎭','🎪','🃏','😜','🎉'], greeting: 'С 1 Апреля! День смеха!', greetingEmojis: ['🤡','😂'], start: [3, 25], end: [4, 2] },
   { id: 'halloween', name: 'Хэллоуин', emoji: '🎃', particles: ['🎃','👻','🦇','🕷️','🕸️','💀','🧙'], greeting: 'С Хэллоуином!', greetingEmojis: ['🎃','👻'], start: [10, 20], end: [11, 3] },
   { id: 'newyear', name: 'Новый год', emoji: '🎄', particles: ['❄️','🎄','⛄','🎁','🔔','⭐','🧦'], greeting: 'С Новым годом!', greetingEmojis: ['🎄','🎁'], start: [12, 20], end: [1, 10] },
   { id: 'winter', name: 'Зима', emoji: '❄️', particles: ['❄️','🌨️','⛄','🧊','💙'], greeting: 'Зимняя сказка', greetingEmojis: ['❄️','⛄'], start: [12, 1], end: [2, 28] },
@@ -1039,6 +1093,34 @@ function showThemeFlash(theme){
   void flash.offsetWidth;
   flash.classList.add('show');
   setTimeout(() => flash.classList.remove('show'), 1400);
+}
+
+function applyAvatarFrame(frameId, badgeId, user){
+  const frame = document.getElementById(frameId);
+  const badge = document.getElementById(badgeId);
+  if (!frame || !badge) return;
+  frame.classList.remove('av-user','av-admin','av-owner','av-founder');
+  badge.classList.add('hidden');
+  badge.textContent = '';
+
+  if (!user){ frame.classList.add('av-user'); return; }
+
+  const isFounder = OWNER_USERNAMES.includes(user.username);
+  if (isFounder){
+    frame.classList.add('av-founder');
+    badge.textContent = '⭐';
+    badge.classList.remove('hidden');
+  } else if (user.role === 'owner'){
+    frame.classList.add('av-owner');
+    badge.textContent = '👑';
+    badge.classList.remove('hidden');
+  } else if (user.role === 'admin'){
+    frame.classList.add('av-admin');
+    badge.textContent = '🛡️';
+    badge.classList.remove('hidden');
+  } else {
+    frame.classList.add('av-user');
+  }
 }
 
 function applySettings(){
@@ -1509,6 +1591,8 @@ function updateProfileBadge(){
   const badge = $('popBadge');
   badge.textContent = roleLabel(CURRENT_USER.role);
   badge.className = 'pop-badge ' + roleClass(CURRENT_USER.role);
+  applyAvatarFrame('topAvatarFrame', 'topAvatarBadge', CURRENT_USER);
+  applyAvatarFrame('popAvatarFrame', 'popAvatarBadge', CURRENT_USER);
 }
 
 function forceLogout(){
@@ -1631,7 +1715,11 @@ function doSearch(query){
     searchResults.innerHTML = results.map(u => {
       const avatar = u.avatar || defaultAvatar(u.name);
       const isSpecial = u.role !== 'user';
-      return `<div class="search-item" data-id="${u.id}"><img src="${avatar}" alt="" /><div class="search-item-info"><div class="search-item-name">${escapeHtml(u.name)}${u.banned ? ' 🚫' : ''}</div><div class="search-item-username">@${escapeHtml(u.username)}</div></div>${isSpecial ? `<span class="search-item-role ${roleClass(u.role)}">${u.role === 'owner' ? 'Владелец' : 'Админ'}</span>` : ''}</div>`;
+      const isFounder = OWNER_USERNAMES.includes(u.username);
+      const frameCls = isFounder ? 'av-founder' : (u.role === 'owner' ? 'av-owner' : (u.role === 'admin' ? 'av-admin' : 'av-user'));
+      const badgeEmoji = isFounder ? '⭐' : (u.role === 'owner' ? '👑' : (u.role === 'admin' ? '🛡️' : ''));
+      const badgeHtml = badgeEmoji ? `<span class="av-badge">${badgeEmoji}</span>` : '';
+      return `<div class="search-item" data-id="${u.id}"><span class="av-frame ${frameCls}" style="padding:1px"><img src="${avatar}" alt="" style="width:32px;height:32px" />${badgeHtml}</span><div class="search-item-info"><div class="search-item-name">${escapeHtml(u.name)}${u.banned ? ' 🚫' : ''}</div><div class="search-item-username">@${escapeHtml(u.username)}</div></div>${isSpecial ? `<span class="search-item-role ${roleClass(u.role)}">${u.role === 'owner' ? 'Владелец' : 'Админ'}</span>` : ''}</div>`;
     }).join('');
     searchResults.querySelectorAll('.search-item').forEach(el => el.addEventListener('click', () => { openUserProfileById(el.dataset.id); searchResults.classList.add('hidden'); searchInput.value = ''; }));
   }
@@ -1644,6 +1732,7 @@ function renderUserProfile(userId, silent){
   const user = usersCache.find(u => u.id === userId);
   if (!user){ closeModal('userProfileModal'); return; }
   $('upAvatar').src = user.avatar || defaultAvatar(user.name);
+  applyAvatarFrame('upAvatarFrame', 'upAvatarBadge', user);
   $('upName').textContent = user.name;
   $('upUsername').textContent = '@' + user.username;
   const badge = $('upBadge'); badge.textContent = roleLabel(user.role); badge.className = 'up-badge ' + roleClass(user.role);
@@ -1651,6 +1740,37 @@ function renderUserProfile(userId, silent){
   $('upCreated').textContent = formatDate(user.createdAt);
   $('upStatus').textContent = user.banned ? '🚫 Забанен' : '✅ Активен';
   renderUserExclusiveBadges(userId);
+
+  // Дополнительная информация
+  (async () => {
+    try {
+      const fandomCount = getFandoms().filter(f => f.createdBy === user.id).length;
+      const ticketCount = getTickets().filter(t => t.fromId === user.id).length;
+      const fandomEl = $('upFandoms'); if (fandomEl) fandomEl.textContent = fandomCount;
+      const ticketEl = $('upTickets'); if (ticketEl) ticketEl.textContent = ticketCount;
+
+      const snap = await get(ref(db, 'userData/' + user.id));
+      const data = snap.val() || {};
+      const themes = Array.isArray(data.unlockedThemes) ? data.unlockedThemes : [];
+      let exclCount = themes.length;
+      if (user.role === 'admin' || user.role === 'owner') exclCount += ADMIN_THEMES_DATA.length;
+      if (user.role === 'owner') exclCount += OWNER_THEMES_DATA.length;
+      const exclEl = $('upExclusives'); if (exclEl) exclEl.textContent = exclCount;
+
+      const themeData = data.currentThemeData;
+      const themeEl = $('upTheme');
+      if (themeEl){
+        if (themeData && themeData.emoji && themeData.name){
+          themeEl.textContent = `${themeData.emoji} ${themeData.name}`;
+        } else if (data.currentTheme){
+          themeEl.textContent = data.currentTheme;
+        } else {
+          themeEl.textContent = '—';
+        }
+      }
+    } catch(e){ console.warn('[Profile stats]', e); }
+  })();
+
   const promoteBtn = $('kebabPromote'), demoteBtn = $('kebabDemote'), banBtn = $('kebabBan'), unbanBtn = $('kebabUnban'), kebab = $('kebabBtn');
   const showKebab = isOwner(CURRENT_USER) && user.id !== CURRENT_USER.id && !isHardcodedOwner(user);
   if (!showKebab){ kebab.classList.add('hidden'); $('kebabMenu').classList.add('hidden'); return; }
@@ -1927,7 +2047,7 @@ function refreshTicketUI(){
   if (!$('adminPanelModal').classList.contains('hidden')) renderAdminPanel();
 }
 
-/* TELEGRAM BANNER — возвращается через 5 минут после закрытия */
+/* TELEGRAM BANNER */
 const LS_TG_HIDDEN_AT = 'fd_tg_banner_hidden_at';
 const TG_BANNER_RETURN_MS = 5 * 60 * 1000;
 let tgBannerTimer = null;
