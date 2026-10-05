@@ -245,7 +245,7 @@
   .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;position:relative;color:var(--text)}
   .modal-wide{max-width:860px}
   .modal-narrow{max-width:440px}
-  .modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;color:var(--muted);font-size:22px;cursor:pointer;width:34px;height:34px;border-radius:9px}
+  .modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;color:var(--muted);font-size:22px;cursor:pointer;width:34px;height:34px;border-radius:9px;z-index:5}
   .modal-close:hover{background:var(--card-2);color:var(--text)}
   .modal h2{font-size:20px;font-weight:700;margin-bottom:18px;padding-right:34px}
   .help-section{margin-bottom:16px}
@@ -344,8 +344,8 @@
   .fd-detail-desc:empty{display:none}
   .fd-links-header{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:10px}
   .fd-links{display:flex;flex-direction:column;gap:8px}
-  .fd-link-item{display:flex;align-items:center;gap:12px;background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--text);transition:.15s}
-  .fd-link-item:hover{border-color:var(--accent-2);background:rgba(91,140,255,.06)}
+  .fd-link-item{display:flex;align-items:center;gap:12px;background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--text);transition:.15s;cursor:pointer}
+  .fd-link-item:hover{border-color:var(--accent-2);background:rgba(91,140,255,.06);transform:translateX(3px)}
   .fd-link-icon{width:34px;height:34px;border-radius:50%;background:rgba(91,140,255,.12);border:1px solid rgba(91,140,255,.35);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
   .fd-link-body{flex:1;min-width:0}
   .fd-link-title{font-size:14px;font-weight:600;margin-bottom:2px;word-break:break-word}
@@ -505,8 +505,8 @@
   .captcha-verified .captcha-label{color:var(--ok)}
   .captcha-verified .captcha-task{color:var(--ok);background:rgba(51,214,166,.1);border-color:rgba(51,214,166,.3)}
 
-  /* ===== ОТЗЫВЫ ===== */
-  .reviews-summary{display:flex;align-items:center;gap:16px;background:var(--card-2);border-radius:14px;padding:14px 18px;margin-bottom:16px}
+  /* ===== ОТЗЫВЫ (общие стили) ===== */
+  .reviews-summary{display:flex;align-items:center;gap:16px;background:var(--card-2);border-radius:14px;padding:14px 18px;margin-bottom:14px}
   .reviews-avg{font-size:36px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
   .reviews-avg-meta{flex:1;min-width:0}
   .reviews-stars{display:flex;gap:2px;font-size:16px;color:var(--gold);margin-bottom:2px}
@@ -516,7 +516,7 @@
   .star-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--card-2);color:var(--muted);font-size:24px;line-height:1;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center}
   .star-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
   .star-btn.active{background:linear-gradient(135deg,rgba(255,198,92,.25),rgba(255,143,11,.15));border-color:var(--gold);color:var(--gold);box-shadow:0 4px 14px -4px var(--gold)}
-  .reviews-list{display:flex;flex-direction:column;gap:10px;max-height:50vh;overflow-y:auto;padding-right:4px}
+  .reviews-list{display:flex;flex-direction:column;gap:10px;max-height:40vh;overflow-y:auto;padding-right:4px}
   .review-card{background:var(--card-2);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
   .review-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
   .review-author{flex:1;min-width:0}
@@ -525,8 +525,9 @@
   .review-date{font-size:11px;color:var(--muted);white-space:nowrap}
   .review-text{font-size:13.5px;line-height:1.55;color:var(--text);opacity:.9;word-break:break-word;margin-top:6px}
   .review-card .reviews-stars{font-size:14px;margin-bottom:0}
-  .reviews-empty{text-align:center;padding:30px 20px;color:var(--muted);font-size:13.5px;line-height:1.6}
+  .reviews-empty{text-align:center;padding:24px 20px;color:var(--muted);font-size:13.5px;line-height:1.6;background:var(--card-2);border-radius:12px;border:1px dashed var(--border)}
   .review-pending-card{background:var(--card-2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:12px;padding:14px;margin-bottom:10px}
+  .review-pending-link{font-size:12px;color:var(--accent-2);margin-bottom:6px;word-break:break-word}
   .review-pending-actions{display:flex;gap:8px;margin-top:10px}
   .review-pending-actions .btn{flex:1;padding:10px;font-size:13px}
   .btn-approve{background:rgba(51,214,166,.15);color:var(--ok);border:1px solid rgba(51,214,166,.4)}
@@ -541,6 +542,17 @@
   .pending-fd-meta{font-size:11.5px;color:var(--muted);margin-bottom:6px}
   .pending-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.3px;padding:3px 8px;border-radius:20px;background:rgba(255,198,92,.15);color:var(--gold);border:1px solid rgba(255,198,92,.35);text-transform:uppercase;margin-left:8px;vertical-align:middle}
   .fandom-card.pending{border-color:rgba(255,198,92,.4);background:linear-gradient(135deg,rgba(255,198,92,.04),transparent)}
+
+  /* ===== ПОСАДОЧНАЯ СТРАНИЦА ССЫЛКИ ===== */
+  .link-landing-hero{text-align:center;padding:14px 0 8px}
+  .link-landing-icon{font-size:56px;line-height:1;margin-bottom:14px;filter:drop-shadow(0 8px 20px var(--accent))}
+  .link-landing-fandom{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:8px}
+  .link-landing-title{font-size:24px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px;word-break:break-word;padding-right:0;line-height:1.2}
+  .link-landing-url{font-size:13px;color:var(--accent-2);word-break:break-all;background:var(--card-2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:18px;font-family:ui-monospace,Menlo,Consolas,monospace}
+  .link-landing-enter{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 22px;font-size:15.5px;font-weight:800;border-radius:14px;background:var(--grad);color:#fff;text-decoration:none;box-shadow:0 14px 32px -12px var(--accent);transition:.2s}
+  .link-landing-enter:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px var(--accent)}
+  .link-reviews-header{font-size:14px;font-weight:800;letter-spacing:-.2px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .link-review-sub{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.55}
 
   /* ===== БАННЕР ЭКСКЛЮЗИВНЫХ ТЕМ ===== */
   .theme-banner{position:relative;width:100%;max-width:760px;border-radius:24px;overflow:hidden;padding:36px 30px;margin-bottom:2px;border:1px solid var(--border);box-shadow:0 30px 70px -32px rgba(0,0,0,.85),0 0 80px -20px var(--banner-glow);display:none;isolation:isolate;min-height:170px}
@@ -571,44 +583,37 @@
     .admin-search-wrap input{font-size:14px;padding:8px 12px}
     .icon-btn-topbar{width:36px;height:36px;font-size:16px}
     .avatar-btn .av-frame img{width:36px;height:36px}
-
     .admin-msg-btn,.fandoms-btn{padding:9px 12px;font-size:12px;border-radius:16px;gap:4px}
     .admin-msg-btn span:not(.inbox-badge),.fandoms-btn span:not(.inbox-badge){display:none}
     .admin-inbox-btn,.my-tickets-btn{width:36px;height:36px;padding:0;border-radius:50%;justify-content:center;position:relative;overflow:visible;flex-shrink:0}
     .admin-inbox-btn span:not(.inbox-badge),.my-tickets-btn span:not(.inbox-badge){display:none}
     .admin-inbox-btn .inbox-badge,.my-tickets-btn .inbox-badge{position:absolute;top:-4px;right:-4px;font-size:9px;padding:0 5px;min-width:16px;height:16px;border-radius:8px;border:2px solid var(--card);line-height:12px}
-
     .content{padding:16px 14px 100px;gap:14px}
     .search-hub-btn{padding:28px 20px;border-radius:20px;gap:10px}
     .search-hub-icon{font-size:40px;margin-bottom:0}
     .search-hub-title{font-size:18px}
     .search-hub-sub{font-size:12.5px;max-width:none}
     .popular-section{padding:16px;border-radius:16px}
-    .popular-header{margin-bottom:12px}
     .popular-item{padding:11px 12px;gap:10px}
     .popular-rank{width:26px;height:26px;font-size:12px}
     .popular-name{font-size:13.5px}
     .popular-views{font-size:11px;padding:3px 9px}
-
     .tg-banner{padding:11px 34px 11px 12px;gap:8px;border-radius:14px;position:relative}
     .tg-banner-icon{width:32px;height:32px;font-size:17px}
     .tg-banner-title{font-size:12.5px}
     .tg-banner-text{font-size:11px}
     .tg-banner-btn{font-size:11.5px;padding:7px 12px;border-radius:8px}
     .tg-banner-close{position:absolute;top:50%;right:6px;transform:translateY(-50%);font-size:16px;padding:2px 6px}
-
     .theme-banner{padding:24px 16px;min-height:120px;border-radius:20px}
     .theme-banner-badge{font-size:10px;padding:5px 12px;letter-spacing:1.2px;margin-bottom:10px}
     .theme-banner-title{font-size:18px;letter-spacing:.6px;margin-bottom:6px}
     .theme-banner-sub{font-size:10.5px;letter-spacing:1.8px}
     .theme-banner-emojis span{font-size:20px !important;opacity:.6}
-
     .modal-overlay{padding:0;align-items:flex-end;backdrop-filter:blur(3px)}
     .modal{max-width:100%;width:100%;border-radius:22px 22px 0 0;padding:22px 18px calc(26px + env(safe-area-inset-bottom));max-height:92vh;animation:sheetUp .3s cubic-bezier(.2,.9,.3,1)}
     .modal-wide,.modal-narrow{max-width:100%}
     .modal h2{font-size:18px;margin-bottom:14px;padding-right:40px}
     .modal-close{top:12px;right:12px;width:34px;height:34px;background:var(--card-2);border-radius:50%;font-size:20px}
-
     .auth-card,.rules-card{padding:24px 20px;border-radius:20px}
     .rules-text{max-height:50vh;font-size:13.5px}
     .rules-card h1{font-size:20px}
@@ -618,25 +623,25 @@
     .field input,.field textarea{font-size:15px;padding:12px 14px}
     .btn{padding:13px 20px;font-size:14.5px}
     .avatar-preview{width:78px;height:78px}
-
     .popup{position:fixed;top:60px;left:12px;right:12px;width:auto;max-width:none}
     .admin-msg-popup{position:fixed;top:60px;left:12px;right:12px;width:auto;max-width:none;max-height:70vh;overflow-y:auto}
     .search-results{position:fixed;top:60px;left:12px;right:12px;max-height:60vh}
-
     .captcha-row{gap:8px}
     .captcha-task{font-size:14px;padding:8px 12px}
     .captcha-row input{padding:10px 12px}
     .captcha-refresh{width:36px;height:36px}
-
     .reviews-summary{padding:12px 14px;gap:12px}
     .reviews-avg{font-size:28px}
     .reviews-stars{font-size:14px}
     .star-selector{gap:5px}
     .star-btn{width:42px;height:42px;font-size:22px;border-radius:10px}
-    .reviews-list{max-height:44vh}
+    .reviews-list{max-height:36vh}
     .review-card{padding:12px 14px}
     .review-text{font-size:13px}
-
+    .link-landing-icon{font-size:44px;margin-bottom:10px}
+    .link-landing-title{font-size:19px}
+    .link-landing-url{font-size:11.5px;padding:8px 10px}
+    .link-landing-enter{padding:13px 18px;font-size:14.5px}
     :root{--side-w:86vw}
     .side-panel{padding:20px 16px;gap:12px}
     .side-character-ring{width:82px;height:82px}
@@ -644,10 +649,8 @@
     .side-link{padding:11px 12px;border-radius:12px}
     .side-link-icon{width:32px;height:32px;font-size:15px}
     .side-toggle{height:52px;width:28px;font-size:14px}
-
     .tickets-layout{grid-template-columns:1fr;gap:12px;min-height:auto}
     .tickets-list{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:12px;max-height:200px}
-
     .font-picker{flex-wrap:wrap}
     .font-btn{padding:8px 10px;font-size:13px;min-width:auto;flex:1 0 calc(50% - 3px)}
     .theme-picker-holiday{grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px}
@@ -657,13 +660,11 @@
     .settings-row{padding:11px 0}
     .settings-row-title{font-size:13.5px}
     .settings-row-sub{font-size:11.5px}
-
     .toast-container{bottom:calc(16px + env(safe-area-inset-bottom));padding:0 12px;max-width:none}
     .toast{padding:12px 14px;gap:10px;border-radius:14px}
     .toast-icon{font-size:24px}
     .toast-title{font-size:13px}
     .toast-text{font-size:12px}
-
     .achievements-summary{padding:12px}
     .achievements-summary .ach-total{font-size:24px}
     .achievements-grid{grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:8px}
@@ -671,29 +672,23 @@
     .ach-emoji{font-size:26px;margin-bottom:6px}
     .ach-name{font-size:11.5px}
     .ach-desc{font-size:10px}
-
     .fd-detail-header{flex-direction:column;align-items:flex-start;gap:8px}
     .fd-actions{align-self:flex-end;margin-top:-40px}
     .fd-link-item{padding:11px 12px;gap:10px}
     .fd-link-icon{width:32px;height:32px;font-size:15px}
     .fd-link-title{font-size:13.5px}
     .fd-link-url{font-size:11.5px}
-
     .fd-link-row{grid-template-columns:1fr;gap:6px;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;position:relative}
     .fd-link-row .fd-link-remove{position:absolute;top:6px;right:6px;width:28px;height:28px;font-size:14px}
-
     .up-header{gap:12px;padding-right:40px}
     .up-header .av-frame img.up-avatar{width:56px;height:56px}
     .up-name{font-size:16px}
     .up-info-row{font-size:13px;padding:9px 0}
-
     .holiday-greeting{font-size:14px;padding:12px 16px;gap:8px}
     .holiday-greeting .hg-emoji{font-size:22px}
-
     .kebab-menu{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(280px,90vw);right:auto}
   }
   @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-
   @media(max-width:380px){
     .topbar .brand{display:none}
     .search-hub-btn{padding:24px 16px}
@@ -714,7 +709,6 @@
 <div class="side-backdrop" id="sideBackdrop"></div>
 <aside class="side-panel" id="sidePanel">
   <button class="side-panel-close" id="sidePanelClose" type="button" aria-label="Закрыть">×</button>
-
   <div class="side-character">
     <span class="side-character-ring">
       <img id="sideAvatar" alt="Персонаж" />
@@ -723,10 +717,8 @@
     <div class="side-character-name">ФД<span>Поиск</span></div>
     <div class="side-character-sub">Талисман проекта</div>
   </div>
-
   <div class="side-divider"></div>
   <div class="side-title">Связь с нами</div>
-
   <a class="side-link" href="https://t.me/floodsaid" target="_blank" rel="noopener">
     <span class="side-link-icon">✈️</span>
     <span class="side-link-body">
@@ -735,16 +727,6 @@
     </span>
     <span class="side-link-arrow">→</span>
   </a>
-
-  <button class="side-link" id="sideReviewsBtn" type="button">
-    <span class="side-link-icon">⭐</span>
-    <span class="side-link-body">
-      <span class="side-link-title">Отзывы</span>
-      <span class="side-link-sub">Оставить отзыв о сервисе</span>
-    </span>
-    <span class="side-link-arrow">→</span>
-  </button>
-
   <button class="side-link" id="sideHelpBtn" type="button">
     <span class="side-link-icon">❓</span>
     <span class="side-link-body">
@@ -753,7 +735,6 @@
     </span>
     <span class="side-link-arrow">→</span>
   </button>
-
   <button class="side-link" id="sideContactBtn" type="button">
     <span class="side-link-icon">📩</span>
     <span class="side-link-body">
@@ -762,7 +743,6 @@
     </span>
     <span class="side-link-arrow">→</span>
   </button>
-
   <div class="side-footer">ФД Поиск · 2026</div>
 </aside>
 
@@ -937,12 +917,11 @@
 <div class="modal-overlay hidden" id="helpModal"><div class="modal">
   <button class="modal-close" type="button">×</button>
   <h2>Помощь</h2>
-  <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией.</p></div>
+  <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией и ссылками на флуд-каналы.</p></div>
+  <div class="help-section"><h3>🔗 Посадочная страница ссылки</h3><p>Когда ты нажимаешь на ссылку — открывается страница с названием, URL и кнопкой «Войти в канал». Только после этого ты переходишь.</p></div>
+  <div class="help-section"><h3>⭐ Отзывы</h3><p>Внизу посадочной страницы можно оставить отзыв с оценкой. Он появится после проверки администрацией.</p></div>
   <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в настройки в день праздника — тема откроется с эксклюзивными эффектами.</p></div>
-  <div class="help-section"><h3>🛡️👑 Эксклюзивы</h3><p>Админам и владельцу доступны специальные темы с частицами и приветствием.</p></div>
   <div class="help-section"><h3>🏆 Достижения</h3><p>Жми 🏆 в шапке — там все твои награды.</p></div>
-  <div class="help-section"><h3>⭐ Отзывы</h3><p>Оставить отзыв можно в боковой панели. Перед публикацией его проверяет администрация.</p></div>
-  <div class="help-section"><h3>🔍 Поиск аккаунтов</h3><p>Админ может ввести <b>all</b> в поле поиска, чтобы увидеть все аккаунты.</p></div>
   <div class="modal-footer-divider"></div>
   <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
 </div></div>
@@ -1074,16 +1053,13 @@
 <div class="modal-overlay hidden" id="settingsModal"><div class="modal">
   <button class="modal-close" type="button">×</button>
   <h2>⚙️ Настройки</h2>
-
   <div class="settings-section">
     <div class="settings-section-title">🎨 Оформление</div>
-
     <div class="settings-row" style="display:block;padding-top:6px">
       <div class="settings-row-info" style="margin-bottom:12px">
         <div class="settings-row-title">Тема оформления</div>
         <div class="settings-row-sub">Праздничные, админские и владельческие — с эксклюзивными эффектами</div>
       </div>
-
       <div class="theme-group">
         <div class="theme-group-title"><span>Обычные</span></div>
         <div class="theme-picker" id="themePickerBase">
@@ -1093,37 +1069,21 @@
           <div class="theme-swatch" data-theme-val="ocean"><span class="theme-swatch-label">Океан</span></div>
         </div>
       </div>
-
       <div class="theme-group hidden" id="themeGroupAdmin">
-        <div class="theme-group-title">
-          <span>🛡️ Администрация — эксклюзив</span>
-          <span class="unlocked-count">🔓 Доступно</span>
-        </div>
+        <div class="theme-group-title"><span>🛡️ Администрация — эксклюзив</span><span class="unlocked-count">🔓 Доступно</span></div>
         <div class="theme-picker-holiday" id="themePickerAdmin"></div>
       </div>
-
       <div class="theme-group hidden" id="themeGroupOwner">
-        <div class="theme-group-title">
-          <span>👑 Владелец — эксклюзив</span>
-          <span class="unlocked-count owner-badge">🔓 Эксклюзив</span>
-        </div>
+        <div class="theme-group-title"><span>👑 Владелец — эксклюзив</span><span class="unlocked-count owner-badge">🔓 Эксклюзив</span></div>
         <div class="theme-picker-holiday" id="themePickerOwner"></div>
       </div>
-
       <div class="theme-group">
-        <div class="theme-group-title">
-          <span>🎁 Праздничные</span>
-          <span class="unlocked-count" id="holidayCount">0 / 0</span>
-        </div>
+        <div class="theme-group-title"><span>🎁 Праздничные</span><span class="unlocked-count" id="holidayCount">0 / 0</span></div>
         <div class="theme-picker-holiday" id="themePickerHoliday"></div>
       </div>
     </div>
-
     <div class="settings-row" style="display:block">
-      <div class="settings-row-info" style="margin-bottom:10px">
-        <div class="settings-row-title">Размер шрифта</div>
-        <div class="settings-row-sub">Влияет на весь интерфейс</div>
-      </div>
+      <div class="settings-row-info" style="margin-bottom:10px"><div class="settings-row-title">Размер шрифта</div><div class="settings-row-sub">Влияет на весь интерфейс</div></div>
       <div class="font-picker" id="fontPicker">
         <button class="font-btn" data-size="0.85" type="button">Мелкий</button>
         <button class="font-btn" data-size="1" type="button">Обычный</button>
@@ -1131,77 +1091,66 @@
         <button class="font-btn" data-size="1.2" type="button">XL</button>
       </div>
     </div>
-
-    <div class="settings-row">
-      <div class="settings-row-info"><div class="settings-row-title">Компактный режим</div><div class="settings-row-sub">Уменьшает отступы</div></div>
-      <label class="switch"><input type="checkbox" id="setCompact" /><span class="slider"></span></label>
-    </div>
-    <div class="settings-row">
-      <div class="settings-row-info"><div class="settings-row-title">Анимации</div><div class="settings-row-sub">Плавные переходы и частицы</div></div>
-      <label class="switch"><input type="checkbox" id="setAnimations" /><span class="slider"></span></label>
-    </div>
-    <div class="settings-row">
-      <div class="settings-row-info"><div class="settings-row-title">Праздничные частицы</div><div class="settings-row-sub">Падающие эмодзи на фоне</div></div>
-      <label class="switch"><input type="checkbox" id="setParticles" /><span class="slider"></span></label>
-    </div>
+    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Компактный режим</div><div class="settings-row-sub">Уменьшает отступы</div></div><label class="switch"><input type="checkbox" id="setCompact" /><span class="slider"></span></label></div>
+    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Анимации</div><div class="settings-row-sub">Плавные переходы и частицы</div></div><label class="switch"><input type="checkbox" id="setAnimations" /><span class="slider"></span></label></div>
+    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Праздничные частицы</div><div class="settings-row-sub">Падающие эмодзи на фоне</div></div><label class="switch"><input type="checkbox" id="setParticles" /><span class="slider"></span></label></div>
   </div>
-
   <div class="settings-section">
     <div class="settings-section-title">📱 Главный экран</div>
-    <div class="settings-row">
-      <div class="settings-row-info"><div class="settings-row-title">Показывать популярные ФД</div><div class="settings-row-sub">Блок на главной</div></div>
-      <label class="switch"><input type="checkbox" id="setShowPopular" /><span class="slider"></span></label>
-    </div>
-    <div class="settings-row">
-      <div class="settings-row-info"><div class="settings-row-title">Считать просмотры ФД</div><div class="settings-row-sub">Включать в популярные</div></div>
-      <label class="switch"><input type="checkbox" id="setCountViews" /><span class="slider"></span></label>
-    </div>
+    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Показывать популярные ФД</div><div class="settings-row-sub">Блок на главной</div></div><label class="switch"><input type="checkbox" id="setShowPopular" /><span class="slider"></span></label></div>
+    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Считать просмотры ФД</div><div class="settings-row-sub">Включать в популярные</div></div><label class="switch"><input type="checkbox" id="setCountViews" /><span class="slider"></span></label></div>
   </div>
-
   <div class="settings-section">
     <div class="settings-section-title">🔧 Прочее</div>
-    <div class="settings-row">
-      <div class="settings-row-info"><div class="settings-row-title">Компактные карточки ФД</div><div class="settings-row-sub">Меньше описания</div></div>
-      <label class="switch"><input type="checkbox" id="setShortCards" /><span class="slider"></span></label>
-    </div>
+    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Компактные карточки ФД</div><div class="settings-row-sub">Меньше описания</div></div><label class="switch"><input type="checkbox" id="setShortCards" /><span class="slider"></span></label></div>
   </div>
-
   <div class="settings-footer">
     <button class="btn btn-ghost" id="resetSettingsBtn" type="button">↺ Сбросить настройки</button>
     <button class="btn btn-danger" id="clearLocalDataBtn" type="button">🗑 Очистить локальные данные</button>
   </div>
 </div></div>
 
-<div class="modal-overlay hidden" id="reviewsModal"><div class="modal">
+<!-- ===== ПОСАДОЧНАЯ СТРАНИЦА ССЫЛКИ ===== -->
+<div class="modal-overlay hidden" id="linkLandingModal"><div class="modal">
   <button class="modal-close" type="button">×</button>
-  <div class="modal-form-view">
-    <h2>⭐ Отзывы о сервисе</h2>
-    <div class="reviews-summary" id="reviewsSummary"></div>
-    <div class="reviews-list" id="reviewsList"></div>
+
+  <div class="link-landing-view" id="linkLandingMainView">
+    <div class="link-landing-hero">
+      <div class="link-landing-icon">🔗</div>
+      <div class="link-landing-fandom" id="linkLandingFandom"></div>
+      <h2 class="link-landing-title" id="linkLandingTitle"></h2>
+      <div class="link-landing-url" id="linkLandingUrl"></div>
+      <a class="link-landing-enter" id="linkLandingEnter" href="#" target="_blank" rel="noopener">🚀 Войти в канал</a>
+    </div>
     <div class="modal-footer-divider"></div>
-    <button class="btn btn-primary" id="openReviewFormBtn" style="width:100%">✍️ Оставить отзыв</button>
+    <div class="link-reviews-header">⭐ Отзывы о канале</div>
+    <div class="reviews-summary" id="linkReviewsSummary"></div>
+    <div class="reviews-list" id="linkReviewsList"></div>
+    <button class="btn btn-primary" id="openLinkReviewFormBtn" style="width:100%;margin-top:12px">✍️ Оставить отзыв</button>
   </div>
-  <div class="modal-success hidden" id="reviewFormView">
+
+  <div class="link-landing-view hidden" id="linkReviewFormView">
     <h2>✍️ Оставить отзыв</h2>
-    <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.55">Отзыв уйдёт на модерацию и появится только после одобрения администрацией.</p>
-    <div class="star-selector" id="reviewStars">
+    <p class="link-review-sub">Отзыв уйдёт на модерацию и появится только после одобрения администрацией.</p>
+    <div class="star-selector" id="linkReviewStars">
       <button type="button" class="star-btn" data-val="1">★</button>
       <button type="button" class="star-btn" data-val="2">★</button>
       <button type="button" class="star-btn" data-val="3">★</button>
       <button type="button" class="star-btn" data-val="4">★</button>
       <button type="button" class="star-btn" data-val="5">★</button>
     </div>
-    <div class="field"><label for="reviewText">Ваш отзыв *</label><textarea id="reviewText" placeholder="Что думаете о нашем сервисе?" maxlength="800" style="min-height:110px"></textarea></div>
-    <div class="error" id="reviewError"></div>
-    <button class="btn btn-primary" id="submitReviewBtn" style="width:100%">Отправить на модерацию</button>
-    <button class="btn btn-ghost" id="backToReviewsBtn" style="width:100%;margin-top:10px">← Назад к отзывам</button>
+    <div class="field"><label for="linkReviewText">Ваш отзыв *</label><textarea id="linkReviewText" placeholder="Что думаете о канале?" maxlength="800" style="min-height:110px"></textarea></div>
+    <div class="error" id="linkReviewError"></div>
+    <button class="btn btn-primary" id="submitLinkReviewBtn" style="width:100%">Отправить на модерацию</button>
+    <button class="btn btn-ghost" id="backToLinkLandingBtn" style="width:100%;margin-top:10px">← Назад</button>
   </div>
-  <div class="modal-success hidden" id="reviewSuccessView">
+
+  <div class="link-landing-view hidden" id="linkReviewSuccessView">
     <div class="success-block">
       <div class="success-icon">✓</div>
       <h2>Отзыв отправлен!</h2>
       <p>Он появится после проверки администрацией.</p>
-      <button class="btn btn-primary" id="closeReviewSuccess" type="button">Понятно</button>
+      <button class="btn btn-primary" id="closeLinkReviewSuccess" type="button">Понятно</button>
     </div>
   </div>
 </div></div>
@@ -1243,7 +1192,6 @@ function nextRank(role){ const i = RANKS.indexOf(role); return i >= 0 && i < RAN
 function prevRank(role){ const i = RANKS.indexOf(role); return i > 0 ? RANKS[i-1] : null; }
 
 const BASE_THEMES = ['dark', 'light', 'purple', 'ocean'];
-
 const ADMIN_THEMES_DATA = [
   { id: 'admin', name: 'Синий', emoji: '🛡️', particles: ['🛡️','⚔️','🔵','💠','⚡','✨','🔷'], greeting: 'Режим администратора', greetingEmojis: ['🛡️','⚔️'] }
 ];
@@ -1268,7 +1216,6 @@ const HOLIDAYS = [
 ];
 const ALL_EFFECT_THEMES = [...HOLIDAYS, ...ADMIN_THEMES_DATA, ...OWNER_THEMES_DATA];
 function findEffectTheme(id){ return ALL_EFFECT_THEMES.find(t => t.id === id); }
-
 const MONTHS_RU = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
 function isHolidayActive(h, date = new Date()){
   if (!h.start) return false;
@@ -1282,10 +1229,7 @@ function isHolidayActive(h, date = new Date()){
 function nextUnlockDate(h){
   const now = new Date(), year = now.getFullYear();
   if (h.special === 'friday13'){
-    for (let m = 0; m < 24; m++){
-      const d = new Date(year, now.getMonth() + m, 13);
-      if (d.getDay() === 5 && d > now) return d;
-    }
+    for (let m = 0; m < 24; m++){ const d = new Date(year, now.getMonth() + m, 13); if (d.getDay() === 5 && d > now) return d; }
     return new Date(year + 1, 0, 13);
   }
   const [sm, sd] = h.start;
@@ -1294,7 +1238,6 @@ function nextUnlockDate(h){
   return candidate;
 }
 function formatUnlockDate(d){ return `${d.getDate()} ${MONTHS_RU[d.getMonth()]}`; }
-
 const LS_UNLOCKED = 'fd_unlocked_themes';
 function getUnlockedThemes(){ try { return JSON.parse(localStorage.getItem(LS_UNLOCKED) || '[]'); } catch(e){ return []; } }
 function saveUnlockedThemes(arr){ localStorage.setItem(LS_UNLOCKED, JSON.stringify(arr)); }
@@ -1302,22 +1245,12 @@ function checkHolidayUnlocks(){
   const now = new Date();
   const unlocked = getUnlockedThemes();
   const newlyUnlocked = [];
-  HOLIDAYS.forEach(h => {
-    if (isHolidayActive(h, now) && !unlocked.includes(h.id)){ unlocked.push(h.id); newlyUnlocked.push(h); }
-  });
+  HOLIDAYS.forEach(h => { if (isHolidayActive(h, now) && !unlocked.includes(h.id)){ unlocked.push(h.id); newlyUnlocked.push(h); } });
   if (newlyUnlocked.length) saveUnlockedThemes(unlocked);
   return newlyUnlocked;
 }
-
 function sha256(str){
-  const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
-  0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
-  0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
-  0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
-  0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
-  0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
-  0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
-  0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
   let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
   const bytes = new TextEncoder().encode(str);
   const l = bytes.length;
@@ -1359,7 +1292,6 @@ const DEFAULT_SETTINGS = { theme: 'dark', fontSize: 1, compact: false, animation
 let settings = { ...DEFAULT_SETTINGS };
 function loadSettings(){ try { const raw = localStorage.getItem(LS_SETTINGS); if (raw) settings = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) }; } catch(e){ settings = { ...DEFAULT_SETTINGS }; } }
 function saveSettings(){ localStorage.setItem(LS_SETTINGS, JSON.stringify(settings)); }
-
 function isThemeUnlocked(themeId){
   if (BASE_THEMES.includes(themeId)) return true;
   if (ADMIN_THEMES_DATA.some(t => t.id === themeId)) return CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
@@ -1373,13 +1305,11 @@ function isExclusiveTheme(themeId){
   if (HOLIDAYS.some(h => h.id === themeId)) return true;
   return false;
 }
-
 function clearHolidayEffects(){
   const p = document.getElementById('holidayParticles'); if (p) p.innerHTML = '';
   const g = document.getElementById('holidayGreeting'); if (g) g.classList.remove('show');
   const te = document.getElementById('topbarEmoji'); if (te){ te.textContent = ''; te.classList.remove('show'); }
 }
-
 function applyThemeEffects(theme){
   const container = document.getElementById('holidayParticles');
   if (container){
@@ -1411,7 +1341,6 @@ function applyThemeEffects(theme){
   const te = document.getElementById('topbarEmoji');
   if (te){ te.textContent = theme.emoji; te.classList.add('show'); }
 }
-
 function showThemeFlash(theme){
   if (!settings.animations) return;
   const flash = document.getElementById('themeFlash');
@@ -1425,8 +1354,6 @@ function showThemeFlash(theme){
   flash.classList.add('show');
   setTimeout(() => flash.classList.remove('show'), 1400);
 }
-
-/* ===== БАННЕРЫ ЭКСКЛЮЗИВНЫХ ТЕМ ===== */
 const THEME_BANNERS = {
   admin:{badge:'🛡️ ЭКСКЛЮЗИВ АДМИНА',title:'РЕЖИМ АДМИНИСТРАТОРА',sub:'Порядок · Контроль · Сила',gradient:'linear-gradient(135deg,#050b18 0%,#0a1a3a 45%,#1e3a6b 100%)',glow:'rgba(59,130,246,.75)',emojis:['🛡️','⚔️','💠','⚡','🔷','🔹','✨','🌀','🛠️','🔵']},
   owner:{badge:'👑 ЭКСКЛЮЗИВ ВЛАДЕЛЬЦА',title:'РЕЖИМ ВЛАДЕЛЬЦА',sub:'Абсолютная власть',gradient:'linear-gradient(135deg,#160f02 0%,#3d2a05 45%,#6b4a0a 100%)',glow:'rgba(251,191,36,.8)',emojis:['👑','💎','⭐','🏆','💛','🌟','✨','🥇','🔱','🪙']},
@@ -1477,7 +1404,6 @@ function renderThemeBanner(){
   }).join('');
   banner.classList.add('show');
 }
-
 function defaultAvatar(name){
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
 <defs>
@@ -1518,7 +1444,6 @@ function defaultAvatar(name){
 </svg>`;
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
-
 function applyAvatarFrame(frameId, badgeId, user){
   const frame = document.getElementById(frameId);
   const badge = document.getElementById(badgeId);
@@ -1533,7 +1458,6 @@ function applyAvatarFrame(frameId, badgeId, user){
   else if (user.role === 'admin'){ frame.classList.add('av-admin'); badge.textContent = '🛡️'; badge.classList.remove('hidden'); }
   else { frame.classList.add('av-user'); }
 }
-
 function applySettings(){
   if (!isThemeUnlocked(settings.theme)){ settings.theme = 'dark'; saveSettings(); }
   document.documentElement.setAttribute('data-theme', settings.theme);
@@ -1556,7 +1480,6 @@ function applySettings(){
   const ss = document.getElementById('setShortCards'); if (ss) ss.checked = settings.shortCards;
   updateExclusiveCounter();
 }
-
 function pickTheme(themeId){
   const prev = settings.theme;
   settings.theme = themeId;
@@ -1569,7 +1492,6 @@ function pickTheme(themeId){
   if (theme) showToast(theme.emoji, `${theme.name} включён!`, wasExclusive ? 'Эксклюзивные эффекты активированы.' : 'Тема применена.');
   checkAchievements();
 }
-
 function renderThemePicker(){
   document.querySelectorAll('#themePickerBase .theme-swatch').forEach(s => s.classList.toggle('active', s.dataset.themeVal === settings.theme));
   const isAdminUser = CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
@@ -1626,7 +1548,6 @@ function renderThemePicker(){
   }
   updateExclusiveCounter();
 }
-
 async function renderUserExclusiveBadges(userId){
   const box = document.getElementById('upExclusiveBadges');
   if (!box) return;
@@ -1649,7 +1570,6 @@ async function renderUserExclusiveBadges(userId){
     if (badges.length){ box.innerHTML = badges.join(''); box.classList.remove('hidden'); }
   } catch(e){ console.warn('[Badges]', e); }
 }
-
 function countUserExclusives(){
   if (!CURRENT_USER) return 0;
   let count = 0;
@@ -1665,7 +1585,6 @@ function updateExclusiveCounter(){
   const cnt = document.getElementById('popExclusiveCount');
   if (box && cnt){ cnt.textContent = count; if (count > 0) box.classList.remove('hidden'); else box.classList.add('hidden'); }
 }
-
 const LS_STATS_PREFIX = 'fd_stats_';
 const DEFAULT_STATS = { totalViews: 0, fandomsCreated: 0, ticketsSent: 0, themeSwitchCount: 0, settingsChanged: false, themesUnlocked: [], role: 'user', firstLogin: 0, unlockedAchievements: [], congratsShown: { admin: false, owner: false } };
 let userStats = { ...DEFAULT_STATS };
@@ -1786,13 +1705,14 @@ let firebaseReady = false, CURRENT_USER = null, viewedUserId = null;
 let ownerMigrationDone = false, selectedFandomId = null, editingFandomId = null;
 let fdSearchMode = 'name';
 let selectedReviewRating = 0;
+let currentLinkContext = null; // { linkId, linkTitle, linkUrl, fandomName, fandomId }
 
 const getUsers = () => usersCache;
 const getTickets = () => ticketsCache;
 const getFandoms = () => fandomsCache;
 const getReviews = () => reviewsCache;
 function findUserByUsername(u){ return usersCache.find(x => x.username === u); }
-function getApprovedReviews(){ return reviewsCache.filter(r => r.status === 'approved').sort((a,b) => (b.moderatedAt||b.createdAt) - (a.moderatedAt||a.createdAt)); }
+function getApprovedReviewsForLink(linkId){ return reviewsCache.filter(r => r.linkId === linkId && r.status === 'approved').sort((a,b) => (b.moderatedAt||b.createdAt) - (a.moderatedAt||a.createdAt)); }
 function getPendingReviews(){ return reviewsCache.filter(r => r.status === 'pending').sort((a,b) => a.createdAt - b.createdAt); }
 function getPendingFandoms(){ return fandomsCache.filter(f => f.status === 'pending').sort((a,b) => a.createdAt - b.createdAt); }
 function visibleFandoms(){
@@ -1852,7 +1772,7 @@ try {
   });
   onValue(ref(db, 'reviews'), snap => {
     reviewsCache = Object.values(snap.val() || {});
-    if (!$('reviewsModal').classList.contains('hidden')) renderReviewsModal();
+    if (!$('linkLandingModal').classList.contains('hidden') && currentLinkContext) renderLinkReviews();
     if (!$('adminReviewsModal').classList.contains('hidden')) renderAdminReviews();
     updateAdminBadges();
   });
@@ -1888,7 +1808,7 @@ function resetModalView(mid){
   const f = m.querySelector('.modal-form-view'), s = m.querySelector('.modal-success');
   if (f) f.classList.remove('hidden'); if (s) s.classList.add('hidden');
   m.querySelectorAll('.error').forEach(e => e.textContent = '');
-  if (mid === 'reviewsModal'){ $('reviewFormView')?.classList.add('hidden'); $('reviewSuccessView')?.classList.add('hidden'); }
+  if (mid === 'linkLandingModal'){ showLinkLandingView('main'); }
 }
 
 $('btnAccept').addEventListener('click', () => { $('btnAccept').classList.add('hidden'); $('btnCreateAccount').classList.remove('hidden'); $('btnGoLogin').classList.remove('hidden'); });
@@ -2017,7 +1937,6 @@ function enterApp(user){
   $('searchResults').classList.add('hidden');
   showScreen('screen-main');
 }
-
 function updateProfileBadge(){
   if (!CURRENT_USER) return;
   const avatar = CURRENT_USER.avatar || defaultAvatar(CURRENT_USER.name);
@@ -2031,7 +1950,6 @@ function updateProfileBadge(){
   applyAvatarFrame('topAvatarFrame', 'topAvatarBadge', CURRENT_USER);
   applyAvatarFrame('popAvatarFrame', 'popAvatarBadge', CURRENT_USER);
 }
-
 function forceLogout(){
   document.body.classList.remove('side-open');
   document.body.classList.remove('in-app');
@@ -2052,7 +1970,6 @@ function forceLogout(){
   $('btnGoLogin').classList.add('hidden');
   showScreen('screen-rules');
 }
-
 $('avatarBtn').addEventListener('click', e => { e.stopPropagation(); $('profilePopup').classList.toggle('hidden'); $('adminMsgPopup').classList.add('hidden'); updateExclusiveCounter(); });
 $('adminMsgBtn').addEventListener('click', e => { e.stopPropagation(); $('adminMsgPopup').classList.toggle('hidden'); $('profilePopup').classList.add('hidden'); });
 document.addEventListener('click', e => {
@@ -2061,11 +1978,9 @@ document.addEventListener('click', e => {
   const sr = $('searchResults'); const si = $('adminSearchInput'); if (!sr.classList.contains('hidden') && !sr.contains(e.target) && e.target !== si) sr.classList.add('hidden');
   const km = $('kebabMenu'); const kb = $('kebabBtn'); if (!km.classList.contains('hidden') && !km.contains(e.target) && e.target !== kb) km.classList.add('hidden');
 });
-
 $('btnLogout').addEventListener('click', () => forceLogout());
 document.querySelectorAll('.modal-overlay').forEach(ov => ov.addEventListener('click', e => { if (e.target === ov) closeModal(ov); }));
 document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay'))));
-
 $('achievementsBtn').addEventListener('click', () => { renderAchievements(); openModal('achievementsModal'); });
 $('settingsBtn').addEventListener('click', () => { applySettings(); openModal('settingsModal'); });
 document.querySelectorAll('#themePickerBase .theme-swatch').forEach(sw => sw.addEventListener('click', () => pickTheme(sw.dataset.themeVal)));
@@ -2215,7 +2130,6 @@ function renderUserProfile(userId, silent){
   if (user.banned){ banBtn.classList.add('hidden'); unbanBtn.classList.remove('hidden'); } else { banBtn.classList.remove('hidden'); unbanBtn.classList.add('hidden'); }
   if (!silent) $('kebabMenu').classList.add('hidden');
 }
-
 $('kebabBtn').addEventListener('click', e => { e.stopPropagation(); $('kebabMenu').classList.toggle('hidden'); });
 $('kebabPromote').addEventListener('click', async () => {
   if (!isOwner(CURRENT_USER)) return;
@@ -2266,7 +2180,6 @@ function renderFandomsList(){
   }).join('');
   list.querySelectorAll('.fandom-card').forEach(el => el.addEventListener('click', () => openFandomDetail(el.dataset.id)));
 }
-
 function openFandomDetail(fandomId){
   selectedFandomId = fandomId;
   renderFandomDetail(fandomId);
@@ -2278,11 +2191,9 @@ function openFandomDetail(fandomId){
   }
   openModal('fandomDetailModal');
 }
-
 function renderFandomDetail(fandomId){
   const f = getFandoms().find(x => x.id === fandomId);
   if (!f){ closeModal('fandomDetailModal'); return; }
-  $('fdDetailName').textContent = f.name;
   const isPending = f.status === 'pending';
   const pendingHtml = isPending ? ' <span class="pending-badge">⏳ На модерации</span>' : '';
   $('fdDetailName').innerHTML = escapeHtml(f.name) + pendingHtml;
@@ -2293,90 +2204,125 @@ function renderFandomDetail(fandomId){
   const links = Array.isArray(f.links) ? f.links.filter(l => l && l.url) : [];
   if (links.length === 0){ linksEl.innerHTML = `<div class="fd-links-empty">Инфо по этому ФД пока нет.</div>`; return; }
   linksEl.innerHTML = links.map(l => {
-    const url = normalizeUrl(l.url), safe = safeUrl(url);
-    const title = (l.title || '').trim() || 'Открыть ссылку';
-    const href = safe ? safe : '#', target = safe ? 'target="_blank" rel="noopener"' : '';
-    return `<a class="fd-link-item" href="${escapeHtml(href)}" ${target}><div class="fd-link-icon">🔗</div><div class="fd-link-body"><div class="fd-link-title">${escapeHtml(title)}</div><div class="fd-link-url">${escapeHtml(url)}</div></div><div class="fd-link-arrow">→</div></a>`;
+    const url = normalizeUrl(l.url);
+    const title = (l.title || '').trim() || 'Открыть канал';
+    const linkId = l.id || ('l_' + Math.random().toString(36).slice(2,8));
+    return `<div class="fd-link-item" data-link-id="${escapeHtml(linkId)}" data-link-title="${escapeHtml(title)}" data-link-url="${escapeHtml(url)}" data-fandom="${escapeHtml(f.name)}" data-fandom-id="${escapeHtml(f.id)}">
+      <div class="fd-link-icon">🔗</div>
+      <div class="fd-link-body">
+        <div class="fd-link-title">${escapeHtml(title)}</div>
+        <div class="fd-link-url">${escapeHtml(url)}</div>
+      </div>
+      <div class="fd-link-arrow">→</div>
+    </div>`;
   }).join('');
-}
-
-$('createFandomBtn').addEventListener('click', () => {
-  if (!CURRENT_USER){ showToast('🔒', 'Войдите', 'Чтобы создать ФД, нужно войти.'); return; }
-  editingFandomId = null; openFandomForm(null);
-});
-$('editFandomBtn').addEventListener('click', () => {
-  const f = getFandoms().find(x => x.id === selectedFandomId); if (!f) return;
-  const canEdit = isAdminOrOwner(CURRENT_USER) || (CURRENT_USER && f.createdBy === CURRENT_USER.id);
-  if (!canEdit) return;
-  editingFandomId = f.id; openFandomForm(f);
-});
-
-function openFandomForm(fandom){
-  $('fandomFormTitle').textContent = fandom ? 'Редактировать ФД' : 'Создать ФД';
-  $('fdName').value = fandom ? fandom.name : '';
-  $('fdDesc').value = fandom ? (fandom.description || '') : '';
-  $('fandomError').textContent = '';
-  const editor = $('fdLinksEditor'); editor.innerHTML = '';
-  const links = (fandom && Array.isArray(fandom.links)) ? fandom.links : [];
-  if (links.length === 0) addLinkRow(); else links.forEach(l => addLinkRow(l.title || '', l.url || ''));
-  closeModal('fandomsModal'); openModal('fandomFormModal');
-}
-function addLinkRow(title = '', url = ''){
-  const editor = $('fdLinksEditor');
-  const row = document.createElement('div'); row.className = 'fd-link-row';
-  row.innerHTML = `<input type="text" class="fd-link-title" placeholder="Название" maxlength="80" value="${escapeHtml(title)}" /><input type="text" class="fd-link-url" placeholder="https://..." maxlength="500" value="${escapeHtml(url)}" /><button type="button" class="fd-link-remove">×</button>`;
-  editor.appendChild(row);
-  row.querySelector('.fd-link-remove').addEventListener('click', () => { row.remove(); if (editor.children.length === 0) addLinkRow(); });
-}
-$('addLinkBtn').addEventListener('click', () => addLinkRow());
-
-$('fandomForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  if (!CURRENT_USER) return;
-  const err = $('fandomError'); err.textContent = '';
-  const name = $('fdName').value.trim(), description = $('fdDesc').value.trim();
-  if (name.length < 2) return err.textContent = 'Укажите название ФД.';
-  const rows = $('fdLinksEditor').querySelectorAll('.fd-link-row');
-  const links = [];
-  rows.forEach(row => {
-    const t = row.querySelector('.fd-link-title').value.trim();
-    const u = row.querySelector('.fd-link-url').value.trim();
-    if (u) links.push({ id: 'l_' + Date.now() + '_' + Math.random().toString(36).slice(2,6), title: t || '', url: u });
+  linksEl.querySelectorAll('.fd-link-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const ctx = {
+        linkId: el.dataset.linkId,
+        linkTitle: el.dataset.linkTitle,
+        linkUrl: el.dataset.linkUrl,
+        fandomName: el.dataset.fandom,
+        fandomId: el.dataset.fandomId
+      };
+      openLinkLanding(ctx);
+    });
   });
-  const isMod = isAdminOrOwner(CURRENT_USER);
-  try {
-    if (editingFandomId){
-      const orig = getFandoms().find(x => x.id === editingFandomId);
-      const canEdit = isMod || (orig && orig.createdBy === CURRENT_USER.id);
-      if (!canEdit){ err.textContent = 'Нет прав.'; return; }
-      const payload = { name, description, links };
-      if (!isMod){ payload.status = 'pending'; }
-      await update(ref(db, 'fandoms/' + editingFandomId), payload);
-      closeModal('fandomFormModal');
-      setTimeout(() => openFandomDetail(editingFandomId), 240);
-    } else {
-      const id = 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
-      const fandom = { id, name, description, links, views: 0, createdBy: CURRENT_USER.id, createdByName: CURRENT_USER.name, createdAt: Date.now(), status: isMod ? 'approved' : 'pending' };
-      await set(ref(db, 'fandoms/' + id), fandom);
-      $('fandomForm').reset(); $('fdLinksEditor').innerHTML = ''; addLinkRow();
-      closeModal('fandomFormModal');
-      setTimeout(() => { renderFandomsList(); openModal('fandomsModal'); }, 240);
-      incrementStat('fandomsCreated', 1); checkAchievements();
-      showToast(isMod ? '✅' : '⏳', isMod ? 'ФД создан' : 'Заявка отправлена', isMod ? 'Опубликован.' : 'Появится после одобрения администрацией.');
-    }
-  } catch(e2){ err.textContent = 'Ошибка: ' + e2.message; }
-});
+}
 
-$('deleteFandomBtn').addEventListener('click', async () => {
-  const f = getFandoms().find(x => x.id === selectedFandomId); if (!f) return;
-  const canDelete = isAdminOrOwner(CURRENT_USER) || (CURRENT_USER && f.createdBy === CURRENT_USER.id);
-  if (!canDelete) return;
-  if (!confirm(`Удалить ФД «${f.name}»?`)) return;
-  try {
-    await remove(ref(db, 'fandoms/' + f.id));
-    closeModal('fandomDetailModal');
-    setTimeout(() => { renderFandomsList(); openModal('fandomsModal'); }, 240);
-  } catch(e){ alert('Ошибка: ' + e.message); }
+/* ===== ПОСАДОЧНАЯ СТРАНИЦА ССЫЛКИ ===== */
+function openLinkLanding(ctx){
+  currentLinkContext = ctx;
+  $('linkLandingFandom').textContent = ctx.fandomName || '';
+  $('linkLandingTitle').textContent = ctx.linkTitle || 'Канал';
+  $('linkLandingUrl').textContent = ctx.linkUrl || '';
+  const safe = safeUrl(ctx.linkUrl);
+  const enterBtn = $('linkLandingEnter');
+  if (safe){ enterBtn.href = safe; enterBtn.style.pointerEvents = ''; enterBtn.style.opacity = ''; }
+  else { enterBtn.href = '#'; enterBtn.style.pointerEvents = 'none'; enterBtn.style.opacity = '.5'; }
+  renderLinkReviews();
+  showLinkLandingView('main');
+  openModal('linkLandingModal');
+}
+function showLinkLandingView(which){
+  $('linkLandingMainView').classList.toggle('hidden', which !== 'main');
+  $('linkReviewFormView').classList.toggle('hidden', which !== 'form');
+  $('linkReviewSuccessView').classList.toggle('hidden', which !== 'success');
+  if (which === 'main') renderLinkReviews();
+}
+function renderStarsDisplay(rating){
+  let html = '<div class="reviews-stars">';
+  for (let i = 1; i <= 5; i++) html += `<span class="${i <= rating ? '' : 'empty'}">★</span>`;
+  return html + '</div>';
+}
+function renderLinkReviews(){
+  if (!currentLinkContext) return;
+  const summary = $('linkReviewsSummary'), list = $('linkReviewsList');
+  const approved = getApprovedReviewsForLink(currentLinkContext.linkId);
+  const count = approved.length;
+  const avg = count > 0 ? (approved.reduce((s,r) => s + (r.rating||0), 0) / count) : 0;
+  if (count === 0){
+    summary.innerHTML = '<div style="text-align:center;width:100%;color:var(--muted);font-size:13px;padding:4px">Отзывов пока нет — станьте первым! 🌟</div>';
+  } else {
+    summary.innerHTML = `<div class="reviews-avg">${avg.toFixed(1)}</div><div class="reviews-avg-meta">${renderStarsDisplay(Math.round(avg))}<div class="reviews-count">${count} ${plural(count, ['отзыв','отзыва','отзывов'])}</div></div>`;
+  }
+  if (approved.length === 0){
+    list.innerHTML = '';
+  } else {
+    list.innerHTML = approved.map(r => `
+      <div class="review-card">
+        <div class="review-head">
+          <div class="review-author"><div class="review-author-name">${escapeHtml(r.fromName)}</div><div class="review-author-user">@${escapeHtml(r.fromUsername)}</div></div>
+          <div class="review-date">${formatTime(r.moderatedAt || r.createdAt)}</div>
+        </div>
+        ${renderStarsDisplay(r.rating)}
+        <div class="review-text">${escapeHtml(r.text).replace(/\n/g, '<br>')}</div>
+      </div>`).join('');
+  }
+  const btn = $('openLinkReviewFormBtn');
+  if (!CURRENT_USER){
+    btn.textContent = '🔒 Войдите, чтобы оставить отзыв';
+  } else {
+    btn.textContent = '✍️ Оставить отзыв';
+  }
+}
+$('openLinkReviewFormBtn')?.addEventListener('click', () => {
+  if (!CURRENT_USER){ showToast('🔒', 'Войдите', 'Чтобы оставить отзыв, нужно войти в аккаунт.'); return; }
+  selectedReviewRating = 0;
+  document.querySelectorAll('#linkReviewStars .star-btn').forEach(b => b.classList.remove('active'));
+  $('linkReviewText').value = '';
+  $('linkReviewError').textContent = '';
+  showLinkLandingView('form');
+});
+$('backToLinkLandingBtn')?.addEventListener('click', () => showLinkLandingView('main'));
+$('closeLinkReviewSuccess')?.addEventListener('click', () => { showLinkLandingView('main'); });
+document.querySelectorAll('#linkReviewStars .star-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = parseInt(btn.dataset.val, 10);
+    selectedReviewRating = val;
+    document.querySelectorAll('#linkReviewStars .star-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.val,10) <= val));
+  });
+});
+$('submitLinkReviewBtn')?.addEventListener('click', async () => {
+  const err = $('linkReviewError'); err.textContent = '';
+  if (!CURRENT_USER) return err.textContent = 'Войдите в аккаунт.';
+  if (!currentLinkContext) return err.textContent = 'Ссылка не найдена.';
+  if (selectedReviewRating < 1) return err.textContent = 'Поставьте оценку (1–5 звёзд).';
+  const text = $('linkReviewText').value.trim();
+  if (text.length < 5) return err.textContent = 'Отзыв минимум 5 символов.';
+  const review = {
+    id: 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2,8),
+    linkId: currentLinkContext.linkId,
+    linkTitle: currentLinkContext.linkTitle,
+    linkUrl: currentLinkContext.linkUrl,
+    fandomId: currentLinkContext.fandomId,
+    fandomName: currentLinkContext.fandomName,
+    fromId: CURRENT_USER.id, fromName: CURRENT_USER.name, fromUsername: CURRENT_USER.username,
+    rating: selectedReviewRating, text, status: 'pending',
+    createdAt: Date.now(), moderatedBy: null, moderatedAt: null
+  };
+  try { await set(ref(db, 'reviews/' + review.id), review); showLinkLandingView('success'); }
+  catch(e){ err.textContent = 'Ошибка: ' + e.message; }
 });
 
 /* ===== МОДЕРАЦИЯ ФД (админ) ===== */
@@ -2421,80 +2367,7 @@ function renderAdminFandoms(){
   });
 }
 
-/* ===== ОТЗЫВЫ ===== */
-function renderStarsDisplay(rating){
-  let html = '<div class="reviews-stars">';
-  for (let i = 1; i <= 5; i++) html += `<span class="${i <= rating ? '' : 'empty'}">★</span>`;
-  return html + '</div>';
-}
-function renderReviewsModal(){
-  const summary = $('reviewsSummary'), list = $('reviewsList');
-  const approved = getApprovedReviews();
-  const count = approved.length;
-  const avg = count > 0 ? (approved.reduce((s,r) => s + (r.rating||0), 0) / count) : 0;
-  if (count === 0){
-    summary.innerHTML = '<div style="text-align:center;width:100%;color:var(--muted);font-size:13.5px;padding:6px">Отзывов пока нет — станьте первым! 🌟</div>';
-  } else {
-    summary.innerHTML = `<div class="reviews-avg">${avg.toFixed(1)}</div><div class="reviews-avg-meta">${renderStarsDisplay(Math.round(avg))}<div class="reviews-count">${count} ${plural(count, ['отзыв','отзыва','отзывов'])}</div></div>`;
-  }
-  if (approved.length === 0){
-    list.innerHTML = '<div class="reviews-empty">Никто ещё не оставил отзыв.<br>Нажмите «Оставить отзыв» ниже 👇</div>';
-  } else {
-    list.innerHTML = approved.map(r => `
-      <div class="review-card">
-        <div class="review-head">
-          <div class="review-author"><div class="review-author-name">${escapeHtml(r.fromName)}</div><div class="review-author-user">@${escapeHtml(r.fromUsername)}</div></div>
-          <div class="review-date">${formatTime(r.moderatedAt || r.createdAt)}</div>
-        </div>
-        ${renderStarsDisplay(r.rating)}
-        <div class="review-text">${escapeHtml(r.text).replace(/\n/g, '<br>')}</div>
-      </div>`).join('');
-  }
-}
-function showReviewView(which){
-  const m = $('reviewsModal');
-  m.querySelector('.modal-form-view').classList.toggle('hidden', which !== 'list');
-  $('reviewFormView').classList.toggle('hidden', which !== 'form');
-  $('reviewSuccessView').classList.toggle('hidden', which !== 'success');
-  if (which === 'list') renderReviewsModal();
-}
-function openReviewsModal(){
-  if (!CURRENT_USER){ showToast('🔒', 'Войдите', 'Чтобы оставить отзыв, нужно войти в аккаунт.'); return; }
-  showReviewView('list');
-  openModal('reviewsModal');
-}
-document.getElementById('sideReviewsBtn')?.addEventListener('click', () => { setSideOpen(false); setTimeout(openReviewsModal, 200); });
-$('openReviewFormBtn')?.addEventListener('click', () => {
-  selectedReviewRating = 0;
-  document.querySelectorAll('#reviewStars .star-btn').forEach(b => b.classList.remove('active'));
-  $('reviewText').value = '';
-  $('reviewError').textContent = '';
-  showReviewView('form');
-});
-$('backToReviewsBtn')?.addEventListener('click', () => showReviewView('list'));
-$('closeReviewSuccess')?.addEventListener('click', () => closeModal('reviewsModal'));
-document.querySelectorAll('#reviewStars .star-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const val = parseInt(btn.dataset.val, 10);
-    selectedReviewRating = val;
-    document.querySelectorAll('#reviewStars .star-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.val,10) <= val));
-  });
-});
-$('submitReviewBtn')?.addEventListener('click', async () => {
-  const err = $('reviewError'); err.textContent = '';
-  if (!CURRENT_USER) return err.textContent = 'Войдите в аккаунт.';
-  if (selectedReviewRating < 1) return err.textContent = 'Поставьте оценку (1–5 звёзд).';
-  const text = $('reviewText').value.trim();
-  if (text.length < 5) return err.textContent = 'Отзыв минимум 5 символов.';
-  const review = {
-    id: 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2,8),
-    fromId: CURRENT_USER.id, fromName: CURRENT_USER.name, fromUsername: CURRENT_USER.username,
-    rating: selectedReviewRating, text, status: 'pending',
-    createdAt: Date.now(), moderatedBy: null, moderatedAt: null
-  };
-  try { await set(ref(db, 'reviews/' + review.id), review); showReviewView('success'); }
-  catch(e){ err.textContent = 'Ошибка: ' + e.message; }
-});
+/* ===== МОДЕРАЦИЯ ОТЗЫВОВ (админ) ===== */
 $('adminReviewsBtn')?.addEventListener('click', () => { renderAdminReviews(); openModal('adminReviewsModal'); });
 function renderAdminReviews(){
   const list = $('adminReviewsList');
@@ -2508,6 +2381,7 @@ function renderAdminReviews(){
           <div class="review-author-user">@${escapeHtml(r.fromUsername)} · ${formatTime(r.createdAt)}</div>
         </div>
       </div>
+      ${r.linkTitle || r.linkUrl ? `<div class="review-pending-link">🔗 <b>${escapeHtml(r.linkTitle || '—')}</b>${r.fandomName ? ` <span style="color:var(--muted)">· ФД: ${escapeHtml(r.fandomName)}</span>` : ''}<br><span style="color:var(--muted)">${escapeHtml(r.linkUrl || '')}</span></div>` : ''}
       ${renderStarsDisplay(r.rating)}
       <div class="review-text">${escapeHtml(r.text).replace(/\n/g, '<br>')}</div>
       <div class="review-pending-actions">
