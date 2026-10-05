@@ -351,6 +351,8 @@
   .fd-link-title{font-size:14px;font-weight:600;margin-bottom:2px;word-break:break-word}
   .fd-link-url{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .fd-link-arrow{color:var(--muted);font-size:16px;flex-shrink:0}
+  .fd-link-rating{font-size:11px;font-weight:700;color:var(--gold);padding:4px 9px;border-radius:12px;background:rgba(255,198,92,.12);border:1px solid rgba(255,198,92,.3);white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:3px}
+  .fd-link-rating.empty{color:var(--muted);background:var(--card);border-color:var(--border);font-weight:600}
   .fd-links-empty{text-align:center;color:var(--muted);font-size:13.5px;padding:24px 16px;background:var(--card-2);border-radius:12px;border:1px dashed var(--border);line-height:1.6}
   .fd-search-tabs{display:flex;gap:6px;background:var(--card-2);border:1px solid var(--border);border-radius:13px;padding:5px;margin-bottom:16px}
   .fd-search-tab{flex:1;font:inherit;font-size:13.5px;font-weight:600;background:transparent;border:none;color:var(--muted);padding:10px;border-radius:9px;cursor:pointer;transition:.16s}
@@ -505,7 +507,7 @@
   .captcha-verified .captcha-label{color:var(--ok)}
   .captcha-verified .captcha-task{color:var(--ok);background:rgba(51,214,166,.1);border-color:rgba(51,214,166,.3)}
 
-  /* ===== ОТЗЫВЫ (общие стили) ===== */
+  /* ===== ОТЗЫВЫ ===== */
   .reviews-summary{display:flex;align-items:center;gap:16px;background:var(--card-2);border-radius:14px;padding:14px 18px;margin-bottom:14px}
   .reviews-avg{font-size:36px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
   .reviews-avg-meta{flex:1;min-width:0}
@@ -848,7 +850,7 @@
     <div class="topbar-right">
       <button class="my-tickets-btn hidden" id="myTicketsBtn">📬 <span>Мои обращения</span> <span class="inbox-badge hidden" id="myTicketsBadge">0</span></button>
       <button class="admin-inbox-btn hidden" id="adminInboxBtn">📥 <span>Обращения</span> <span class="inbox-badge hidden" id="ticketsBadge">0</span></button>
-      <button class="admin-inbox-btn hidden" id="adminReviewsBtn">⭐ <span>Отзывы</span> <span class="inbox-badge hidden" id="reviewsBadge">0</span></button>
+      <button class="admin-inbox-btn hidden" id="adminReviewsBtn">⭐ <span>Отзывы флудов</span> <span class="inbox-badge hidden" id="reviewsBadge">0</span></button>
       <button class="admin-inbox-btn hidden" id="adminFandomsBtn">📋 <span>Заявки</span> <span class="inbox-badge hidden" id="pendingFandomsBadge">0</span></button>
       <button class="icon-btn-topbar achievements-btn" id="achievementsBtn" title="Достижения">🏆<span class="ach-badge hidden" id="achBadge">0</span></button>
       <button class="icon-btn-topbar settings-btn" id="settingsBtn" title="Настройки">⚙️</button>
@@ -918,8 +920,9 @@
   <button class="modal-close" type="button">×</button>
   <h2>Помощь</h2>
   <div class="help-section"><h3>❓ Что такое ФД?</h3><p>ФД — объект поиска. У каждого ФД есть страница с информацией и ссылками на флуд-каналы.</p></div>
-  <div class="help-section"><h3>🔗 Посадочная страница ссылки</h3><p>Когда ты нажимаешь на ссылку — открывается страница с названием, URL и кнопкой «Войти в канал». Только после этого ты переходишь.</p></div>
-  <div class="help-section"><h3>⭐ Отзывы</h3><p>Внизу посадочной страницы можно оставить отзыв с оценкой. Он появится после проверки администрацией.</p></div>
+  <div class="help-section"><h3>🔗 Посадочная страница флуда</h3><p>Когда ты нажимаешь на ссылку флуда — открывается страница с названием, URL и кнопкой «Войти в канал».</p></div>
+  <div class="help-section"><h3>⭐ Отзывы о флудах</h3><p>Отзывы оставляются конкретным флуд-каналам, а не сервису. Внизу посадочной страницы можно поставить оценку — она появится после проверки админом.</p></div>
+  <div class="help-section"><h3>👁 Уникальные просмотры</h3><p>Каждый посетитель считается один раз. Открыл ФД 10 раз — это всё равно 1 просмотр.</p></div>
   <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в настройки в день праздника — тема откроется с эксклюзивными эффектами.</p></div>
   <div class="help-section"><h3>🏆 Достижения</h3><p>Жми 🏆 в шапке — там все твои награды.</p></div>
   <div class="modal-footer-divider"></div>
@@ -1098,7 +1101,7 @@
   <div class="settings-section">
     <div class="settings-section-title">📱 Главный экран</div>
     <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Показывать популярные ФД</div><div class="settings-row-sub">Блок на главной</div></div><label class="switch"><input type="checkbox" id="setShowPopular" /><span class="slider"></span></label></div>
-    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Считать просмотры ФД</div><div class="settings-row-sub">Включать в популярные</div></div><label class="switch"><input type="checkbox" id="setCountViews" /><span class="slider"></span></label></div>
+    <div class="settings-row"><div class="settings-row-info"><div class="settings-row-title">Считать уникальные просмотры ФД</div><div class="settings-row-sub">Один посетитель = один просмотр</div></div><label class="switch"><input type="checkbox" id="setCountViews" /><span class="slider"></span></label></div>
   </div>
   <div class="settings-section">
     <div class="settings-section-title">🔧 Прочее</div>
@@ -1110,7 +1113,6 @@
   </div>
 </div></div>
 
-<!-- ===== ПОСАДОЧНАЯ СТРАНИЦА ССЫЛКИ ===== -->
 <div class="modal-overlay hidden" id="linkLandingModal"><div class="modal">
   <button class="modal-close" type="button">×</button>
 
@@ -1123,14 +1125,14 @@
       <a class="link-landing-enter" id="linkLandingEnter" href="#" target="_blank" rel="noopener">🚀 Войти в канал</a>
     </div>
     <div class="modal-footer-divider"></div>
-    <div class="link-reviews-header">⭐ Отзывы о канале</div>
+    <div class="link-reviews-header">⭐ Отзывы о флуде</div>
     <div class="reviews-summary" id="linkReviewsSummary"></div>
     <div class="reviews-list" id="linkReviewsList"></div>
     <button class="btn btn-primary" id="openLinkReviewFormBtn" style="width:100%;margin-top:12px">✍️ Оставить отзыв</button>
   </div>
 
   <div class="link-landing-view hidden" id="linkReviewFormView">
-    <h2>✍️ Оставить отзыв</h2>
+    <h2>✍️ Оставить отзыв о флуде</h2>
     <p class="link-review-sub">Отзыв уйдёт на модерацию и появится только после одобрения администрацией.</p>
     <div class="star-selector" id="linkReviewStars">
       <button type="button" class="star-btn" data-val="1">★</button>
@@ -1157,7 +1159,7 @@
 
 <div class="modal-overlay hidden" id="adminReviewsModal"><div class="modal modal-wide">
   <button class="modal-close" type="button">×</button>
-  <h2>⭐ Модерация отзывов</h2>
+  <h2>⭐ Модерация отзывов флудов</h2>
   <div id="adminReviewsList"></div>
 </div></div>
 
@@ -1705,7 +1707,7 @@ let firebaseReady = false, CURRENT_USER = null, viewedUserId = null;
 let ownerMigrationDone = false, selectedFandomId = null, editingFandomId = null;
 let fdSearchMode = 'name';
 let selectedReviewRating = 0;
-let currentLinkContext = null; // { linkId, linkTitle, linkUrl, fandomName, fandomId }
+let currentLinkContext = null;
 
 const getUsers = () => usersCache;
 const getTickets = () => ticketsCache;
@@ -1715,6 +1717,12 @@ function findUserByUsername(u){ return usersCache.find(x => x.username === u); }
 function getApprovedReviewsForLink(linkId){ return reviewsCache.filter(r => r.linkId === linkId && r.status === 'approved').sort((a,b) => (b.moderatedAt||b.createdAt) - (a.moderatedAt||a.createdAt)); }
 function getPendingReviews(){ return reviewsCache.filter(r => r.status === 'pending').sort((a,b) => a.createdAt - b.createdAt); }
 function getPendingFandoms(){ return fandomsCache.filter(f => f.status === 'pending').sort((a,b) => a.createdAt - b.createdAt); }
+function getLinkRatingStats(linkId){
+  const approved = reviewsCache.filter(r => r.linkId === linkId && r.status === 'approved');
+  const count = approved.length;
+  const avg = count > 0 ? approved.reduce((s,r) => s + (r.rating||0), 0) / count : 0;
+  return { count, avg };
+}
 function visibleFandoms(){
   return fandomsCache.filter(f => {
     if (!f.status || f.status === 'approved') return true;
@@ -1729,6 +1737,31 @@ const getSessionId = () => localStorage.getItem(LS_SESSION);
 const setSessionId = id => localStorage.setItem(LS_SESSION, id);
 const clearSessionId = () => localStorage.removeItem(LS_SESSION);
 const $ = id => document.getElementById(id);
+
+/* ===== УНИКАЛЬНЫЙ ID УСТРОЙСТВА ДЛЯ ПОДСЧЁТА ПРОСМОТРОВ ===== */
+function getDeviceId(){
+  let deviceId = localStorage.getItem('fd_device_id');
+  if (!deviceId){
+    deviceId = 'd_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,10);
+    localStorage.setItem('fd_device_id', deviceId);
+  }
+  return deviceId;
+}
+async function recordFandomView(fandomId){
+  if (!firebaseReady) return;
+  const viewerId = getDeviceId();
+  try {
+    await runTransaction(ref(db, 'fandoms/' + fandomId), f => {
+      if (!f) return f;
+      const viewedBy = f.viewedBy || {};
+      if (viewedBy[viewerId]) return;
+      viewedBy[viewerId] = Date.now();
+      f.viewedBy = viewedBy;
+      f.views = (f.views || 0) + 1;
+      return f;
+    });
+  } catch(e){ console.warn('[View]', e); }
+}
 
 function showToast(icon, title, text, duration = 8000){
   const container = $('toastContainer'); if (!container) return;
@@ -1774,10 +1807,31 @@ try {
     reviewsCache = Object.values(snap.val() || {});
     if (!$('linkLandingModal').classList.contains('hidden') && currentLinkContext) renderLinkReviews();
     if (!$('adminReviewsModal').classList.contains('hidden')) renderAdminReviews();
+    if (!$('fandomDetailModal').classList.contains('hidden') && selectedFandomId) renderFandomDetail(selectedFandomId);
     updateAdminBadges();
   });
   firebaseReady = true;
   console.log('[Firebase] Готово');
+
+  /* ===== ОДНОРАЗОВЫЙ СБРОС ПРОСМОТРОВ ===== */
+  (async function resetViewsOnce(){
+    const FLAG = 'fd_views_reset_v1';
+    if (localStorage.getItem(FLAG)) return;
+    try {
+      const snap = await get(ref(db, 'fandoms'));
+      const all = snap.val() || {};
+      const ids = Object.keys(all);
+      if (ids.length === 0){ localStorage.setItem(FLAG, '1'); return; }
+      const updates = {};
+      ids.forEach(id => {
+        updates['fandoms/' + id + '/views'] = 0;
+        updates['fandoms/' + id + '/viewedBy'] = null;
+      });
+      await update(ref(db), updates);
+      localStorage.setItem(FLAG, '1');
+      console.log('[Views] Сброшено для', ids.length, 'ФД');
+    } catch(e){ console.warn('[Views reset]', e); }
+  })();
 } catch(e){ console.error(e); alert('Ошибка Firebase: ' + e.message); }
 
 function showScreen(id){ document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); $(id).classList.add('active'); window.scrollTo(0,0); }
@@ -2185,10 +2239,10 @@ function openFandomDetail(fandomId){
   renderFandomDetail(fandomId);
   const f = getFandoms().find(x => x.id === fandomId);
   if (settings.countViews && firebaseReady && f && (!f.status || f.status === 'approved')){
-    runTransaction(ref(db, 'fandoms/' + fandomId + '/views'), cur => (cur || 0) + 1).catch(()=>{});
-    incrementStat('totalViews', 1);
-    checkAchievements();
+    recordFandomView(fandomId);
   }
+  incrementStat('totalViews', 1);
+  checkAchievements();
   openModal('fandomDetailModal');
 }
 function renderFandomDetail(fandomId){
@@ -2207,12 +2261,17 @@ function renderFandomDetail(fandomId){
     const url = normalizeUrl(l.url);
     const title = (l.title || '').trim() || 'Открыть канал';
     const linkId = l.id || ('l_' + Math.random().toString(36).slice(2,8));
+    const stats = getLinkRatingStats(linkId);
+    const ratingHtml = stats.count > 0
+      ? `<div class="fd-link-rating">⭐ ${stats.avg.toFixed(1)} · ${stats.count}</div>`
+      : `<div class="fd-link-rating empty">нет отзывов</div>`;
     return `<div class="fd-link-item" data-link-id="${escapeHtml(linkId)}" data-link-title="${escapeHtml(title)}" data-link-url="${escapeHtml(url)}" data-fandom="${escapeHtml(f.name)}" data-fandom-id="${escapeHtml(f.id)}">
       <div class="fd-link-icon">🔗</div>
       <div class="fd-link-body">
         <div class="fd-link-title">${escapeHtml(title)}</div>
         <div class="fd-link-url">${escapeHtml(url)}</div>
       </div>
+      ${ratingHtml}
       <div class="fd-link-arrow">→</div>
     </div>`;
   }).join('');
@@ -2367,7 +2426,7 @@ function renderAdminFandoms(){
   });
 }
 
-/* ===== МОДЕРАЦИЯ ОТЗЫВОВ (админ) ===== */
+/* ===== МОДЕРАЦИЯ ОТЗЫВОВ ФЛУДОВ (админ) ===== */
 $('adminReviewsBtn')?.addEventListener('click', () => { renderAdminReviews(); openModal('adminReviewsModal'); });
 function renderAdminReviews(){
   const list = $('adminReviewsList');
