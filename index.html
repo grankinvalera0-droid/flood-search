@@ -2,7 +2,7 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ФД — поиск и обсуждение</title>
 <style>
   :root{--bg:#0d0e12;--bg-2:#1c1f2e;--card:#161922;--card-2:#1c2029;--border:#262b38;--text:#e9ebf1;--muted:#8b93a7;--accent:#7c5cff;--accent-2:#5b8cff;--danger:#ff5c6c;--ok:#33d6a6;--gold:#ffc65c;--grad:linear-gradient(135deg,var(--accent),var(--accent-2))}
@@ -85,30 +85,13 @@
   [data-theme="autumn"] .search-hub-btn{border-color:#d97706;background:linear-gradient(135deg,rgba(217,119,6,.15),rgba(180,83,9,.15))}
   [data-theme="winter"] .search-hub-btn{border-color:#90e0ef;background:linear-gradient(135deg,rgba(144,224,239,.15),rgba(72,202,228,.15))}
   [data-theme="friday13"] .search-hub-btn{border-color:#dc2626;background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(127,29,29,.15))}
-
-  @keyframes avatarFloat{
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25%      { transform: translateY(-3px) rotate(-1.5deg); }
-    75%      { transform: translateY(3px) rotate(1.5deg); }
-  }
-  @keyframes avatarGlow{
-    0%, 100% { box-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent-2); }
-    50%      { box-shadow: 0 0 14px var(--accent), 0 0 28px var(--accent-2), 0 0 40px rgba(124,92,255,.6); }
-  }
-  @keyframes avatarBadgeSpin{
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50%      { transform: rotate(12deg) scale(1.15); }
-  }
-  #topAvatarFrame, #popAvatarFrame, #upAvatarFrame {
-    animation: avatarFloat 3.2s ease-in-out infinite, avatarGlow 2.4s ease-in-out infinite;
-    transition: transform .3s;
-  }
-  #topAvatarFrame:hover { animation-play-state: paused; transform: scale(1.15); }
-  #topAvatarFrame .av-badge, #popAvatarFrame .av-badge, #upAvatarFrame .av-badge {
-    animation: avatarBadgeSpin 2s ease-in-out infinite;
-  }
-  body.no-anim #topAvatarFrame, body.no-anim #popAvatarFrame, body.no-anim #upAvatarFrame { animation: none !important; }
-
+  @keyframes avatarFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-3px) rotate(-1.5deg)}75%{transform:translateY(3px) rotate(1.5deg)}}
+  @keyframes avatarGlow{0%,100%{box-shadow:0 0 8px var(--accent),0 0 16px var(--accent-2)}50%{box-shadow:0 0 14px var(--accent),0 0 28px var(--accent-2),0 0 40px rgba(124,92,255,.6)}}
+  @keyframes avatarBadgeSpin{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(12deg) scale(1.15)}}
+  #topAvatarFrame,#popAvatarFrame,#upAvatarFrame{animation:avatarFloat 3.2s ease-in-out infinite,avatarGlow 2.4s ease-in-out infinite;transition:transform .3s}
+  #topAvatarFrame:hover{animation-play-state:paused;transform:scale(1.15)}
+  #topAvatarFrame .av-badge,#popAvatarFrame .av-badge,#upAvatarFrame .av-badge{animation:avatarBadgeSpin 2s ease-in-out infinite}
+  body.no-anim #topAvatarFrame,body.no-anim #popAvatarFrame,body.no-anim #upAvatarFrame{animation:none !important}
   .av-frame{position:relative;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;line-height:0}
   .av-frame img{border-radius:50%;display:block;object-fit:cover;border:none !important}
   .av-frame .av-badge{position:absolute;bottom:-4px;right:-4px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1;background:var(--card);border:2px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.5);z-index:2}
@@ -118,7 +101,7 @@
   .av-frame.av-admin .av-badge{border-color:#3b82f6}
   .av-frame.av-owner{padding:2px;background:linear-gradient(135deg,#fbbf24,#f59e0b)}
   .av-frame.av-owner .av-badge{border-color:#fbbf24}
-  .av-frame.av-founder{padding:2px;background:linear-gradient(135deg,#dc2626,#fbbf24,#dc2626,#fbbf24);background-size:300% 300%;animation:founderSpin 4s linear infinite, avatarGlow 2.4s ease-in-out infinite;box-shadow:0 0 20px rgba(220,38,38,.55),0 0 30px rgba(251,191,36,.35)}
+  .av-frame.av-founder{padding:2px;background:linear-gradient(135deg,#dc2626,#fbbf24,#dc2626,#fbbf24);background-size:300% 300%;animation:founderSpin 4s linear infinite,avatarGlow 2.4s ease-in-out infinite;box-shadow:0 0 20px rgba(220,38,38,.55),0 0 30px rgba(251,191,36,.35)}
   .av-frame.av-founder .av-badge{border-color:#fbbf24;font-size:13px}
   @keyframes founderSpin{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   .avatar-btn .av-frame img{width:38px;height:38px}
@@ -128,7 +111,6 @@
   .popup .av-frame .av-badge{width:24px;height:24px;font-size:13px}
   .up-header .av-frame img.up-avatar{width:64px;height:64px}
   .up-header .av-frame .av-badge{width:24px;height:24px;font-size:13px}
-
   .tg-banner{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;border-radius:14px;padding:12px 16px;width:100%;max-width:640px;box-shadow:0 8px 24px -10px rgba(34,158,217,.7);animation:tgBannerIn .5s cubic-bezier(.2,1.2,.4,1);position:relative}
   @keyframes tgBannerIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
   .tg-banner.hidden{display:none}
@@ -346,7 +328,7 @@
   .fandoms-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-right:6px}
   .fandom-card{background:var(--card-2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;cursor:pointer;transition:.15s}
   .fandom-card:hover{border-color:var(--accent);transform:translateY(-1px)}
-  .fandom-card-top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .fandom-card-top{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
   .fandom-card-name{font-size:16px;font-weight:700;flex:1;min-width:0;word-break:break-word}
   .fandom-card-links{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;background:rgba(51,214,166,.12);color:var(--ok);border:1px solid rgba(51,214,166,.3)}
   .fandom-card-links.empty{background:rgba(255,198,92,.12);color:var(--gold);border-color:rgba(255,198,92,.3)}
@@ -475,7 +457,7 @@
   .confetti{position:absolute;width:10px;height:10px;top:-20px;opacity:.9;pointer-events:none}
   @keyframes confettiFall{from{transform:translateY(-20px) rotate(0deg)}to{transform:translateY(110vh) rotate(720deg)}}
 
-  /* ===== БОКОВАЯ ПАНЕЛЬ (НОВОЕ) ===== */
+  /* ===== БОКОВАЯ ПАНЕЛЬ ===== */
   :root{--side-w:290px}
   .side-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:310;opacity:0;pointer-events:none;transition:opacity .3s}
   body.side-open .side-backdrop{opacity:1;pointer-events:auto}
@@ -509,38 +491,218 @@
   .side-link-arrow{color:var(--muted);font-size:15px;flex-shrink:0}
   .side-footer{margin-top:auto;padding-top:14px;text-align:center;font-size:11px;color:var(--muted);opacity:.7}
 
-  @media(max-width:640px){
-    .admin-msg-btn span,.fandoms-btn span{display:none}
-    .admin-msg-btn,.fandoms-btn{padding:9px 12px}
-    .admin-msg-popup{width:280px;left:-10px}
-    .rules-card,.auth-card{padding:26px 22px}
-    .rules-text{max-height:52vh}
-    .topbar{padding:10px 14px;gap:8px}
-    .topbar .brand{font-size:14px}
+  /* ===== КАПЧА ===== */
+  .captcha-box{background:var(--card-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:15px;transition:.15s}
+  .captcha-label{font-size:12.5px;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:8px}
+  .captcha-row{display:flex;align-items:center;gap:10px}
+  .captcha-task{font-size:16px;font-weight:800;color:var(--accent);white-space:nowrap;background:var(--card);padding:8px 14px;border-radius:10px;border:1px solid var(--border)}
+  .captcha-row input{flex:1;font:inherit;font-size:15px;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;outline:none;min-width:0;-moz-appearance:textfield}
+  .captcha-row input::-webkit-outer-spin-button,.captcha-row input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .captcha-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,255,.16)}
+  .captcha-refresh{width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:16px;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:center}
+  .captcha-refresh:hover{color:var(--accent);border-color:var(--accent);transform:rotate(90deg)}
+  .captcha-verified{background:rgba(51,214,166,.12);border-color:rgba(51,214,166,.4)}
+  .captcha-verified .captcha-label{color:var(--ok)}
+  .captcha-verified .captcha-task{color:var(--ok);background:rgba(51,214,166,.1);border-color:rgba(51,214,166,.3)}
+
+  /* ===== ОТЗЫВЫ ===== */
+  .reviews-summary{display:flex;align-items:center;gap:16px;background:var(--card-2);border-radius:14px;padding:14px 18px;margin-bottom:16px}
+  .reviews-avg{font-size:36px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .reviews-avg-meta{flex:1;min-width:0}
+  .reviews-stars{display:flex;gap:2px;font-size:16px;color:var(--gold);margin-bottom:2px}
+  .reviews-stars .empty{color:var(--border)}
+  .reviews-count{font-size:12px;color:var(--muted)}
+  .star-selector{display:flex;gap:6px;justify-content:center;margin-bottom:14px}
+  .star-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--card-2);color:var(--muted);font-size:24px;line-height:1;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center}
+  .star-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .star-btn.active{background:linear-gradient(135deg,rgba(255,198,92,.25),rgba(255,143,11,.15));border-color:var(--gold);color:var(--gold);box-shadow:0 4px 14px -4px var(--gold)}
+  .reviews-list{display:flex;flex-direction:column;gap:10px;max-height:50vh;overflow-y:auto;padding-right:4px}
+  .review-card{background:var(--card-2);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+  .review-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+  .review-author{flex:1;min-width:0}
+  .review-author-name{font-size:14px;font-weight:700;word-break:break-word}
+  .review-author-user{font-size:11.5px;color:var(--muted)}
+  .review-date{font-size:11px;color:var(--muted);white-space:nowrap}
+  .review-text{font-size:13.5px;line-height:1.55;color:var(--text);opacity:.9;word-break:break-word;margin-top:6px}
+  .review-card .reviews-stars{font-size:14px;margin-bottom:0}
+  .reviews-empty{text-align:center;padding:30px 20px;color:var(--muted);font-size:13.5px;line-height:1.6}
+  .review-pending-card{background:var(--card-2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:12px;padding:14px;margin-bottom:10px}
+  .review-pending-actions{display:flex;gap:8px;margin-top:10px}
+  .review-pending-actions .btn{flex:1;padding:10px;font-size:13px}
+  .btn-approve{background:rgba(51,214,166,.15);color:var(--ok);border:1px solid rgba(51,214,166,.4)}
+  .btn-approve:hover{background:rgba(51,214,166,.25)}
+  .btn-reject{background:rgba(255,92,108,.12);color:var(--danger);border:1px solid rgba(255,92,108,.35)}
+  .btn-reject:hover{background:rgba(255,92,108,.2)}
+
+  /* ===== МОДЕРАЦИЯ ФД ===== */
+  .pending-fd-card{background:var(--card-2);border:1px solid var(--border);border-left:3px solid var(--accent-2);border-radius:12px;padding:14px;margin-bottom:10px}
+  .pending-fd-name{font-size:15px;font-weight:700;margin-bottom:4px}
+  .pending-fd-desc{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:6px}
+  .pending-fd-meta{font-size:11.5px;color:var(--muted);margin-bottom:6px}
+  .pending-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.3px;padding:3px 8px;border-radius:20px;background:rgba(255,198,92,.15);color:var(--gold);border:1px solid rgba(255,198,92,.35);text-transform:uppercase;margin-left:8px;vertical-align:middle}
+  .fandom-card.pending{border-color:rgba(255,198,92,.4);background:linear-gradient(135deg,rgba(255,198,92,.04),transparent)}
+
+  /* ===== БАННЕР ЭКСКЛЮЗИВНЫХ ТЕМ ===== */
+  .theme-banner{position:relative;width:100%;max-width:760px;border-radius:24px;overflow:hidden;padding:36px 30px;margin-bottom:2px;border:1px solid var(--border);box-shadow:0 30px 70px -32px rgba(0,0,0,.85),0 0 80px -20px var(--banner-glow);display:none;isolation:isolate;min-height:170px}
+  .theme-banner.show{display:block;animation:bannerIn .6s cubic-bezier(.2,1,.3,1)}
+  @keyframes bannerIn{from{opacity:0;transform:translateY(-16px) scale(.96)}to{opacity:1;transform:none}}
+  .theme-banner-bg{position:absolute;inset:0;z-index:0;background:var(--banner-grad)}
+  .theme-banner-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,var(--banner-glow),transparent 48%),radial-gradient(circle at 85% 75%,var(--banner-glow),transparent 48%);opacity:.85}
+  .theme-banner-bg::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(255,255,255,.025) 0 2px,transparent 2px 18px);opacity:.8;mix-blend-mode:overlay}
+  .theme-banner-emojis{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  .theme-banner-emojis span{position:absolute;line-height:1;opacity:.7;filter:drop-shadow(0 6px 14px rgba(0,0,0,.55));animation:bannerFloat 4.5s ease-in-out infinite;user-select:none}
+  @keyframes bannerFloat{0%,100%{transform:translateY(0) rotate(-8deg) scale(1)}50%{transform:translateY(-10px) rotate(8deg) scale(1.08)}}
+  .theme-banner-content{position:relative;z-index:2;text-align:center}
+  .theme-banner-badge{display:inline-flex;align-items:center;gap:7px;margin-bottom:14px;padding:7px 16px;border-radius:22px;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);font-size:11.5px;font-weight:800;letter-spacing:1.8px;color:#fff;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+  .theme-banner-title{font-size:28px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.75),0 0 40px var(--banner-glow);margin-bottom:8px;line-height:1.12}
+  .theme-banner-sub{font-size:12.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.78);text-shadow:0 2px 8px rgba(0,0,0,.6)}
+  .theme-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--banner-glow),transparent);z-index:3}
+  body.no-anim .theme-banner.show{animation:none}
+  body.no-anim .theme-banner-emojis span{animation:none}
+
+  /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+  @media(max-width:720px){
+    body{overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom)}
+    .topbar{padding:10px 12px;gap:6px;flex-wrap:nowrap}
+    .topbar-left,.topbar-right{gap:6px}
+    .topbar .brand{font-size:15px}
+    .topbar-center{flex:1 1 auto;min-width:0}
+    .admin-search-wrap{max-width:none}
+    .admin-search-wrap input{font-size:14px;padding:8px 12px}
+    .icon-btn-topbar{width:36px;height:36px;font-size:16px}
+    .avatar-btn .av-frame img{width:36px;height:36px}
+
+    .admin-msg-btn,.fandoms-btn{padding:9px 12px;font-size:12px;border-radius:16px;gap:4px}
+    .admin-msg-btn span:not(.inbox-badge),.fandoms-btn span:not(.inbox-badge){display:none}
+    .admin-inbox-btn,.my-tickets-btn{width:36px;height:36px;padding:0;border-radius:50%;justify-content:center;position:relative;overflow:visible;flex-shrink:0}
     .admin-inbox-btn span:not(.inbox-badge),.my-tickets-btn span:not(.inbox-badge){display:none}
-    .kebab-menu{width:220px}
-    .fd-link-row{grid-template-columns:1fr 1fr 34px}
-    .search-hub-btn{padding:34px 24px;border-radius:20px}
-    .search-hub-icon{font-size:42px}
-    .search-hub-title{font-size:19px}
-    .content{padding:16px 16px 40px;gap:14px}
-    .theme-picker-holiday{grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:7px}
-    .holiday-greeting{font-size:15px;padding:12px 18px;gap:10px}
-    .holiday-greeting .hg-emoji{font-size:26px}
-    .achievements-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
-    .ach-emoji{font-size:28px}
-    .congrats-card{padding:32px 24px}
-    .congrats-crown{font-size:60px}
-    .congrats-title{font-size:22px}
-    .theme-flash-emoji{font-size:120px}
-    .theme-flash-label{font-size:16px}
-    .popup{width:260px}
-    .tg-banner{padding:10px 12px;gap:10px;flex-wrap:wrap}
-    .tg-banner-btn{font-size:12px;padding:8px 12px}
-    .tg-banner-title{font-size:13px}
-    .tg-banner-text{font-size:11.5px}
-    :root{--side-w:82vw}
-    .side-toggle{height:54px;width:28px}
+    .admin-inbox-btn .inbox-badge,.my-tickets-btn .inbox-badge{position:absolute;top:-4px;right:-4px;font-size:9px;padding:0 5px;min-width:16px;height:16px;border-radius:8px;border:2px solid var(--card);line-height:12px}
+
+    .content{padding:16px 14px 100px;gap:14px}
+    .search-hub-btn{padding:28px 20px;border-radius:20px;gap:10px}
+    .search-hub-icon{font-size:40px;margin-bottom:0}
+    .search-hub-title{font-size:18px}
+    .search-hub-sub{font-size:12.5px;max-width:none}
+    .popular-section{padding:16px;border-radius:16px}
+    .popular-header{margin-bottom:12px}
+    .popular-item{padding:11px 12px;gap:10px}
+    .popular-rank{width:26px;height:26px;font-size:12px}
+    .popular-name{font-size:13.5px}
+    .popular-views{font-size:11px;padding:3px 9px}
+
+    .tg-banner{padding:11px 34px 11px 12px;gap:8px;border-radius:14px;position:relative}
+    .tg-banner-icon{width:32px;height:32px;font-size:17px}
+    .tg-banner-title{font-size:12.5px}
+    .tg-banner-text{font-size:11px}
+    .tg-banner-btn{font-size:11.5px;padding:7px 12px;border-radius:8px}
+    .tg-banner-close{position:absolute;top:50%;right:6px;transform:translateY(-50%);font-size:16px;padding:2px 6px}
+
+    .theme-banner{padding:24px 16px;min-height:120px;border-radius:20px}
+    .theme-banner-badge{font-size:10px;padding:5px 12px;letter-spacing:1.2px;margin-bottom:10px}
+    .theme-banner-title{font-size:18px;letter-spacing:.6px;margin-bottom:6px}
+    .theme-banner-sub{font-size:10.5px;letter-spacing:1.8px}
+    .theme-banner-emojis span{font-size:20px !important;opacity:.6}
+
+    .modal-overlay{padding:0;align-items:flex-end;backdrop-filter:blur(3px)}
+    .modal{max-width:100%;width:100%;border-radius:22px 22px 0 0;padding:22px 18px calc(26px + env(safe-area-inset-bottom));max-height:92vh;animation:sheetUp .3s cubic-bezier(.2,.9,.3,1)}
+    .modal-wide,.modal-narrow{max-width:100%}
+    .modal h2{font-size:18px;margin-bottom:14px;padding-right:40px}
+    .modal-close{top:12px;right:12px;width:34px;height:34px;background:var(--card-2);border-radius:50%;font-size:20px}
+
+    .auth-card,.rules-card{padding:24px 20px;border-radius:20px}
+    .rules-text{max-height:50vh;font-size:13.5px}
+    .rules-card h1{font-size:20px}
+    .tabs{padding:4px;margin-bottom:20px}
+    .tab{padding:9px;font-size:13px}
+    .field{margin-bottom:12px}
+    .field input,.field textarea{font-size:15px;padding:12px 14px}
+    .btn{padding:13px 20px;font-size:14.5px}
+    .avatar-preview{width:78px;height:78px}
+
+    .popup{position:fixed;top:60px;left:12px;right:12px;width:auto;max-width:none}
+    .admin-msg-popup{position:fixed;top:60px;left:12px;right:12px;width:auto;max-width:none;max-height:70vh;overflow-y:auto}
+    .search-results{position:fixed;top:60px;left:12px;right:12px;max-height:60vh}
+
+    .captcha-row{gap:8px}
+    .captcha-task{font-size:14px;padding:8px 12px}
+    .captcha-row input{padding:10px 12px}
+    .captcha-refresh{width:36px;height:36px}
+
+    .reviews-summary{padding:12px 14px;gap:12px}
+    .reviews-avg{font-size:28px}
+    .reviews-stars{font-size:14px}
+    .star-selector{gap:5px}
+    .star-btn{width:42px;height:42px;font-size:22px;border-radius:10px}
+    .reviews-list{max-height:44vh}
+    .review-card{padding:12px 14px}
+    .review-text{font-size:13px}
+
+    :root{--side-w:86vw}
+    .side-panel{padding:20px 16px;gap:12px}
+    .side-character-ring{width:82px;height:82px}
+    .side-character-name{font-size:16px}
+    .side-link{padding:11px 12px;border-radius:12px}
+    .side-link-icon{width:32px;height:32px;font-size:15px}
+    .side-toggle{height:52px;width:28px;font-size:14px}
+
+    .tickets-layout{grid-template-columns:1fr;gap:12px;min-height:auto}
+    .tickets-list{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:12px;max-height:200px}
+
+    .font-picker{flex-wrap:wrap}
+    .font-btn{padding:8px 10px;font-size:13px;min-width:auto;flex:1 0 calc(50% - 3px)}
+    .theme-picker-holiday{grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px}
+    .theme-swatch.holiday{padding:8px 4px}
+    .theme-swatch.holiday .holiday-emoji{font-size:22px}
+    .theme-swatch.holiday .theme-swatch-label{font-size:9.5px}
+    .settings-row{padding:11px 0}
+    .settings-row-title{font-size:13.5px}
+    .settings-row-sub{font-size:11.5px}
+
+    .toast-container{bottom:calc(16px + env(safe-area-inset-bottom));padding:0 12px;max-width:none}
+    .toast{padding:12px 14px;gap:10px;border-radius:14px}
+    .toast-icon{font-size:24px}
+    .toast-title{font-size:13px}
+    .toast-text{font-size:12px}
+
+    .achievements-summary{padding:12px}
+    .achievements-summary .ach-total{font-size:24px}
+    .achievements-grid{grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:8px}
+    .ach-card{padding:12px 10px}
+    .ach-emoji{font-size:26px;margin-bottom:6px}
+    .ach-name{font-size:11.5px}
+    .ach-desc{font-size:10px}
+
+    .fd-detail-header{flex-direction:column;align-items:flex-start;gap:8px}
+    .fd-actions{align-self:flex-end;margin-top:-40px}
+    .fd-link-item{padding:11px 12px;gap:10px}
+    .fd-link-icon{width:32px;height:32px;font-size:15px}
+    .fd-link-title{font-size:13.5px}
+    .fd-link-url{font-size:11.5px}
+
+    .fd-link-row{grid-template-columns:1fr;gap:6px;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;position:relative}
+    .fd-link-row .fd-link-remove{position:absolute;top:6px;right:6px;width:28px;height:28px;font-size:14px}
+
+    .up-header{gap:12px;padding-right:40px}
+    .up-header .av-frame img.up-avatar{width:56px;height:56px}
+    .up-name{font-size:16px}
+    .up-info-row{font-size:13px;padding:9px 0}
+
+    .holiday-greeting{font-size:14px;padding:12px 16px;gap:8px}
+    .holiday-greeting .hg-emoji{font-size:22px}
+
+    .kebab-menu{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(280px,90vw);right:auto}
+  }
+  @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+
+  @media(max-width:380px){
+    .topbar .brand{display:none}
+    .search-hub-btn{padding:24px 16px}
+    .search-hub-icon{font-size:36px}
+    .search-hub-title{font-size:17px}
+    .btn{padding:12px 16px;font-size:14px}
+    .theme-picker-holiday{grid-template-columns:repeat(auto-fill,minmax(62px,1fr));gap:6px}
+    .theme-swatch.holiday .holiday-emoji{font-size:20px}
+    .theme-swatch.holiday .theme-swatch-label{font-size:9px}
   }
 </style>
 </head>
@@ -548,7 +710,6 @@
 
 <div class="holiday-particles" id="holidayParticles"></div>
 
-<!-- ===== БОКОВАЯ ПАНЕЛЬ (НОВОЕ) ===== -->
 <button class="side-toggle" id="sideToggle" type="button" title="Открыть панель" aria-label="Открыть панель">☰</button>
 <div class="side-backdrop" id="sideBackdrop"></div>
 <aside class="side-panel" id="sidePanel">
@@ -574,6 +735,15 @@
     </span>
     <span class="side-link-arrow">→</span>
   </a>
+
+  <button class="side-link" id="sideReviewsBtn" type="button">
+    <span class="side-link-icon">⭐</span>
+    <span class="side-link-body">
+      <span class="side-link-title">Отзывы</span>
+      <span class="side-link-sub">Оставить отзыв о сервисе</span>
+    </span>
+    <span class="side-link-arrow">→</span>
+  </button>
 
   <button class="side-link" id="sideHelpBtn" type="button">
     <span class="side-link-icon">❓</span>
@@ -644,12 +814,28 @@
     <div class="field"><label for="regUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="regUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
     <div class="field"><label for="regPass">Пароль</label><input id="regPass" type="password" placeholder="Минимум 6 символов" /></div>
     <div class="field"><label for="regPass2">Повторите пароль</label><input id="regPass2" type="password" placeholder="Ещё раз" /></div>
+    <div class="captcha-box" id="regCaptchaBox">
+      <div class="captcha-label">🛡️ Проверка на бота</div>
+      <div class="captcha-row">
+        <div class="captcha-task" id="regCaptchaTask">—</div>
+        <input type="number" id="regCaptchaInput" placeholder="Ответ" inputmode="numeric" autocomplete="off" />
+        <button type="button" class="captcha-refresh" id="regCaptchaRefresh" title="Другое задание">↻</button>
+      </div>
+    </div>
     <div class="error" id="regError"></div>
     <button type="submit" class="btn btn-primary" style="width:100%">Создать аккаунт</button>
   </form>
   <form id="form-login" class="hidden" autocomplete="off">
     <div class="field"><label for="logUsername">Имя пользователя</label><div class="prefix-wrap"><span>@</span><input id="logUsername" type="text" placeholder="username" maxlength="32" autocomplete="off" /></div></div>
     <div class="field"><label for="logPass">Пароль</label><input id="logPass" type="password" placeholder="Ваш пароль" /></div>
+    <div class="captcha-box" id="logCaptchaBox">
+      <div class="captcha-label">🛡️ Проверка на бота</div>
+      <div class="captcha-row">
+        <div class="captcha-task" id="logCaptchaTask">—</div>
+        <input type="number" id="logCaptchaInput" placeholder="Ответ" inputmode="numeric" autocomplete="off" />
+        <button type="button" class="captcha-refresh" id="logCaptchaRefresh" title="Другое задание">↻</button>
+      </div>
+    </div>
     <div class="error" id="logError"></div>
     <button type="submit" class="btn btn-primary" style="width:100%">Войти</button>
     <button type="button" id="btnBackToRules" class="btn btn-ghost" style="width:100%;margin-top:10px">Назад к правилам</button>
@@ -682,6 +868,8 @@
     <div class="topbar-right">
       <button class="my-tickets-btn hidden" id="myTicketsBtn">📬 <span>Мои обращения</span> <span class="inbox-badge hidden" id="myTicketsBadge">0</span></button>
       <button class="admin-inbox-btn hidden" id="adminInboxBtn">📥 <span>Обращения</span> <span class="inbox-badge hidden" id="ticketsBadge">0</span></button>
+      <button class="admin-inbox-btn hidden" id="adminReviewsBtn">⭐ <span>Отзывы</span> <span class="inbox-badge hidden" id="reviewsBadge">0</span></button>
+      <button class="admin-inbox-btn hidden" id="adminFandomsBtn">📋 <span>Заявки</span> <span class="inbox-badge hidden" id="pendingFandomsBadge">0</span></button>
       <button class="icon-btn-topbar achievements-btn" id="achievementsBtn" title="Достижения">🏆<span class="ach-badge hidden" id="achBadge">0</span></button>
       <button class="icon-btn-topbar settings-btn" id="settingsBtn" title="Настройки">⚙️</button>
       <div class="user-area">
@@ -711,6 +899,15 @@
     </div>
   </header>
   <main class="content">
+    <div class="theme-banner" id="themeBanner">
+      <div class="theme-banner-bg" id="themeBannerBg"></div>
+      <div class="theme-banner-emojis" id="themeBannerEmojis"></div>
+      <div class="theme-banner-content">
+        <div class="theme-banner-badge" id="themeBannerBadge">✨ ЭКСКЛЮЗИВ</div>
+        <div class="theme-banner-title" id="themeBannerTitle"></div>
+        <div class="theme-banner-sub" id="themeBannerSub"></div>
+      </div>
+    </div>
     <div class="tg-banner" id="tgBanner">
       <div class="tg-banner-icon">✈️</div>
       <div class="tg-banner-body">
@@ -744,6 +941,7 @@
   <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в настройки в день праздника — тема откроется с эксклюзивными эффектами.</p></div>
   <div class="help-section"><h3>🛡️👑 Эксклюзивы</h3><p>Админам и владельцу доступны специальные темы с частицами и приветствием.</p></div>
   <div class="help-section"><h3>🏆 Достижения</h3><p>Жми 🏆 в шапке — там все твои награды.</p></div>
+  <div class="help-section"><h3>⭐ Отзывы</h3><p>Оставить отзыв можно в боковой панели. Перед публикацией его проверяет администрация.</p></div>
   <div class="help-section"><h3>🔍 Поиск аккаунтов</h3><p>Админ может ввести <b>all</b> в поле поиска, чтобы увидеть все аккаунты.</p></div>
   <div class="modal-footer-divider"></div>
   <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
@@ -822,7 +1020,7 @@
 
 <div class="modal-overlay hidden" id="fandomsModal"><div class="modal modal-wide">
   <button class="modal-close" type="button">×</button>
-  <div class="fandoms-header"><h2>🌐 Фандомы</h2><button class="btn btn-primary hidden" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button></div>
+  <div class="fandoms-header"><h2>🌐 Фандомы</h2><button class="btn btn-primary" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button></div>
   <div class="fandoms-list" id="fandomsList"></div>
 </div></div>
 
@@ -974,6 +1172,52 @@
   </div>
 </div></div>
 
+<div class="modal-overlay hidden" id="reviewsModal"><div class="modal">
+  <button class="modal-close" type="button">×</button>
+  <div class="modal-form-view">
+    <h2>⭐ Отзывы о сервисе</h2>
+    <div class="reviews-summary" id="reviewsSummary"></div>
+    <div class="reviews-list" id="reviewsList"></div>
+    <div class="modal-footer-divider"></div>
+    <button class="btn btn-primary" id="openReviewFormBtn" style="width:100%">✍️ Оставить отзыв</button>
+  </div>
+  <div class="modal-success hidden" id="reviewFormView">
+    <h2>✍️ Оставить отзыв</h2>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.55">Отзыв уйдёт на модерацию и появится только после одобрения администрацией.</p>
+    <div class="star-selector" id="reviewStars">
+      <button type="button" class="star-btn" data-val="1">★</button>
+      <button type="button" class="star-btn" data-val="2">★</button>
+      <button type="button" class="star-btn" data-val="3">★</button>
+      <button type="button" class="star-btn" data-val="4">★</button>
+      <button type="button" class="star-btn" data-val="5">★</button>
+    </div>
+    <div class="field"><label for="reviewText">Ваш отзыв *</label><textarea id="reviewText" placeholder="Что думаете о нашем сервисе?" maxlength="800" style="min-height:110px"></textarea></div>
+    <div class="error" id="reviewError"></div>
+    <button class="btn btn-primary" id="submitReviewBtn" style="width:100%">Отправить на модерацию</button>
+    <button class="btn btn-ghost" id="backToReviewsBtn" style="width:100%;margin-top:10px">← Назад к отзывам</button>
+  </div>
+  <div class="modal-success hidden" id="reviewSuccessView">
+    <div class="success-block">
+      <div class="success-icon">✓</div>
+      <h2>Отзыв отправлен!</h2>
+      <p>Он появится после проверки администрацией.</p>
+      <button class="btn btn-primary" id="closeReviewSuccess" type="button">Понятно</button>
+    </div>
+  </div>
+</div></div>
+
+<div class="modal-overlay hidden" id="adminReviewsModal"><div class="modal modal-wide">
+  <button class="modal-close" type="button">×</button>
+  <h2>⭐ Модерация отзывов</h2>
+  <div id="adminReviewsList"></div>
+</div></div>
+
+<div class="modal-overlay hidden" id="adminFandomsModal"><div class="modal modal-wide">
+  <button class="modal-close" type="button">×</button>
+  <h2>📋 ФД на модерации</h2>
+  <div id="adminFandomsList"></div>
+</div></div>
+
 <div class="toast-container" id="toastContainer"></div>
 
 <script type="module">
@@ -1003,12 +1247,10 @@ const BASE_THEMES = ['dark', 'light', 'purple', 'ocean'];
 const ADMIN_THEMES_DATA = [
   { id: 'admin', name: 'Синий', emoji: '🛡️', particles: ['🛡️','⚔️','🔵','💠','⚡','✨','🔷'], greeting: 'Режим администратора', greetingEmojis: ['🛡️','⚔️'] }
 ];
-
 const OWNER_THEMES_DATA = [
   { id: 'owner', name: 'Золото', emoji: '👑', particles: ['👑','💎','⭐','✨','🏆','💛','🌟'], greeting: 'Режим владельца', greetingEmojis: ['👑','💎'] },
   { id: 'superowner', name: 'Тьма', emoji: '⭐', particles: ['⭐','🔥','💀','⚡','💎','👑','🌟'], greeting: 'Абсолютная власть', greetingEmojis: ['⭐','👑'] }
 ];
-
 const HOLIDAYS = [
   { id: 'birthday', name: 'День рождения', emoji: '🎂', particles: ['🎂','🎉','🎈','🎁','🥳','✨','🎊'], greeting: 'С днём рождения сайта!', greetingEmojis: ['🎂','🎉'], start: [10, 1], end: [10, 31] },
   { id: 'april1', name: '1 Апреля', emoji: '🤡', particles: ['🤡','😂','🤣','🎭','🎪','🃏','😜','🎉'], greeting: 'С 1 Апреля! День смеха!', greetingEmojis: ['🤡','😂'], start: [3, 25], end: [4, 2] },
@@ -1024,12 +1266,10 @@ const HOLIDAYS = [
   { id: 'autumn', name: 'Осень', emoji: '🍁', particles: ['🍁','🍂','🌰','🍄','🌾','🌧️'], greeting: 'Осень', greetingEmojis: ['🍁','🍂'], start: [9, 15], end: [11, 20] },
   { id: 'friday13', name: 'Пятница 13', emoji: '😈', particles: ['😈','👿','🔮','🕯️','💀','🖤'], greeting: 'Пятница 13-е...', greetingEmojis: ['😈','🔮'], special: 'friday13' }
 ];
-
 const ALL_EFFECT_THEMES = [...HOLIDAYS, ...ADMIN_THEMES_DATA, ...OWNER_THEMES_DATA];
 function findEffectTheme(id){ return ALL_EFFECT_THEMES.find(t => t.id === id); }
 
 const MONTHS_RU = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
-
 function isHolidayActive(h, date = new Date()){
   if (!h.start) return false;
   if (h.special === 'friday13') return date.getDay() === 5 && date.getDate() === 13;
@@ -1063,10 +1303,7 @@ function checkHolidayUnlocks(){
   const unlocked = getUnlockedThemes();
   const newlyUnlocked = [];
   HOLIDAYS.forEach(h => {
-    if (isHolidayActive(h, now) && !unlocked.includes(h.id)){
-      unlocked.push(h.id);
-      newlyUnlocked.push(h);
-    }
+    if (isHolidayActive(h, now) && !unlocked.includes(h.id)){ unlocked.push(h.id); newlyUnlocked.push(h); }
   });
   if (newlyUnlocked.length) saveUnlockedThemes(unlocked);
   return newlyUnlocked;
@@ -1120,7 +1357,6 @@ const hashPassword = p => sha256('fd_salt_v1::' + p);
 const LS_SETTINGS = 'fd_settings';
 const DEFAULT_SETTINGS = { theme: 'dark', fontSize: 1, compact: false, animations: true, showPopular: true, countViews: true, shortCards: false, particles: true };
 let settings = { ...DEFAULT_SETTINGS };
-
 function loadSettings(){ try { const raw = localStorage.getItem(LS_SETTINGS); if (raw) settings = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) }; } catch(e){ settings = { ...DEFAULT_SETTINGS }; } }
 function saveSettings(){ localStorage.setItem(LS_SETTINGS, JSON.stringify(settings)); }
 
@@ -1190,6 +1426,58 @@ function showThemeFlash(theme){
   setTimeout(() => flash.classList.remove('show'), 1400);
 }
 
+/* ===== БАННЕРЫ ЭКСКЛЮЗИВНЫХ ТЕМ ===== */
+const THEME_BANNERS = {
+  admin:{badge:'🛡️ ЭКСКЛЮЗИВ АДМИНА',title:'РЕЖИМ АДМИНИСТРАТОРА',sub:'Порядок · Контроль · Сила',gradient:'linear-gradient(135deg,#050b18 0%,#0a1a3a 45%,#1e3a6b 100%)',glow:'rgba(59,130,246,.75)',emojis:['🛡️','⚔️','💠','⚡','🔷','🔹','✨','🌀','🛠️','🔵']},
+  owner:{badge:'👑 ЭКСКЛЮЗИВ ВЛАДЕЛЬЦА',title:'РЕЖИМ ВЛАДЕЛЬЦА',sub:'Абсолютная власть',gradient:'linear-gradient(135deg,#160f02 0%,#3d2a05 45%,#6b4a0a 100%)',glow:'rgba(251,191,36,.8)',emojis:['👑','💎','⭐','🏆','💛','🌟','✨','🥇','🔱','🪙']},
+  superowner:{badge:'⭐ ОСНОВАТЕЛЬ',title:'АБСОЛЮТНАЯ ВЛАСТЬ',sub:'Тьма · Огонь · Вечность',gradient:'linear-gradient(135deg,#0a0202 0%,#2a0606 45%,#4a0a0a 100%)',glow:'rgba(220,38,38,.85)',emojis:['⭐','🔥','💀','⚡','💎','👑','🌟','☠️','🖤','⚔️']},
+  birthday:{badge:'🎂 ПРАЗДНИК',title:'С ДНЁМ РОЖДЕНИЯ!',sub:'Празднуем вместе',gradient:'linear-gradient(135deg,#1a0812 0%,#3a1030 45%,#5a1a4a 100%)',glow:'rgba(255,79,163,.8)',emojis:['🎂','🎉','🎈','🎁','🥳','🎊','✨','🍰','🎀','💖']},
+  april1:{badge:'🤡 ДЕНЬ СМЕХА',title:'С 1 АПРЕЛЯ!',sub:'Шутки · Смех · Веселье',gradient:'linear-gradient(135deg,#1a0f1e 0%,#3a1a40 45%,#5a2a60 100%)',glow:'rgba(255,79,179,.8)',emojis:['🤡','😂','🤣','🎭','🎪','🃏','🎉','😜','🥳','🤪']},
+  halloween:{badge:'🎃 НОЧЬ СТРАХА',title:'С ХЭЛЛОУИНОМ!',sub:'Тыквы · Призраки · Магия',gradient:'linear-gradient(135deg,#0a0508 0%,#2a0d1a 45%,#3d1540 100%)',glow:'rgba(255,106,0,.85)',emojis:['🎃','👻','🦇','🕷️','🕸️','💀','🧙','🕯️','🔮','🌙']},
+  newyear:{badge:'🎄 ПРАЗДНИК',title:'С НОВЫМ ГОДОМ!',sub:'Ёлка · Снег · Подарки',gradient:'linear-gradient(135deg,#0a1220 0%,#122033 45%,#1f3450 100%)',glow:'rgba(42,157,143,.75)',emojis:['❄️','🎄','⛄','🎁','🔔','⭐','🧦','🎅','✨','🦌']},
+  valentine:{badge:'💝 ДЕНЬ ЛЮБВИ',title:'С ДНЁМ ВАЛЕНТИНА!',sub:'Любовь · Романтика · Сердца',gradient:'linear-gradient(135deg,#1a0a12 0%,#3a1528 45%,#5a1a3a 100%)',glow:'rgba(255,45,117,.85)',emojis:['💝','❤️','💕','🌹','💖','💘','💞','💓','🥰','💋']},
+  march8:{badge:'♀️ ПРАЗДНИК',title:'С 8 МАРТА!',sub:'Сила · Красота · Солидарность',gradient:'linear-gradient(135deg,#1a0a1f 0%,#2d1040 45%,#4a1a6a 100%)',glow:'rgba(168,85,247,.8)',emojis:['♀️','✊','💪','💜','🟣','🚺','👩','💐','🌷','✨']},
+  spring:{badge:'🌸 СЕЗОН',title:'ВЕСНА ПРИШЛА!',sub:'Цветение · Тепло · Жизнь',gradient:'linear-gradient(135deg,#0f1a12 0%,#1c3324 45%,#2d5a3d 100%)',glow:'rgba(82,183,136,.8)',emojis:['🌸','🌼','🌱','🦋','🌺','🐝','🌷','🌻','🍀','🌿']},
+  cosmos:{badge:'🚀 КОСМОС',title:'КОСМИЧЕСКИЙ РЕЖИМ',sub:'Звёзды · Планеты · Бесконечность',gradient:'linear-gradient(135deg,#05070f 0%,#0c1430 45%,#1a2547 100%)',glow:'rgba(123,104,238,.85)',emojis:['⭐','✨','🌠','🛸','🚀','💫','🌌','🪐','🌙','☄️']},
+  summer:{badge:'☀️ СЕЗОН',title:'ЛЕТО!',sub:'Солнце · Море · Отдых',gradient:'linear-gradient(135deg,#1a1208 0%,#3a2808 45%,#5a3a10 100%)',glow:'rgba(255,158,0,.8)',emojis:['☀️','🌊','🏖️','🍦','🌴','🐚','🏄','⛱️','🍹','🐠']},
+  school:{badge:'🎒 ПРАЗДНИК',title:'С 1 СЕНТЯБРЯ!',sub:'Знания · Учёба · Друзья',gradient:'linear-gradient(135deg,#0f1a2e 0%,#1a2840 45%,#2d4a6b 100%)',glow:'rgba(244,162,97,.75)',emojis:['📚','✏️','🍎','🎒','📓','📖','📐','🎓','🖍️','📝']},
+  autumn:{badge:'🍁 СЕЗОН',title:'ОСЕНЬ',sub:'Золото · Уют · Листопад',gradient:'linear-gradient(135deg,#1a0f08 0%,#331a0c 45%,#5a2e10 100%)',glow:'rgba(217,119,6,.8)',emojis:['🍁','🍂','🌰','🍄','🌾','🌧️','☕','🦔','🌰','🍂']},
+  winter:{badge:'❄️ СЕЗОН',title:'ЗИМНЯЯ СКАЗКА',sub:'Снег · Мороз · Уют',gradient:'linear-gradient(135deg,#0a1219 0%,#132436 45%,#1f4a6b 100%)',glow:'rgba(144,224,239,.8)',emojis:['❄️','🌨️','⛄','🧊','💙','🌬️','🧣','☕','🏔️','🌌']},
+  friday13:{badge:'😈 ДЕНЬ УЖАСА',title:'ПЯТНИЦА 13-Е...',sub:'Будь осторожен',gradient:'linear-gradient(135deg,#0a0505 0%,#1f0808 45%,#3a0a0a 100%)',glow:'rgba(220,38,38,.9)',emojis:['😈','👿','🔮','🕯️','💀','🖤','☠️','🦇','⚰️','🩸']}
+};
+function renderThemeBanner(){
+  const banner = document.getElementById('themeBanner');
+  if (!banner) return;
+  const theme = THEME_BANNERS[settings.theme];
+  if (!theme){ banner.classList.remove('show'); return; }
+  const bg = document.getElementById('themeBannerBg');
+  const emojiLayer = document.getElementById('themeBannerEmojis');
+  const titleEl = document.getElementById('themeBannerTitle');
+  const subEl = document.getElementById('themeBannerSub');
+  const badgeEl = document.getElementById('themeBannerBadge');
+  banner.style.setProperty('--banner-grad', theme.gradient);
+  banner.style.setProperty('--banner-glow', theme.glow);
+  bg.style.setProperty('--banner-grad', theme.gradient);
+  bg.style.setProperty('--banner-glow', theme.glow);
+  badgeEl.textContent = theme.badge;
+  titleEl.textContent = theme.title;
+  subEl.textContent = theme.sub;
+  const positions = [
+    { x: '4%',  y: '18%' }, { x: '14%', y: '68%' }, { x: '26%', y: '22%' },
+    { x: '78%', y: '20%' }, { x: '88%', y: '62%' }, { x: '70%', y: '72%' },
+    { x: '48%', y: '12%' }, { x: '36%', y: '80%' }, { x: '60%', y: '82%' },
+    { x: '92%', y: '32%' }, { x: '8%',  y: '42%' }
+  ];
+  emojiLayer.innerHTML = theme.emojis.slice(0, positions.length).map((e, i) => {
+    const p = positions[i % positions.length];
+    const delay = (Math.random() * 4).toFixed(2);
+    const size = 22 + Math.random() * 14;
+    const rot = Math.floor(Math.random() * 30 - 15);
+    return `<span style="left:${p.x};top:${p.y};font-size:${size}px;animation-delay:-${delay}s;transform:rotate(${rot}deg)">${e}</span>`;
+  }).join('');
+  banner.classList.add('show');
+}
+
 function defaultAvatar(name){
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
 <defs>
@@ -1240,21 +1528,10 @@ function applyAvatarFrame(frameId, badgeId, user){
   badge.textContent = '';
   if (!user){ frame.classList.add('av-user'); return; }
   const isFounder = OWNER_USERNAMES.includes(user.username);
-  if (isFounder){
-    frame.classList.add('av-founder');
-    badge.textContent = '⭐';
-    badge.classList.remove('hidden');
-  } else if (user.role === 'owner'){
-    frame.classList.add('av-owner');
-    badge.textContent = '👑';
-    badge.classList.remove('hidden');
-  } else if (user.role === 'admin'){
-    frame.classList.add('av-admin');
-    badge.textContent = '🛡️';
-    badge.classList.remove('hidden');
-  } else {
-    frame.classList.add('av-user');
-  }
+  if (isFounder){ frame.classList.add('av-founder'); badge.textContent = '⭐'; badge.classList.remove('hidden'); }
+  else if (user.role === 'owner'){ frame.classList.add('av-owner'); badge.textContent = '👑'; badge.classList.remove('hidden'); }
+  else if (user.role === 'admin'){ frame.classList.add('av-admin'); badge.textContent = '🛡️'; badge.classList.remove('hidden'); }
+  else { frame.classList.add('av-user'); }
 }
 
 function applySettings(){
@@ -1269,6 +1546,7 @@ function applySettings(){
   const theme = findEffectTheme(settings.theme);
   if (theme && theme.particles) applyThemeEffects(theme);
   else clearHolidayEffects();
+  renderThemeBanner();
   document.querySelectorAll('.font-btn').forEach(b => b.classList.toggle('active', parseFloat(b.dataset.size) === settings.fontSize));
   const cc = document.getElementById('setCompact'); if (cc) cc.checked = settings.compact;
   const ca = document.getElementById('setAnimations'); if (ca) ca.checked = settings.animations;
@@ -1298,24 +1576,20 @@ function renderThemePicker(){
   const isOwnerUser = CURRENT_USER && CURRENT_USER.role === 'owner';
   document.getElementById('themeGroupAdmin').classList.toggle('hidden', !isAdminUser);
   document.getElementById('themeGroupOwner').classList.toggle('hidden', !isOwnerUser);
-
   const adminContainer = document.getElementById('themePickerAdmin');
   adminContainer.innerHTML = ADMIN_THEMES_DATA.map(t => {
     const isActive = settings.theme === t.id;
     return `<div class="theme-swatch holiday admin-unlock ${isActive ? 'active' : ''}" data-theme-val="${t.id}" title="${t.name} — эксклюзив администрации"><span class="holiday-emoji">${t.emoji}</span><span class="theme-swatch-label">${t.name}</span></div>`;
   }).join('');
   adminContainer.querySelectorAll('.theme-swatch').forEach(el => el.addEventListener('click', () => pickTheme(el.dataset.themeVal)));
-
   const ownerContainer = document.getElementById('themePickerOwner');
   ownerContainer.innerHTML = OWNER_THEMES_DATA.map(t => {
     const isActive = settings.theme === t.id;
     return `<div class="theme-swatch holiday owner-unlock ${isActive ? 'active' : ''}" data-theme-val="${t.id}" title="${t.name} — эксклюзив владельца"><span class="holiday-emoji">${t.emoji}</span><span class="theme-swatch-label">${t.name}</span></div>`;
   }).join('');
   ownerContainer.querySelectorAll('.theme-swatch').forEach(el => el.addEventListener('click', () => pickTheme(el.dataset.themeVal)));
-
   const container = document.getElementById('themePickerHoliday');
   const unlocked = getUnlockedThemes();
-
   container.innerHTML = HOLIDAYS.map(h => {
     const isUnlocked = isOwnerUser || unlocked.includes(h.id);
     const isActive = settings.theme === h.id;
@@ -1331,7 +1605,6 @@ function renderThemePicker(){
     } else if (isOwnerUser) title = `${h.name} — доступно как владельцу`;
     return `<div class="${classes}" data-theme-val="${h.id}" title="${title}"><span class="holiday-emoji">${h.emoji}</span><span class="theme-swatch-label">${h.name}</span>${dateLabel}</div>`;
   }).join('');
-
   container.querySelectorAll('.theme-swatch').forEach(el => {
     el.addEventListener('click', () => {
       const themeId = el.dataset.themeVal;
@@ -1344,7 +1617,6 @@ function renderThemePicker(){
       pickTheme(themeId);
     });
   });
-
   const total = HOLIDAYS.length;
   const cnt = isOwnerUser ? total : unlocked.length;
   const countEl = document.getElementById('holidayCount');
@@ -1358,8 +1630,7 @@ function renderThemePicker(){
 async function renderUserExclusiveBadges(userId){
   const box = document.getElementById('upExclusiveBadges');
   if (!box) return;
-  box.innerHTML = '';
-  box.classList.add('hidden');
+  box.innerHTML = ''; box.classList.add('hidden');
   try {
     const snap = await get(ref(db, 'userData/' + userId));
     const data = snap.val() || {};
@@ -1374,13 +1645,8 @@ async function renderUserExclusiveBadges(userId){
       badges.push(`<span class="${cls}"><span class="badge-emoji">${themeData.emoji}</span>${escapeHtml(themeData.name)}</span>`);
     }
     const unlockedThemes = Array.isArray(data.unlockedThemes) ? data.unlockedThemes : [];
-    if (unlockedThemes.length > 0){
-      badges.push(`<span class="up-exclusive-badge badge-holiday"><span class="badge-emoji">🎁</span>Тем: ${unlockedThemes.length}</span>`);
-    }
-    if (badges.length){
-      box.innerHTML = badges.join('');
-      box.classList.remove('hidden');
-    }
+    if (unlockedThemes.length > 0) badges.push(`<span class="up-exclusive-badge badge-holiday"><span class="badge-emoji">🎁</span>Тем: ${unlockedThemes.length}</span>`);
+    if (badges.length){ box.innerHTML = badges.join(''); box.classList.remove('hidden'); }
   } catch(e){ console.warn('[Badges]', e); }
 }
 
@@ -1397,17 +1663,12 @@ function updateExclusiveCounter(){
   const count = countUserExclusives();
   const box = document.getElementById('popExclusive');
   const cnt = document.getElementById('popExclusiveCount');
-  if (box && cnt){
-    cnt.textContent = count;
-    if (count > 0) box.classList.remove('hidden');
-    else box.classList.add('hidden');
-  }
+  if (box && cnt){ cnt.textContent = count; if (count > 0) box.classList.remove('hidden'); else box.classList.add('hidden'); }
 }
 
 const LS_STATS_PREFIX = 'fd_stats_';
 const DEFAULT_STATS = { totalViews: 0, fandomsCreated: 0, ticketsSent: 0, themeSwitchCount: 0, settingsChanged: false, themesUnlocked: [], role: 'user', firstLogin: 0, unlockedAchievements: [], congratsShown: { admin: false, owner: false } };
 let userStats = { ...DEFAULT_STATS };
-
 const ACHIEVEMENTS = [
   { id: 'first_login', emoji: '👋', name: 'Добро пожаловать', desc: 'Первый вход на сайт', check: () => true },
   { id: 'founder', emoji: '👑', name: 'Основатель', desc: 'Владелец проекта @ozisoofilion', check: s => s.username && OWNER_USERNAMES.includes(s.username) },
@@ -1428,7 +1689,6 @@ const ACHIEVEMENTS = [
   { id: 'changed_settings', emoji: '⚙️', name: 'Настройщик', desc: 'Изменил настройки', check: s => s.settingsChanged },
   { id: 'friday13', emoji: '😈', name: 'Отважный', desc: 'Зашёл в Пятницу 13', check: () => isHolidayActive(HOLIDAYS.find(h => h.id === 'friday13')) }
 ];
-
 function statsKey(){ return CURRENT_USER ? LS_STATS_PREFIX + CURRENT_USER.id : null; }
 function loadStats(){
   if (!CURRENT_USER){ userStats = { ...DEFAULT_STATS }; return; }
@@ -1453,10 +1713,7 @@ function checkAchievements(){
   userStats.themesUnlocked = Array.from(new Set([...userStats.themesUnlocked, ...getUnlockedThemes()]));
   const newOnes = [];
   ACHIEVEMENTS.forEach(a => {
-    if (!userStats.unlockedAchievements.includes(a.id) && a.check(userStats)){
-      userStats.unlockedAchievements.push(a.id);
-      newOnes.push(a);
-    }
+    if (!userStats.unlockedAchievements.includes(a.id) && a.check(userStats)){ userStats.unlockedAchievements.push(a.id); newOnes.push(a); }
   });
   if (newOnes.length) saveStats();
   newOnes.forEach((a, i) => setTimeout(() => showToast(a.emoji, `Достижение: ${a.name}`, a.desc, 7000), i * 350));
@@ -1485,7 +1742,6 @@ function renderAchievements(){
     return `<div class="ach-card ${isUnlocked ? 'unlocked' : 'locked'}"><div class="ach-emoji">${a.emoji}</div><div class="ach-name">${escapeHtml(a.name)}</div><div class="ach-desc">${escapeHtml(a.desc)}</div>${!isUnlocked ? '<div class="ach-lock">🔒</div>' : ''}</div>`;
   }).join('');
 }
-
 function showRoleCongrats(role){
   const overlay = document.createElement('div');
   overlay.className = 'congrats-overlay';
@@ -1521,30 +1777,37 @@ function checkRoleChange(){
   if (!CURRENT_USER) return;
   const role = CURRENT_USER.role;
   userStats.role = role;
-  if (role === 'admin' && !userStats.congratsShown.admin){
-    userStats.congratsShown.admin = true; saveStats();
-    setTimeout(() => showRoleCongrats('admin'), 800);
-  } else if (role === 'owner' && !userStats.congratsShown.owner){
-    userStats.congratsShown.owner = true; saveStats();
-    setTimeout(() => showRoleCongrats('owner'), 800);
-  }
+  if (role === 'admin' && !userStats.congratsShown.admin){ userStats.congratsShown.admin = true; saveStats(); setTimeout(() => showRoleCongrats('admin'), 800); }
+  else if (role === 'owner' && !userStats.congratsShown.owner){ userStats.congratsShown.owner = true; saveStats(); setTimeout(() => showRoleCongrats('owner'), 800); }
 }
 
-let usersCache = [], ticketsCache = [], fandomsCache = [];
+let usersCache = [], ticketsCache = [], fandomsCache = [], reviewsCache = [];
 let firebaseReady = false, CURRENT_USER = null, viewedUserId = null;
 let ownerMigrationDone = false, selectedFandomId = null, editingFandomId = null;
 let fdSearchMode = 'name';
+let selectedReviewRating = 0;
 
 const getUsers = () => usersCache;
 const getTickets = () => ticketsCache;
 const getFandoms = () => fandomsCache;
+const getReviews = () => reviewsCache;
 function findUserByUsername(u){ return usersCache.find(x => x.username === u); }
+function getApprovedReviews(){ return reviewsCache.filter(r => r.status === 'approved').sort((a,b) => (b.moderatedAt||b.createdAt) - (a.moderatedAt||a.createdAt)); }
+function getPendingReviews(){ return reviewsCache.filter(r => r.status === 'pending').sort((a,b) => a.createdAt - b.createdAt); }
+function getPendingFandoms(){ return fandomsCache.filter(f => f.status === 'pending').sort((a,b) => a.createdAt - b.createdAt); }
+function visibleFandoms(){
+  return fandomsCache.filter(f => {
+    if (!f.status || f.status === 'approved') return true;
+    if (isAdminOrOwner(CURRENT_USER)) return true;
+    if (CURRENT_USER && f.createdBy === CURRENT_USER.id) return true;
+    return false;
+  });
+}
 
 const LS_SESSION = 'fd_session';
 const getSessionId = () => localStorage.getItem(LS_SESSION);
 const setSessionId = id => localStorage.setItem(LS_SESSION, id);
 const clearSessionId = () => localStorage.removeItem(LS_SESSION);
-
 const $ = id => document.getElementById(id);
 
 function showToast(icon, title, text, duration = 8000){
@@ -1585,6 +1848,13 @@ try {
     if (!$('fandomDetailModal').classList.contains('hidden') && selectedFandomId) renderFandomDetail(selectedFandomId);
     if (!$('searchModal').classList.contains('hidden')) updateFdSearchResults();
     renderPopular();
+    updateAdminBadges();
+  });
+  onValue(ref(db, 'reviews'), snap => {
+    reviewsCache = Object.values(snap.val() || {});
+    if (!$('reviewsModal').classList.contains('hidden')) renderReviewsModal();
+    if (!$('adminReviewsModal').classList.contains('hidden')) renderAdminReviews();
+    updateAdminBadges();
   });
   firebaseReady = true;
   console.log('[Firebase] Готово');
@@ -1618,13 +1888,13 @@ function resetModalView(mid){
   const f = m.querySelector('.modal-form-view'), s = m.querySelector('.modal-success');
   if (f) f.classList.remove('hidden'); if (s) s.classList.add('hidden');
   m.querySelectorAll('.error').forEach(e => e.textContent = '');
+  if (mid === 'reviewsModal'){ $('reviewFormView')?.classList.add('hidden'); $('reviewSuccessView')?.classList.add('hidden'); }
 }
 
 $('btnAccept').addEventListener('click', () => { $('btnAccept').classList.add('hidden'); $('btnCreateAccount').classList.remove('hidden'); $('btnGoLogin').classList.remove('hidden'); });
 $('btnCreateAccount').addEventListener('click', () => { switchTab('register'); showScreen('screen-auth'); });
 $('btnGoLogin').addEventListener('click', () => { switchTab('login'); showScreen('screen-auth'); });
 $('btnBackToRules').addEventListener('click', () => showScreen('screen-rules'));
-
 function switchTab(tab){ document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab)); $('form-register').classList.toggle('hidden', tab !== 'register'); $('form-login').classList.toggle('hidden', tab !== 'login'); $('regError').textContent = ''; $('logError').textContent = ''; }
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
 
@@ -1641,6 +1911,37 @@ $('regAvatarInput').addEventListener('change', e => {
 function resetAvatarPreview(){ regAvatarData = null; $('regAvatarInput').value = ''; $('regAvatarPreview').src = defaultAvatar($('regName').value || '?'); }
 $('regName').addEventListener('input', () => { if (!regAvatarData) $('regAvatarPreview').src = defaultAvatar($('regName').value || '?'); });
 
+/* ===== КАПЧА ===== */
+let regCaptchaAnswer = 0, logCaptchaAnswer = 0;
+function genCaptcha(prefix){
+  const a = 1 + Math.floor(Math.random() * 9);
+  const b = 1 + Math.floor(Math.random() * 9);
+  const ops = ['+', '−', '×'];
+  const op = ops[Math.floor(Math.random() * 3)];
+  let task, ans;
+  if (op === '+'){ task = `${a} + ${b}`; ans = a + b; }
+  else if (op === '−'){ const mx = Math.max(a,b), mn = Math.min(a,b); task = `${mx} − ${mn}`; ans = mx - mn; }
+  else { task = `${a} × ${b}`; ans = a * b; }
+  const box = document.getElementById(prefix + 'CaptchaBox');
+  if (!box) return;
+  document.getElementById(prefix + 'CaptchaTask').textContent = task + ' = ?';
+  document.getElementById(prefix + 'CaptchaInput').value = '';
+  box.classList.remove('captcha-verified');
+  if (prefix === 'reg') regCaptchaAnswer = ans; else logCaptchaAnswer = ans;
+}
+function checkCaptcha(prefix){
+  const inp = document.getElementById(prefix + 'CaptchaInput');
+  const expected = prefix === 'reg' ? regCaptchaAnswer : logCaptchaAnswer;
+  const got = parseInt(inp.value, 10);
+  if (isNaN(got) || got !== expected) return false;
+  document.getElementById(prefix + 'CaptchaBox').classList.add('captcha-verified');
+  return true;
+}
+genCaptcha('reg');
+genCaptcha('log');
+document.getElementById('regCaptchaRefresh')?.addEventListener('click', () => genCaptcha('reg'));
+document.getElementById('logCaptchaRefresh')?.addEventListener('click', () => genCaptcha('log'));
+
 $('form-register').addEventListener('submit', async e => {
   e.preventDefault();
   const err = $('regError'); err.textContent = '';
@@ -1652,11 +1953,13 @@ $('form-register').addEventListener('submit', async e => {
   if (pass.length < 6) return err.textContent = 'Пароль минимум 6 символов.';
   if (pass !== pass2) return err.textContent = 'Пароли не совпадают.';
   if (findUserByUsername(username)) return err.textContent = 'Это имя занято.';
+  if (!checkCaptcha('reg')){ err.textContent = 'Неверный ответ на проверку. Попробуйте снова.'; genCaptcha('reg'); return; }
   const user = { id: 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2,8), name, username, passHash: hashPassword(pass), avatar: regAvatarData || null, role: roleOf(username), banned: false, createdAt: Date.now() };
   try {
     await set(ref(db, 'users/' + user.id), user);
     setSessionId(user.id); CURRENT_USER = user;
     $('form-register').reset(); resetAvatarPreview();
+    genCaptcha('reg');
     enterApp(user);
     const newlyUnlocked = checkHolidayUnlocks();
     newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление.', 10000), i * 400));
@@ -1673,7 +1976,9 @@ $('form-login').addEventListener('submit', e => {
   if (!user) return err.textContent = 'Пользователь не найден.';
   if (user.banned) return err.textContent = 'Аккаунт заблокирован.';
   if (user.passHash !== hashPassword(pass)) return err.textContent = 'Неверный пароль.';
+  if (!checkCaptcha('log')){ err.textContent = 'Неверный ответ на проверку.'; genCaptcha('log'); return; }
   setSessionId(user.id); $('form-login').reset();
+  genCaptcha('log');
   enterApp(user);
   const newlyUnlocked = checkHolidayUnlocks();
   newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление.', 10000), i * 400));
@@ -1688,10 +1993,14 @@ function enterApp(user){
   updateExclusiveCounter();
   if (isAdminOrOwner(user)){
     $('adminInboxBtn').classList.remove('hidden');
+    $('adminReviewsBtn').classList.remove('hidden');
+    $('adminFandomsBtn').classList.remove('hidden');
     $('adminSearchWrap').classList.remove('hidden');
     $('topbarBrand').classList.add('hidden');
   } else {
     $('adminInboxBtn').classList.add('hidden');
+    $('adminReviewsBtn').classList.add('hidden');
+    $('adminFandomsBtn').classList.add('hidden');
     $('adminSearchWrap').classList.add('hidden');
     $('topbarBrand').classList.remove('hidden');
   }
@@ -1702,6 +2011,7 @@ function enterApp(user){
   checkAchievements();
   updateAchBadge();
   updateTgBanner();
+  updateAdminBadges();
   $('profilePopup').classList.add('hidden');
   $('adminMsgPopup').classList.add('hidden');
   $('searchResults').classList.add('hidden');
@@ -1729,11 +2039,14 @@ function forceLogout(){
   userStats = { ...DEFAULT_STATS };
   $('profilePopup').classList.add('hidden');
   $('adminInboxBtn').classList.add('hidden');
+  $('adminReviewsBtn')?.classList.add('hidden');
+  $('adminFandomsBtn')?.classList.add('hidden');
   $('myTicketsBtn').classList.add('hidden');
   $('adminSearchWrap').classList.add('hidden');
   $('topbarBrand').classList.remove('hidden');
   document.querySelectorAll('.modal-overlay').forEach(m => m.classList.add('hidden'));
   clearHolidayEffects();
+  document.getElementById('themeBanner')?.classList.remove('show');
   $('btnAccept').classList.remove('hidden');
   $('btnCreateAccount').classList.add('hidden');
   $('btnGoLogin').classList.add('hidden');
@@ -1742,7 +2055,6 @@ function forceLogout(){
 
 $('avatarBtn').addEventListener('click', e => { e.stopPropagation(); $('profilePopup').classList.toggle('hidden'); $('adminMsgPopup').classList.add('hidden'); updateExclusiveCounter(); });
 $('adminMsgBtn').addEventListener('click', e => { e.stopPropagation(); $('adminMsgPopup').classList.toggle('hidden'); $('profilePopup').classList.add('hidden'); });
-
 document.addEventListener('click', e => {
   const pp = $('profilePopup'); if (!pp.classList.contains('hidden') && !pp.contains(e.target) && e.target !== $('avatarBtn')) pp.classList.add('hidden');
   const amp = $('adminMsgPopup'); const amb = $('adminMsgBtn'); if (!amp.classList.contains('hidden') && !amp.contains(e.target) && !amb.contains(e.target)) amp.classList.add('hidden');
@@ -1756,7 +2068,6 @@ document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('c
 
 $('achievementsBtn').addEventListener('click', () => { renderAchievements(); openModal('achievementsModal'); });
 $('settingsBtn').addEventListener('click', () => { applySettings(); openModal('settingsModal'); });
-
 document.querySelectorAll('#themePickerBase .theme-swatch').forEach(sw => sw.addEventListener('click', () => pickTheme(sw.dataset.themeVal)));
 document.querySelectorAll('.font-btn').forEach(btn => btn.addEventListener('click', () => { settings.fontSize = parseFloat(btn.dataset.size); saveSettings(); applySettings(); markSettingsChanged(); checkAchievements(); }));
 $('setCompact').addEventListener('change', e => { settings.compact = e.target.checked; saveSettings(); applySettings(); markSettingsChanged(); checkAchievements(); });
@@ -1765,7 +2076,6 @@ $('setParticles').addEventListener('change', e => { settings.particles = e.targe
 $('setShowPopular').addEventListener('change', e => { settings.showPopular = e.target.checked; saveSettings(); applySettings(); renderPopular(); markSettingsChanged(); checkAchievements(); });
 $('setCountViews').addEventListener('change', e => { settings.countViews = e.target.checked; saveSettings(); markSettingsChanged(); checkAchievements(); });
 $('setShortCards').addEventListener('change', e => { settings.shortCards = e.target.checked; saveSettings(); if (!$('fandomsModal').classList.contains('hidden')) renderFandomsList(); markSettingsChanged(); checkAchievements(); });
-
 $('resetSettingsBtn').addEventListener('click', () => {
   if (!confirm('Сбросить настройки оформления?')) return;
   settings = { ...DEFAULT_SETTINGS }; saveSettings(); applySettings(); renderPopular(); markSettingsChanged(); checkAchievements();
@@ -1784,7 +2094,7 @@ function renderPopular(){
   if (!settings.showPopular){ section.classList.add('hidden'); return; }
   section.classList.remove('hidden');
   const list = $('popularList'), count = $('popularCount');
-  const all = getFandoms().filter(f => (f.views || 0) > 0).sort((a,b) => (b.views||0) - (a.views||0)).slice(0, 5);
+  const all = visibleFandoms().filter(f => (f.views || 0) > 0).sort((a,b) => (b.views||0) - (a.views||0)).slice(0, 5);
   if (all.length === 0){ count.textContent = ''; list.innerHTML = '<div class="popular-empty">Пока нет данных о просмотрах.<br>Открой любой ФД — и он появится здесь.</div>'; return; }
   count.textContent = `Топ ${all.length}`;
   list.innerHTML = all.map((f, i) => {
@@ -1815,10 +2125,9 @@ document.querySelectorAll('.fd-search-tab').forEach(t => {
   });
 });
 fdSearchInput.addEventListener('input', updateFdSearchResults);
-
 function updateFdSearchResults(){
   const q = fdSearchInput.value.trim().toLowerCase();
-  const all = getFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
+  const all = visibleFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
   const filtered = q ? all.filter(f => fdSearchMode === 'name' ? (f.name||'').toLowerCase().includes(q) : (f.description||'').toLowerCase().includes(q)) : all;
   if (filtered.length === 0){ fdSearchResults.innerHTML = `<div class="fd-search-empty">${q ? 'Ничего не найдено.' : 'Пока нет ни одного ФД.'}</div>`; return; }
   fdSearchResults.innerHTML = filtered.map(f => {
@@ -1826,7 +2135,8 @@ function updateFdSearchResults(){
     const linksLabel = linksCount > 0 ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}` : '⚠️ инфо пока нет';
     const desc = (f.description || '').trim();
     const showDesc = desc && !settings.shortCards;
-    return `<div class="fd-search-result" data-id="${f.id}"><div class="fd-search-result-name">${escapeHtml(f.name)}</div>${showDesc ? `<div class="fd-search-result-desc">${escapeHtml(desc)}</div>` : ''}<div class="fd-search-result-meta">${linksLabel}</div></div>`;
+    const isPending = f.status === 'pending';
+    return `<div class="fd-search-result" data-id="${f.id}"><div class="fd-search-result-name">${escapeHtml(f.name)}${isPending ? ' <span class="pending-badge">⏳</span>' : ''}</div>${showDesc ? `<div class="fd-search-result-desc">${escapeHtml(desc)}</div>` : ''}<div class="fd-search-result-meta">${linksLabel}</div></div>`;
   }).join('');
   fdSearchResults.querySelectorAll('.fd-search-result').forEach(el => el.addEventListener('click', () => { const id = el.dataset.id; closeModal('searchModal'); setTimeout(() => openFandomDetail(id), 240); }));
 }
@@ -1834,7 +2144,6 @@ function updateFdSearchResults(){
 const searchInput = $('adminSearchInput'), searchResults = $('searchResults');
 searchInput.addEventListener('input', () => doSearch(searchInput.value));
 searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) doSearch(searchInput.value); });
-
 function doSearch(query){
   const raw = query.trim();
   const q = raw.toLowerCase().replace(/^@+/, '');
@@ -1842,17 +2151,11 @@ function doSearch(query){
   const isAdminUser = CURRENT_USER && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'owner');
   const showAll = isAdminUser && q === 'all';
   let results;
-  if (showAll){
-    results = usersCache.slice().sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
-  } else {
-    results = usersCache.filter(u => u.username.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)).slice(0, 20);
-  }
-  if (results.length === 0){
-    searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>';
-  } else {
-    const header = showAll
-      ? `<div class="search-empty" style="padding:8px 12px;font-size:11.5px;color:var(--muted);border-bottom:1px solid var(--border);margin-bottom:4px;text-align:left">Найдено всего: <b style="color:var(--accent)">${results.length}</b> ${plural(results.length, ['аккаунт','аккаунта','аккаунтов'])}</div>`
-      : '';
+  if (showAll){ results = usersCache.slice().sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0)); }
+  else { results = usersCache.filter(u => u.username.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)).slice(0, 20); }
+  if (results.length === 0){ searchResults.innerHTML = '<div class="search-empty">Никого не найдено</div>'; }
+  else {
+    const header = showAll ? `<div class="search-empty" style="padding:8px 12px;font-size:11.5px;color:var(--muted);border-bottom:1px solid var(--border);margin-bottom:4px;text-align:left">Найдено всего: <b style="color:var(--accent)">${results.length}</b> ${plural(results.length, ['аккаунт','аккаунта','аккаунтов'])}</div>` : '';
     searchResults.innerHTML = header + results.map(u => {
       const avatar = u.avatar || defaultAvatar(u.name);
       const isSpecial = u.role !== 'user';
@@ -1866,9 +2169,7 @@ function doSearch(query){
   }
   searchResults.classList.remove('hidden');
 }
-
 function openUserProfileById(userId){ viewedUserId = userId; renderUserProfile(userId, false); openModal('userProfileModal'); }
-
 function renderUserProfile(userId, silent){
   const user = usersCache.find(u => u.id === userId);
   if (!user){ closeModal('userProfileModal'); return; }
@@ -1881,7 +2182,6 @@ function renderUserProfile(userId, silent){
   $('upCreated').textContent = formatDate(user.createdAt);
   $('upStatus').textContent = user.banned ? '🚫 Забанен' : '✅ Активен';
   renderUserExclusiveBadges(userId);
-
   (async () => {
     try {
       const fandomCount = getFandoms().filter(f => f.createdBy === user.id).length;
@@ -1904,7 +2204,6 @@ function renderUserProfile(userId, silent){
       }
     } catch(e){ console.warn('[Profile stats]', e); }
   })();
-
   const promoteBtn = $('kebabPromote'), demoteBtn = $('kebabDemote'), banBtn = $('kebabBan'), unbanBtn = $('kebabUnban'), kebab = $('kebabBtn');
   const showKebab = isOwner(CURRENT_USER) && user.id !== CURRENT_USER.id && !isHardcodedOwner(user);
   if (!showKebab){ kebab.classList.add('hidden'); $('kebabMenu').classList.add('hidden'); return; }
@@ -1950,12 +2249,10 @@ $('kebabUnban').addEventListener('click', async () => {
 });
 
 $('fandomsBtn').addEventListener('click', () => { renderFandomsList(); openModal('fandomsModal'); });
-
 function renderFandomsList(){
-  const list = $('fandomsList'), createBtn = $('createFandomBtn');
-  if (isAdminOrOwner(CURRENT_USER)) createBtn.classList.remove('hidden'); else createBtn.classList.add('hidden');
-  const fandoms = getFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
-  if (fandoms.length === 0){ list.innerHTML = `<div class="empty-state">Пока нет ни одного ФД.<br>${isAdminOrOwner(CURRENT_USER) ? 'Нажми «+ Создать ФД».' : 'Загляни позже.'}</div>`; return; }
+  const list = $('fandomsList');
+  const fandoms = visibleFandoms().slice().sort((a,b) => b.createdAt - a.createdAt);
+  if (fandoms.length === 0){ list.innerHTML = `<div class="empty-state">Пока нет ни одного ФД.<br>Нажми «+ Создать ФД».</div>`; return; }
   list.innerHTML = fandoms.map(f => {
     const linksCount = Array.isArray(f.links) ? f.links.length : 0;
     const linksLabel = linksCount > 0 ? `🔗 ${linksCount} ${plural(linksCount, ['ссылка','ссылки','ссылок'])}` : '⚠️ инфо пока нет';
@@ -1963,7 +2260,9 @@ function renderFandomsList(){
     const desc = (f.description || '').trim();
     const showDesc = desc && !settings.shortCards;
     const viewsLabel = (f.views || 0) > 0 ? ` · 👁 ${f.views}` : '';
-    return `<div class="fandom-card" data-id="${f.id}"><div class="fandom-card-top"><div class="fandom-card-name">${escapeHtml(f.name)}</div><div class="fandom-card-links ${linksClass}">${linksLabel}</div></div>${showDesc ? `<div class="fandom-card-desc">${escapeHtml(desc)}</div>` : ''}<div class="fandom-card-meta">Создал: ${escapeHtml(f.createdByName || '—')} · ${formatTime(f.createdAt)}${viewsLabel}</div></div>`;
+    const isPending = f.status === 'pending';
+    const pendingBadge = isPending ? '<span class="pending-badge">⏳ На модерации</span>' : '';
+    return `<div class="fandom-card ${isPending ? 'pending' : ''}" data-id="${f.id}"><div class="fandom-card-top"><div class="fandom-card-name">${escapeHtml(f.name)}${pendingBadge}</div><div class="fandom-card-links ${linksClass}">${linksLabel}</div></div>${showDesc ? `<div class="fandom-card-desc">${escapeHtml(desc)}</div>` : ''}<div class="fandom-card-meta">Создал: ${escapeHtml(f.createdByName || '—')} · ${formatTime(f.createdAt)}${viewsLabel}</div></div>`;
   }).join('');
   list.querySelectorAll('.fandom-card').forEach(el => el.addEventListener('click', () => openFandomDetail(el.dataset.id)));
 }
@@ -1971,12 +2270,12 @@ function renderFandomsList(){
 function openFandomDetail(fandomId){
   selectedFandomId = fandomId;
   renderFandomDetail(fandomId);
-  if (settings.countViews && firebaseReady){
-    const f = getFandoms().find(x => x.id === fandomId);
-    if (f) runTransaction(ref(db, 'fandoms/' + fandomId + '/views'), cur => (cur || 0) + 1).catch(()=>{});
+  const f = getFandoms().find(x => x.id === fandomId);
+  if (settings.countViews && firebaseReady && f && (!f.status || f.status === 'approved')){
+    runTransaction(ref(db, 'fandoms/' + fandomId + '/views'), cur => (cur || 0) + 1).catch(()=>{});
+    incrementStat('totalViews', 1);
+    checkAchievements();
   }
-  incrementStat('totalViews', 1);
-  checkAchievements();
   openModal('fandomDetailModal');
 }
 
@@ -1984,8 +2283,11 @@ function renderFandomDetail(fandomId){
   const f = getFandoms().find(x => x.id === fandomId);
   if (!f){ closeModal('fandomDetailModal'); return; }
   $('fdDetailName').textContent = f.name;
+  const isPending = f.status === 'pending';
+  const pendingHtml = isPending ? ' <span class="pending-badge">⏳ На модерации</span>' : '';
+  $('fdDetailName').innerHTML = escapeHtml(f.name) + pendingHtml;
   $('fdDetailDesc').textContent = f.description || '';
-  const canEdit = isAdminOrOwner(CURRENT_USER);
+  const canEdit = isAdminOrOwner(CURRENT_USER) || (CURRENT_USER && f.createdBy === CURRENT_USER.id);
   if (canEdit){ $('editFandomBtn').classList.remove('hidden'); $('deleteFandomBtn').classList.remove('hidden'); } else { $('editFandomBtn').classList.add('hidden'); $('deleteFandomBtn').classList.add('hidden'); }
   const linksEl = $('fdDetailLinks');
   const links = Array.isArray(f.links) ? f.links.filter(l => l && l.url) : [];
@@ -1998,10 +2300,14 @@ function renderFandomDetail(fandomId){
   }).join('');
 }
 
-$('createFandomBtn').addEventListener('click', () => { if (!isAdminOrOwner(CURRENT_USER)) return; editingFandomId = null; openFandomForm(null); });
+$('createFandomBtn').addEventListener('click', () => {
+  if (!CURRENT_USER){ showToast('🔒', 'Войдите', 'Чтобы создать ФД, нужно войти.'); return; }
+  editingFandomId = null; openFandomForm(null);
+});
 $('editFandomBtn').addEventListener('click', () => {
-  if (!isAdminOrOwner(CURRENT_USER)) return;
   const f = getFandoms().find(x => x.id === selectedFandomId); if (!f) return;
+  const canEdit = isAdminOrOwner(CURRENT_USER) || (CURRENT_USER && f.createdBy === CURRENT_USER.id);
+  if (!canEdit) return;
   editingFandomId = f.id; openFandomForm(f);
 });
 
@@ -2015,7 +2321,6 @@ function openFandomForm(fandom){
   if (links.length === 0) addLinkRow(); else links.forEach(l => addLinkRow(l.title || '', l.url || ''));
   closeModal('fandomsModal'); openModal('fandomFormModal');
 }
-
 function addLinkRow(title = '', url = ''){
   const editor = $('fdLinksEditor');
   const row = document.createElement('div'); row.className = 'fd-link-row';
@@ -2027,7 +2332,7 @@ $('addLinkBtn').addEventListener('click', () => addLinkRow());
 
 $('fandomForm').addEventListener('submit', async e => {
   e.preventDefault();
-  if (!isAdminOrOwner(CURRENT_USER)) return;
+  if (!CURRENT_USER) return;
   const err = $('fandomError'); err.textContent = '';
   const name = $('fdName').value.trim(), description = $('fdDesc').value.trim();
   if (name.length < 2) return err.textContent = 'Укажите название ФД.';
@@ -2038,26 +2343,34 @@ $('fandomForm').addEventListener('submit', async e => {
     const u = row.querySelector('.fd-link-url').value.trim();
     if (u) links.push({ id: 'l_' + Date.now() + '_' + Math.random().toString(36).slice(2,6), title: t || '', url: u });
   });
+  const isMod = isAdminOrOwner(CURRENT_USER);
   try {
     if (editingFandomId){
-      await update(ref(db, 'fandoms/' + editingFandomId), { name, description, links });
+      const orig = getFandoms().find(x => x.id === editingFandomId);
+      const canEdit = isMod || (orig && orig.createdBy === CURRENT_USER.id);
+      if (!canEdit){ err.textContent = 'Нет прав.'; return; }
+      const payload = { name, description, links };
+      if (!isMod){ payload.status = 'pending'; }
+      await update(ref(db, 'fandoms/' + editingFandomId), payload);
       closeModal('fandomFormModal');
       setTimeout(() => openFandomDetail(editingFandomId), 240);
     } else {
       const id = 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
-      const fandom = { id, name, description, links, views: 0, createdBy: CURRENT_USER.id, createdByName: CURRENT_USER.name, createdAt: Date.now() };
+      const fandom = { id, name, description, links, views: 0, createdBy: CURRENT_USER.id, createdByName: CURRENT_USER.name, createdAt: Date.now(), status: isMod ? 'approved' : 'pending' };
       await set(ref(db, 'fandoms/' + id), fandom);
       $('fandomForm').reset(); $('fdLinksEditor').innerHTML = ''; addLinkRow();
       closeModal('fandomFormModal');
       setTimeout(() => { renderFandomsList(); openModal('fandomsModal'); }, 240);
       incrementStat('fandomsCreated', 1); checkAchievements();
+      showToast(isMod ? '✅' : '⏳', isMod ? 'ФД создан' : 'Заявка отправлена', isMod ? 'Опубликован.' : 'Появится после одобрения администрацией.');
     }
   } catch(e2){ err.textContent = 'Ошибка: ' + e2.message; }
 });
 
 $('deleteFandomBtn').addEventListener('click', async () => {
-  if (!isAdminOrOwner(CURRENT_USER)) return;
   const f = getFandoms().find(x => x.id === selectedFandomId); if (!f) return;
+  const canDelete = isAdminOrOwner(CURRENT_USER) || (CURRENT_USER && f.createdBy === CURRENT_USER.id);
+  if (!canDelete) return;
   if (!confirm(`Удалить ФД «${f.name}»?`)) return;
   try {
     await remove(ref(db, 'fandoms/' + f.id));
@@ -2065,6 +2378,154 @@ $('deleteFandomBtn').addEventListener('click', async () => {
     setTimeout(() => { renderFandomsList(); openModal('fandomsModal'); }, 240);
   } catch(e){ alert('Ошибка: ' + e.message); }
 });
+
+/* ===== МОДЕРАЦИЯ ФД (админ) ===== */
+function updateAdminBadges(){
+  if (!CURRENT_USER || !isAdminOrOwner(CURRENT_USER)) return;
+  const pr = getPendingReviews().length, pf = getPendingFandoms().length;
+  const rb = $('reviewsBadge'), fb = $('pendingFandomsBadge');
+  if (rb){ rb.textContent = pr > 99 ? '99+' : pr; rb.classList.toggle('hidden', pr === 0); }
+  if (fb){ fb.textContent = pf > 99 ? '99+' : pf; fb.classList.toggle('hidden', pf === 0); }
+}
+$('adminFandomsBtn')?.addEventListener('click', () => { renderAdminFandoms(); openModal('adminFandomsModal'); });
+function renderAdminFandoms(){
+  const list = $('adminFandomsList');
+  const pending = getPendingFandoms();
+  if (pending.length === 0){ list.innerHTML = '<div class="empty-state">Нет заявок на модерации ✅</div>'; return; }
+  list.innerHTML = pending.map(f => {
+    const linksCount = Array.isArray(f.links) ? f.links.length : 0;
+    return `<div class="pending-fd-card">
+      <div class="pending-fd-name">${escapeHtml(f.name)}</div>
+      ${f.description ? `<div class="pending-fd-desc">${escapeHtml(f.description)}</div>` : ''}
+      <div class="pending-fd-meta">👤 ${escapeHtml(f.createdByName || '—')} · ${formatTime(f.createdAt)} · 🔗 ${linksCount}</div>
+      <div class="review-pending-actions">
+        <button class="btn btn-approve" data-act="approve" data-id="${f.id}">✅ Одобрить</button>
+        <button class="btn btn-reject" data-act="reject" data-id="${f.id}">❌ Удалить</button>
+      </div>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('button[data-act]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.id, act = btn.dataset.act;
+      try {
+        if (act === 'approve'){
+          await update(ref(db, 'fandoms/' + id), { status: 'approved', moderatedBy: CURRENT_USER.id, moderatedAt: Date.now() });
+          showToast('✅', 'ФД одобрен', 'Теперь его видят все пользователи.');
+        } else {
+          if (!confirm('Удалить заявку?')) return;
+          await remove(ref(db, 'fandoms/' + id));
+          showToast('❌', 'Заявка удалена', '');
+        }
+      } catch(e){ alert(e.message); }
+    });
+  });
+}
+
+/* ===== ОТЗЫВЫ ===== */
+function renderStarsDisplay(rating){
+  let html = '<div class="reviews-stars">';
+  for (let i = 1; i <= 5; i++) html += `<span class="${i <= rating ? '' : 'empty'}">★</span>`;
+  return html + '</div>';
+}
+function renderReviewsModal(){
+  const summary = $('reviewsSummary'), list = $('reviewsList');
+  const approved = getApprovedReviews();
+  const count = approved.length;
+  const avg = count > 0 ? (approved.reduce((s,r) => s + (r.rating||0), 0) / count) : 0;
+  if (count === 0){
+    summary.innerHTML = '<div style="text-align:center;width:100%;color:var(--muted);font-size:13.5px;padding:6px">Отзывов пока нет — станьте первым! 🌟</div>';
+  } else {
+    summary.innerHTML = `<div class="reviews-avg">${avg.toFixed(1)}</div><div class="reviews-avg-meta">${renderStarsDisplay(Math.round(avg))}<div class="reviews-count">${count} ${plural(count, ['отзыв','отзыва','отзывов'])}</div></div>`;
+  }
+  if (approved.length === 0){
+    list.innerHTML = '<div class="reviews-empty">Никто ещё не оставил отзыв.<br>Нажмите «Оставить отзыв» ниже 👇</div>';
+  } else {
+    list.innerHTML = approved.map(r => `
+      <div class="review-card">
+        <div class="review-head">
+          <div class="review-author"><div class="review-author-name">${escapeHtml(r.fromName)}</div><div class="review-author-user">@${escapeHtml(r.fromUsername)}</div></div>
+          <div class="review-date">${formatTime(r.moderatedAt || r.createdAt)}</div>
+        </div>
+        ${renderStarsDisplay(r.rating)}
+        <div class="review-text">${escapeHtml(r.text).replace(/\n/g, '<br>')}</div>
+      </div>`).join('');
+  }
+}
+function showReviewView(which){
+  const m = $('reviewsModal');
+  m.querySelector('.modal-form-view').classList.toggle('hidden', which !== 'list');
+  $('reviewFormView').classList.toggle('hidden', which !== 'form');
+  $('reviewSuccessView').classList.toggle('hidden', which !== 'success');
+  if (which === 'list') renderReviewsModal();
+}
+function openReviewsModal(){
+  if (!CURRENT_USER){ showToast('🔒', 'Войдите', 'Чтобы оставить отзыв, нужно войти в аккаунт.'); return; }
+  showReviewView('list');
+  openModal('reviewsModal');
+}
+document.getElementById('sideReviewsBtn')?.addEventListener('click', () => { setSideOpen(false); setTimeout(openReviewsModal, 200); });
+$('openReviewFormBtn')?.addEventListener('click', () => {
+  selectedReviewRating = 0;
+  document.querySelectorAll('#reviewStars .star-btn').forEach(b => b.classList.remove('active'));
+  $('reviewText').value = '';
+  $('reviewError').textContent = '';
+  showReviewView('form');
+});
+$('backToReviewsBtn')?.addEventListener('click', () => showReviewView('list'));
+$('closeReviewSuccess')?.addEventListener('click', () => closeModal('reviewsModal'));
+document.querySelectorAll('#reviewStars .star-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = parseInt(btn.dataset.val, 10);
+    selectedReviewRating = val;
+    document.querySelectorAll('#reviewStars .star-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.val,10) <= val));
+  });
+});
+$('submitReviewBtn')?.addEventListener('click', async () => {
+  const err = $('reviewError'); err.textContent = '';
+  if (!CURRENT_USER) return err.textContent = 'Войдите в аккаунт.';
+  if (selectedReviewRating < 1) return err.textContent = 'Поставьте оценку (1–5 звёзд).';
+  const text = $('reviewText').value.trim();
+  if (text.length < 5) return err.textContent = 'Отзыв минимум 5 символов.';
+  const review = {
+    id: 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2,8),
+    fromId: CURRENT_USER.id, fromName: CURRENT_USER.name, fromUsername: CURRENT_USER.username,
+    rating: selectedReviewRating, text, status: 'pending',
+    createdAt: Date.now(), moderatedBy: null, moderatedAt: null
+  };
+  try { await set(ref(db, 'reviews/' + review.id), review); showReviewView('success'); }
+  catch(e){ err.textContent = 'Ошибка: ' + e.message; }
+});
+$('adminReviewsBtn')?.addEventListener('click', () => { renderAdminReviews(); openModal('adminReviewsModal'); });
+function renderAdminReviews(){
+  const list = $('adminReviewsList');
+  const pending = getPendingReviews();
+  if (pending.length === 0){ list.innerHTML = '<div class="empty-state">Нет отзывов на модерации ✅</div>'; return; }
+  list.innerHTML = pending.map(r => `
+    <div class="review-pending-card">
+      <div class="review-head">
+        <div class="review-author">
+          <div class="review-author-name">${escapeHtml(r.fromName)}</div>
+          <div class="review-author-user">@${escapeHtml(r.fromUsername)} · ${formatTime(r.createdAt)}</div>
+        </div>
+      </div>
+      ${renderStarsDisplay(r.rating)}
+      <div class="review-text">${escapeHtml(r.text).replace(/\n/g, '<br>')}</div>
+      <div class="review-pending-actions">
+        <button class="btn btn-approve" data-act="approve" data-id="${r.id}">✅ Опубликовать</button>
+        <button class="btn btn-reject" data-act="reject" data-id="${r.id}">❌ Отклонить</button>
+      </div>
+    </div>`).join('');
+  list.querySelectorAll('button[data-act]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const act = btn.dataset.act, id = btn.dataset.id;
+      const status = act === 'approve' ? 'approved' : 'rejected';
+      try {
+        await update(ref(db, 'reviews/' + id), { status, moderatedBy: CURRENT_USER.id, moderatedAt: Date.now() });
+        showToast(act === 'approve' ? '✅' : '❌', act === 'approve' ? 'Отзыв опубликован' : 'Отзыв отклонён', '');
+      } catch(e){ alert(e.message); }
+    });
+  });
+}
 
 $('openHelpBtn').addEventListener('click', () => { $('adminMsgPopup').classList.add('hidden'); openModal('helpModal'); });
 $('openFloodBtn').addEventListener('click', () => { $('adminMsgPopup').classList.add('hidden'); openModal('floodModal'); });
@@ -2074,7 +2535,6 @@ async function sendTicket(t){
   if (!firebaseReady){ alert('Нет соединения.'); return; }
   try { await set(ref(db, 'tickets/' + t.id), t); } catch(e){ alert('Ошибка: ' + e.message); }
 }
-
 $('floodForm').addEventListener('submit', e => {
   e.preventDefault(); if (!CURRENT_USER) return;
   const err = $('floodError'); err.textContent = '';
@@ -2088,7 +2548,6 @@ $('floodForm').addEventListener('submit', e => {
   const f = $('floodModal'); f.querySelector('.modal-form-view').classList.add('hidden'); f.querySelector('.modal-success').classList.remove('hidden');
   incrementStat('ticketsSent', 1); checkAchievements();
 });
-
 $('contactForm').addEventListener('submit', e => {
   e.preventDefault(); if (!CURRENT_USER) return;
   const err = $('contactError'); err.textContent = '';
@@ -2108,7 +2567,6 @@ function updateAdminInbox(){
   if (newCount > 0){ badge.textContent = newCount > 99 ? '99+' : newCount; badge.classList.remove('hidden'); } else badge.classList.add('hidden');
 }
 $('adminInboxBtn').addEventListener('click', () => { selectedTicketId = null; renderAdminPanel(); openModal('adminPanelModal'); });
-
 function renderAdminPanel(){
   const tickets = getTickets().slice().sort((a,b) => b.createdAt - a.createdAt);
   const list = $('ticketsList'), detail = $('ticketDetail');
@@ -2143,14 +2601,12 @@ function renderAdminPanel(){
     try { await update(ref(db, 'tickets/' + selected.id), { answer: text, status: 'answered', answeredAt: Date.now() }); } catch(e){ alert(e.message); }
   });
 }
-
 function updateMyTicketsBadge(){
   if (!CURRENT_USER) return;
   const count = getTickets().filter(t => t.fromId === CURRENT_USER.id && t.status === 'answered').length;
   const badge = $('myTicketsBadge');
   if (count > 0){ badge.textContent = count > 99 ? '99+' : count; badge.classList.remove('hidden'); } else badge.classList.add('hidden');
 }
-
 function renderMyTickets(){
   const list = $('myTicketsList');
   if (!CURRENT_USER){ list.innerHTML = '<div class="empty-state">Не авторизованы</div>'; return; }
@@ -2172,9 +2628,7 @@ function renderMyTickets(){
     return `<div class="my-ticket-card ${isAnswered ? 'answered' : ''}"><div class="my-ticket-head"><div class="my-ticket-type">${typeLabel}</div><div class="my-ticket-status ${statusClass}">${statusLabel}</div></div><div class="my-ticket-body">${body}</div>${answerBlock}</div>`;
   }).join('');
 }
-
 $('myTicketsBtn').addEventListener('click', () => { renderMyTickets(); openModal('myTicketsModal'); });
-
 function refreshTicketUI(){
   updateAdminInbox(); updateMyTicketsBadge();
   if (!$('myTicketsModal').classList.contains('hidden')) renderMyTickets();
@@ -2184,7 +2638,6 @@ function refreshTicketUI(){
 const LS_TG_HIDDEN_AT = 'fd_tg_banner_hidden_at';
 const TG_BANNER_RETURN_MS = 5 * 60 * 1000;
 let tgBannerTimer = null;
-
 function updateTgBanner(){
   const banner = document.getElementById('tgBanner');
   if (!banner) return;
@@ -2195,34 +2648,24 @@ function updateTgBanner(){
   if (tgBannerTimer){ clearTimeout(tgBannerTimer); tgBannerTimer = null; }
   if (!shouldShow){
     const remaining = TG_BANNER_RETURN_MS - (now - hiddenAt);
-    if (remaining > 0){
-      tgBannerTimer = setTimeout(() => {
-        const b = document.getElementById('tgBanner');
-        if (b) b.classList.remove('hidden');
-      }, remaining);
-    }
+    if (remaining > 0){ tgBannerTimer = setTimeout(() => { const b = document.getElementById('tgBanner'); if (b) b.classList.remove('hidden'); }, remaining); }
   }
 }
-
 document.getElementById('tgBannerClose')?.addEventListener('click', () => {
   localStorage.setItem(LS_TG_HIDDEN_AT, String(Date.now()));
   updateTgBanner();
   showToast('✈️', 'Баннер скрыт на 5 минут', 'Подписаться всегда можно вручную: t.me/floodsaid');
 });
 
-/* ===== БОКОВАЯ ПАНЕЛЬ: логика (НОВОЕ) ===== */
+/* ===== БОКОВАЯ ПАНЕЛЬ ===== */
 const sideToggle = document.getElementById('sideToggle');
 const sidePanel = document.getElementById('sidePanel');
 const sideBackdrop = document.getElementById('sideBackdrop');
 const sideAvatar = document.getElementById('sideAvatar');
 if (sideAvatar) sideAvatar.src = defaultAvatar('ФД');
-
 function setSideOpen(open){
   document.body.classList.toggle('side-open', open);
-  if (sideToggle){
-    sideToggle.textContent = open ? '‹' : '☰';
-    sideToggle.title = open ? 'Закрыть панель' : 'Открыть панель';
-  }
+  if (sideToggle){ sideToggle.textContent = open ? '‹' : '☰'; sideToggle.title = open ? 'Закрыть панель' : 'Открыть панель'; }
 }
 sideToggle?.addEventListener('click', () => setSideOpen(!document.body.classList.contains('side-open')));
 document.getElementById('sidePanelClose')?.addEventListener('click', () => setSideOpen(false));
@@ -2234,7 +2677,6 @@ document.getElementById('sideContactBtn')?.addEventListener('click', () => { set
 loadSettings();
 applySettings();
 updateTgBanner();
-
 $('regAvatarPreview').src = defaultAvatar('?');
 
 const sessionId = getSessionId();
