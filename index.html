@@ -612,10 +612,10 @@
     .theme-banner-sub{font-size:10.5px;letter-spacing:1.8px}
     .theme-banner-emojis span{font-size:20px !important;opacity:.6}
     .modal-overlay{padding:0;align-items:flex-end;backdrop-filter:blur(3px)}
-    .modal{max-width:100%;width:100%;border-radius:22px 22px 0 0;padding:22px 18px calc(26px + env(safe-area-inset-bottom));max-height:92vh;animation:sheetUp .3s cubic-bezier(.2,.9,.3,1)}
+    .modal{max-width:100%;width:100%;border-radius:22px 22px 0 0;padding:22px 18px calc(26px + env(safe-area-inset-bottom));max-height:92vh;max-height:92dvh;animation:sheetUp .3s cubic-bezier(.2,.9,.3,1)}
     .modal-wide,.modal-narrow{max-width:100%}
-    .modal h2{font-size:18px;margin-bottom:14px;padding-right:40px}
-    .modal-close{top:12px;right:12px;width:34px;height:34px;background:var(--card-2);border-radius:50%;font-size:20px}
+    .modal h2{font-size:18px;margin-bottom:14px;padding-right:48px}
+    .modal-close{top:12px;right:12px;width:34px;height:34px;background:var(--card-2);border-radius:50%;font-size:20px;z-index:30}
     .auth-card,.rules-card{padding:24px 20px;border-radius:20px}
     .rules-text{max-height:50vh;font-size:13.5px}
     .rules-card h1{font-size:20px}
@@ -674,14 +674,18 @@
     .ach-emoji{font-size:26px;margin-bottom:6px}
     .ach-name{font-size:11.5px}
     .ach-desc{font-size:10px}
-    .fd-detail-header{flex-direction:column;align-items:flex-start;gap:8px}
-    .fd-actions{align-self:flex-end;margin-top:-40px}
-    .fd-link-item{padding:11px 12px;gap:10px}
+    .fd-detail-header{flex-direction:row !important;align-items:flex-start !important;padding-right:48px;gap:8px}
+    .fd-detail-header h2{flex:1;font-size:17px !important}
+    .fd-actions{align-self:auto !important;margin-top:0 !important;flex-shrink:0}
+    .fd-link-item{padding:14px 14px;gap:10px;min-height:56px}
     .fd-link-icon{width:32px;height:32px;font-size:15px}
     .fd-link-title{font-size:13.5px}
     .fd-link-url{font-size:11.5px}
     .fd-link-row{grid-template-columns:1fr;gap:6px;padding:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;position:relative}
     .fd-link-row .fd-link-remove{position:absolute;top:6px;right:6px;width:28px;height:28px;font-size:14px}
+    .fandoms-header{flex-direction:column;align-items:stretch;gap:10px;padding-right:0}
+    .fandoms-header h2{padding-right:48px;font-size:17px}
+    .fandoms-header .btn{width:100% !important;padding:13px 18px !important;font-size:14.5px !important;position:relative;z-index:6;min-height:46px}
     .up-header{gap:12px;padding-right:40px}
     .up-header .av-frame img.up-avatar{width:56px;height:56px}
     .up-name{font-size:16px}
@@ -689,6 +693,7 @@
     .holiday-greeting{font-size:14px;padding:12px 16px;gap:8px}
     .holiday-greeting .hg-emoji{font-size:22px}
     .kebab-menu{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(280px,90vw);right:auto}
+    .modal .btn:not(.btn-icon):not(.modal-close):not(.star-btn){min-height:44px}
   }
   @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
   @media(max-width:380px){
@@ -701,6 +706,18 @@
     .theme-swatch.holiday .holiday-emoji{font-size:20px}
     .theme-swatch.holiday .theme-swatch-label{font-size:9px}
   }
+
+  /* ===== ИСПРАВЛЕНИЯ МОБИЛЬНЫХ БАГОВ ===== */
+  html, body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+  .btn, .side-link, .icon-btn-topbar, .star-btn, .tab,
+  .fd-link-item, .fandom-card, .popular-item, .side-toggle,
+  .captcha-refresh {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body.modal-open .side-toggle { display: none !important; }
+  body.modal-open .side-panel { display: none !important; }
+  body.modal-open .side-backdrop { display: none !important; }
 </style>
 </head>
 <body>
@@ -782,8 +799,8 @@
 
 <section id="screen-auth" class="screen"><div class="auth-card">
   <div class="tabs">
-    <button class="tab active" data-tab="register">Регистрация</button>
-    <button class="tab" data-tab="login">Вход</button>
+    <button class="tab active" data-tab="register" type="button">Регистрация</button>
+    <button class="tab" data-tab="login" type="button">Вход</button>
   </div>
   <form id="form-register" autocomplete="off">
     <div class="avatar-picker">
@@ -828,17 +845,17 @@
   <header class="topbar">
     <div class="topbar-left">
       <div style="position:relative">
-        <button class="admin-msg-btn" id="adminMsgBtn"><span>Сообщение администрации</span></button>
+        <button class="admin-msg-btn" id="adminMsgBtn" type="button"><span>Сообщение администрации</span></button>
         <div class="admin-msg-popup hidden" id="adminMsgPopup">
           <div class="admin-msg-header">Сообщение от администрации</div>
           <div class="admin-msg-text">Добро пожаловать! Если вы столкнулись с флудом или у вас вопрос — выберите вариант ниже.</div>
           <div class="admin-msg-actions">
-            <button class="btn btn-ghost" id="openHelpBtn">Помощь</button>
-            <button class="btn btn-primary" id="openFloodBtn">Сообщить о флуде</button>
+            <button class="btn btn-ghost" id="openHelpBtn" type="button">Помощь</button>
+            <button class="btn btn-primary" id="openFloodBtn" type="button">Сообщить о флуде</button>
           </div>
         </div>
       </div>
-      <button class="fandoms-btn" id="fandomsBtn">🌐 <span>Фандомы</span></button>
+      <button class="fandoms-btn" id="fandomsBtn" type="button">🌐 <span>Фандомы</span></button>
     </div>
     <div class="topbar-center">
       <div class="brand" id="topbarBrand">ФД<span>Поиск</span><span class="topbar-holiday-emoji" id="topbarEmoji"></span></div>
@@ -848,14 +865,14 @@
       </div>
     </div>
     <div class="topbar-right">
-      <button class="my-tickets-btn hidden" id="myTicketsBtn">📬 <span>Мои обращения</span> <span class="inbox-badge hidden" id="myTicketsBadge">0</span></button>
-      <button class="admin-inbox-btn hidden" id="adminInboxBtn">📥 <span>Обращения</span> <span class="inbox-badge hidden" id="ticketsBadge">0</span></button>
-      <button class="admin-inbox-btn hidden" id="adminReviewsBtn">⭐ <span>Отзывы флудов</span> <span class="inbox-badge hidden" id="reviewsBadge">0</span></button>
-      <button class="admin-inbox-btn hidden" id="adminFandomsBtn">📋 <span>Заявки</span> <span class="inbox-badge hidden" id="pendingFandomsBadge">0</span></button>
-      <button class="icon-btn-topbar achievements-btn" id="achievementsBtn" title="Достижения">🏆<span class="ach-badge hidden" id="achBadge">0</span></button>
-      <button class="icon-btn-topbar settings-btn" id="settingsBtn" title="Настройки">⚙️</button>
+      <button class="my-tickets-btn hidden" id="myTicketsBtn" type="button">📬 <span>Мои обращения</span> <span class="inbox-badge hidden" id="myTicketsBadge">0</span></button>
+      <button class="admin-inbox-btn hidden" id="adminInboxBtn" type="button">📥 <span>Обращения</span> <span class="inbox-badge hidden" id="ticketsBadge">0</span></button>
+      <button class="admin-inbox-btn hidden" id="adminReviewsBtn" type="button">⭐ <span>Отзывы флудов</span> <span class="inbox-badge hidden" id="reviewsBadge">0</span></button>
+      <button class="admin-inbox-btn hidden" id="adminFandomsBtn" type="button">📋 <span>Заявки</span> <span class="inbox-badge hidden" id="pendingFandomsBadge">0</span></button>
+      <button class="icon-btn-topbar achievements-btn" id="achievementsBtn" type="button" title="Достижения">🏆<span class="ach-badge hidden" id="achBadge">0</span></button>
+      <button class="icon-btn-topbar settings-btn" id="settingsBtn" type="button" title="Настройки">⚙️</button>
       <div class="user-area">
-        <button class="avatar-btn" id="avatarBtn">
+        <button class="avatar-btn" id="avatarBtn" type="button">
           <span class="av-frame av-user" id="topAvatarFrame">
             <img id="topAvatar" alt="Аватар" />
             <span class="av-badge hidden" id="topAvatarBadge"></span>
@@ -875,7 +892,7 @@
             <span>🏅</span><span>Эксклюзивов:</span><span class="pop-exclusive-count" id="popExclusiveCount">0</span>
           </div>
           <div class="pop-divider"></div>
-          <button class="btn btn-danger" id="btnLogout">Выйти из аккаунта</button>
+          <button class="btn btn-danger" id="btnLogout" type="button">Выйти из аккаунта</button>
         </div>
       </div>
     </div>
@@ -926,7 +943,7 @@
   <div class="help-section"><h3>🎁 Праздничные темы</h3><p>Зайди в настройки в день праздника — тема откроется с эксклюзивными эффектами.</p></div>
   <div class="help-section"><h3>🏆 Достижения</h3><p>Жми 🏆 в шапке — там все твои награды.</p></div>
   <div class="modal-footer-divider"></div>
-  <button class="btn btn-primary" id="contactFromHelpBtn" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
+  <button class="btn btn-primary" id="contactFromHelpBtn" type="button" style="width:100%">Не помогла информация? Обратитесь к нам!</button>
 </div></div>
 
 <div class="modal-overlay hidden" id="floodModal"><div class="modal">
@@ -1002,7 +1019,7 @@
 
 <div class="modal-overlay hidden" id="fandomsModal"><div class="modal modal-wide">
   <button class="modal-close" type="button">×</button>
-  <div class="fandoms-header"><h2>🌐 Фандомы</h2><button class="btn btn-primary" id="createFandomBtn" style="font-size:14px;padding:10px 18px">+ Создать ФД</button></div>
+  <div class="fandoms-header"><h2>🌐 Фандомы</h2><button class="btn btn-primary" id="createFandomBtn" type="button" style="font-size:14px;padding:10px 18px">+ Создать ФД</button></div>
   <div class="fandoms-list" id="fandomsList"></div>
 </div></div>
 
@@ -1086,7 +1103,7 @@
       </div>
     </div>
     <div class="settings-row" style="display:block">
-      <div class="settings-row-info" style="margin-bottom:10px"><div class="settings-row-title">Размер шрифта</div><div class="settings-row-sub">Влияет на весь интерфейс</div></div>
+      <div class="settings-row-info" style="margin-bottom:10px"><div class="settings-row-title">Размер шрифта</div><div class="settings-row-sub">Влияет на весь интерфейс (на телефоне — только на десктопе)</div></div>
       <div class="font-picker" id="fontPicker">
         <button class="font-btn" data-size="0.85" type="button">Мелкий</button>
         <button class="font-btn" data-size="1" type="button">Обычный</button>
@@ -1128,7 +1145,7 @@
     <div class="link-reviews-header">⭐ Отзывы о флуде</div>
     <div class="reviews-summary" id="linkReviewsSummary"></div>
     <div class="reviews-list" id="linkReviewsList"></div>
-    <button class="btn btn-primary" id="openLinkReviewFormBtn" style="width:100%;margin-top:12px">✍️ Оставить отзыв</button>
+    <button class="btn btn-primary" id="openLinkReviewFormBtn" type="button" style="width:100%;margin-top:12px">✍️ Оставить отзыв</button>
   </div>
 
   <div class="link-landing-view hidden" id="linkReviewFormView">
@@ -1143,8 +1160,8 @@
     </div>
     <div class="field"><label for="linkReviewText">Ваш отзыв *</label><textarea id="linkReviewText" placeholder="Что думаете о канале?" maxlength="800" style="min-height:110px"></textarea></div>
     <div class="error" id="linkReviewError"></div>
-    <button class="btn btn-primary" id="submitLinkReviewBtn" style="width:100%">Отправить на модерацию</button>
-    <button class="btn btn-ghost" id="backToLinkLandingBtn" style="width:100%;margin-top:10px">← Назад</button>
+    <button class="btn btn-primary" id="submitLinkReviewBtn" type="button" style="width:100%">Отправить на модерацию</button>
+    <button class="btn btn-ghost" id="backToLinkLandingBtn" type="button" style="width:100%;margin-top:10px">← Назад</button>
   </div>
 
   <div class="link-landing-view hidden" id="linkReviewSuccessView">
@@ -1463,7 +1480,11 @@ function applyAvatarFrame(frameId, badgeId, user){
 function applySettings(){
   if (!isThemeUnlocked(settings.theme)){ settings.theme = 'dark'; saveSettings(); }
   document.documentElement.setAttribute('data-theme', settings.theme);
-  document.body.style.zoom = settings.fontSize;
+
+  // ⚠️ zoom ломает тач-события на мобильных — применяем только на десктопе
+  const isMobileDevice = window.innerWidth <= 720 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  document.body.style.zoom = isMobileDevice ? '' : settings.fontSize;
+
   document.body.classList.toggle('compact', settings.compact);
   document.body.classList.toggle('no-anim', !settings.animations);
   const pop = document.getElementById('popularSection');
@@ -1855,8 +1876,20 @@ function formatTime(ts){
 function formatDate(ts){ return new Date(ts).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'}); }
 function plural(n, forms){ const a = Math.abs(n)%100, b = a%10; if (a > 10 && a < 20) return forms[2]; if (b > 1 && b < 5) return forms[1]; if (b === 1) return forms[0]; return forms[2]; }
 
-function openModal(id){ $(id).classList.remove('hidden'); }
-function closeModal(ov){ if (typeof ov === 'string') ov = $(ov); ov.classList.add('hidden'); setTimeout(() => resetModalView(ov.id), 220); }
+function openModal(id){
+  $(id).classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  if (document.body.classList.contains('side-open')) setSideOpen(false);
+}
+function closeModal(ov){
+  if (typeof ov === 'string') ov = $(ov);
+  ov.classList.add('hidden');
+  setTimeout(() => resetModalView(ov.id), 220);
+  setTimeout(() => {
+    const anyOpen = Array.from(document.querySelectorAll('.modal-overlay')).some(m => !m.classList.contains('hidden'));
+    if (!anyOpen) document.body.classList.remove('modal-open');
+  }, 260);
+}
 function resetModalView(mid){
   const m = $(mid); if (!m) return;
   const f = m.querySelector('.modal-form-view'), s = m.querySelector('.modal-success');
@@ -2007,6 +2040,7 @@ function updateProfileBadge(){
 function forceLogout(){
   document.body.classList.remove('side-open');
   document.body.classList.remove('in-app');
+  document.body.classList.remove('modal-open');
   clearSessionId(); CURRENT_USER = null; viewedUserId = null; selectedFandomId = null; editingFandomId = null;
   userStats = { ...DEFAULT_STATS };
   $('profilePopup').classList.add('hidden');
@@ -2404,8 +2438,8 @@ function renderAdminFandoms(){
       ${f.description ? `<div class="pending-fd-desc">${escapeHtml(f.description)}</div>` : ''}
       <div class="pending-fd-meta">👤 ${escapeHtml(f.createdByName || '—')} · ${formatTime(f.createdAt)} · 🔗 ${linksCount}</div>
       <div class="review-pending-actions">
-        <button class="btn btn-approve" data-act="approve" data-id="${f.id}">✅ Одобрить</button>
-        <button class="btn btn-reject" data-act="reject" data-id="${f.id}">❌ Удалить</button>
+        <button class="btn btn-approve" data-act="approve" data-id="${f.id}" type="button">✅ Одобрить</button>
+        <button class="btn btn-reject" data-act="reject" data-id="${f.id}" type="button">❌ Удалить</button>
       </div>
     </div>`;
   }).join('');
@@ -2444,8 +2478,8 @@ function renderAdminReviews(){
       ${renderStarsDisplay(r.rating)}
       <div class="review-text">${escapeHtml(r.text).replace(/\n/g, '<br>')}</div>
       <div class="review-pending-actions">
-        <button class="btn btn-approve" data-act="approve" data-id="${r.id}">✅ Опубликовать</button>
-        <button class="btn btn-reject" data-act="reject" data-id="${r.id}">❌ Отклонить</button>
+        <button class="btn btn-approve" data-act="approve" data-id="${r.id}" type="button">✅ Опубликовать</button>
+        <button class="btn btn-reject" data-act="reject" data-id="${r.id}" type="button">❌ Отклонить</button>
       </div>
     </div>`).join('');
   list.querySelectorAll('button[data-act]').forEach(btn => {
@@ -2527,7 +2561,7 @@ function renderAdminPanel(){
     <div class="ticket-answer"><div class="ticket-field"><span class="label">Ответ администрации</span></div>
     <textarea id="answerText" placeholder="Введите ответ...">${escapeHtml(selected.answer || '')}</textarea>
     <div class="error" id="answerError"></div>
-    <button class="btn btn-primary" id="sendAnswerBtn" style="width:100%">${selected.answer ? 'Обновить ответ' : 'Отправить ответ'}</button></div>`;
+    <button class="btn btn-primary" id="sendAnswerBtn" type="button" style="width:100%">${selected.answer ? 'Обновить ответ' : 'Отправить ответ'}</button></div>`;
   $('sendAnswerBtn').addEventListener('click', async () => {
     const text = $('answerText').value.trim();
     if (!text){ $('answerError').textContent = 'Введите текст.'; return; }
@@ -2610,6 +2644,18 @@ document.getElementById('sideContactBtn')?.addEventListener('click', () => { set
 loadSettings();
 applySettings();
 updateTgBanner();
+
+// Переприменяем настройки при повороте экрана / ресайзе
+let _resizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => applySettings(), 200);
+});
+window.addEventListener('orientationchange', () => {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => applySettings(), 300);
+});
+
 $('regAvatarPreview').src = defaultAvatar('?');
 
 const sessionId = getSessionId();
