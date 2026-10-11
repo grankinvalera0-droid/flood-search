@@ -131,7 +131,7 @@
   .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
   .btn-ghost:hover{color:var(--text);border-color:var(--accent)}
   .btn-danger{background:rgba(255,92,108,.12);color:var(--danger);border:1px solid rgba(255,92,108,.35);width:100%;font-size:14px;padding:11px}
-  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none !important;box-shadow:none !important}
   .field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px}
   .field label{font-size:13px;color:var(--muted);font-weight:500}
   .field input,.field textarea{font:inherit;font-size:15px;color:var(--text);background:var(--card-2);border:1px solid var(--border);border-radius:11px;padding:12px 14px;outline:none;transition:.15s;width:100%}
@@ -150,10 +150,16 @@
   .brand span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .rules-card h1{font-size:23px;font-weight:700;margin-bottom:6px}
   .rules-sub{color:var(--muted);font-size:13.5px;margin-bottom:24px}
-  .rules-text{max-height:46vh;overflow-y:auto;padding-right:14px;font-size:14px;line-height:1.72;color:var(--text);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-top:20px;padding-bottom:20px;margin-bottom:26px;opacity:.85}
+  .rules-text{max-height:40vh;overflow-y:auto;padding-right:14px;font-size:14px;line-height:1.72;color:var(--text);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-top:20px;padding-bottom:20px;margin-bottom:20px;opacity:.85}
   .rules-text h2{font-size:14.5px;font-weight:700;color:var(--text);margin:18px 0 8px}
   .rules-text h2:first-child{margin-top:0}
   .rules-text p{margin-bottom:9px}
+  .rules-checkbox{display:flex;align-items:flex-start;gap:11px;margin-bottom:16px;padding:13px 15px;background:var(--card-2);border:1px solid var(--border);border-radius:12px;cursor:pointer;user-select:none;transition:.15s;font-size:13.5px;line-height:1.5;color:var(--text)}
+  .rules-checkbox:hover{border-color:var(--accent)}
+  .rules-checkbox input{appearance:none;-webkit-appearance:none;width:22px;height:22px;min-width:22px;border-radius:6px;border:2px solid var(--border);background:var(--card);cursor:pointer;position:relative;margin-top:0;flex-shrink:0;transition:.15s}
+  .rules-checkbox input:checked{background:var(--grad);border-color:var(--accent)}
+  .rules-checkbox input:checked::after{content:"✓";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:14px;font-weight:900;line-height:1}
+  .rules-checkbox span{flex:1}
   .rules-actions{display:flex;flex-direction:column;gap:11px}
   .rules-actions .btn{width:100%;text-align:center}
   #screen-auth{align-items:center;justify-content:center;padding:40px 20px}
@@ -574,6 +580,13 @@
   body.no-anim .theme-banner.show{animation:none}
   body.no-anim .theme-banner-emojis span{animation:none}
 
+  /* ===== ЭКРАН ЗАГРУЗКИ ===== */
+  .loading-screen{position:fixed;inset:0;background:radial-gradient(1100px 650px at 50% -15%,var(--bg-2) 0%,var(--bg) 62%);display:none;align-items:center;justify-content:center;flex-direction:column;gap:18px;z-index:1000}
+  .loading-screen.show{display:flex}
+  .loading-spinner{width:48px;height:48px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:loadingSpin .9s linear infinite}
+  @keyframes loadingSpin{to{transform:rotate(360deg)}}
+  .loading-text{color:var(--muted);font-size:14px;font-weight:600;letter-spacing:.3px}
+
   /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
   @media(max-width:720px){
     body{overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom)}
@@ -617,8 +630,9 @@
     .modal h2{font-size:18px;margin-bottom:14px;padding-right:48px}
     .modal-close{top:12px;right:12px;width:34px;height:34px;background:var(--card-2);border-radius:50%;font-size:20px;z-index:30}
     .auth-card,.rules-card{padding:24px 20px;border-radius:20px}
-    .rules-text{max-height:50vh;font-size:13.5px}
+    .rules-text{max-height:38vh;font-size:13.5px}
     .rules-card h1{font-size:20px}
+    .rules-checkbox{font-size:13px;padding:12px 13px}
     .tabs{padding:4px;margin-bottom:20px}
     .tab{padding:9px;font-size:13px}
     .field{margin-bottom:12px}
@@ -711,7 +725,7 @@
   html, body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
   .btn, .side-link, .icon-btn-topbar, .star-btn, .tab,
   .fd-link-item, .fandom-card, .popular-item, .side-toggle,
-  .captcha-refresh {
+  .captcha-refresh, .rules-checkbox {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
@@ -723,6 +737,11 @@
 <body>
 
 <div class="holiday-particles" id="holidayParticles"></div>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Восстанавливаем сессию...</div>
+</div>
 
 <button class="side-toggle" id="sideToggle" type="button" title="Открыть панель" aria-label="Открыть панель">☰</button>
 <div class="side-backdrop" id="sideBackdrop"></div>
@@ -770,7 +789,7 @@
   <div class="theme-flash-label" id="themeFlashLabel">ЭКСКЛЮЗИВ</div>
 </div>
 
-<section id="screen-rules" class="screen active"><div class="rules-card">
+<section id="screen-rules" class="screen"><div class="rules-card">
   <div class="brand">ФД<span>Поиск</span></div>
   <h1>Правила использования Сервиса</h1>
   <p class="rules-sub">Редакция от 01.01.2026.</p>
@@ -790,10 +809,14 @@
     <h2>6. ИЗМЕНЕНИЯ</h2>
     <p>6.1. Администрация вправе изменять Правила.</p>
   </div>
+  <label class="rules-checkbox" for="notRaiderCheck">
+    <input type="checkbox" id="notRaiderCheck" />
+    <span>Я подтверждаю, что <b>не являюсь рейдером</b>, не участвую в рейдерских атаках на сообщества и не использую сервис во вред другим пользователям</span>
+  </label>
   <div class="rules-actions">
-    <button id="btnAccept" class="btn btn-primary">Принять условия</button>
-    <button id="btnCreateAccount" class="btn btn-primary hidden">Создать аккаунт</button>
-    <button id="btnGoLogin" class="btn btn-ghost hidden">У меня уже есть аккаунт</button>
+    <button id="btnAccept" class="btn btn-primary" type="button" disabled>Принять условия</button>
+    <button id="btnCreateAccount" class="btn btn-primary hidden" type="button">Создать аккаунт</button>
+    <button id="btnGoLogin" class="btn btn-ghost hidden" type="button">У меня уже есть аккаунт</button>
   </div>
 </div></section>
 
@@ -1898,7 +1921,17 @@ function resetModalView(mid){
   if (mid === 'linkLandingModal'){ showLinkLandingView('main'); }
 }
 
-$('btnAccept').addEventListener('click', () => { $('btnAccept').classList.add('hidden'); $('btnCreateAccount').classList.remove('hidden'); $('btnGoLogin').classList.remove('hidden'); });
+/* ===== ЧЕКБОКС "НЕ РЕЙДЕР" ===== */
+$('notRaiderCheck').addEventListener('change', e => {
+  $('btnAccept').disabled = !e.target.checked;
+});
+
+$('btnAccept').addEventListener('click', () => {
+  if ($('btnAccept').disabled) return;
+  $('btnAccept').classList.add('hidden');
+  $('btnCreateAccount').classList.remove('hidden');
+  $('btnGoLogin').classList.remove('hidden');
+});
 $('btnCreateAccount').addEventListener('click', () => { switchTab('register'); showScreen('screen-auth'); });
 $('btnGoLogin').addEventListener('click', () => { switchTab('login'); showScreen('screen-auth'); });
 $('btnBackToRules').addEventListener('click', () => showScreen('screen-rules'));
@@ -2022,6 +2055,7 @@ function enterApp(user){
   $('profilePopup').classList.add('hidden');
   $('adminMsgPopup').classList.add('hidden');
   $('searchResults').classList.add('hidden');
+  document.getElementById('loadingScreen').classList.remove('show');
   showScreen('screen-main');
 }
 function updateProfileBadge(){
@@ -2054,6 +2088,7 @@ function forceLogout(){
   clearHolidayEffects();
   document.getElementById('themeBanner')?.classList.remove('show');
   $('btnAccept').classList.remove('hidden');
+  $('btnAccept').disabled = !$('notRaiderCheck').checked;
   $('btnCreateAccount').classList.add('hidden');
   $('btnGoLogin').classList.add('hidden');
   showScreen('screen-rules');
@@ -2658,13 +2693,29 @@ window.addEventListener('orientationchange', () => {
 
 $('regAvatarPreview').src = defaultAvatar('?');
 
+/* ===== АВТОВХОД ПО СЕССИИ (надёжно, с долгим ожиданием) ===== */
 const sessionId = getSessionId();
 if (sessionId){
+  // Показываем экран загрузки пока восстанавливаем сессию
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  $('loadingScreen').classList.add('show');
+
+  let attempts = 0;
+  const MAX_ATTEMPTS = 50; // ~15 секунд (50 * 300мс)
   const tryEnter = setInterval(() => {
+    attempts++;
     const user = usersCache.find(u => u.id === sessionId);
     if (user){
       clearInterval(tryEnter);
-      if (user.banned){ alert('Аккаунт заблокирован.'); clearSessionId(); showScreen('screen-rules'); return; }
+      $('loadingScreen').classList.remove('show');
+      if (user.banned){
+        alert('Аккаунт заблокирован.');
+        clearSessionId();
+        $('notRaiderCheck').checked = false;
+        $('btnAccept').disabled = true;
+        showScreen('screen-rules');
+        return;
+      }
       enterApp(user);
       const newlyUnlocked = checkHolidayUnlocks();
       if (newlyUnlocked.length){
@@ -2672,10 +2723,21 @@ if (sessionId){
         newlyUnlocked.forEach((h, i) => setTimeout(() => showToast(h.emoji, `Тема «${h.name}» разблокирована!`, 'Зайди в Настройки → Оформление.', 10000), i * 400));
       }
       checkRoleChange();
+    } else if (attempts >= MAX_ATTEMPTS){
+      // Пользователь реально не найден — сбрасываем сессию
+      clearInterval(tryEnter);
+      $('loadingScreen').classList.remove('show');
+      clearSessionId();
+      $('notRaiderCheck').checked = false;
+      $('btnAccept').disabled = true;
+      showScreen('screen-rules');
     }
   }, 300);
-  setTimeout(() => { clearInterval(tryEnter); if (!CURRENT_USER){ clearSessionId(); showScreen('screen-rules'); } }, 5000);
-} else showScreen('screen-rules');
+} else {
+  $('notRaiderCheck').checked = false;
+  $('btnAccept').disabled = true;
+  showScreen('screen-rules');
+}
 </script>
 </body>
 </html>
